@@ -11,6 +11,8 @@ public abstract class Hitbox {
 	protected Position D;
 	protected int xSpeed;
 	
+	public Hitbox() {}
+	
 	public Hitbox(Position a,int width,int height,int speed) {
 		super();
 		Position A = new Position(a.getX(), a.getY());
