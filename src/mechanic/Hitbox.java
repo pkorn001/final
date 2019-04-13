@@ -11,7 +11,9 @@ public abstract class Hitbox {
 	protected Position D;
 	protected int xSpeed;
 	
-	public Hitbox() {}
+	public Hitbox(int speed) {
+		this.xSpeed = speed;
+	}
 	
 	public Hitbox(Position a,int width,int height,int speed) {
 		super();
