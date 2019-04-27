@@ -1,7 +1,7 @@
 package obstacle;
 
-import mechanic.Hitbox;
-import mechanic.Position;
+import logic.Hitbox;
+import logic.Position;
 
 public class Monster extends Hitbox{
 	
@@ -17,8 +17,8 @@ public class Monster extends Hitbox{
 	
 	
 
-	public Monster(Position a,int monsterType,int speed) {
-		super(a,20,20,speed);
+	public Monster(Position a,int monsterType,int xSpeed,int ySpeed) {
+		super(a,20,20,xSpeed,ySpeed);
 		this.monsterType = monsterType;
 		
 	}

@@ -1,4 +1,4 @@
-package mechanic;
+package logic;
 
 public class Position {
 	protected int x;
@@ -11,11 +11,11 @@ public class Position {
 	}
 
 	public int getX() {
-		return x;
+		return  x;
 	}
 
-	public void setX(int x) {
-		this.x = x;
+	public void setX(int d) {
+		this.x = d;
 	}
 
 	public int getY() {

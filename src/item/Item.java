@@ -2,8 +2,8 @@ package item;
 
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import mechanic.Hitbox;
-import mechanic.Position;
+import logic.Hitbox;
+import logic.Position;
 
 public abstract class Item extends Hitbox {
 	

@@ -1,7 +1,7 @@
 package obstacle;
 
-import mechanic.Hitbox;
-import mechanic.Position;
+import logic.Hitbox;
+import logic.Position;
 
 public class ObstacleBox extends Hitbox{
 	

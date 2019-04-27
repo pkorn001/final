@@ -1,18 +1,25 @@
 package hero.base;
 
 import item.Item;
-import mechanic.Hitbox;
-import mechanic.Position;
+import javafx.stage.Stage;
+import logic.Hitbox;
+import logic.Position;
+import obstacle.Monster;
+import obstacle.ObstacleBox;
 
 public class Hero extends Hitbox {
 	
 	public static final int HEIGHT = 100;
-	private Hitbox hero;
-	private boolean isDead = false;
+//	private boolean isDead = false;
+	public int score;
+	protected Stage stage;
+	protected ObstacleBox obstacle;
+	protected Hitbox hero;
+	protected Monster monster;
 	
 	public Hero(int speed) {
 		super(0);
-		hero = new Hitbox(new Position(2, 0), 3, 5, speed) {
+		hero = new Hitbox(new Position(2, 0), 3, 5) {
 		};
 	}
 
@@ -20,27 +27,26 @@ public class Hero extends Hitbox {
 		return HEIGHT;
 	}
 
-	public void setDead(boolean isDead) {
-		this.isDead = isDead;
-	}
+//	public void setDead(boolean isDead) {
+//		this.isDead = isDead;
+//	}
 	
 	public void transform(Item item) {
 		switch(item.getItemType()) {
 		case("Assassin"):
-			Hero assassin = new Assassin(0);
+			hero = new Assassin(0);
 			break;
 		case("Boomeranger"):
-			Hero boomeranger = new Boomeranger(0);
+			hero = new Boomeranger(0);
 			break;
 		case("Mage"):
-			Hero mage = new Mage(0);
+			hero = new Mage(0);
 			break;
 		case("Swordman"):
-			Hero swordman = new Swordman(0);
+			hero = new Swordman(0);
 			break;
 		}
-		
-		
+	
 	}
 	
 	public void jump() throws InterruptedException {
@@ -58,7 +64,7 @@ public class Hero extends Hitbox {
 	}
 	
 	public boolean isDead() {
-		return isDead();
+		return this.collide(monster) || this.collide(obstacle);
 	}
 	
 	

@@ -1,23 +1,25 @@
 package hero.base;
 
 import hero.action.Attackable;
-import mechanic.Hitbox;
-import mechanic.Position;
+import logic.Hitbox;
+import logic.Position;
 
 public class Swordman extends Hero implements Attackable {
 
+	private Hitbox attack = new Hitbox(new Position(this.C.getX()+1, this.C.getY()), 1, 1) {
+	};
+	
 	public Swordman(int speed) {
 		super(0);
-		Hitbox swordman = new Hitbox(new Position(2, 0), 3, 5, speed) {
-		};
-		
-		// TODO Auto-generated constructor stub
 	}
 
 	@Override
 	public void attack() {
-		// TODO Auto-generated method stub
-		
+		if(attack.collide(monster)) {
+			score += monster.getMonsterPoint();
+			monster.setDestroyed(true);
+		}
+		return;
 	}
 
 }
