@@ -16,25 +16,25 @@ public class Resource {
 		return im;
 	}
 	
+	// stage 0
+	public static BufferedImage Stage0,Ground0,ObstacleTall_01,ObstacleTall_02,ObstacleTall_03
+				,Obstacle_01,Obstacle_02,Obstacle_03,Hero0;
+	
 	// stage 1
 	public static BufferedImage Stage1,Ground1,ObstacleTall_11,ObstacleTall_12,ObstacleTall_13
-				,Obstacl_11,Obstacl_12,Obstacl_13,Hero1;
+				,Obstacle_11,Obstacle_12,Obstacle_13,Hero1,Boss1;
 	
 	// stage 2
 	public static BufferedImage Stage2,Ground2,ObstacleTall_21,ObstacleTall_22,ObstacleTall_23
-				,Obstacl_21,Obstacl_22,Obstacl_23,Hero2,Boss2;
+				,Obstacle_21,Obstacle_22,Obstacle_23,Hero2,Boss2;
 	
 	// stage 3
 	public static BufferedImage Stage3,Ground3,ObstacleTall_31,ObstacleTall_32,ObstacleTall_33
-				,Obstacl_31,Obstacl_32,Obstacl_33,Hero3,Boss3;
+				,Obstacle_31,Obstacle_32,Obstacle_33,Hero3,Boss3;
 	
 	// stage 4
 	public static BufferedImage Stage4,Ground4,ObstacleTall_41,ObstacleTall_42,ObstacleTall_43
-				,Obstacl_41,Obstacl_42,Obstacl_43,Hero4,Boss4;
-	
-	// stage 5
-	public static BufferedImage Stage5,Ground5,ObstacleTall_51,ObstacleTall_52,ObstacleTall_53
-				,Obstacl_51,Obstacl_52,Obstacl_53,Hero5,Boss5;
+				,Obstacle_41,Obstacle_42,Obstacle_43,Hero4,Boss4;
 	
 	//monster
 	public static BufferedImage Monster0,Monster1,Monster2,Monster3,Monster4,Monster5;
@@ -47,7 +47,7 @@ public class Resource {
 	
 	static {
 		
-		//Monster ; monster0 = dead
+		//Monster ; monster5 = dead
 		Monster0 = getImage("image/Monster0.png"); 
 		Monster1 = getImage("image/Monster1.png");
 		Monster2 = getImage("image/Monster2.png");
@@ -66,7 +66,18 @@ public class Resource {
 		Coin2 = getImage("image/Coin2.png"); 
 		Coin3 = getImage("image/Coin3.png"); 
 		Coin4 = getImage("image/Coin4.png"); 
-		Coin5 = getImage("image/Coin5.png"); 
+		Coin5 = getImage("image/Coin5.png");
+		
+		//stage0
+		Stage0 = getImage("image/Stage0.png");
+		Ground0 = getImage("image/Ground0.png");
+		ObstacleTall_01 = getImage("image/ObstacleTall_01.png");
+		ObstacleTall_02 = getImage("image/ObstacleTall_02.png");
+		ObstacleTall_03 = getImage("image/ObstacleTall_03.png");
+		Obstacle_01 = getImage("image/Ostacl_01 .png");
+		Obstacle_02 = getImage("image/Obstacl_02.png");
+		Obstacle_03 = getImage("image/Obstacl_03.png");
+		Hero0 = getImage("image/Hero0.png");
 		
 		//stage1
 		Stage1 = getImage("image/Stage1.png");
@@ -74,9 +85,9 @@ public class Resource {
 		ObstacleTall_11 = getImage("image/ObstacleTall_11.png");
 		ObstacleTall_12 = getImage("image/ObstacleTall_12.png");
 		ObstacleTall_13 = getImage("image/ObstacleTall_13.png");
-		Obstacl_11 = getImage("image/Ostacl_11 .png");
-		Obstacl_12 = getImage("image/Obstacl_12.png");
-		Obstacl_13 = getImage("image/Obstacl_13.png");
+		Obstacle_11 = getImage("image/Ostacl_11 .png");
+		Obstacle_12 = getImage("image/Obstacl_12.png");
+		Obstacle_13 = getImage("image/Obstacl_13.png");
 		Hero1 = getImage("image/Hero1.png");
 		
 		//stage2
@@ -85,9 +96,9 @@ public class Resource {
 		ObstacleTall_21 = getImage("image/ObstacleTall_21.png");
 		ObstacleTall_22 = getImage("image/ObstacleTall_22.png");
 		ObstacleTall_23 = getImage("image/ObstacleTall_23.png");
-		Obstacl_21 = getImage("image/Ostacl_21 .png");
-		Obstacl_22 = getImage("image/Obstacl_22.png");
-		Obstacl_23 = getImage("image/Obstacl_23.png");
+		Obstacle_21 = getImage("image/Ostacl_21 .png");
+		Obstacle_22 = getImage("image/Obstacl_22.png");
+		Obstacle_23 = getImage("image/Obstacl_23.png");
 		Hero2 = getImage("image/Hero2.png");
 		
 		//stage3
@@ -96,9 +107,9 @@ public class Resource {
 		ObstacleTall_31 = getImage("image/ObstacleTall_31.png");
 		ObstacleTall_32 = getImage("image/ObstacleTall_32.png");
 		ObstacleTall_33 = getImage("image/ObstacleTall_33.png");
-		Obstacl_31 = getImage("image/Ostacl_31 .png");
-		Obstacl_32 = getImage("image/Obstacl_32.png");
-		Obstacl_33 = getImage("image/Obstacl_33.png");
+		Obstacle_31 = getImage("image/Ostacl_31 .png");
+		Obstacle_32 = getImage("image/Obstacl_32.png");
+		Obstacle_33 = getImage("image/Obstacl_33.png");
 		Hero3 = getImage("image/Hero3.png");
 		
 		//stage4
@@ -107,21 +118,10 @@ public class Resource {
 		ObstacleTall_41 = getImage("image/ObstacleTall_41.png");
 		ObstacleTall_42 = getImage("image/ObstacleTall_42.png");
 		ObstacleTall_43 = getImage("image/ObstacleTall_43.png");
-		Obstacl_41 = getImage("image/Ostacl_41 .png");
-		Obstacl_42 = getImage("image/Obstacl_42.png");
-		Obstacl_43 = getImage("image/Obstacl_43.png");
+		Obstacle_41 = getImage("image/Ostacl_41 .png");
+		Obstacle_42 = getImage("image/Obstacl_42.png");
+		Obstacle_43 = getImage("image/Obstacl_43.png");
 		Hero4 = getImage("image/Hero4.png");
-		
-		//stage5
-		Stage5 = getImage("image/Stage5.png");
-		Ground5 = getImage("image/Ground5.png");
-		ObstacleTall_51 = getImage("image/ObstacleTall_51.png");
-		ObstacleTall_52 = getImage("image/ObstacleTall_52.png");
-		ObstacleTall_53 = getImage("image/ObstacleTall_53.png");
-		Obstacl_51 = getImage("image/Ostacl_51 .png");
-		Obstacl_52 = getImage("image/Obstacl_52.png");
-		Obstacl_53 = getImage("image/Obstacl_53.png");
-		Hero5 = getImage("image/Hero5.png");
 		
 	}
 	
