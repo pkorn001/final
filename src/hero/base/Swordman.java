@@ -6,20 +6,28 @@ import logic.Position;
 
 public class Swordman extends Hero implements Attackable {
 
-	private Hitbox attack = new Hitbox(new Position(this.C.getX()+1, this.C.getY()), 1, 1) {
+	private Hitbox attackBox = new Hitbox(new Position(this.C.getX()+1, this.C.getY()/2), 1, 1) {
 	};
 	
-	public Swordman(int speed) {
-		super(0);
+	public Swordman(Position position,int speed) {
+		super(position, speed);
 	}
 
 	@Override
-	public void attack() {
-		if(attack.collide(monster)) {
-			score += monster.getMonsterPoint();
+	public boolean attack() {
+		if(this.attackBox.collide(monster)) {
 			monster.setDestroyed(true);
+			return  true;
 		}
-		return;
+		return false;
+	}
+
+	@Override
+	public void updateScore() {
+		// TODO Auto-generated method stub
+		if(this.attack()) {
+			score += monster.getMonsterPoint();
+		}
 	}
 
 }
