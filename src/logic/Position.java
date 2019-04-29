@@ -14,16 +14,16 @@ public class Position {
 		return  x;
 	}
 
-	public void setX(int d) {
-		this.x = d;
+	public void setX(double d) {
+		this.x = (int) d;
 	}
 
 	public int getY() {
 		return y;
 	}
 
-	public void setY(int y) {
-		this.y = y;
+	public void setY(double d) {
+		this.y = (int) d;
 	}
 	
 	
