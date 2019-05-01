@@ -1,5 +1,7 @@
 package hero.base;
 
+import java.awt.Graphics2D;
+
 import hero.action.Attackable;
 import logic.Hitbox;
 import logic.Position;
@@ -28,6 +30,24 @@ public class Swordman extends Hero implements Attackable {
 		if(this.attack()) {
 			score += monster.getMonsterPoint();
 		}
+	}
+
+	@Override
+	public void draw(Graphics2D g2d) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public boolean IsVisible() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public int getZ() {
+		// TODO Auto-generated method stub
+		return 0;
 	}
 
 }

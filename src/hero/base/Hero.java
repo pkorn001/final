@@ -6,14 +6,15 @@ import logic.Hitbox;
 import logic.Position;
 import obstacle.Monster;
 import obstacle.ObstacleBox;
+import render.Renderable;
 
-public abstract class Hero extends Hitbox {
+public abstract class Hero extends Hitbox implements Renderable{
 	
 	public static final int HEIGHT = 100;
 //	private boolean isDead = false;
 	public int score;
 	protected int xSpeed;
-	protected Position position;
+	protected Position position = new Position(this.C.getX(), this.C.getY()/2);
 	protected Stage stage;
 	protected ObstacleBox obstacle;
 	protected Hitbox hero;
@@ -27,6 +28,22 @@ public abstract class Hero extends Hitbox {
 		this.xSpeed = xSpeed;
 	}
 	
+	public int getxSpeed() {
+		return xSpeed;
+	}
+
+	public void setxSpeed(int xSpeed) {
+		this.xSpeed = xSpeed;
+	}
+
+	public Position getPosition() {
+		return position;
+	}
+
+	public void setPosition(Position position) {
+		this.position = position;
+	}
+
 	public abstract void updateScore();
 
 	public int getScore() {
@@ -86,7 +103,6 @@ public abstract class Hero extends Hitbox {
 		this.setC(new Position(this.getC().getX(), this.getC().getY()-2)); //PosC get back to first Y-position
 		this.setD(new Position(this.getD().getX(), this.getD().getY()-2)); //PosD get back to first Y-position
 		
-		//                        ****** Edit later; have no idea to code at all ******
 	}
 	
 	public boolean isDead() {

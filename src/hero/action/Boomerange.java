@@ -5,10 +5,11 @@ import logic.Position;
 
 public class Boomerange extends Hitbox {
 	
+	private Position returnPoint = new Position(this.C.getX() + 8, 4);
+	
 	public Boomerange(Position position, int xSpeed, int ySpeed) {
 		super(position, 1, 1, xSpeed, ySpeed);
 	}
-	private Position returnPoint = new Position(this.C.getX() + 8, 4);
 	
 	public void move() {
 		for(int i=0; i < this.returnPoint.getX(); i+=2) {
