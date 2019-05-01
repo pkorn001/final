@@ -4,8 +4,9 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import logic.Hitbox;
 import logic.Position;
+import render.Renderable;
 
-public abstract class Item extends Hitbox {
+public abstract class Item extends Hitbox implements Renderable {
 	
 	private Image img;
 	private int itemType;
@@ -23,7 +24,7 @@ public abstract class Item extends Hitbox {
 	*/
 
 	public Item(Position a, int fps, int type, int stage) {
-		super(fps);
+		super(a, fps);
 		this.itemType = type;
 		Position A = new Position(a.getX(), a.getY());
 		Position B = new Position(a.getX(), a.getY()+1);
