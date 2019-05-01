@@ -97,11 +97,12 @@ public abstract class Hitbox {
 		return false;
 		}
 	
-	public void update(double time) {
+	public void update(int xSpeed, int ySpeed) {
 		for(Position i  : new Position[] {this.A, this.B, this.C, this.D}){
-			i.setX(i.getX() + xSpeed * time);
-			i.setY(i.getY() + ySpeed * time);
+			i.setX(i.getX() + xSpeed);
+			i.setY(i.getY() + ySpeed);
 		}
+
 //		this.A.setX(this.A.getX() - xSpeed * time);
 //		this.B.setX(this.B.getX() - xSpeed * time);
 //		this.C.setX(this.C.getX() - xSpeed * time);
