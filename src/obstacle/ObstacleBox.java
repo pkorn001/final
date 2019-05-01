@@ -23,7 +23,7 @@ public class ObstacleBox extends Hitbox{
 	private final static int[] OBSTACLE_WIDTH = {20,40,60};
 
 	public ObstacleBox(Position a,int speed,int obstacleBox_Type,int obstacleBox_Size,int Stage) {
-		super(speed);
+		super(a, speed);
 		this.obstacleBox_Type = obstacleBox_Type;
 		this.Stage = Stage;
 		Position A = new Position(a.getX(), a.getY());
