@@ -9,19 +9,19 @@ import java.util.List;
 
 public class RenderableHolder {
 	
-	private List<Renderable> entities;
-	private Comparator<Renderable> comparator;
+	private List<Irenderable> entities;
+	private Comparator<Irenderable> comparator;
 	
 	public RenderableHolder() {
-		entities = new ArrayList<Renderable>();
-		comparator = (Renderable o1, Renderable o2) -> {
+		entities = new ArrayList<Irenderable>();
+		comparator = (Irenderable o1, Irenderable o2) -> {
 			if(o1.getZ() > o2.getZ())
 				return 1;
 			return -1;
 		};
 	}
 	
-	public void add(Renderable entity) {
+	public void add(Irenderable entity) {
 		entities.add(entity);
 		Collections.sort(entities, comparator);
 	}
