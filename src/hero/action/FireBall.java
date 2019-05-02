@@ -12,6 +12,8 @@ public class FireBall extends Hitbox implements Irenderable {
 	//xSpeed > map's speed, graphic, collide?, 
 	public static final int FIREBALL_SPEED = 2;
 	private int z;
+	private boolean isDestroyed = false;
+	
 	
 	public FireBall(Position position, int speed) {
 		super(position, speed);
@@ -31,5 +33,15 @@ public class FireBall extends Hitbox implements Irenderable {
 	@Override
 	public int getZ() {
 		return z--;
+	}
+
+	@Override
+	public boolean isDestroyed() {
+		// TODO Auto-generated method stub
+		return this.isDestroyed;
+	}
+	
+	public void setDestroyed(boolean isDestroyed) {
+		this.isDestroyed = isDestroyed;
 	}
 }

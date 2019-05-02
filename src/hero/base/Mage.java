@@ -26,10 +26,10 @@ public class Mage extends Hero implements Attackable {
 			@Override
 			public void handle(long now) {
 				// TODO Auto-generated method stub
-				double time = (now - System.nanoTime())/1000000000.0;
+				int time = (int) ((now - System.nanoTime())/1000000000.0);
 				fireball.update(FireBall.FIREBALL_SPEED, 0, time/3);
 			}
-		};
+		}.start();
 		if(fireball.collide(monster))
 			return true;
 		return false;
@@ -61,5 +61,6 @@ public class Mage extends Hero implements Attackable {
 		// TODO Auto-generated method stub
 		return 0;
 	}
+
 
 }
