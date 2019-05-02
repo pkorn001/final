@@ -6,10 +6,10 @@ import java.awt.Graphics2D;
 
 import logic.Hitbox;
 import logic.Position;
-import render.Renderable;
+import render.Irenderable;
 import render.Resource;
 
-public class ObstacleBox extends Hitbox implements Renderable{
+public class ObstacleBox extends Hitbox implements Irenderable{
 	
 	
 	// 0 = stone 1 = tree
