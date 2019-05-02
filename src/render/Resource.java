@@ -45,7 +45,20 @@ public class Resource {
 	//DeadHero
 	public static BufferedImage DeadHero0,DeadHero1,DeadHero2,DeadHero3,DeadHero4;
 	
+	//HeroAttack
+	public static BufferedImage FireBall;
+	
+	//BossAttack
+	public static BufferedImage BossAttack,ParriedBall;
+	
 	static {
+		
+		//HeroAttack
+		FireBall = getImage("image/FireBall.png");
+		
+		//BossAttack
+		BossAttack = getImage("image/BossAttack.png");
+		ParriedBall = getImage("image/ParriedBall.png");;
 		
 		//Monster ; monster5 = dead
 		Monster0 = getImage("image/Monster0.png"); 
