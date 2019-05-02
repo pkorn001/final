@@ -69,10 +69,6 @@ public abstract class Hero extends Hitbox implements Renderable{
 	public static int getHeight() {
 		return HEIGHT;
 	}
-
-//	public void setDead(boolean isDead) {
-//		this.isDead = isDead;
-//	}
 	
 	public void transform(Item item) {
 		switch(item.getItemType()) {
@@ -105,7 +101,8 @@ public abstract class Hero extends Hitbox implements Renderable{
 		
 	}
 	
-	public boolean isDead() {
+	@Override
+	public boolean isDestroyed() {
 		return this.collide(monster) || this.collide(obstacle);
 	}
 	

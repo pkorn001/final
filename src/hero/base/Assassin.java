@@ -13,9 +13,6 @@ public class Assassin extends Hero implements Attackable {
 	
 	public Assassin(Position position, int speed) {
 		super(position, speed);
-//		assassin = new Hitbox(new Position(2, 0), 3, 5, speed) {
-//		};
-		// TODO Auto-generated constructor stub
 	}
 
 	@Override

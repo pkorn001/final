@@ -32,4 +32,10 @@ public class FireBall extends Hitbox implements Renderable {
 		// TODO Auto-generated method stub
 		return 0;
 	}
+
+	@Override
+	public boolean isDestroyed() {
+		// TODO Auto-generated method stub
+		return false;
+	}
 }

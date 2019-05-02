@@ -1,9 +1,12 @@
 package hero.action;
 
+import java.awt.Graphics2D;
+
 import logic.Hitbox;
 import logic.Position;
+import render.Renderable;
 
-public class Boomerange extends Hitbox {
+public class Boomerange extends Hitbox implements Renderable {
 	
 	private Position returnPoint;
 	private Position originPoint;
@@ -55,5 +58,29 @@ public class Boomerange extends Hitbox {
 
 	public void setReturn(boolean isReturn) {
 		this.isReturn = isReturn;
+	}
+
+	@Override
+	public void draw(Graphics2D g2d) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public boolean IsVisible() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public int getZ() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public boolean isDestroyed() {
+		// TODO Auto-generated method stub
+		return false;
 	}
 }

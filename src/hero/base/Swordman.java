@@ -50,4 +50,5 @@ public class Swordman extends Hero implements Attackable {
 		return 0;
 	}
 
+
 }

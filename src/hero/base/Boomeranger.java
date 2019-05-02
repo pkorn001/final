@@ -26,7 +26,7 @@ public class Boomeranger extends Hero implements Attackable {
 			public void handle(long now) {
 				boomerange.move();
 			}
-		};
+		}.start();
 		if(boomerange.collide(monster))
 			return true;
 		return false;
@@ -57,5 +57,5 @@ public class Boomeranger extends Hero implements Attackable {
 		// TODO Auto-generated method stub
 		return 0;
 	}
-	
+
 }
