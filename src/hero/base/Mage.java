@@ -8,7 +8,6 @@ import javafx.animation.AnimationTimer;
 import logic.Hitbox;
 import logic.Position;
 import obstacle.Sprite;
-import render.Irenderable;
 
 public class Mage extends Hero implements Attackable {
 	

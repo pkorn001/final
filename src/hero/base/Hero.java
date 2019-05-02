@@ -108,6 +108,4 @@ public abstract class Hero extends Hitbox implements Irenderable{
 	public boolean isDead() {
 		return this.collide(monster) || this.collide(obstacle);
 	}
-	
-	
 }
