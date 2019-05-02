@@ -5,9 +5,9 @@ import java.awt.Graphics2D;
 import hero.base.Mage;
 import logic.Hitbox;
 import logic.Position;
-import render.Renderable;
+import render.Irenderable;
 
-public class FireBall extends Hitbox implements Renderable {
+public class FireBall extends Hitbox implements Irenderable {
 	//xSpeed > map's speed, graphic, collide?, 
 	public static final int FIREBALL_SPEED = 2;
 	
