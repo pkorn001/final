@@ -6,5 +6,6 @@ public interface Renderable {
 	public void draw(Graphics2D g2d);
 	public boolean IsVisible();
 	public int getZ();
+	public boolean isDestroyed();
 
 }
