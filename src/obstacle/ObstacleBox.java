@@ -33,6 +33,7 @@ public class ObstacleBox extends Hitbox implements Irenderable{
 	public ObstacleBox(Position a,int speed,int obstacleBox_Type,int obstacleBox_Size,int Stage) {
 		super(speed);
 		z = Integer.MAX_VALUE;
+		super(a, speed);
 		this.obstacleBox_Type = obstacleBox_Type;
 		this.Stage = Stage;
 		Position A = new Position(a.getX(), a.getY());

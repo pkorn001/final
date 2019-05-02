@@ -8,8 +8,8 @@ import logic.Position;
 public class Sprite extends Hitbox {
 	
 	private Image image;
-    private int posX;
-    private int posY;    
+    private double posX;
+    private double posY;    
     private double xSpeed;
     private double ySpeed;
     private double width;

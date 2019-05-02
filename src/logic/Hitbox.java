@@ -61,8 +61,9 @@ public abstract class Hitbox {
 	}
 
 	//Obstacle has only X-velocity
-	public Hitbox(int speed) {
+	public Hitbox(Position position, int speed) {
 		this.xSpeed = speed;
+		
 	}
 	
 	//Hero has no velocity
@@ -96,19 +97,12 @@ public abstract class Hitbox {
 		return false;
 		}
 	
-	public void update(int time) {
+	public void update(int xSpeed, int ySpeed, double time) {
 		for(Position i  : new Position[] {this.A, this.B, this.C, this.D}){
 			i.setX(i.getX() + xSpeed * time);
 			i.setY(i.getY() + ySpeed * time);
 		}
-//		this.A.setX(this.A.getX() - xSpeed * time);
-//		this.B.setX(this.B.getX() - xSpeed * time);
-//		this.C.setX(this.C.getX() - xSpeed * time);
-//		this.D.setX(this.D.getX() - xSpeed * time);
-//		this.A.setY(this.A.getY() + ySpeed * time);
-//		this.B.setY(this.B.getY() + ySpeed * time);
-//		this.C.setY(this.C.getY() + ySpeed * time);
-//		this.D.setY(this.D.getY() + ySpeed * time);
+
 	}
 	
 }
