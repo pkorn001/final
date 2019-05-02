@@ -1,6 +1,7 @@
 package obstacle;
 
 import java.awt.Graphics2D;
+import java.util.Random;
 
 import hero.action.Attackable;
 import logic.Hitbox;
@@ -16,8 +17,9 @@ public class Boss extends Hitbox implements Irenderable,Attackable{
 	 3 = black
 	 4 = purple */
 	private int bossStage;
-	private static int hitPoint = 100;
+	private final static int HIT_POINT = 100;
 	private static int bossHp = 200;
+	private final static int KILLED_POINT = 100*200;
 	private static boolean destroyed;
 	private int z;
 	
@@ -36,8 +38,12 @@ public class Boss extends Hitbox implements Irenderable,Attackable{
 		}
 	}
 	
-	public int getHitPoint() {
-		return hitPoint;
+	public int getHIT_POINT() {
+		return HIT_POINT;
+	}
+	
+	public int getKILLED_POINT() {
+		return KILLED_POINT;
 	}
 	
 	public int getBossStage() {
@@ -52,10 +58,34 @@ public class Boss extends Hitbox implements Irenderable,Attackable{
 		return destroyed;
 	}
 	
+	public void create(int monsterType,int xSpeed,int ySpeed){
+		Monster a = new Monster(this.getA(),monsterType,xSpeed,ySpeed);
+	}
+	
 	@Override
 	public void attack() {
 		// TODO Auto-generated method stub
+		Random attackPattern = new Random();
+		Random attackType = new Random();
+		Random monsterType = new Random();
 		
+		
+		switch(attackPattern.nextInt(2)) {
+		
+		case 0:  
+			switch(attackType.nextInt(2)) {
+			/*0 = parried
+			  1 = boss_fireball
+			  2 = monster */
+			case 0: 
+			case 1:	
+			case 2: new Monster(this.getA(),monsterType.nextInt(5),50,0);
+				
+				
+		}
+		case 1:
+		case 2:
+		}
 	}
 
 	@Override
