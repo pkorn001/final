@@ -1,29 +1,29 @@
 package logic;
 
 public class Position {
-	protected int x;
-	protected int y;
+	protected double x;
+	protected double y;
 	
-	public Position(int x, int y) {
+	public Position(double x, double y) {
 		super();
 		this.x = x;
 		this.y = y;
 	}
 
-	public int getX() {
+	public double getX() {
 		return  x;
 	}
 
 	public void setX(double d) {
-		this.x = (int) d;
+		this.x = d;
 	}
 
-	public int getY() {
+	public double getY() {
 		return y;
 	}
 
 	public void setY(double d) {
-		this.y = (int) d;
+		this.y = d;
 	}
 	
 	
