@@ -30,7 +30,16 @@ public class Monster extends Hitbox implements Irenderable{
 		setMonsterPoint(monsterType);
 		
 	}
-
+	public void setMonster_MovePattern(int monsterType) {
+		switch(monsterType) {
+		case 1:
+		case 2:
+		case 3:
+		case 4:
+		default:
+		}
+	}
+	
 	public void setMonsterPoint(int monsterType) {
 		this.monsterPoint = MONSTER_POINT[monsterType];
 
