@@ -12,8 +12,8 @@ public class Boomerange extends Hitbox {
 	private boolean isReturn = false;
 	private boolean doneFirst = false;
 	
-	public Boomerange(Position position, int xSpeed, int ySpeed) {
-		super(position, 1, 1, xSpeed, ySpeed);
+	public Boomerange(Position position) {
+		super(position, 1, 1, 0, 0);
 		heroPoint = new Position(position.getX()-1, position.getY());
 		originPoint = new Position(position.getX(), position.getY());
 		returnPoint = new Position(position.getX() + 8, position.getY()/2 + 4);

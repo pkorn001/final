@@ -19,7 +19,7 @@ public class Boomeranger extends Hero implements Attackable {
 
 	@Override
 	public boolean attack() {
-		Boomerange  boomerange = new Boomerange(new Position(this.C.getX()+1, this.C.getY()/2), 2, 1);
+		Boomerange  boomerange = new Boomerange(new Position(this.C.getX()+1, this.C.getY()/2));
 		new AnimationTimer() {
 			
 			@Override
