@@ -10,6 +10,8 @@ import render.Renderable;
 public class FireBall extends Hitbox implements Renderable {
 	//xSpeed > map's speed, graphic, collide?, 
 	public static final int FIREBALL_SPEED = 2;
+	private boolean isDestroyed = false;
+	
 	
 	public FireBall(Position position, int speed) {
 		super(position, speed);
@@ -36,6 +38,10 @@ public class FireBall extends Hitbox implements Renderable {
 	@Override
 	public boolean isDestroyed() {
 		// TODO Auto-generated method stub
-		return false;
+		return this.isDestroyed;
+	}
+	
+	public void setDestroyed(boolean isDestroyed) {
+		this.isDestroyed = isDestroyed;
 	}
 }

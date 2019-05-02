@@ -81,6 +81,6 @@ public class Boomerange extends Hitbox implements Renderable {
 	@Override
 	public boolean isDestroyed() {
 		// TODO Auto-generated method stub
-		return false;
+		return this.collide(hero);
 	}
 }
