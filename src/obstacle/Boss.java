@@ -5,10 +5,10 @@ import java.awt.Graphics2D;
 import hero.action.Attackable;
 import logic.Hitbox;
 import logic.Position;
-import render.Renderable;
+import render.Irenderable;
 import render.Resource;
 
-public class Boss extends Hitbox implements Renderable,Attackable{ 
+public class Boss extends Hitbox implements Irenderable,Attackable{ 
 	
 	/* 
 	 1 = red 
@@ -49,7 +49,7 @@ public class Boss extends Hitbox implements Renderable,Attackable{
 	}
 	
 	public boolean isDestroyed() {
-		return this.destroyed;
+		return destroyed;
 	}
 	
 	@Override
