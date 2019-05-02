@@ -1,30 +1,29 @@
 package logic;
 
 public class Position {
-	protected double x;
-	protected double y;
+	protected int x;
+	protected int y;
 	
-	public Position(double x, double y) {
+	public Position(int x, int y) {
 		super();
 		this.x = x;
 		this.y = y;
 	}
 
-	public double getX() {
+	public int getX() {
 		return  x;
 	}
 
-	public void setX(double d) {
+	public void setX(int d) {
 		this.x = d;
 	}
 
-	public double getY() {
+	public int getY() {
 		return y;
 	}
 
-	public void setY(double d) {
+	public void setY(int d) {
+		// TODO Auto-generated method stub
 		this.y = d;
 	}
-	
-	
 }

@@ -6,9 +6,9 @@ import logic.Hitbox;
 import logic.Position;
 import obstacle.Monster;
 import obstacle.ObstacleBox;
-import render.Renderable;
+import render.Irenderable;
 
-public abstract class Hero extends Hitbox implements Renderable{
+public abstract class Hero extends Hitbox implements Irenderable{
 	
 	public static final int HEIGHT = 100;
 //	private boolean isDead = false;
@@ -108,5 +108,6 @@ public abstract class Hero extends Hitbox implements Renderable{
 	public boolean isDead() {
 		return this.collide(monster) || this.collide(obstacle);
 	}
+	
 	
 }
