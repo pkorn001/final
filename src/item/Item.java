@@ -1,14 +1,14 @@
 package item;
 
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
+import java.awt.Graphics2D;
+
 import logic.Hitbox;
 import logic.Position;
-import render.Renderable;
+import render.Irenderable;
+import render.Resource;
 
-public abstract class Item extends Hitbox implements Renderable {
+public abstract class Item extends Hitbox implements Irenderable {
 	
-	private Image img;
 	private int itemType;
 	private int stage;
 	/* 0 = normal 
@@ -30,24 +30,28 @@ public abstract class Item extends Hitbox implements Renderable {
 		Position B = new Position(a.getX(), a.getY()+1);
 		Position C = new Position(a.getX()+1, a.getY()+1);
 		Position D = new Position(a.getX()+1, a.getY());
-		
+		}
+	
+		@Override
+		public void draw(Graphics2D g2d) {
+
 		switch(HERO_ITEM[itemType]) {
 		case("Mage"):
 			this.setStage(1);
-			Image mgImage = new Image("file:res/" + "Mage_item.png");
+			g2d.drawImage(Resource.Coin1,this.getB().getX(),this.getB().getY(),null);
 			//this.setGraphic(new ImageView(mgImage));
 			break;
 		case("Boomeranger"):
 			this.setStage(2);
-			Image bmImage = new Image("file:res/" + "Boomeranger_item.png");
+			g2d.drawImage(Resource.Coin2,this.getB().getX(),this.getB().getY(),null);
 			break;
 		case("Swordman"):
 			this.setStage(3);
-			Image swImage = new Image("file:res/" + "Swordman_item.png");
+			g2d.drawImage(Resource.Coin3,this.getB().getX(),this.getB().getY(),null);
 			break;
 		case("Assassin"):
 			this.setStage(4);
-			Image asImage = new Image("file:res/" + "Assassin_item.png");
+			g2d.drawImage(Resource.Coin4,this.getB().getX(),this.getB().getY(),null);
 			break;
 		}
 		
