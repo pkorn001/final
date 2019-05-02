@@ -49,7 +49,7 @@ public class Resource {
 	public static BufferedImage FireBall;
 	
 	//BossAttack
-	public static BufferedImage BossAttack,ParriedBall;
+	public static BufferedImage BossAttack,ParriedBall1,ParriedBall2;
 	
 	static {
 		
@@ -58,7 +58,8 @@ public class Resource {
 		
 		//BossAttack
 		BossAttack = getImage("image/BossAttack.png");
-		ParriedBall = getImage("image/ParriedBall.png");;
+		ParriedBall1 = getImage("image/ParriedBall1.png");
+		ParriedBall2 = getImage("image/ParriedBall2.png");
 		
 		//Monster ; monster5 = dead
 		Monster0 = getImage("image/Monster0.png"); 
