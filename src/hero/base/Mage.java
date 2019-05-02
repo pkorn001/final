@@ -26,7 +26,8 @@ public class Mage extends Hero implements Attackable {
 			@Override
 			public void handle(long now) {
 				// TODO Auto-generated method stub
-				fireball.update(FireBall.FIREBALL_SPEED, 0);
+				double time = (now - System.nanoTime())/1000000000.0;
+				fireball.update(FireBall.FIREBALL_SPEED, 0, time/3);
 			}
 		};
 		if(fireball.collide(monster))
