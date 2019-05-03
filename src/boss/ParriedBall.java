@@ -1,7 +1,7 @@
 package boss;
 
-import java.awt.Graphics2D;
 
+import javafx.scene.canvas.GraphicsContext;
 import logic.Position;
 import render.Resource;
 
@@ -25,12 +25,18 @@ public class ParriedBall extends BossAttack{
 	}
 	
 	@Override
-	public void draw(Graphics2D g2d) {
+	public void draw(GraphicsContext g2d) {
 		if (!isParried) {
-			g2d.drawImage(Resource.ParriedBall1,this.getB().getX(),this.getB().getY(),null);
+			g2d.drawImage(Resource.ParriedBall1,this.getB().getX(),this.getB().getY(),this.getWidth(),this.getHeight());
 	}
 		else {
-			g2d.drawImage(Resource.ParriedBall2,this.getB().getX(),this.getB().getY(),null);
+			IsVisible();
 		}
+	}
+	
+	@Override
+	public boolean IsVisible() {
+		// TODO Auto-generated method stub
+		return !isParried();
 	}
 }

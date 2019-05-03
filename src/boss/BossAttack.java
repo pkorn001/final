@@ -1,7 +1,6 @@
 package boss;
 
-import java.awt.Graphics2D;
-
+import javafx.scene.canvas.GraphicsContext;
 import logic.Hitbox;
 import logic.Position;
 import render.Irenderable;
@@ -17,9 +16,10 @@ public class BossAttack  extends Hitbox implements Irenderable {
 
 
 	@Override
-	public void draw(Graphics2D g2d) {
+	public void draw(GraphicsContext g2d) {
 		// TODO Auto-generated method stub
-		g2d.drawImage(Resource.BossAttack,this.getB().getX(),this.getB().getY(),null);
+		g2d.drawImage(Resource.BossAttack,this.getB().getX(),this.getB().getY(),this.getWidth(),this.getHeight());
+
 	}
 
 	@Override
@@ -32,6 +32,12 @@ public class BossAttack  extends Hitbox implements Irenderable {
 	public int getZ() {
 		// TODO Auto-generated method stub
 		return z--;
+	}
+
+
+	@Override
+	public boolean isDestroyed() {
+		return false;
 	}
 	
 }

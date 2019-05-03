@@ -1,8 +1,8 @@
 package hero.action;
 
-import java.awt.Graphics2D;
 
 import hero.base.Mage;
+import javafx.scene.canvas.GraphicsContext;
 import logic.Hitbox;
 import logic.Position;
 import render.Irenderable;
@@ -18,11 +18,6 @@ public class FireBall extends Hitbox implements Irenderable {
 	public FireBall(Position position, int speed) {
 		super(position, speed);
 		this.z = Integer.MAX_VALUE;
-	}
-
-	@Override
-	public void draw(Graphics2D g2d) {
-		g2d.drawImage(Resource.FireBall,this.getB().getX(),this.getB().getY(),null);
 	}
 
 	@Override
@@ -43,5 +38,11 @@ public class FireBall extends Hitbox implements Irenderable {
 	
 	public void setDestroyed(boolean isDestroyed) {
 		this.isDestroyed = isDestroyed;
+	}
+
+	@Override
+	public void draw(GraphicsContext g2d) {
+		// TODO Auto-generated method stub
+		
 	}
 }

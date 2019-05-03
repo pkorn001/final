@@ -28,7 +28,7 @@ public abstract class Hero extends Hitbox implements Irenderable{
 		this.xSpeed = xSpeed;
 	}
 	
-	public int getxSpeed() {
+	public double getxSpeed() {
 		return xSpeed;
 	}
 
@@ -66,7 +66,7 @@ public abstract class Hero extends Hitbox implements Irenderable{
 		this.monster = monster;
 	}
 
-	public static int getHeight() {
+	public double getHeight() {
 		return HEIGHT;
 	}
 	

@@ -1,8 +1,7 @@
 package hero.base;
 
-import java.awt.Graphics2D;
-
 import hero.action.Attackable;
+import javafx.scene.canvas.GraphicsContext;
 import logic.Hitbox;
 import logic.Position;
 
@@ -43,12 +42,6 @@ public class Assassin extends Hero implements Attackable {
 	}
 
 	@Override
-	public void draw(Graphics2D g2d) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
 	public boolean IsVisible() {
 		// TODO Auto-generated method stub
 		return false;
@@ -58,6 +51,12 @@ public class Assassin extends Hero implements Attackable {
 	public int getZ() {
 		// TODO Auto-generated method stub
 		return 0;
+	}
+
+	@Override
+	public void draw(GraphicsContext g2d) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

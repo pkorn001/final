@@ -2,6 +2,7 @@ package item;
 
 import java.awt.Graphics2D;
 
+import javafx.scene.canvas.GraphicsContext;
 import logic.Hitbox;
 import logic.Position;
 import render.Irenderable;
@@ -33,30 +34,27 @@ public abstract class Item extends Hitbox implements Irenderable {
 		}
 	
 		@Override
-		public void draw(Graphics2D g2d) {
+		public void draw(GraphicsContext g2d) {
 
 		switch(HERO_ITEM[itemType]) {
 		case("Mage"):
 			this.setStage(1);
-			g2d.drawImage(Resource.Coin1,this.getB().getX(),this.getB().getY(),null);
-			//this.setGraphic(new ImageView(mgImage));
+			g2d.drawImage(Resource.Coin1,this.getB().getX(),this.getB().getY(),this.getWidth(),this.getHeight());
 			break;
 		case("Boomeranger"):
 			this.setStage(2);
-			g2d.drawImage(Resource.Coin2,this.getB().getX(),this.getB().getY(),null);
+			g2d.drawImage(Resource.Coin2,this.getB().getX(),this.getB().getY(),this.getWidth(),this.getHeight());
 			break;
 		case("Swordman"):
 			this.setStage(3);
-			g2d.drawImage(Resource.Coin3,this.getB().getX(),this.getB().getY(),null);
+			g2d.drawImage(Resource.Coin3,this.getB().getX(),this.getB().getY(),this.getWidth(),this.getHeight());
 			break;
 		case("Assassin"):
 			this.setStage(4);
-			g2d.drawImage(Resource.Coin4,this.getB().getX(),this.getB().getY(),null);
+			g2d.drawImage(Resource.Coin4,this.getB().getX(),this.getB().getY(),this.getWidth(),this.getHeight());
 			break;
-		}
-		
+		}	
 	}
-
 	public String getItemType() {
 		return HERO_ITEM[this.itemType];
 	}
@@ -72,7 +70,4 @@ public abstract class Item extends Hitbox implements Irenderable {
 	public void setStage(int stage) {
 		this.stage = stage;
 	}
-
-
-	
 }
