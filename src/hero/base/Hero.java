@@ -1,6 +1,7 @@
 package hero.base;
 
 import item.Item;
+import javafx.animation.AnimationTimer;
 import javafx.stage.Stage;
 import logic.Hitbox;
 import logic.Position;
@@ -8,17 +9,16 @@ import obstacle.Monster;
 import obstacle.ObstacleBox;
 import render.Renderable;
 
-public abstract class Hero extends Hitbox implements Renderable{
-	
+public abstract class Hero extends Hitbox implements Renderable {
+
 	public static final int HEIGHT = 100;
 //	private boolean isDead = false;
 	public int score;
 	protected int xSpeed;
-	protected Position position = new Position(this.C.getX(), this.C.getY()/2);
+	protected Position position = new Position(this.C.getX(), this.C.getY() / 2);
 	protected Hitbox hero;
 	protected boolean isDestroyed = false;
 
-	
 	public Hero(Position a, int xSpeed) {
 		super(a, xSpeed);
 		this.hero = new Hitbox(a, 3, 5) {
@@ -26,7 +26,7 @@ public abstract class Hero extends Hitbox implements Renderable{
 		this.position = a;
 		this.xSpeed = xSpeed;
 	}
-	
+
 	public int getxSpeed() {
 		return xSpeed;
 	}
@@ -56,38 +56,68 @@ public abstract class Hero extends Hitbox implements Renderable{
 	public static int getHeight() {
 		return HEIGHT;
 	}
-	
+
 	public void transform(Item item) {
-		switch(item.getItemType()) {
-		case("Assassin"):
+		switch (item.getItemType()) {
+		case ("Assassin"):
 			this.hero = new Assassin(position, xSpeed);
 			break;
-		case("Boomeranger"):
+		case ("Boomeranger"):
 			this.hero = new Boomeranger(position, xSpeed);
 			break;
-		case("Mage"):
+		case ("Mage"):
 			this.hero = new Mage(position, xSpeed);
 			break;
-		case("Swordman"):
+		case ("Swordman"):
 			this.hero = new Swordman(position, xSpeed);
 			break;
 		}
-	
+
 	}
-	
+
 	public void jump() throws InterruptedException {
-		this.setA(new Position(this.getA().getX(), this.getA().getY()+2)); //PosA same X increase Y by 2
-		this.setB(new Position(this.getB().getX(), this.getB().getY()+2)); //PosB same X increase Y by 2
-		this.setC(new Position(this.getC().getX(), this.getC().getY()+2)); //PosC same X increase Y by 2
-		this.setD(new Position(this.getD().getX(), this.getD().getY()+2)); //PosD same X increase Y by 2
-		wait(1000);            											   //wait 1 second before fall down
-		this.setA(new Position(this.getA().getX(), this.getA().getY()-2)); //PosA get back to first Y-position
-		this.setB(new Position(this.getB().getX(), this.getB().getY()-2)); //PosB get back to first Y-position
-		this.setC(new Position(this.getC().getX(), this.getC().getY()-2)); //PosC get back to first Y-position
-		this.setD(new Position(this.getD().getX(), this.getD().getY()-2)); //PosD get back to first Y-position
-		
+		new AnimationTimer() {
+			
+			@Override
+			public void handle(long now) {
+				boolean hasJumped = false;
+				double maxHeight = getC().getY() + 2;
+				double ground = getA().getY();
+				double time = now - System.nanoTime() / 1000000000.0;
+				if (getC().getY() < maxHeight && !hasJumped) {
+					for (Position i : new Position[] { getA(), getB(), getC(), getD() }) {
+						if (getB().getY() > maxHeight) {
+							getB().setY(maxHeight);
+							getC().setY(maxHeight);
+							hasJumped = true;
+							break;
+						} else {
+							i.setY(i.getY() + 2 * time);
+						}
+					}
+				}
+				try {
+					wait(1000);
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+				}
+				if (hasJumped) {
+					for (Position i : new Position[] { getA(), getB(), getC(), getD() }) {
+						if (getA().getY() < 0) {
+							getA().setY(ground);
+							getD().setY(ground);
+							stop();
+						} else {
+							i.setY(i.getY() - 2 * time);
+						}
+					}
+				}
+			}
+
+		}.start();
+
 	}
-	
+
 	@Override
 	public boolean isDestroyed() {
 		return isDestroyed;
@@ -96,5 +126,5 @@ public abstract class Hero extends Hitbox implements Renderable{
 	public void setDestroyed(boolean isDestroyed) {
 		this.isDestroyed = isDestroyed;
 	}
-	
+
 }
