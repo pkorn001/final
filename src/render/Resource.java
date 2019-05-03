@@ -58,7 +58,9 @@ public class Resource {
 		ParriedBall1 = getImage("image/ParriedBall1.png");
 		ParriedBall2 = getImage("image/ParriedBall2.png");
 		
-		//Monster ; monster5 = dead
+		
+		
+		//Monster  Dead for dead obj
 		Dead = getImage("image/Dead.png"); 
 		Monster1 = getImage("image/Monster1.png");
 		Monster2 = getImage("image/Monster2.png");
