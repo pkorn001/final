@@ -1,15 +1,15 @@
 package render;
 
-import java.awt.image.BufferedImage;
-
-import javax.imageio.ImageIO;
+import javafx.scene.image.Image;
+import javafx.scene.paint.ImagePattern;
 
 public class Resource {
-	private static BufferedImage getImage(String directory) {
-		BufferedImage im;
+	private static Image getImage(String directory) {
+		Image im;
 		try {
-			ClassLoader loader = Resource.class.getClassLoader();
-			im = ImageIO.read(loader.getResource(directory));
+			String image_path = ClassLoader.getSystemResource(directory).toString();
+			im = new Image(image_path);
+			
 		} catch (Exception e) {
 			im = null;
 		}
@@ -17,39 +17,36 @@ public class Resource {
 	}
 	
 	// stage 0
-	public static BufferedImage Stage0,Ground0,ObstacleTall_01,ObstacleTall_02,ObstacleTall_03
+	public static Image Stage0,Ground0,ObstacleTall_01,ObstacleTall_02,ObstacleTall_03
 				,Obstacle_01,Obstacle_02,Obstacle_03,Hero0;
 	
 	// stage 1
-	public static BufferedImage Stage1,Ground1,ObstacleTall_11,ObstacleTall_12,ObstacleTall_13
-				,Obstacle_11,Obstacle_12,Obstacle_13,Hero1,Boss1,HardBoss1,DeadBoss1;
+	public static Image Stage1,Ground1,ObstacleTall_11,ObstacleTall_12,ObstacleTall_13
+				,Obstacle_11,Obstacle_12,Obstacle_13,Hero1;
 	
 	// stage 2
-	public static BufferedImage Stage2,Ground2,ObstacleTall_21,ObstacleTall_22,ObstacleTall_23
-				,Obstacle_21,Obstacle_22,Obstacle_23,Hero2,Boss2,HardBoss2,DeadBoss2;
+	public static Image Stage2,Ground2,ObstacleTall_21,ObstacleTall_22,ObstacleTall_23
+				,Obstacle_21,Obstacle_22,Obstacle_23,Hero2;
 	
 	// stage 3
-	public static BufferedImage Stage3,Ground3,ObstacleTall_31,ObstacleTall_32,ObstacleTall_33
-				,Obstacle_31,Obstacle_32,Obstacle_33,Hero3,Boss3,HardBoss3,DeadBoss3;
+	public static Image Stage3,Ground3,ObstacleTall_31,ObstacleTall_32,ObstacleTall_33
+				,Obstacle_31,Obstacle_32,Obstacle_33,Hero3;
 	
 	// stage 4
-	public static BufferedImage Stage4,Ground4,ObstacleTall_41,ObstacleTall_42,ObstacleTall_43
-				,Obstacle_41,Obstacle_42,Obstacle_43,Hero4,Boss4,HardBoss4,DeadBoss4;
+	public static Image Stage4,Ground4,ObstacleTall_41,ObstacleTall_42,ObstacleTall_43
+				,Obstacle_41,Obstacle_42,Obstacle_43,Hero4;
 	
 	//monster
-	public static BufferedImage Monster0,Monster1,Monster2,Monster3,Monster4,Monster5;
+	public static Image Dead,Monster1,Monster2,Monster3,Monster4,Monster5,Monster6,Boss,HardBoss;
 	
 	//coin
-	public static BufferedImage Coin1,Coin2,Coin3,Coin4;
-	
-	//DeadHero
-	public static BufferedImage DeadHero0,DeadHero1,DeadHero2,DeadHero3,DeadHero4;
+	public static Image Coin1,Coin2,Coin3,Coin4;
 	
 	//HeroAttack
-	public static BufferedImage FireBall;
+	public static Image FireBall;
 	
 	//BossAttack
-	public static BufferedImage BossAttack,ParriedBall1,ParriedBall2;
+	public static Image BossAttack,ParriedBall1,ParriedBall2;
 	
 	static {
 		
@@ -62,19 +59,15 @@ public class Resource {
 		ParriedBall2 = getImage("image/ParriedBall2.png");
 		
 		//Monster ; monster5 = dead
-		Monster0 = getImage("image/Monster0.png"); 
+		Dead = getImage("image/Dead.png"); 
 		Monster1 = getImage("image/Monster1.png");
 		Monster2 = getImage("image/Monster2.png");
 		Monster3 = getImage("image/Monster3.png");
 		Monster4 = getImage("image/Monster4.png");
 		Monster5 = getImage("image/Monster5.png");
-		
-		//Deadhero
-		DeadHero0 = getImage("image/DeadHero0.png");
-		DeadHero1 = getImage("image/DeadHero1.png");
-		DeadHero2 = getImage("image/DeadHero2.png");
-		DeadHero3 = getImage("image/DeadHero3.png");
-		DeadHero4 = getImage("image/DeadHero4.png");
+		Monster6 = getImage("image/Monster6.png");
+		Boss = getImage("image/Boss.png");
+		HardBoss = getImage("image/HardBoss.png");
 		
 		//coin 
 		Coin1 = getImage("image/Coin1.png"); 
@@ -103,8 +96,7 @@ public class Resource {
 		Obstacle_12 = getImage("image/Obstacl_12.png");
 		Obstacle_13 = getImage("image/Obstacl_13.png");
 		Hero1 = getImage("image/Hero1.png");
-		HardBoss1 = getImage("image/HardBoss1.png"); 
-		DeadBoss1 = getImage("image/DeadBoss1.png");
+
 		
 		//stage2
 		Stage2 = getImage("image/Stage2.png");
@@ -116,8 +108,7 @@ public class Resource {
 		Obstacle_22 = getImage("image/Obstacl_22.png");
 		Obstacle_23 = getImage("image/Obstacl_23.png");
 		Hero2 = getImage("image/Hero2.png");
-		HardBoss2 = getImage("image/HardBoss2.png"); 
-		DeadBoss2 = getImage("image/DeadBoss2.png");
+		
 		
 		//stage3
 		Stage3 = getImage("image/Stage3.png");
@@ -129,8 +120,7 @@ public class Resource {
 		Obstacle_32 = getImage("image/Obstacl_32.png");
 		Obstacle_33 = getImage("image/Obstacl_33.png");
 		Hero3 = getImage("image/Hero3.png");
-		HardBoss3 = getImage("image/HardBoss3.png"); 
-		DeadBoss3 = getImage("image/DeadBoss3.png");
+
 		
 		//stage4
 		Stage4 = getImage("image/Stage4.png");
@@ -142,8 +132,7 @@ public class Resource {
 		Obstacle_42 = getImage("image/Obstacl_42.png");
 		Obstacle_43 = getImage("image/Obstacl_43.png");
 		Hero4 = getImage("image/Hero4.png");
-		HardBoss4 = getImage("image/HardBoss4.png"); 
-		DeadBoss4 = getImage("image/DeadBoss4.png");
+
 		
 	}
 	
