@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Random;
 
 import hero.action.Attackable;
+import javafx.scene.canvas.GraphicsContext;
 import logic.Hitbox;
 import logic.Position;
 import obstacle.Monster;
@@ -351,33 +352,16 @@ public class Boss extends Hitbox implements Irenderable,Attackable{
 	}
 
 	@Override
-	public void draw(Graphics2D g2d) {
+	public void draw(GraphicsContext g2d) {
 		if (isDestroyed()) {
-			switch(getBossStage()) {
-			case 1: g2d.drawImage(Resource.DeadBoss1,this.getB().getX(),this.getB().getY(),null);
-			case 2: g2d.drawImage(Resource.DeadBoss2,this.getB().getX(),this.getB().getY(),null);
-			case 3: g2d.drawImage(Resource.DeadBoss3,this.getB().getX(),this.getB().getY(),null);
-			case 4: g2d.drawImage(Resource.DeadBoss4,this.getB().getX(),this.getB().getY(),null);
-			}
-		}
-		
-		else {
+			g2d.drawImage(Resource.Dead,this.getB().getX(),this.getB().getY(),this.getWidth(),this.getHeight());
+		}else {
 			if (getBossHp() <= 100) {
-				switch(getBossStage()) {
-				case 1: g2d.drawImage(Resource.HardBoss1,this.getB().getX(),this.getB().getY(),null);
-				case 2: g2d.drawImage(Resource.HardBoss2,this.getB().getX(),this.getB().getY(),null);
-				case 3: g2d.drawImage(Resource.HardBoss3,this.getB().getX(),this.getB().getY(),null);
-				case 4: g2d.drawImage(Resource.HardBoss4,this.getB().getX(),this.getB().getY(),null);
-				}
+				g2d.drawImage(Resource.HardBoss,this.getB().getX(),this.getB().getY(),this.getWidth(),this.getHeight());
 			}
 			else {
-				switch(getBossStage()) {
-				case 1: g2d.drawImage(Resource.Boss1,this.getB().getX(),this.getB().getY(),null);
-				case 2: g2d.drawImage(Resource.Boss2,this.getB().getX(),this.getB().getY(),null);
-				case 3: g2d.drawImage(Resource.Boss3,this.getB().getX(),this.getB().getY(),null);
-				case 4: g2d.drawImage(Resource.Boss4,this.getB().getX(),this.getB().getY(),null);
+				g2d.drawImage(Resource.Boss,this.getB().getX(),this.getB().getY(),this.getWidth(),this.getHeight());
 			}
-		}
 		}
 	}
 
