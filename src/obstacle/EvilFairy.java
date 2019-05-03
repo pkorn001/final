@@ -1,5 +1,5 @@
 package obstacle;
 
-public class EvilFairy {
+public class EvilFairy extends Monster{
 
 }

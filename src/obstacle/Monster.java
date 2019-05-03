@@ -55,6 +55,17 @@ public class Monster extends Hitbox implements Irenderable{
 	public int getMonsterType() {
 		return this.monsterType;
 	}
+	
+	public Move getMovePattern() {
+		return movePattern;
+	}
+
+
+	public void setMovePattern(Move movePattern) {
+		this.movePattern = movePattern;
+	}
+
+
 	@Override
 	public void draw(GraphicsContext g2d) {
 		if (isDestroyed()) {

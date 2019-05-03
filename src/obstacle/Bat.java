@@ -1,5 +1,5 @@
 package obstacle;
 
-public class Bat {
-
+public class Bat extends Monster{
+	
 }

@@ -1,5 +1,5 @@
 package obstacle;
 
-public class Hornet {
+public class Hornet extends Monster{
 
 }

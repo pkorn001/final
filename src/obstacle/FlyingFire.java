@@ -1,5 +1,5 @@
 package obstacle;
 
-public class FlyingFire {
+public class FlyingFire extends Monster{
 
 }
