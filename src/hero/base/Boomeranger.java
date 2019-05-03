@@ -7,36 +7,34 @@ import javafx.animation.AnimationTimer;
 import javafx.scene.canvas.GraphicsContext;
 import logic.Hitbox;
 import logic.Position;
+import obstacle.Monster;
 
 public class Boomeranger extends Hero implements Attackable {
-	
+
 	private Hitbox attackBox;
-	
+
 	public Boomeranger(Position position, int speed) {
 		super(position, speed);
 	}
 
 	@Override
-	public boolean attack() {
-		Boomerange  boomerange = new Boomerange(new Position(this.C.getX()+1, this.C.getY()/2));
+	public void attack() {
+		Boomerange boomerange = new Boomerange(new Position(this.C.getX() + 1, this.C.getY() / 2));
 		new AnimationTimer() {
-			
+
 			@Override
 			public void handle(long now) {
 				boomerange.move();
 			}
 		}.start();
-		if(boomerange.collide(monster))
-			return true;
-		return false;
+
 	}
 
 	@Override
-	public void updateScore() {
+	public void updateScore(Monster monster) {
 		// TODO Auto-generated method stub
-		if(this.attack()) {
-			score += monster.getMonsterPoint();
-		}
+		score += monster.getMonsterPoint();
+		monster.setDestroyed(true);
 	}
 
 	@Override

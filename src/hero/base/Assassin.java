@@ -4,6 +4,7 @@ import hero.action.Attackable;
 import javafx.scene.canvas.GraphicsContext;
 import logic.Hitbox;
 import logic.Position;
+import obstacle.Monster;
 
 public class Assassin extends Hero implements Attackable {
 
@@ -15,7 +16,7 @@ public class Assassin extends Hero implements Attackable {
 	}
 
 	@Override
-	public boolean attack() {
+	public void attack() {
 		// TODO Auto-generated method stub
 		if (!didShort) {
 			this.attackBox = new Hitbox(new Position(this.C.getX() + 1, this.C.getY()/2), 1, 1) {
@@ -26,19 +27,13 @@ public class Assassin extends Hero implements Attackable {
 			};
 			this.didShort = false;
 		}
-		if(this.attackBox.collide(monster)) {
-			monster.setDestroyed(true);
-			return true;
-		}
-		return false;
 	}
 	
 	@Override
-	public void updateScore() {
+	public void updateScore(Monster monster) {
 		// TODO Auto-generated method stub
-		if(this.attack()) {
-			score += monster.getMonsterPoint();
-		}
+		score += monster.getMonsterPoint();
+		monster.setDestroyed(true);
 	}
 
 	@Override

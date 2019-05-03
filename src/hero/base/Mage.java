@@ -9,7 +9,7 @@ import logic.Hitbox;
 import logic.Position;
 
 public class Mage extends Hero implements Attackable {
-	
+
 	final long startNanoTime = System.nanoTime();
 
 	public Mage(Position position, int speed) {
@@ -17,29 +17,24 @@ public class Mage extends Hero implements Attackable {
 	}
 
 	@Override
-	public boolean attack() {
-		FireBall fireball = new FireBall(new Position(this.C.getX(), this.C.getY()/2), FireBall.FIREBALL_SPEED); 
+	public void attack() {
+		FireBall fireball = new FireBall(new Position(this.C.getX(), this.C.getY() / 2), FireBall.FIREBALL_SPEED);
 		new AnimationTimer() {
-			
+
 			@Override
 			public void handle(long now) {
 				// TODO Auto-generated method stub
-				int time = (int) ((now - System.nanoTime())/1000000000.0);
-				fireball.update(FireBall.FIREBALL_SPEED, 0, time/3);
+				int time = (int) ((now - System.nanoTime()) / 1000000000.0);
+				fireball.update(FireBall.FIREBALL_SPEED, 0, time / 3);
 			}
 		}.start();
-		if(fireball.collide(monster))
-			return true;
-		return false;
 	}
 
 	@Override
-	public void updateScore() {
+	public void updateScore(Monster monster) {
 		// TODO Auto-generated method stub
-		if(this.attack()) {
-			score += monster.getMonsterPoint();
-			monster.setDestroyed(true);
-		}
+		score += monster.getMonsterPoint();
+		monster.setDestroyed(true);
 	}
 
 

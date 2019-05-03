@@ -4,31 +4,27 @@ import hero.action.Attackable;
 import javafx.scene.canvas.GraphicsContext;
 import logic.Hitbox;
 import logic.Position;
+import obstacle.Monster;
 
 public class Swordman extends Hero implements Attackable {
 
-	private Hitbox attackBox = new Hitbox(new Position(this.C.getX()+1, this.C.getY()/2), 1, 1) {
-	};
-	
-	public Swordman(Position position,int speed) {
+	private Hitbox attackBox;
+
+	public Swordman(Position position, int speed) {
 		super(position, speed);
 	}
 
 	@Override
-	public boolean attack() {
-		if(this.attackBox.collide(monster)) {
-			monster.setDestroyed(true);
-			return  true;
-		}
-		return false;
+	public void attack() {
+		attackBox = new Hitbox(new Position(this.C.getX() + 1, this.C.getY() / 2), 1, 1) {
+		};
 	}
 
 	@Override
-	public void updateScore() {
+	public void updateScore(Monster monster) {
 		// TODO Auto-generated method stub
-		if(this.attack()) {
-			score += monster.getMonsterPoint();
-		}
+		score += monster.getMonsterPoint();
+		monster.setDestroyed(true);
 	}
 
 	@Override
