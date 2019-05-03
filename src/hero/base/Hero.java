@@ -1,15 +1,13 @@
 package hero.base;
 
-import item.Item;
 import javafx.animation.AnimationTimer;
 import logic.Hitbox;
 import logic.Position;
 import obstacle.Monster;
-import obstacle.ObstacleBox;
 import render.Irenderable;
 
-public abstract class Hero extends Hitbox implements Irenderable{
-	
+public abstract class Hero extends Hitbox implements Irenderable {
+
 	public static final int HEIGHT = 100;
 	public static int score;
 	protected int xSpeed;
@@ -24,7 +22,51 @@ public abstract class Hero extends Hitbox implements Irenderable{
 		this.position = a;
 		this.xSpeed = xSpeed;
 	}
-	
+
+	public void jump() {
+		new AnimationTimer() {
+
+			@Override
+			public void handle(long now) {
+				boolean hasJumped = false;
+				double maxHeight = getC().getY() + 2;
+				double ground = getA().getY();
+				long time = (now - System.nanoTime()) * 60 / 1000000000;
+				if (getC().getY() < maxHeight && !hasJumped) {
+					for (Position i : new Position[] { getA(), getB(), getC(), getD() }) {
+						if (getB().getY() > maxHeight) {
+							getB().setY(maxHeight);
+							getC().setY(maxHeight);
+							hasJumped = true;
+							break;
+						} else {
+							i.setY(i.getY() + 2 * time);
+						}
+					}
+				}
+				try {
+					wait(1000);
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+				}
+				if (hasJumped) {
+					for (Position i : new Position[] { getA(), getB(), getC(), getD() }) {
+						if (getA().getY() < 0) {
+							getA().setY(ground);
+							getD().setY(ground);
+							stop();
+						} else {
+							i.setY(i.getY() - 2 * time);
+						}
+					}
+				}
+			}
+
+		}.start();
+	}
+
+	public abstract void updateScore(Monster monster);
+
 	public double getxSpeed() {
 		return xSpeed;
 	}
@@ -47,18 +89,6 @@ public abstract class Hero extends Hitbox implements Irenderable{
 
 	public void setScore(int score) {
 		this.score = score;
-	}
-
-	public void setStage(Stage stage) {
-		this.stage = stage;
-	}
-
-	public void setObstacle(ObstacleBox obstacle) {
-		this.obstacle = obstacle;
-	}
-
-	public void setMonster(Monster monster) {
-		this.monster = monster;
 	}
 
 	public double getHeight() {

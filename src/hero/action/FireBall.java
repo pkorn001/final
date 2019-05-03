@@ -1,7 +1,5 @@
 package hero.action;
 
-
-import hero.base.Mage;
 import javafx.scene.canvas.GraphicsContext;
 import logic.Hitbox;
 import logic.Position;

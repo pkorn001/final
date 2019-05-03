@@ -69,7 +69,7 @@ public class Boss extends Hitbox implements Irenderable,Attackable{
 	}
 	
 	@Override
-	public boolean attack() {
+	public void attack() {
 		
 		Random attackPattern = new Random();
 		Random attackType = new Random();
@@ -348,7 +348,6 @@ public class Boss extends Hitbox implements Irenderable,Attackable{
 					}
 				}
 		}
-		return false;
 	}
 
 	@Override

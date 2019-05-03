@@ -60,7 +60,7 @@ public class Resource {
 		
 		
 		
-		//Monster  Dead for dead obj
+		//Monster  Dead for dead object
 		Dead = getImage("image/Dead.png"); 
 		Monster1 = getImage("image/Monster1.png");
 		Monster2 = getImage("image/Monster2.png");

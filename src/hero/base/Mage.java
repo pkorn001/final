@@ -1,12 +1,11 @@
 package hero.base;
 
-import java.util.ArrayList;
 import hero.action.Attackable;
 import hero.action.FireBall;
 import javafx.animation.AnimationTimer;
 import javafx.scene.canvas.GraphicsContext;
-import logic.Hitbox;
 import logic.Position;
+import obstacle.Monster;
 
 public class Mage extends Hero implements Attackable {
 
@@ -24,8 +23,8 @@ public class Mage extends Hero implements Attackable {
 			@Override
 			public void handle(long now) {
 				// TODO Auto-generated method stub
-				int time = (int) ((now - System.nanoTime()) / 1000000000.0);
-				fireball.update(FireBall.FIREBALL_SPEED, 0, time / 3);
+				long time =  (now - System.nanoTime()) * 60 / 1000000000;
+				fireball.update(FireBall.FIREBALL_SPEED, 0, time );
 			}
 		}.start();
 	}

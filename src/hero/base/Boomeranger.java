@@ -2,7 +2,6 @@ package hero.base;
 
 import hero.action.Attackable;
 import hero.action.Boomerange;
-import javafx.animation.Animation;
 import javafx.animation.AnimationTimer;
 import javafx.scene.canvas.GraphicsContext;
 import logic.Hitbox;
