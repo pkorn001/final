@@ -11,6 +11,8 @@ public abstract class Hitbox {
 	protected Position D;
 	protected double xSpeed;
 	protected double ySpeed;
+	protected double width;
+	protected double height;
 	
 	public Position getA() {
 		return A;
@@ -66,22 +68,32 @@ public abstract class Hitbox {
 		
 	}
 	
+	public double getWidth() {
+		return this.width;
+	}
+
+	public double getHeight() {
+		return this.height;
+	}
+
 	//Hero has no velocity
 	public Hitbox(Position a,int width,int height) {
 		super();
-		Position A = new Position(a.getX(), a.getY());
-		Position B = new Position(a.getX(), a.getY()+height);
-		Position C = new Position(a.getX()+width, a.getY()+height);
-		Position D = new Position(a.getX()+width, a.getY());
+		this.A = new Position(a.getX(), a.getY());
+		this.B = new Position(a.getX(), a.getY()+height);
+		this.C = new Position(a.getX()+width, a.getY()+height);
+		this.D = new Position(a.getX()+width, a.getY());
 	}
 	
 	//Monster has XY-velocity
 	public Hitbox(Position a,int width,int height,double xSpeed, double ySpeed) {
 		super();
-		Position A = new Position(a.getX(), a.getY());
-		Position B = new Position(a.getX(), a.getY()+height);
-		Position C = new Position(a.getX()+width, a.getY()+height);
-		Position D = new Position(a.getX()+width, a.getY());
+		this.width = width;
+		this.height = height;
+		this.A = new Position(a.getX(), a.getY());
+		this.B = new Position(a.getX(), a.getY()+height);
+		this.C = new Position(a.getX()+width, a.getY()+height);
+		this.D = new Position(a.getX()+width, a.getY());
 		this.xSpeed = xSpeed;
 		this.ySpeed = ySpeed;
 	}
