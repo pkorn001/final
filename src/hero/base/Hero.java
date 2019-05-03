@@ -15,10 +15,9 @@ public abstract class Hero extends Hitbox implements Renderable{
 	public int score;
 	protected int xSpeed;
 	protected Position position = new Position(this.C.getX(), this.C.getY()/2);
-	protected Stage stage;
-	protected ObstacleBox obstacle;
 	protected Hitbox hero;
-	protected Monster monster;
+	protected boolean isDestroyed = false;
+
 	
 	public Hero(Position a, int xSpeed) {
 		super(a, xSpeed);
@@ -44,7 +43,7 @@ public abstract class Hero extends Hitbox implements Renderable{
 		this.position = position;
 	}
 
-	public abstract void updateScore();
+	public abstract void updateScore(Monster monster);
 
 	public int getScore() {
 		return score;
@@ -52,18 +51,6 @@ public abstract class Hero extends Hitbox implements Renderable{
 
 	public void setScore(int score) {
 		this.score = score;
-	}
-
-	public void setStage(Stage stage) {
-		this.stage = stage;
-	}
-
-	public void setObstacle(ObstacleBox obstacle) {
-		this.obstacle = obstacle;
-	}
-
-	public void setMonster(Monster monster) {
-		this.monster = monster;
 	}
 
 	public static int getHeight() {
@@ -103,7 +90,11 @@ public abstract class Hero extends Hitbox implements Renderable{
 	
 	@Override
 	public boolean isDestroyed() {
-		return this.collide(monster) || this.collide(obstacle);
+		return isDestroyed;
+	}
+
+	public void setDestroyed(boolean isDestroyed) {
+		this.isDestroyed = isDestroyed;
 	}
 	
 }
