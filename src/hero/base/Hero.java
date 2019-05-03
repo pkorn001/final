@@ -2,18 +2,15 @@ package hero.base;
 
 import item.Item;
 import javafx.animation.AnimationTimer;
-import javafx.stage.Stage;
 import logic.Hitbox;
 import logic.Position;
 import obstacle.Monster;
-import obstacle.ObstacleBox;
 import render.Renderable;
 
 public abstract class Hero extends Hitbox implements Renderable {
 
 	public static final int HEIGHT = 100;
-//	private boolean isDead = false;
-	public int score;
+	public static int score;
 	protected int xSpeed;
 	protected Position position = new Position(this.C.getX(), this.C.getY() / 2);
 	protected Hitbox hero;
@@ -26,37 +23,7 @@ public abstract class Hero extends Hitbox implements Renderable {
 		this.position = a;
 		this.xSpeed = xSpeed;
 	}
-
-	public int getxSpeed() {
-		return xSpeed;
-	}
-
-	public void setxSpeed(int xSpeed) {
-		this.xSpeed = xSpeed;
-	}
-
-	public Position getPosition() {
-		return position;
-	}
-
-	public void setPosition(Position position) {
-		this.position = position;
-	}
-
-	public abstract void updateScore(Monster monster);
-
-	public int getScore() {
-		return score;
-	}
-
-	public void setScore(int score) {
-		this.score = score;
-	}
-
-	public static int getHeight() {
-		return HEIGHT;
-	}
-
+	
 	public void transform(Item item) {
 		switch (item.getItemType()) {
 		case ("Assassin"):
@@ -115,7 +82,36 @@ public abstract class Hero extends Hitbox implements Renderable {
 			}
 
 		}.start();
+	}
 
+	public abstract void updateScore(Monster monster);
+	
+	public int getxSpeed() {
+		return xSpeed;
+	}
+
+	public void setxSpeed(int xSpeed) {
+		this.xSpeed = xSpeed;
+	}
+
+	public Position getPosition() {
+		return position;
+	}
+
+	public void setPosition(Position position) {
+		this.position = position;
+	}
+
+	public int getScore() {
+		return score;
+	}
+
+	public void setScore(int score) {
+		this.score = score;
+	}
+
+	public static int getHeight() {
+		return HEIGHT;
 	}
 
 	@Override

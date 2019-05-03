@@ -1,7 +1,6 @@
 package item;
 
 import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import logic.Hitbox;
 import logic.Position;
 import render.Renderable;
@@ -34,20 +33,20 @@ public abstract class Item extends Hitbox implements Renderable {
 		switch(HERO_ITEM[itemType]) {
 		case("Mage"):
 			this.setStage(1);
-			Image mgImage = new Image("file:res/" + "Mage_item.png");
+			img = new Image("file:res/" + "Mage_item.png");
 			//this.setGraphic(new ImageView(mgImage));
 			break;
 		case("Boomeranger"):
 			this.setStage(2);
-			Image bmImage = new Image("file:res/" + "Boomeranger_item.png");
+			img = new Image("file:res/" + "Boomeranger_item.png");
 			break;
 		case("Swordman"):
 			this.setStage(3);
-			Image swImage = new Image("file:res/" + "Swordman_item.png");
+			img = new Image("file:res/" + "Swordman_item.png");
 			break;
 		case("Assassin"):
 			this.setStage(4);
-			Image asImage = new Image("file:res/" + "Assassin_item.png");
+			img = new Image("file:res/" + "Assassin_item.png");
 			break;
 		}
 		

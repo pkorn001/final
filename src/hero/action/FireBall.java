@@ -1,8 +1,6 @@
 package hero.action;
 
 import java.awt.Graphics2D;
-
-import hero.base.Mage;
 import logic.Hitbox;
 import logic.Position;
 import render.Renderable;
