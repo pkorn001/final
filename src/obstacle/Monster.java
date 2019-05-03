@@ -2,8 +2,10 @@ package obstacle;
 
 import java.awt.Graphics2D;
 
+import javafx.scene.canvas.GraphicsContext;
 import logic.Hitbox;
 import logic.Position;
+import move.Move;
 import render.Irenderable;
 import render.Resource;
 
@@ -18,11 +20,12 @@ public class Monster extends Hitbox implements Irenderable{
 	private int monsterPoint;
 	private final static int[] MONSTER_POINT = {0,50,200,70,60};
 	private boolean destroyed;
+	private Move movePattern;
 	private int z;
 	
 	
 
-	public Monster(Position a,int monsterType,int xSpeed,int ySpeed) {
+	public Monster(Position a,int monsterType,double xSpeed,double ySpeed) {
 		super(a,20,20,xSpeed,ySpeed);
 		this.z = Integer.MAX_VALUE;
 		this.destroyed = false;
@@ -30,15 +33,7 @@ public class Monster extends Hitbox implements Irenderable{
 		setMonsterPoint(monsterType);
 		
 	}
-	public void setMonster_MovePattern(int monsterType) {
-		switch(monsterType) {
-		case 1:
-		case 2:
-		case 3:
-		case 4:
-		default:
-		}
-	}
+	
 	
 	public void setMonsterPoint(int monsterType) {
 		this.monsterPoint = MONSTER_POINT[monsterType];
@@ -61,25 +56,21 @@ public class Monster extends Hitbox implements Irenderable{
 		return this.monsterType;
 	}
 	@Override
-	public void draw(Graphics2D g2d) {
+	public void draw(GraphicsContext g2d) {
 		if (isDestroyed()) {
-			g2d.drawImage(Resource.Monster5,this.getB().getX(),this.getB().getY(),null);
 		}
-		
 		else {
-			if (getMonsterType() == 0 )
-				g2d.drawImage(Resource.Monster0,this.getB().getX(),this.getB().getY(),null);
-			else if (getMonsterType() == 1)
-				g2d.drawImage(Resource.Monster1,this.getB().getX(),this.getB().getY(),null);
-			else if (getMonsterType() == 2)
-				g2d.drawImage(Resource.Monster2,this.getB().getX(),this.getB().getY(),null);
-			else if (getMonsterType() == 3)
-				g2d.drawImage(Resource.Monster3,this.getB().getX(),this.getB().getY(),null);
-			else if (getMonsterType() == 4)
-				g2d.drawImage(Resource.Monster4,this.getB().getX(),this.getB().getY(),null);
 		}
 	}
 
+	@Override
+	public void update(double xSpeed, double ySpeed, long time) {
+		for(Position i  : new Position[] {this.A, this.B, this.C, this.D}){
+			i.setX(this.movePattern.move(time).getX());
+			i.setY(this.movePattern.move(time).getY());
+		}
+	}
+	
 	@Override
 	public boolean IsVisible() {
 		return true;
