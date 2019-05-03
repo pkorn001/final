@@ -1,16 +1,22 @@
 package obstacle;
 
+import java.awt.Graphics2D;
+
+import javafx.scene.canvas.GraphicsContext;
 import logic.Hitbox;
 import logic.Position;
+import render.Irenderable;
+import render.Resource;
 
-public class ObstacleBox extends Hitbox{
+public class ObstacleBox extends Hitbox implements Irenderable{
+	
 	
 	// 0 = stone 1 = tree
 	private int obstacleBox_Type;
 	
 	/* 0 = normal 
-	 1 = red 
-	 2 = green*/
+	 1 = 2 blocks 
+	 2 = 3 blocks*/
 	private int obstacleBox_Size;
 	
 	/* 0 = normal 
@@ -18,14 +24,16 @@ public class ObstacleBox extends Hitbox{
 	 2 = green
 	 3 = black
 	 4 = purple */
-	private int Stage;
+	private int stage;
+	private int z;
 	private final static int[] OBSTACLE_HEIGHT = {20,40};
 	private final static int[] OBSTACLE_WIDTH = {20,40,60};
 
 	public ObstacleBox(Position a,int speed,int obstacleBox_Type,int obstacleBox_Size,int Stage) {
 		super(a, speed);
+		z = Integer.MAX_VALUE;
 		this.obstacleBox_Type = obstacleBox_Type;
-		this.Stage = Stage;
+		this.stage = Stage;
 		Position A = new Position(a.getX(), a.getY());
 		Position B = new Position(a.getX(), a.getY()+ ObstacleBox.setHeight(obstacleBox_Type));
 		Position C = new Position(a.getX()+ ObstacleBox.setWidth(obstacleBox_Size), a.getY()+ ObstacleBox.setHeight(obstacleBox_Type));
@@ -59,11 +67,129 @@ public class ObstacleBox extends Hitbox{
 	}
 
 	public int getStage() {
-		return Stage;
+		return this.stage;
 	}
 
 	public void setStage(int stage) {
-		Stage = stage;
+		this.stage = stage;
+	}
+	
+	@Override
+	public void draw(GraphicsContext g2d) {
+		switch(this.getStage()) {
+		
+		case 1 :{
+			switch(this.obstacleBox_Type) {
+			case 0:{
+				switch(this.obstacleBox_Size) {
+				case 0: g2d.drawImage(Resource.Obstacle_11,this.getB().getX(),this.getB().getY(),this.getWidth(),this.getHeight()); break;
+				case 1: g2d.drawImage(Resource.Obstacle_12,this.getB().getX(),this.getB().getY(),this.getWidth(),this.getHeight()); break;
+				case 2: g2d.drawImage(Resource.Obstacle_13,this.getB().getX(),this.getB().getY(),this.getWidth(),this.getHeight()); break;
+				}
+			}
+			case 1:{
+				switch(this.obstacleBox_Size) {
+				case 0: g2d.drawImage(Resource.ObstacleTall_11,this.getB().getX(),this.getB().getY(),this.getWidth(),this.getHeight()); break;
+				case 1: g2d.drawImage(Resource.ObstacleTall_12,this.getB().getX(),this.getB().getY(),this.getWidth(),this.getHeight()); break;
+				case 2: g2d.drawImage(Resource.ObstacleTall_13,this.getB().getX(),this.getB().getY(),this.getWidth(),this.getHeight()); break;
+			}
+			}
+		}
+		}
+		
+		case 2 : {
+			switch(this.obstacleBox_Type) {
+			case 0:{
+				switch(this.obstacleBox_Size) {
+				case 0: g2d.drawImage(Resource.Obstacle_21,this.getB().getX(),this.getB().getY(),this.getWidth(),this.getHeight()); break;
+				case 1: g2d.drawImage(Resource.Obstacle_22,this.getB().getX(),this.getB().getY(),this.getWidth(),this.getHeight()); break;
+				case 2: g2d.drawImage(Resource.Obstacle_23,this.getB().getX(),this.getB().getY(),this.getWidth(),this.getHeight()); break;
+				}
+			}
+			case 1:{
+				switch(this.obstacleBox_Size) {
+				case 0: g2d.drawImage(Resource.ObstacleTall_21,this.getB().getX(),this.getB().getY(),this.getWidth(),this.getHeight()); break;
+				case 1: g2d.drawImage(Resource.ObstacleTall_22,this.getB().getX(),this.getB().getY(),this.getWidth(),this.getHeight()); break;
+				case 2: g2d.drawImage(Resource.ObstacleTall_23,this.getB().getX(),this.getB().getY(),this.getWidth(),this.getHeight()); break;
+			}
+			}
+			}
+		}
+			
+		case 3 : {
+			switch(this.obstacleBox_Type) {
+			case 0:{
+				switch(this.obstacleBox_Size) {
+				case 0: g2d.drawImage(Resource.Obstacle_31,this.getB().getX(),this.getB().getY(),this.getWidth(),this.getHeight()); break;
+				case 1: g2d.drawImage(Resource.Obstacle_32,this.getB().getX(),this.getB().getY(),this.getWidth(),this.getHeight()); break;
+				case 2: g2d.drawImage(Resource.Obstacle_33,this.getB().getX(),this.getB().getY(),this.getWidth(),this.getHeight()); break;
+				}
+			}
+			case 1:{
+				switch(this.obstacleBox_Size) {
+				case 0: g2d.drawImage(Resource.ObstacleTall_31,this.getB().getX(),this.getB().getY(),this.getWidth(),this.getHeight()); break;
+				case 1: g2d.drawImage(Resource.ObstacleTall_32,this.getB().getX(),this.getB().getY(),this.getWidth(),this.getHeight()); break;
+				case 2: g2d.drawImage(Resource.ObstacleTall_33,this.getB().getX(),this.getB().getY(),this.getWidth(),this.getHeight()); break;
+			}
+			}
+			}
+		}
+		
+		case 4 : {
+			switch(this.obstacleBox_Type) {
+			case 0:{
+				switch(this.obstacleBox_Size) {
+				case 0: g2d.drawImage(Resource.Obstacle_41,this.getB().getX(),this.getB().getY(),this.getWidth(),this.getHeight()); break;
+				case 1: g2d.drawImage(Resource.Obstacle_42,this.getB().getX(),this.getB().getY(),this.getWidth(),this.getHeight()); break;
+				case 2: g2d.drawImage(Resource.Obstacle_43,this.getB().getX(),this.getB().getY(),this.getWidth(),this.getHeight()); break;
+				}
+			}
+			case 1:{
+				switch(this.obstacleBox_Size) {
+				case 0: g2d.drawImage(Resource.ObstacleTall_41,this.getB().getX(),this.getB().getY(),this.getWidth(),this.getHeight()); break;
+				case 1: g2d.drawImage(Resource.ObstacleTall_42,this.getB().getX(),this.getB().getY(),this.getWidth(),this.getHeight()); break;
+				case 2: g2d.drawImage(Resource.ObstacleTall_43,this.getB().getX(),this.getB().getY(),this.getWidth(),this.getHeight()); break;
+			}
+			}
+			}
+		}
+		
+		default : {
+			switch(this.obstacleBox_Type) {
+			case 0:{
+				switch(this.obstacleBox_Size) {
+				case 0: g2d.drawImage(Resource.Obstacle_01,this.getB().getX(),this.getB().getY(),this.getWidth(),this.getHeight()); break;
+				case 1: g2d.drawImage(Resource.Obstacle_02,this.getB().getX(),this.getB().getY(),this.getWidth(),this.getHeight()); break;
+				case 2: g2d.drawImage(Resource.Obstacle_03,this.getB().getX(),this.getB().getY(),this.getWidth(),this.getHeight()); break;
+				}
+			}
+			case 1:{
+				switch(this.obstacleBox_Size) {
+				case 0: g2d.drawImage(Resource.ObstacleTall_01,this.getB().getX(),this.getB().getY(),this.getWidth(),this.getHeight()); break;
+				case 1: g2d.drawImage(Resource.ObstacleTall_02,this.getB().getX(),this.getB().getY(),this.getWidth(),this.getHeight()); break;
+				case 2: g2d.drawImage(Resource.ObstacleTall_03,this.getB().getX(),this.getB().getY(),this.getWidth(),this.getHeight()); break;
+			}
+			}
+			}
+		}
+		}
+	}
+
+
+	@Override
+	public boolean IsVisible() {
+		return true;
+	}
+
+	@Override
+	public int getZ() {
+		return z--;
+	}
+
+	@Override
+	public boolean isDestroyed() {
+		// TODO Auto-generated method stub
+		return false;
 	}
 	
 	

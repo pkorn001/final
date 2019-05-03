@@ -1,36 +1,31 @@
 package hero.action;
 
-import java.awt.Graphics2D;
+import javafx.scene.canvas.GraphicsContext;
 import logic.Hitbox;
 import logic.Position;
-import render.Renderable;
+import render.Irenderable;
+import render.Resource;
 
-public class FireBall extends Hitbox implements Renderable {
+public class FireBall extends Hitbox implements Irenderable {
 	//xSpeed > map's speed, graphic, collide?, 
 	public static final int FIREBALL_SPEED = 2;
+	private int z;
 	private boolean isDestroyed = false;
 	
 	
 	public FireBall(Position position, int speed) {
 		super(position, speed);
-	}
-
-	@Override
-	public void draw(Graphics2D g2d) {
-		// TODO Auto-generated method stub
-		
+		this.z = Integer.MAX_VALUE;
 	}
 
 	@Override
 	public boolean IsVisible() {
-		// TODO Auto-generated method stub
 		return true;
 	}
 
 	@Override
 	public int getZ() {
-		// TODO Auto-generated method stub
-		return 0;
+		return z--;
 	}
 
 	@Override
@@ -41,5 +36,11 @@ public class FireBall extends Hitbox implements Renderable {
 	
 	public void setDestroyed(boolean isDestroyed) {
 		this.isDestroyed = isDestroyed;
+	}
+
+	@Override
+	public void draw(GraphicsContext g2d) {
+		// TODO Auto-generated method stub
+		
 	}
 }

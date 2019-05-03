@@ -1,19 +1,15 @@
 package hero.base;
 
-import java.awt.Graphics2D;
-import java.util.ArrayList;
 import hero.action.Attackable;
 import hero.action.FireBall;
 import javafx.animation.AnimationTimer;
-import logic.Hitbox;
+import javafx.scene.canvas.GraphicsContext;
 import logic.Position;
 import obstacle.Monster;
-import obstacle.Sprite;
 
 public class Mage extends Hero implements Attackable {
 
 	final long startNanoTime = System.nanoTime();
-	private Sprite attack;
 
 	public Mage(Position position, int speed) {
 		super(position, speed);
@@ -27,8 +23,8 @@ public class Mage extends Hero implements Attackable {
 			@Override
 			public void handle(long now) {
 				// TODO Auto-generated method stub
-				int time = (int) ((now - System.nanoTime()) / 1000000000.0);
-				fireball.update(FireBall.FIREBALL_SPEED, 0, time / 3);
+				long time =  (now - System.nanoTime()) * 60 / 1000000000;
+				fireball.update(FireBall.FIREBALL_SPEED, 0, time );
 			}
 		}.start();
 	}
@@ -40,11 +36,6 @@ public class Mage extends Hero implements Attackable {
 		monster.setDestroyed(true);
 	}
 
-	@Override
-	public void draw(Graphics2D g2d) {
-		// TODO Auto-generated method stub
-
-	}
 
 	@Override
 	public boolean IsVisible() {
@@ -57,5 +48,12 @@ public class Mage extends Hero implements Attackable {
 		// TODO Auto-generated method stub
 		return 0;
 	}
+
+	@Override
+	public void draw(GraphicsContext g2d) {
+		// TODO Auto-generated method stub
+		
+	}
+
 
 }

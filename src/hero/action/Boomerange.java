@@ -1,12 +1,12 @@
 package hero.action;
 
-import java.awt.Graphics2D;
 
+import javafx.scene.canvas.GraphicsContext;
 import logic.Hitbox;
 import logic.Position;
-import render.Renderable;
+import render.Irenderable;
 
-public class Boomerange extends Hitbox implements Renderable {
+public class Boomerange extends Hitbox implements Irenderable {
 	
 	private Position returnPoint;
 	private Position originPoint;
@@ -61,12 +61,6 @@ public class Boomerange extends Hitbox implements Renderable {
 	}
 
 	@Override
-	public void draw(Graphics2D g2d) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
 	public boolean IsVisible() {
 		// TODO Auto-generated method stub
 		return false;
@@ -82,5 +76,11 @@ public class Boomerange extends Hitbox implements Renderable {
 	public boolean isDestroyed() {
 		// TODO Auto-generated method stub
 		return this.collide(hero);
+	}
+
+	@Override
+	public void draw(GraphicsContext g2d) {
+		// TODO Auto-generated method stub
+		
 	}
 }

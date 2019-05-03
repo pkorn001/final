@@ -9,8 +9,10 @@ public abstract class Hitbox {
 	protected Position C;
 	//down-right
 	protected Position D;
-	protected int xSpeed;
-	protected int ySpeed;
+	protected double xSpeed;
+	protected double ySpeed;
+	protected double width;
+	protected double height;
 	
 	public Position getA() {
 		return A;
@@ -24,11 +26,11 @@ public abstract class Hitbox {
 		return B;
 	}
 
-	public int getySpeed() {
+	public double getySpeed() {
 		return ySpeed;
 	}
 
-	public void setySpeed(int ySpeed) {
+	public void setySpeed(double ySpeed) {
 		this.ySpeed = ySpeed;
 	}
 
@@ -52,36 +54,46 @@ public abstract class Hitbox {
 		D = d;
 	}
 
-	public int getxSpeed() {
+	public double getxSpeed() {
 		return xSpeed;
 	}
 
-	public void setxSpeed(int xSpeed) {
+	public void setxSpeed(double xSpeed) {
 		this.xSpeed = xSpeed;
 	}
 
 	//Obstacle has only X-velocity
-	public Hitbox(Position position, int speed) {
+	public Hitbox(Position position, double speed) {
 		this.xSpeed = speed;
 		
 	}
 	
+	public double getWidth() {
+		return this.width;
+	}
+
+	public double getHeight() {
+		return this.height;
+	}
+
 	//Hero has no velocity
 	public Hitbox(Position a,int width,int height) {
 		super();
-		Position A = new Position(a.getX(), a.getY());
-		Position B = new Position(a.getX(), a.getY()+height);
-		Position C = new Position(a.getX()+width, a.getY()+height);
-		Position D = new Position(a.getX()+width, a.getY());
+		this.A = new Position(a.getX(), a.getY());
+		this.B = new Position(a.getX(), a.getY()+height);
+		this.C = new Position(a.getX()+width, a.getY()+height);
+		this.D = new Position(a.getX()+width, a.getY());
 	}
 	
 	//Monster has XY-velocity
-	public Hitbox(Position a,int width,int height,int xSpeed, int ySpeed) {
+	public Hitbox(Position a,int width,int height,double xSpeed, double ySpeed) {
 		super();
-		Position A = new Position(a.getX(), a.getY());
-		Position B = new Position(a.getX(), a.getY()+height);
-		Position C = new Position(a.getX()+width, a.getY()+height);
-		Position D = new Position(a.getX()+width, a.getY());
+		this.width = width;
+		this.height = height;
+		this.A = new Position(a.getX(), a.getY());
+		this.B = new Position(a.getX(), a.getY()+height);
+		this.C = new Position(a.getX()+width, a.getY()+height);
+		this.D = new Position(a.getX()+width, a.getY());
 		this.xSpeed = xSpeed;
 		this.ySpeed = ySpeed;
 	}
@@ -97,7 +109,7 @@ public abstract class Hitbox {
 		return false;
 		}
 	
-	public void update(int xSpeed, int ySpeed, double time) {
+	public void update(double xSpeed, double ySpeed, long time) {
 		for(Position i  : new Position[] {this.A, this.B, this.C, this.D}){
 			i.setX(i.getX() + xSpeed * time);
 			i.setY(i.getY() + ySpeed * time);
