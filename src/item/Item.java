@@ -1,14 +1,12 @@
 package item;
 
-import java.awt.Graphics2D;
-
 import javafx.scene.canvas.GraphicsContext;
 import logic.Hitbox;
 import logic.Position;
 import render.Irenderable;
 import render.Resource;
 
-public abstract class Item extends Hitbox implements Irenderable {
+public class Item extends Hitbox implements Irenderable {
 	
 	private int itemType;
 	private int stage;
@@ -27,10 +25,11 @@ public abstract class Item extends Hitbox implements Irenderable {
 	public Item(Position a, int fps, int type, int stage) {
 		super(a, fps);
 		this.itemType = type;
-		Position A = new Position(a.getX(), a.getY());
-		Position B = new Position(a.getX(), a.getY()+1);
-		Position C = new Position(a.getX()+1, a.getY()+1);
-		Position D = new Position(a.getX()+1, a.getY());
+		super.A = new Position(a.getX(), a.getY());
+		super.B = new Position(a.getX(), a.getY()+1);
+		super.C = new Position(a.getX()+1, a.getY()+1);
+		super.D = new Position(a.getX()+1, a.getY());
+		this.setStage(stage);
 		}
 	
 		@Override
@@ -38,19 +37,15 @@ public abstract class Item extends Hitbox implements Irenderable {
 
 		switch(HERO_ITEM[itemType]) {
 		case("Mage"):
-			this.setStage(1);
 			g2d.drawImage(Resource.Coin1,this.getB().getX(),this.getB().getY(),this.getWidth(),this.getHeight());
 			break;
 		case("Boomeranger"):
-			this.setStage(2);
 			g2d.drawImage(Resource.Coin2,this.getB().getX(),this.getB().getY(),this.getWidth(),this.getHeight());
 			break;
 		case("Swordman"):
-			this.setStage(3);
 			g2d.drawImage(Resource.Coin3,this.getB().getX(),this.getB().getY(),this.getWidth(),this.getHeight());
 			break;
 		case("Assassin"):
-			this.setStage(4);
 			g2d.drawImage(Resource.Coin4,this.getB().getX(),this.getB().getY(),this.getWidth(),this.getHeight());
 			break;
 		}	
@@ -69,5 +64,23 @@ public abstract class Item extends Hitbox implements Irenderable {
 
 	public void setStage(int stage) {
 		this.stage = stage;
+	}
+
+	@Override
+	public boolean IsVisible() {
+		// TODO Auto-generated method stub
+		return true;
+	}
+
+	@Override
+	public int getZ() {
+		// TODO Auto-generated method stub
+		return Integer.MIN_VALUE;
+	}
+
+	@Override
+	public boolean isDestroyed() {
+		// TODO Auto-generated method stub
+		return false;
 	}
 }
