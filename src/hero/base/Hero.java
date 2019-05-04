@@ -10,7 +10,7 @@ public abstract class Hero extends Hitbox implements Irenderable {
 
 	public static final int HEIGHT = 100;
 	private static int score;
-	private static int state;
+	private static int stage;
 	
 	protected int xSpeed;
 	protected Position position = new Position(this.C.getX(), this.C.getY() / 2);
@@ -21,8 +21,8 @@ public abstract class Hero extends Hitbox implements Irenderable {
 		super(a, xSpeed);
 		this.hero = new Hitbox(a, 3, 5) {
 		};
-		this.state = 0;
-		this.score = 0;
+		Hero.stage = 0;
+		Hero.score = 0;
 		this.position = a;
 		this.xSpeed = xSpeed;
 	}
@@ -92,15 +92,15 @@ public abstract class Hero extends Hitbox implements Irenderable {
 	}
 
 	public static void setScore(int score) {
-		score = score;
+		Hero.score = score;
 	}
 	
-	public static int getState() {
-		return state;
+	public static int getStage() {
+		return stage;
 	}
 	
-	public static void setState(int state) {
-		state = state;
+	public static void setStage(int stage) {
+		Hero.stage = stage;
 	}
 
 	public double getHeight() {
