@@ -1,11 +1,13 @@
 package hero.base;
 
 import javafx.animation.AnimationTimer;
+import javafx.scene.canvas.GraphicsContext;
 import logic.Hitbox;
 import logic.Position;
 import obstacle.Monster;
 import obstacle.ObstacleBox;
 import render.Irenderable;
+import render.Resource;
 
 public abstract class Hero extends Hitbox implements Irenderable {
 
@@ -133,4 +135,23 @@ public abstract class Hero extends Hitbox implements Irenderable {
 	public boolean isDestroyed() {
 		return isDestroyed;
 	}
+	
+	@Override
+	public void draw(GraphicsContext g2d) {
+		// TODO Auto-generated method stub
+		g2d.drawImage(Resource.Hero0, position.getX(), position.getY());
+	}
+
+	@Override
+	public boolean IsVisible() {
+		// TODO Auto-generated method stub
+		return true;
+	}
+
+	@Override
+	public int getZ() {
+		// TODO Auto-generated method stub
+		return z--;
+	}
+
 }

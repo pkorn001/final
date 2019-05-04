@@ -5,6 +5,7 @@ import javafx.scene.canvas.GraphicsContext;
 import logic.Hitbox;
 import logic.Position;
 import obstacle.Monster;
+import render.Resource;
 
 public class Assassin extends Hero implements Attackable {
 
@@ -42,7 +43,7 @@ public class Assassin extends Hero implements Attackable {
 	@Override
 	public void draw(GraphicsContext g2d) {
 		// TODO Auto-generated method stub
-		
+		g2d.drawImage(Resource.Hero4, position.getX(), position.getY());
 	}
 
 	@Override

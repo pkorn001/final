@@ -7,6 +7,7 @@ import javafx.scene.canvas.GraphicsContext;
 import logic.Hitbox;
 import logic.Position;
 import obstacle.Monster;
+import render.Resource;
 
 public class Boomeranger extends Hero implements Attackable {
 
@@ -30,7 +31,6 @@ public class Boomeranger extends Hero implements Attackable {
 				boomerange.move();
 			}
 		}.start();
-
 	}
 
 	@Override
@@ -42,7 +42,7 @@ public class Boomeranger extends Hero implements Attackable {
 	@Override
 	public void draw(GraphicsContext g2d) {
 		// TODO Auto-generated method stub
-		
+		g2d.drawImage(Resource.Hero2, position.getX(), position.getY());
 	}
 
 	@Override

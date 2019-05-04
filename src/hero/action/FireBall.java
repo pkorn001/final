@@ -12,12 +12,14 @@ public class FireBall extends Hitbox implements Irenderable {
 	//xSpeed > map's speed, graphic, collide?, 
 	public static final int FIREBALL_SPEED = 2;
 	private int z;
+	private Position heroPoint;
 	private boolean isDestroyed = false;
 	
 	
-	public FireBall(Position position, int speed) {
-		super(position, speed);
+	public FireBall(Position position) {
+		super(position, 1, 1, FIREBALL_SPEED, 0);
 		this.z = Integer.MAX_VALUE;
+		heroPoint = new Position(position.getX()-1, position.getY());
 	}
 	
 	@Override
@@ -58,6 +60,7 @@ public class FireBall extends Hitbox implements Irenderable {
 	@Override
 	public void draw(GraphicsContext g2d) {
 		// TODO Auto-generated method stub
-		
+		g2d.drawImage(Resource.FireBall, heroPoint.getX()+1, heroPoint.getY());
+		// draw in front of hero
 	}
 }

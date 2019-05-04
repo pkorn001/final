@@ -6,6 +6,7 @@ import logic.Hitbox;
 import logic.Position;
 import obstacle.Monster;
 import render.Irenderable;
+import render.Resource;
 
 public class Boomerang extends Hitbox implements Irenderable {
 	
@@ -97,6 +98,6 @@ public class Boomerang extends Hitbox implements Irenderable {
 	@Override
 	public void draw(GraphicsContext g2d) {
 		// TODO Auto-generated method stub
-		
+		g2d.drawImage(Resource.Boomerang, originPoint.getX(), originPoint.getY());
 	}
 }
