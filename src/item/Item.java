@@ -24,9 +24,9 @@ public abstract class Item extends Hitbox implements Irenderable {
 	   3 = assassin
 	*/
 
-	public Item(Position a, int fps, int type) {
+	public Item(Position a, int fps, int stage) {
 		super(a, fps);
-		this.itemType = type;
+		this.itemType = stage;
 		Position A = new Position(a.getX(), a.getY());
 		Position B = new Position(a.getX(), a.getY()+1);
 		Position C = new Position(a.getX()+1, a.getY()+1);
