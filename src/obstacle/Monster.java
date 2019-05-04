@@ -1,15 +1,13 @@
 package obstacle;
 
-import java.awt.Graphics2D;
 
 import javafx.scene.canvas.GraphicsContext;
 import logic.Hitbox;
 import logic.Position;
 import move.Move;
 import render.Irenderable;
-import render.Resource;
 
-public class Monster extends Hitbox implements Irenderable{
+public abstract class Monster extends Hitbox implements Irenderable{
 	
 	/* 0 = normal 
 	 1 = red 
@@ -67,8 +65,7 @@ public class Monster extends Hitbox implements Irenderable{
 
 
 	@Override
-	public void draw(GraphicsContext g2d) {
-	}
+	public abstract void draw(GraphicsContext g2d);
 
 	@Override
 	public void update(double xSpeed, double ySpeed, long time) {
