@@ -9,8 +9,8 @@ import move.Move;
 import render.Irenderable;
 import render.Resource;
 
-public class ObstacleBox extends Hitbox implements Irenderable{
-	
+public class ObstacleBox extends Hitbox implements Irenderable {
+
 	// 0 = stone 1 = tree
 	private int obstacleBox_Type;
 	
@@ -34,7 +34,7 @@ public class ObstacleBox extends Hitbox implements Irenderable{
 		movePattern = new ForwardMove(this);
 		// TODO Auto-generated constructor stub
 	}
-	
+
 	public static int setHeight(int obstacleBox_Type) {
 		return OBSTACLE_HEIGHT[obstacleBox_Type];
 	}
@@ -108,7 +108,6 @@ public class ObstacleBox extends Hitbox implements Irenderable{
 		}
 	}
 
-
 	@Override
 	public boolean IsVisible() {
 		return true;
@@ -124,12 +123,12 @@ public class ObstacleBox extends Hitbox implements Irenderable{
 		// TODO Auto-generated method stub
 		return false;
 	}
-	
+
 	@Override
 	public void update(double xSpeed, double ySpeed, long time) {
-		for(Position i  : new Position[] {this.A, this.B, this.C, this.D}){
-			i.setX(i.getX()+this.movePattern.move(time).getX());
-			i.setY(i.getY()+this.movePattern.move(time).getY());
+		for (Position i : new Position[] { this.A, this.B, this.C, this.D }) {
+			i.setX(i.getX() + this.movePattern.move(time).getX());
+			i.setY(i.getY() + this.movePattern.move(time).getY());
 		}
 	}
 
