@@ -1,6 +1,6 @@
 package obstacle;
 
-import hero.action.Boomerange;
+import hero.action.Boomerang;
 import hero.action.FireBall;
 import javafx.scene.canvas.GraphicsContext;
 import logic.Hitbox;
@@ -27,7 +27,7 @@ public class EvilFairy extends Monster{
 	
 	@Override
 	public boolean collide(Hitbox hitbox) {
-		if (hitbox instanceof Boomerange) {
+		if (hitbox instanceof Boomerang) {
 			if (((this.getA().getX() < hitbox.getD().getX()) && (this.getA().getX() > hitbox.getA().getX()) && (this.getB().getY() > hitbox.getD().getY()))
 					|| ((this.getA().getX() < hitbox.getC().getX()) && (this.getD().getX() > hitbox.getC().getX()) && (this.getA().getY() < hitbox.getC().getY()) && (this.getB().getY() > hitbox.getC().getY()))
 					|| ((this.getD().getX() > hitbox.getA().getX() && (this.getA().getX() < hitbox.getA().getX()) && (this.getC().getY() > hitbox.getA().getY())))
