@@ -1,6 +1,7 @@
 package render;
 
 import javafx.scene.image.Image;
+import javafx.scene.image.WritableImage;
 
 public class Resource {
 	
@@ -16,24 +17,25 @@ public class Resource {
 	}
 	
 	// stage 0 normal
-	public static Image Stage0,Ground0,ObstacleTall_01,ObstacleTall_02,ObstacleTall_03
+	public static Image Stage0,ObstacleTall_01,ObstacleTall_02,ObstacleTall_03
 				,Obstacle_01,Obstacle_02,Obstacle_03,Hero0;
+	public static WritableImage Ground0;
 	
 	// stage 1 red
-	public static Image Stage1,Ground1,ObstacleTall_11,ObstacleTall_12,ObstacleTall_13
-				,Obstacle_11,Obstacle_12,Obstacle_13,Hero1;
+	public static Image Stage10,Stage11,Stage12,Stage13,Stage14,Stage15,Stage16,Stage17,Stage1_lava1,Stage1_lava2,ObstacleTall_1,Obstacle_1,Hero1;
+	public static WritableImage Ground1;
 	
 	// stage 2 green
-	public static Image Stage2,Ground2,ObstacleTall_21,ObstacleTall_22,ObstacleTall_23
-				,Obstacle_21,Obstacle_22,Obstacle_23,Hero2;
+	public static Image Stage2,ObstacleTall_2,Obstacle_2,Hero2;
+	public static WritableImage Ground2;
 	
 	// stage 3 black
-	public static Image Stage3,Ground3,ObstacleTall_31,ObstacleTall_32,ObstacleTall_33
-				,Obstacle_31,Obstacle_32,Obstacle_33,Hero3;
+	public static Image Stage30,Stage31,Stage32,Stage33,Stage34,ObstacleTall_3,Obstacle_3,Hero3;
+	public static WritableImage Ground3;
 	
 	// stage 4 purple
-	public static Image Stage4,Ground4,ObstacleTall_41,ObstacleTall_42,ObstacleTall_43
-				,Obstacle_41,Obstacle_42,Obstacle_43,Hero4;
+	public static Image Stage40,Stage41,Stage42,Stage43,Stage44,Stage4_prisoner1,Stage4_prisoner2,ObstacleTall_4,Obstacle_4,Hero4;
+	public static WritableImage Ground4;
 	
 	//monster
 	public static Image Dead,Monster1,Monster2,Monster3,Monster4,Monster5,Monster6,Monster6_Jump2,Monster6_Jump1,Boss,HardBoss;
@@ -81,60 +83,59 @@ public class Resource {
 		
 		//stage0
 		Stage0 = getImage("image/Stage0.png");
-		Ground0 = getImage("image/Ground0.png");
-		ObstacleTall_01 = getImage("image/ObstacleTall_01.png");
-		ObstacleTall_02 = getImage("image/ObstacleTall_02.png");
-		ObstacleTall_03 = getImage("image/ObstacleTall_03.png");
-		Obstacle_01 = getImage("image/Ostacl_01 .png");
-		Obstacle_02 = getImage("image/Obstacl_02.png");
-		Obstacle_03 = getImage("image/Obstacl_03.png");
+		Ground0 = (WritableImage) getImage("image/Ground0.png");
+		ObstacleTall_0 = getImage("image/ObstacleTall_00.png");
+		Obstacle_0 = getImage("image/Ostacl_00.png");
 		Hero0 = getImage("image/Hero0.png");
 		
 		//stage1
-		Stage1 = getImage("image/Stage1.png");
-		Ground1 = getImage("image/Ground1.png");
-		ObstacleTall_11 = getImage("image/ObstacleTall_11.png");
-		ObstacleTall_12 = getImage("image/ObstacleTall_12.png");
-		ObstacleTall_13 = getImage("image/ObstacleTall_13.png");
-		Obstacle_11 = getImage("image/Ostacl_11 .png");
-		Obstacle_12 = getImage("image/Obstacl_12.png");
-		Obstacle_13 = getImage("image/Obstacl_13.png");
+		Stage10 = getImage("image/Stage10.png");
+		Stage11 = getImage("image/Stage11.png");
+		Stage12 = getImage("image/Stage12.png");
+		Stage13 = getImage("image/Stage13.png");
+		Stage14 = getImage("image/Stage14.png");
+		Stage15 = getImage("image/Stage15.png");
+		Stage16 = getImage("image/Stage16.png");
+		Stage17 = getImage("image/Stage17.png");
+		Stage1_lava1 = getImage("image/Stage1_lava1.png");
+		Stage1_lava2 = getImage("image/Stage1_lava2.png");
+		Ground1 = (WritableImage) getImage("image/Ground1.png");
+		ObstacleTall_1 = getImage("image/ObstacleTall_01.png");
+		Obstacle_1 = getImage("image/Ostacl_01.png");
 		Hero1 = getImage("image/Hero1.png");
 
 		
 		//stage2
 		Stage2 = getImage("image/Stage2.png");
-		Ground2 = getImage("image/Ground0.png");  //use the same as start
-		ObstacleTall_21 = getImage("image/ObstacleTall_21.png");
-		ObstacleTall_22 = getImage("image/ObstacleTall_22.png");
-		ObstacleTall_23 = getImage("image/ObstacleTall_23.png");
-		Obstacle_21 = getImage("image/Ostacl_21 .png");
-		Obstacle_22 = getImage("image/Obstacl_22.png");
-		Obstacle_23 = getImage("image/Obstacl_23.png");
+		Ground2 = (WritableImage) getImage("image/Ground0.png");  //use the same as start
+		ObstacleTall_2 = getImage("image/ObstacleTall_00.png");
+		Obstacle_2 = getImage("image/Ostacl_00.png");
 		Hero2 = getImage("image/Hero2.png");
 		
 		
 		//stage3
-		Stage3 = getImage("image/Stage3.png");
-		Ground3 = getImage("image/Ground3.png");
-		ObstacleTall_31 = getImage("image/ObstacleTall_31.png");
-		ObstacleTall_32 = getImage("image/ObstacleTall_32.png");
-		ObstacleTall_33 = getImage("image/ObstacleTall_33.png");
-		Obstacle_31 = getImage("image/Ostacl_31 .png");
-		Obstacle_32 = getImage("image/Obstacl_32.png");
-		Obstacle_33 = getImage("image/Obstacl_33.png");
+		Stage30 = getImage("image/Stage3.png");
+		Stage31 = getImage("image/Stage31.png");
+		Stage32 = getImage("image/Stage32.png");
+		Stage33 = getImage("image/Stage33.png");
+		Stage34 = getImage("image/Stage34.png");
+		Ground3 = (WritableImage) getImage("image/Ground3.png");
+		ObstacleTall_3 = getImage("image/ObstacleTall_03.png");
+		Obstacle_3 = getImage("image/Ostacl_03.png");
 		Hero3 = getImage("image/Hero3.png");
 
 		
 		//stage4
-		Stage4 = getImage("image/Stage4.png");
-		Ground4 = getImage("image/Ground4.png");
-		ObstacleTall_41 = getImage("image/ObstacleTall_41.png");
-		ObstacleTall_42 = getImage("image/ObstacleTall_42.png");
-		ObstacleTall_43 = getImage("image/ObstacleTall_43.png");
-		Obstacle_41 = getImage("image/Ostacl_41 .png");
-		Obstacle_42 = getImage("image/Obstacl_42.png");
-		Obstacle_43 = getImage("image/Obstacl_43.png");
+		Stage40 = getImage("image/Stage40.png");
+		Stage41 = getImage("image/Stage41.png");
+		Stage42 = getImage("image/Stage42.png");
+		Stage43 = getImage("image/Stage43.png");
+		Stage44 = getImage("image/Stage44.png");
+		Stage4_prisoner1 = getImage("image/Stage4_prisoner1.png");
+		Stage4_prisoner2 = getImage("image/Stage4_prisoner2.png");
+		Ground4 = (WritableImage) getImage("image/Ground4.png");
+		ObstacleTall_4 = getImage("image/ObstacleTall_04.png");
+		Obstacle_4 = getImage("image/Ostacl_04.png");
 		Hero4 = getImage("image/Hero4.png");
 
 		
