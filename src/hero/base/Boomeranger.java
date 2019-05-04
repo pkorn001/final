@@ -12,6 +12,24 @@ import render.Resource;
 public class Boomeranger extends Hero implements Attackable {
 
 	private Hitbox attackBox;
+	public boolean isJumped() {
+		return isJumped;
+	}
+
+	public void setJumped(boolean isJumped) {
+		this.isJumped = isJumped;
+	}
+
+	public boolean isAttacked() {
+		return isAttacked;
+	}
+
+	public void setAttacked(boolean isAttacked) {
+		this.isAttacked = isAttacked;
+	}
+
+	private boolean isJumped =  false;
+	private boolean isAttacked = false;
 
 	public Boomeranger(Position position, int speed) {
 		super(position, speed);
