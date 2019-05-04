@@ -5,57 +5,57 @@ import javafx.scene.canvas.GraphicsContext;
 import logic.Hitbox;
 import logic.Position;
 import obstacle.Monster;
+import render.Resource;
 
-public class Assassin extends Hero implements Attackable {
+public class Assassin extends Hero implements Attackable{
 
 	private static Hitbox attackBox;
-	private boolean didShort = false;
+	private static boolean didShort = false;
 	
 	public Assassin(Position position, int speed) {
 		super(position, speed);
 	}
-
+	
 	@Override
 	public void attack() {
 		// TODO Auto-generated method stub
 		if (!didShort) {
-			this.attackBox = new Hitbox(new Position(this.C.getX() + 1, this.C.getY()/2), 1, 1) {
+			attackBox = new Hitbox(new Position(this.getC().getX() + 1, this.getC().getY()/2), 1, 1) {
 			};
-			this.didShort = true;
+			didShort = true;
 		} else {
-			this.attackBox = new Hitbox(new Position(this.C.getX()+5, this.C.getY()/2), 1, 1){
+			attackBox = new Hitbox(new Position(this.getC().getX()+5, this.getC().getY()/2), 1, 1){
 			};
-			this.didShort = false;
+			didShort = false;
 		}
 	}
 	
 	@Override
 	public void updateScore(Monster monster) {
 		// TODO Auto-generated method stub
-		score += monster.getMonsterPoint();
-		monster.setDestroyed(true);
+		setScore( getScore() + monster.getMonsterPoint());
 	}
 
-	@Override
-	public boolean IsVisible() {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	@Override
-	public int getZ() {
-		// TODO Auto-generated method stub
-		return 0;
+	public static Hitbox getAttackBox() {
+		return attackBox;
 	}
 
 	@Override
 	public void draw(GraphicsContext g2d) {
 		// TODO Auto-generated method stub
-		
+		g2d.drawImage(Resource.Hero4, this.getA().getX(), this.getA().getY(), this.getWidth(), this.getHeight());
 	}
 
-	public static Hitbox getAttackBox() {
-		return attackBox;
+	@Override
+	public boolean IsVisible() {
+		// TODO Auto-generated method stub
+		return true;
+	}
+
+	@Override
+	public int getZ() {
+		// TODO Auto-generated method stub
+		return z--;
 	}
 
 }

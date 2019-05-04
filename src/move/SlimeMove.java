@@ -55,5 +55,5 @@ public class SlimeMove implements Move {
 		double y = this.ySpeed * time;
 		return new Position(x, y);
 	}
-	
+
 }

@@ -1,4 +1,4 @@
-package stage;
+package scene;
 
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -11,13 +11,16 @@ import javafx.scene.layout.VBox;
 
 public class GameScreen extends Canvas {
 
+	private Background topBackground;
+	private Background bottomBackground;
+	
 	public GameScreen(double width, double height){
 		super(width, height);
 		this.setVisible(true);
 		
 		Pane root = new Pane();
-		
 		VBox topBox = new VBox(width);  //top part, start from hero's line till the max height
+		topBox.setBackground(null);
 		
 		VBox bottomBox = new VBox(width);
 		

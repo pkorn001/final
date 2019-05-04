@@ -5,6 +5,7 @@ import javafx.scene.canvas.GraphicsContext;
 import logic.Hitbox;
 import logic.Position;
 import obstacle.Monster;
+import render.Resource;
 
 public class Swordman extends Hero implements Attackable {
 
@@ -16,21 +17,14 @@ public class Swordman extends Hero implements Attackable {
 
 	@Override
 	public void attack() {
-		attackBox = new Hitbox(new Position(this.C.getX() + 1, this.C.getY() / 2), 1, 1) {
+		attackBox = new Hitbox(new Position(this.getC().getX() + 1, this.getC().getY() / 2), 1, 1) {
 		};
 	}
 
 	@Override
 	public void updateScore(Monster monster) {
 		// TODO Auto-generated method stub
-		score += monster.getMonsterPoint();
-		monster.setDestroyed(true);
-	}
-
-	@Override
-	public boolean IsVisible() {
-		// TODO Auto-generated method stub
-		return false;
+		setScore( getScore() + monster.getMonsterPoint());
 	}
 	
 	public static Hitbox getAttackBox() {
@@ -38,15 +32,20 @@ public class Swordman extends Hero implements Attackable {
 	}
 
 	@Override
-	public int getZ() {
-		// TODO Auto-generated method stub
-		return 0;
+	public void draw(GraphicsContext g2d) {
+		g2d.drawImage(Resource.Hero3, this.getA().getX(), this.getA().getY(), this.getWidth(), this.getHeight());
 	}
 
 	@Override
-	public void draw(GraphicsContext g2d) {
+	public boolean IsVisible() {
 		// TODO Auto-generated method stub
-		
+		return true;
+	}
+
+	@Override
+	public int getZ() {
+		// TODO Auto-generated method stub
+		return z--;
 	}
 
 

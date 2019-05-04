@@ -22,14 +22,13 @@ public class Item extends Hitbox implements Irenderable {
 	   3 = assassin
 	*/
 
-	public Item(Position a, int fps, int type, int stage) {
+	public Item(Position a, int fps, int stage) {
 		super(a, fps);
-		this.itemType = type;
 		super.A = new Position(a.getX(), a.getY());
 		super.B = new Position(a.getX(), a.getY()+1);
 		super.C = new Position(a.getX()+1, a.getY()+1);
 		super.D = new Position(a.getX()+1, a.getY());
-		this.setStage(stage);
+		this.itemType = stage;
 		}
 	
 		@Override
