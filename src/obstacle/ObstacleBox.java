@@ -5,11 +5,12 @@ import java.awt.Graphics2D;
 import javafx.scene.canvas.GraphicsContext;
 import logic.Hitbox;
 import logic.Position;
+import move.ForwardMove;
+import move.Move;
 import render.Irenderable;
 import render.Resource;
 
 public class ObstacleBox extends Hitbox implements Irenderable{
-	
 	
 	// 0 = stone 1 = tree
 	private int obstacleBox_Type;
@@ -28,7 +29,8 @@ public class ObstacleBox extends Hitbox implements Irenderable{
 	private int z;
 	private final static int[] OBSTACLE_HEIGHT = {20,40};
 	private final static int[] OBSTACLE_WIDTH = {20,40,60};
-
+	private Move movePattern;
+	
 	public ObstacleBox(Position a,int speed,int obstacleBox_Type,int obstacleBox_Size,int Stage) {
 		super(a, speed);
 		z = Integer.MAX_VALUE;
@@ -38,7 +40,7 @@ public class ObstacleBox extends Hitbox implements Irenderable{
 		Position B = new Position(a.getX(), a.getY()+ ObstacleBox.setHeight(obstacleBox_Type));
 		Position C = new Position(a.getX()+ ObstacleBox.setWidth(obstacleBox_Size), a.getY()+ ObstacleBox.setHeight(obstacleBox_Type));
 		Position D = new Position(a.getX()+ ObstacleBox.setWidth(obstacleBox_Size), a.getY());
-		
+		movePattern = new ForwardMove(this);
 		// TODO Auto-generated constructor stub
 	}
 	
@@ -192,6 +194,12 @@ public class ObstacleBox extends Hitbox implements Irenderable{
 		return false;
 	}
 	
-	
+	@Override
+	public void update(double xSpeed, double ySpeed, long time) {
+		for(Position i  : new Position[] {this.A, this.B, this.C, this.D}){
+			i.setX(i.getX()+this.movePattern.move(time).getX());
+			i.setY(i.getY()+this.movePattern.move(time).getY());
+		}
+	}
 
 }

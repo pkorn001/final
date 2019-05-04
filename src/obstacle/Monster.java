@@ -18,15 +18,15 @@ public class Monster extends Hitbox implements Irenderable{
 	 4 = purple */
 	protected int monsterType;
 	protected int monsterPoint;
-	protected final static int[] MONSTER_POINT = {0,50,200,70,60};
+	protected final static int[] MONSTER_POINT = {0,700,200,50,60,50};
 	protected boolean destroyed;
 	protected Move movePattern;
 	protected int z;
 	
 	
 
-	public Monster(Position a,int monsterType,double xSpeed,double ySpeed) {
-		super(a,20,20,xSpeed,ySpeed);
+	public Monster(Position a,int width,int height,int monsterType,double xSpeed,double ySpeed) {
+		super(a,width,height,xSpeed,ySpeed);
 		this.z = Integer.MAX_VALUE;
 		this.destroyed = false;
 		this.monsterType = monsterType;
@@ -68,17 +68,13 @@ public class Monster extends Hitbox implements Irenderable{
 
 	@Override
 	public void draw(GraphicsContext g2d) {
-		if (isDestroyed()) {
-		}
-		else {
-		}
 	}
 
 	@Override
 	public void update(double xSpeed, double ySpeed, long time) {
 		for(Position i  : new Position[] {this.A, this.B, this.C, this.D}){
-			i.setX(this.movePattern.move(time).getX());
-			i.setY(this.movePattern.move(time).getY());
+			i.setX(i.getX()+this.movePattern.move(time).getX());
+			i.setY(i.getY()+this.movePattern.move(time).getY());
 		}
 	}
 	
