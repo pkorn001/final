@@ -1,7 +1,7 @@
 package hero.base;
 
 import hero.action.Attackable;
-import hero.action.Boomerange;
+import hero.action.Boomerang;
 import javafx.animation.AnimationTimer;
 import javafx.scene.canvas.GraphicsContext;
 import logic.Hitbox;
@@ -18,7 +18,7 @@ public class Boomeranger extends Hero implements Attackable {
 
 	@Override
 	public void attack() {
-		Boomerange boomerange = new Boomerange(new Position(this.C.getX() + 1, this.C.getY() / 2));
+		Boomerang boomerange = new Boomerang(new Position(this.C.getX() + 1, this.C.getY() / 2));
 		new AnimationTimer() {
 
 			@Override

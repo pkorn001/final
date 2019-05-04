@@ -6,7 +6,7 @@ import logic.Hitbox;
 import logic.Position;
 import render.Irenderable;
 
-public class Boomerange extends Hitbox implements Irenderable {
+public class Boomerang extends Hitbox implements Irenderable {
 	
 	private Position returnPoint;
 	private Position originPoint;
@@ -15,7 +15,7 @@ public class Boomerange extends Hitbox implements Irenderable {
 	private boolean isReturn = false;
 	private boolean doneFirst = false;
 	
-	public Boomerange(Position position) {
+	public Boomerang(Position position) {
 		super(position, 1, 1, 0, 0);
 		heroPoint = new Position(position.getX()-1, position.getY());
 		originPoint = new Position(position.getX(), position.getY());
