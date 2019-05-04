@@ -21,8 +21,8 @@ public class ForwardMove implements Move {
 	
 	@Override
 	public Position move(long time) {
-		double x = obj.getA().getX() + this.xSpeed * time;
-		double y = obj.getA().getY();
+		double x = this.xSpeed * time;
+		double y = 0;
 		return new Position(x, y);
 	}
 }

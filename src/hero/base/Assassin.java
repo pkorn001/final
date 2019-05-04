@@ -8,7 +8,7 @@ import obstacle.Monster;
 
 public class Assassin extends Hero implements Attackable {
 
-	private Hitbox attackBox;
+	private static Hitbox attackBox;
 	private boolean didShort = false;
 	
 	public Assassin(Position position, int speed) {
@@ -52,6 +52,10 @@ public class Assassin extends Hero implements Attackable {
 	public void draw(GraphicsContext g2d) {
 		// TODO Auto-generated method stub
 		
+	}
+
+	public static Hitbox getAttackBox() {
+		return attackBox;
 	}
 
 }

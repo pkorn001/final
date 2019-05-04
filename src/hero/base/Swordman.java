@@ -8,7 +8,7 @@ import obstacle.Monster;
 
 public class Swordman extends Hero implements Attackable {
 
-	private Hitbox attackBox;
+	private static Hitbox attackBox;
 
 	public Swordman(Position position, int speed) {
 		super(position, speed);
@@ -31,6 +31,10 @@ public class Swordman extends Hero implements Attackable {
 	public boolean IsVisible() {
 		// TODO Auto-generated method stub
 		return false;
+	}
+	
+	public static Hitbox getAttackBox() {
+		return attackBox;
 	}
 
 	@Override
