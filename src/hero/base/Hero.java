@@ -87,8 +87,8 @@ public abstract class Hero extends Hitbox implements Irenderable {
 		this.position = position;
 	}
 
-	public int getScore() {
-		return score;
+	public static int getScore() {
+		return Hero.score;
 	}
 
 	public static void setScore(int score) {
@@ -96,7 +96,7 @@ public abstract class Hero extends Hitbox implements Irenderable {
 	}
 	
 	public static int getStage() {
-		return stage;
+		return Hero.stage;
 	}
 	
 	public static void setStage(int stage) {
