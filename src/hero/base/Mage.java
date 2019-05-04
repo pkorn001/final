@@ -18,7 +18,7 @@ public class Mage extends Hero implements Attackable {
 
 	@Override
 	public void attack() {
-		FireBall fireball = new FireBall(new Position(this.getC().getX(), this.getC().getY() / 2));
+		FireBall fireball = new FireBall(new Position(this.C.getX(), this.C.getY() / 2));
 		new AnimationTimer() {
 
 			@Override
@@ -33,7 +33,21 @@ public class Mage extends Hero implements Attackable {
 	@Override
 	public void updateScore(Monster monster) {
 		// TODO Auto-generated method stub
-		setScore( getScore() + monster.getMonsterPoint());
+		setScore(getStage()+monster.getMonsterPoint());
+		monster.setDestroyed(true);
+	}
+
+
+	@Override
+	public boolean IsVisible() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public int getZ() {
+		// TODO Auto-generated method stub
+		return 0;
 	}
 
 	@Override
@@ -41,19 +55,6 @@ public class Mage extends Hero implements Attackable {
 		// TODO Auto-generated method stub
 		g2d.drawImage(Resource.Hero1, this.getA().getX(), this.getA().getY(), this.getWidth(), this.getHeight());
 	}
-
-	@Override
-	public boolean IsVisible() {
-		// TODO Auto-generated method stub
-		return true;
-	}
-
-	@Override
-	public int getZ() {
-		// TODO Auto-generated method stub
-		return z--;
-	}
-
 
 
 }
