@@ -58,7 +58,7 @@ public class Boss extends Hitbox implements Irenderable {
 		return destroyed;
 	}
 
-	public Hitbox create(Position p,int attackType,int MonsterType, int xSpeed, int ySpeed) {
+	public Hitbox create(Position p,int attackType,int MonsterType, double xSpeed, double ySpeed) {
 		if (attackType == 0) {
 			ParriedBall e = new ParriedBall(p, 50, 50, -50, 0);
 			return e;
