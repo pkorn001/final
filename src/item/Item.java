@@ -10,17 +10,13 @@ public class Item extends Hitbox implements Irenderable {
 	
 	private int itemType;
 	private int stage;
-	/* 0 = normal 
-	 1 = red 
-	 2 = green
-	 3 = black
-	 4 = purple */
-	public static final String[] HERO_ITEM = {"Mage", "Boomeranger", "Swordman", "Assassin"};
-	/* 0 = mage
-	   1 = boomeranger
-	   2 = swordman
-	   3 = assassin
-	*/
+	/*
+	 * 0 = normal 1 = red 2 = green 3 = black 4 = purple
+	 */
+	public static final String[] HERO_ITEM = { "Mage", "Boomeranger", "Swordman", "Assassin" };
+	/*
+	 * 0 = mage 1 = boomeranger 2 = swordman 3 = assassin
+	 */
 
 	public Item(Position a, int fps, int stage) {
 		super(a, fps);
@@ -47,8 +43,9 @@ public class Item extends Hitbox implements Irenderable {
 		case("Assassin"):
 			g2d.drawImage(Resource.Coin4,this.getB().getX(),this.getB().getY(),this.getWidth(),this.getHeight());
 			break;
-		}	
+		}
 	}
+
 	public String getItemType() {
 		return HERO_ITEM[this.itemType];
 	}

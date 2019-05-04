@@ -10,6 +10,24 @@ import render.Resource;
 public class Swordman extends Hero implements Attackable {
 
 	private static Hitbox attackBox;
+	private boolean isJumped = false;
+	private boolean isAttacked = false;
+	
+	public boolean isJumped() {
+		return isJumped;
+	}
+
+	public void setJumped(boolean isJumped) {
+		this.isJumped = isJumped;
+	}
+
+	public boolean isAttacked() {
+		return isAttacked;
+	}
+
+	public void setAttacked(boolean isAttacked) {
+		this.isAttacked = isAttacked;
+	}
 
 	public Swordman(Position position, int speed) {
 		super(position, speed);

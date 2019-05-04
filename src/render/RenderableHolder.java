@@ -9,9 +9,15 @@ import java.util.List;
 
 public class RenderableHolder {
 	
+	private static final RenderableHolder instance = new RenderableHolder();
+	
 	private List<Irenderable> entities;
 	private Comparator<Irenderable> comparator;
 	
+	public List<Irenderable> getEntities() {
+		return entities;
+	}
+
 	public RenderableHolder() {
 		entities = new ArrayList<Irenderable>();
 		comparator = (Irenderable o1, Irenderable o2) -> {
@@ -21,6 +27,10 @@ public class RenderableHolder {
 		};
 	}
 	
+	public static RenderableHolder getInstance() {
+		return instance;
+	}
+
 	public void add(Irenderable entity) {
 		entities.add(entity);
 		Collections.sort(entities, comparator);
