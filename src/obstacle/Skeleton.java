@@ -1,5 +1,6 @@
 package obstacle;
 
+import hero.base.Hero;
 import hero.base.Swordman;
 import javafx.scene.canvas.GraphicsContext;
 import logic.Hitbox;
@@ -33,6 +34,7 @@ public class Skeleton extends Monster{
 					|| ((this.getD().getX() > hitbox.getB().getX() && (this.getA().getX() < hitbox.getB().getX()) && (this.getC().getY() > hitbox.getB().getY()) && (this.getD().getY() < hitbox.getB().getY())))
 					) {
 				this.setDestroyed(true);
+				Hero.setScore(Hero.getScore()+this.getMonsterPoint());
 			}
 		}
 		return isDestroyed();
