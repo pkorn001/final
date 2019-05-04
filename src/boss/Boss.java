@@ -3,36 +3,34 @@ package boss;
 import java.awt.Graphics2D;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 
 import hero.action.Attackable;
 import javafx.scene.canvas.GraphicsContext;
+import logic.GameLogic;
 import logic.Hitbox;
 import logic.Position;
+import obstacle.Bat;
+import obstacle.EvilFairy;
+import obstacle.FlyingFire;
+import obstacle.Hornet;
 import obstacle.Monster;
+import obstacle.Skeleton;
+import obstacle.Slime;
 import render.Irenderable;
 import render.Resource;
 
-public class Boss extends Hitbox implements Irenderable, Attackable {
+public class Boss extends Hitbox implements Irenderable {
 
-	/*
-	 * 1 = red 2 = green 3 = black 4 = purple
-	 */
-	private int width;
-	private int height;
-	private int bossStage;
 	private final static int HIT_POINT = 100;
 	private static int bossHp = 200;
 	private final static int KILLED_POINT = 100 * 200;
 	private static boolean destroyed;
 	private int z;
 
-	public Boss(Position a, int bossStage, int xSpeed, int ySpeed) {
-		super(a, 20, 20, xSpeed, ySpeed);
+	public Boss(Position a, int xSpeed, int ySpeed) {
+		super(a, 200, 500, xSpeed, ySpeed);
 		this.z = Integer.MAX_VALUE;
 		this.destroyed = false;
-		this.bossStage = bossStage;
-
 	}
 
 	public static void isAttacked() {
@@ -52,10 +50,6 @@ public class Boss extends Hitbox implements Irenderable, Attackable {
 		return KILLED_POINT;
 	}
 
-	public int getBossStage() {
-		return this.bossStage;
-	}
-
 	public static int getBossHp() {
 		return bossHp;
 	}
@@ -64,278 +58,42 @@ public class Boss extends Hitbox implements Irenderable, Attackable {
 		return destroyed;
 	}
 
-	public void create(int monsterType, int xSpeed, int ySpeed, int height, int width) {
-		Monster a = new Monster(this.getA(), width, height, monsterType, xSpeed, ySpeed);
-		this.width = width;
-		this.height = height;
-	}
-
-	@Override
-	public void attack() {
-
-		Random attackPattern = new Random();
-		Random attackType = new Random();
-		Random monsterType = new Random();
-
-		List<Integer> list = new ArrayList<>();
-		List<Integer> list2 = new ArrayList<>();
-		for (int e = 0; e < 10; e++) {
-			list.add(e);
+	public Hitbox create(Position p,int attackType,int MonsterType, int xSpeed, int ySpeed) {
+		if (attackType == 0) {
+			ParriedBall e = new ParriedBall(p, 50, 50, -50, 0);
+			return e;
 		}
-		for (int e = 0; e < 4; e++) {
-			list2.add(e);
+		else if (attackType == 1) {
+			BossAttack e = new BossAttack(p, 50, 50, -50, 0);
+			return e;
 		}
-		if ((getBossHp() <= 100)) {
-			switch (attackPattern.nextInt(2)) {
-
-			case 1:
-				for (int j = 0; j < 5; j++) {
-					int i = attackPattern.nextInt(list.size());
-					int k = i;
-					list.remove(k);
-
-					if (i == 0) {
-						ParriedBall a = new ParriedBall(new Position(1080, 100), 50, 50, -50, 0);
-					}
-
-					else if (i == 1) {
-						ParriedBall b = new ParriedBall(new Position(1080, 100), 50, 50, -50, 0);
-					}
-
-					else if (i == 2) {
-						ParriedBall c = new ParriedBall(new Position(1080, 250), 50, 50, -50, 0);
-					}
-
-					else if (i == 3) {
-						ParriedBall d = new ParriedBall(new Position(1080, 250), 50, 50, -50, 0);
-					}
-
-					else if (i == 4) {
-						BossAttack e = new BossAttack(new Position(1080, 100), 50, 50, -50, 0);
-					} else if (i == 5) {
-						BossAttack f = new BossAttack(new Position(1080, 100), 50, 50, -50, 0);
-					} else if (i == 6) {
-						BossAttack g = new BossAttack(new Position(1080, 100), 50, 50, -50, 0);
-					} else if (i == 7) {
-						BossAttack h = new BossAttack(new Position(1080, 250), 50, 50, -50, 0);
-					} else if (i == 8) {
-						BossAttack I = new BossAttack(new Position(1080, 250), 50, 50, -50, 0);
-					} else if (i == 7) {
-						BossAttack J = new BossAttack(new Position(1080, 250), 50, 50, -50, 0);
-					}
-					try {
-						wait(200);
-					} catch (InterruptedException e) {
-						e.printStackTrace();
-					}
-				}
-
-			case 2:
-				for (int i = 0; i < 5; i++) {
-					if (i == 0) {
-						/*
-						 * 0 = parried 1 = boss_fireball 2 = monster
-						 */
-						if (attackType.nextInt(2) == 0) {
-							ParriedBall a = new ParriedBall(this.getA(), 50, 50, -50, 0);
-						} else if (attackType.nextInt(2) == 1) {
-							BossAttack a = new BossAttack(this.getA(), 50, 50, -50, 0);
-						} else if (attackType.nextInt(2) == 2) {
-							Monster a = new Monster(this.getA(), width, height, monsterType.nextInt(5), -50, 0);
-						}
-					}
-
-					else if (i == 1) {
-						/*
-						 * 0 = parried 1 = boss_fireball 2 = monster
-						 */
-						if (attackType.nextInt(2) == 0) {
-							ParriedBall b = new ParriedBall(this.getA(), 50, 50, -50, 0);
-						} else if (attackType.nextInt(2) == 1) {
-							BossAttack b = new BossAttack(this.getA(), 50, 50, -50, 0);
-						} else if (attackType.nextInt(2) == 2) {
-							Monster b = new Monster(this.getA(), width, height, monsterType.nextInt(5), -50, 0);
-						}
-					}
-
-					else if (i == 2) {
-						/*
-						 * 0 = parried 1 = boss_fireball 2 = monster
-						 */
-						if (attackType.nextInt(2) == 0) {
-							ParriedBall c = new ParriedBall(this.getA(), 50, 50, -50, 0);
-						} else if (attackType.nextInt(2) == 1) {
-							BossAttack c = new BossAttack(this.getA(), 50, 50, -50, 0);
-						} else if (attackType.nextInt(2) == 2) {
-							Monster c = new Monster(this.getA(), width, height, monsterType.nextInt(5), -50, 0);
-						}
-					}
-
-					else if (i == 3) {
-						/*
-						 * 0 = parried 1 = boss_fireball 2 = monster
-						 */
-						if (attackType.nextInt(2) == 0) {
-							ParriedBall d = new ParriedBall(this.getA(), 50, 50, -50, 0);
-						} else if (attackType.nextInt(2) == 1) {
-							BossAttack d = new BossAttack(this.getA(), 50, 50, -50, 0);
-						} else if (attackType.nextInt(2) == 2) {
-							Monster d = new Monster(this.getA(), width, height, monsterType.nextInt(5), -50, 0);
-						}
-					}
-
-					else if (i == 4) {
-						/*
-						 * 0 = parried 1 = boss_fireball 2 = monster
-						 */
-						if (attackType.nextInt(2) == 0) {
-							ParriedBall e = new ParriedBall(this.getA(), 50, 50, -50, 0);
-						} else if (attackType.nextInt(2) == 1) {
-							BossAttack e = new BossAttack(this.getA(), 50, 50, -50, 0);
-						} else if (attackType.nextInt(2) == 2) {
-							Monster e = new Monster(this.getA(), width, height, monsterType.nextInt(5), -50, 0);
-						}
-					}
-					try {
-						wait(1000);
-					} catch (InterruptedException e) {
-						e.printStackTrace();
-					}
-
-				}
-
-			default:
-				for (int j = 0; j < 3; j++) {
-					int i = attackPattern.nextInt(list2.size());
-					int k = i;
-					list.remove(k);
-
-					if (i == 0) {
-						ParriedBall a = new ParriedBall(new Position(1080, 100), 50, 50, -50, 0);
-						BossAttack b = new BossAttack(new Position(1080, 150), 50, 50, -50, 0);
-						BossAttack c = new BossAttack(new Position(1080, 200), 50, 50, -50, 0);
-						BossAttack d = new BossAttack(new Position(1080, 250), 50, 50, -50, 0);
-					}
-
-					else if (i == 1) {
-						BossAttack e = new BossAttack(new Position(1080, 100), 50, 50, -50, 0);
-						ParriedBall f = new ParriedBall(new Position(1080, 150), 50, 50, -50, 0);
-						BossAttack g = new BossAttack(new Position(1080, 200), 50, 50, -50, 0);
-						BossAttack h = new BossAttack(new Position(1080, 250), 50, 50, -50, 0);
-
-					}
-
-					else if (i == 2) {
-						BossAttack I = new BossAttack(new Position(1080, 100), 50, 50, -50, 0);
-						BossAttack J = new BossAttack(new Position(1080, 150), 50, 50, -50, 0);
-						ParriedBall K = new ParriedBall(new Position(1080, 200), 50, 50, -50, 0);
-						BossAttack l = new BossAttack(new Position(1080, 250), 50, 50, -50, 0);
-					}
-
-					else if (i == 3) {
-						BossAttack m = new BossAttack(new Position(1080, 100), 50, 50, -50, 0);
-						BossAttack n = new BossAttack(new Position(1080, 150), 50, 50, -50, 0);
-						BossAttack o = new BossAttack(new Position(1080, 200), 50, 50, -50, 0);
-						ParriedBall p = new ParriedBall(new Position(1080, 250), 50, 50, -50, 0);
-
-					}
-					try {
-						wait(1000);
-					} catch (InterruptedException e) {
-						e.printStackTrace();
-					}
-				}
+		else{
+			if (MonsterType == 1) {
+				Monster e = new Hornet(p,0,0,MonsterType,xSpeed,ySpeed);
+				return e;
 			}
-		} else {
-
-			switch (attackPattern.nextInt(1)) {
-
-			case 1:
-				for (int j = 0; j < 5; j++) {
-					int i = attackPattern.nextInt(list.size());
-					int k = i;
-					list.remove(k);
-
-					if (i == 0) {
-						ParriedBall a = new ParriedBall(new Position(1080, 100), 50, 50, -50, 0);
-					}
-
-					else if (i == 1) {
-						ParriedBall b = new ParriedBall(new Position(1080, 100), 50, 50, -50, 0);
-					}
-
-					else if (i == 2) {
-						ParriedBall c = new ParriedBall(new Position(1080, 250), 50, 50, -50, 0);
-					}
-
-					else if (i == 3) {
-						ParriedBall d = new ParriedBall(new Position(1080, 250), 50, 50, -50, 0);
-					}
-
-					else if (i == 4) {
-						BossAttack e = new BossAttack(new Position(1080, 100), 50, 50, -50, 0);
-					} else if (i == 5) {
-						BossAttack f = new BossAttack(new Position(1080, 100), 50, 50, -50, 0);
-					} else if (i == 6) {
-						BossAttack g = new BossAttack(new Position(1080, 100), 50, 50, -50, 0);
-					} else if (i == 7) {
-						BossAttack h = new BossAttack(new Position(1080, 250), 50, 50, -50, 0);
-					} else if (i == 8) {
-						BossAttack I = new BossAttack(new Position(1080, 250), 50, 50, -50, 0);
-					} else if (i == 7) {
-						BossAttack J = new BossAttack(new Position(1080, 250), 50, 50, -50, 0);
-					}
-					try {
-						wait(200);
-					} catch (InterruptedException e) {
-						e.printStackTrace();
-					}
-				}
-
-			default:
-				for (int j = 0; j < 3; j++) {
-					int i = attackPattern.nextInt(list2.size());
-					int k = i;
-					list.remove(k);
-
-					if (i == 0) {
-						ParriedBall a = new ParriedBall(new Position(1080, 100), 50, 50, -50, 0);
-						BossAttack b = new BossAttack(new Position(1080, 150), 50, 50, -50, 0);
-						BossAttack c = new BossAttack(new Position(1080, 200), 50, 50, -50, 0);
-						BossAttack d = new BossAttack(new Position(1080, 250), 50, 50, -50, 0);
-					}
-
-					else if (i == 1) {
-						BossAttack e = new BossAttack(new Position(1080, 100), 50, 50, -50, 0);
-						ParriedBall f = new ParriedBall(new Position(1080, 150), 50, 50, -50, 0);
-						BossAttack g = new BossAttack(new Position(1080, 200), 50, 50, -50, 0);
-						BossAttack h = new BossAttack(new Position(1080, 250), 50, 50, -50, 0);
-
-					}
-
-					else if (i == 2) {
-						BossAttack I = new BossAttack(new Position(1080, 100), 50, 50, -50, 0);
-						BossAttack J = new BossAttack(new Position(1080, 150), 50, 50, -50, 0);
-						ParriedBall K = new ParriedBall(new Position(1080, 200), 50, 50, -50, 0);
-						BossAttack l = new BossAttack(new Position(1080, 250), 50, 50, -50, 0);
-					}
-
-					else if (i == 3) {
-						BossAttack m = new BossAttack(new Position(1080, 100), 50, 50, -50, 0);
-						BossAttack n = new BossAttack(new Position(1080, 150), 50, 50, -50, 0);
-						BossAttack o = new BossAttack(new Position(1080, 200), 50, 50, -50, 0);
-						ParriedBall p = new ParriedBall(new Position(1080, 250), 50, 50, -50, 0);
-
-					}
-					try {
-						wait(1000);
-					} catch (InterruptedException e) {
-						e.printStackTrace();
-					}
-				}
+			else if (MonsterType == 2) {
+				Monster e = new FlyingFire(p,0,0,MonsterType,xSpeed,ySpeed);
+				return e;
+			}
+			else if (MonsterType == 3) {
+				Monster e = new EvilFairy(p,0,0,MonsterType,xSpeed,ySpeed);
+				return e;
+			}
+			else if (MonsterType == 4) {
+				Monster e = new Skeleton(p,0,0,MonsterType,xSpeed,ySpeed);
+				return e;
+			}
+			else if (MonsterType == 5) {
+				Monster e = new Bat(p,0,0,MonsterType,xSpeed,ySpeed);
+				return e;
+			}
+			else{
+				Monster e = new Slime(p,0,0,MonsterType,xSpeed,ySpeed);
+				return e;
 			}
 		}
-	}
+	}	
 
 	@Override
 	public void draw(GraphicsContext g2d) {
