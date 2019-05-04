@@ -1,7 +1,6 @@
 package render;
 
 import javafx.scene.image.Image;
-import javafx.scene.paint.ImagePattern;
 
 public class Resource {
 	private static Image getImage(String directory) {
@@ -37,7 +36,7 @@ public class Resource {
 				,Obstacle_41,Obstacle_42,Obstacle_43,Hero4;
 	
 	//monster
-	public static Image Dead,Monster1,Monster2,Monster3,Monster4,Monster5,Monster6,Boss,HardBoss;
+	public static Image Dead,Monster1,Monster2,Monster3,Monster4,Monster5,Monster6,Monster6_Jump2,Monster6_Jump1,Boss,HardBoss;
 	
 	//coin
 	public static Image Coin1,Coin2,Coin3,Coin4;
@@ -68,6 +67,8 @@ public class Resource {
 		Monster4 = getImage("image/Monster4.png");
 		Monster5 = getImage("image/Monster5.png");
 		Monster6 = getImage("image/Monster6.png");
+		Monster6_Jump1 = getImage("image/Monster6_Jump1.png");
+		Monster6_Jump2 = getImage("image/Monster6_Jump2.png");
 		Boss = getImage("image/Boss.png");
 		HardBoss = getImage("image/HardBoss.png");
 		
