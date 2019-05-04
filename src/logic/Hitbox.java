@@ -76,6 +76,12 @@ public abstract class Hitbox {
 		return this.height;
 	}
 
+	//Obstacle has only X-velocity
+	public Hitbox(Position position, double speed) {
+		this.xSpeed = speed;
+		
+	}
+
 	//Hero has no velocity
 	public Hitbox(Position a,int width,int height) {
 		super();
