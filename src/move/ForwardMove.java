@@ -18,7 +18,7 @@ public class ForwardMove implements Move {
 		obj.setxSpeed(xSpeed); 
 		obj.setySpeed(ySpeed); 
 	}
-	
+
 	@Override
 	public Position move(long time) {
 		double x = this.xSpeed * time;
