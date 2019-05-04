@@ -13,8 +13,14 @@ import hero.base.Boomeranger;
 import hero.base.Hero;
 import hero.base.Mage;
 import hero.base.Swordman;
+import obstacle.Bat;
+import obstacle.EvilFairy;
+import obstacle.FlyingFire;
+import obstacle.Hornet;
 import obstacle.Monster;
 import obstacle.ObstacleBox;
+import obstacle.Skeleton;
+import obstacle.Slime;
 import render.RenderableHolder;
 import scene.GameScreen;
 
@@ -33,7 +39,7 @@ public class GameLogic {
 	protected static double speedFactor;
 	
 	public GameLogic() {
-		hero = new Hero(new Position(20.00,0.00),0) {
+		hero = new Hero(new Position(50.00,0.00),0) {
 			
 			@Override
 			public void updateScore(Monster monster) {
@@ -41,7 +47,7 @@ public class GameLogic {
 				setScore( getScore() + monster.getMonsterPoint());
 			}};
 		
-		boss = new Boss(new Position(1600,500), 0, 0);
+		boss = new Boss(new Position(1600,0), 0, 0);
 		screen = new GameScreen(1920, 1080);
 		this.speedFactor = 1;
 		
@@ -51,6 +57,103 @@ public class GameLogic {
 		everything.add(boss);
 	}
 	
+	public static double getSpeedFactor() {
+		return speedFactor;
+	}
+
+	public static void setSpeedFactor(double speedFactor) {
+		GameLogic.speedFactor = speedFactor;
+	}
+
+	public void ObstacleBoxesGen() {
+		Random obstacleBox_Type = new Random();
+		while(true) {
+				ObstacleBox e = new ObstacleBox(new Position(1600,0),50, obstacleBox_Type.nextInt(2),0);
+				obstacleBoxes.add(e);
+				everything.add(e);
+				RenderableHolder.getInstance().add(e);
+				try {
+					wait(800);
+				} catch (InterruptedException e1) {
+					e1.printStackTrace();
+				}
+		}
+	}
+	
+	public void MonstersGen() {
+		Random monsterType = new Random();
+		while (true) {
+			if (Hero.getStage() == 0) {
+				Monster e = new Hornet(new Position(1600,hero.getHeight()* 2 / 3), 100, 100, 0, -50, 0);
+				monsters.add(e);
+				everything.add(e);
+				RenderableHolder.getInstance().add(e);
+			}
+			else if (Hero.getStage() == 1) {
+				if(monsterType.nextInt(2) == 0) {
+					Monster e = new Slime(new Position(1600,0), 100, 100, 0, -50, 0);
+					monsters.add(e);
+					everything.add(e);
+					RenderableHolder.getInstance().add(e);
+				}
+				else if(monsterType.nextInt(2) == 1) {
+					Monster e = new FlyingFire(new Position(1600,250), 100, 100, 0, -50, 0);
+					monsters.add(e);
+					everything.add(e);
+					RenderableHolder.getInstance().add(e);
+				}
+			}
+			else if (Hero.getStage() == 2) {
+				if(monsterType.nextInt(2) == 0) {
+					Monster e = new Hornet(new Position(1600,hero.getHeight()* 2 / 3), 100, 100, 0, -50, 0);
+					monsters.add(e);
+					everything.add(e);
+					RenderableHolder.getInstance().add(e);
+				}
+				else if(monsterType.nextInt(2) == 1) {
+					Monster e = new EvilFairy(new Position(1600,250), 100, 100, 0, -50, 0);
+					monsters.add(e);
+					everything.add(e);
+					RenderableHolder.getInstance().add(e);
+				}
+				
+			}
+			else if (Hero.getStage() == 3) {
+				if(monsterType.nextInt(2) == 0) {
+					Monster e = new Hornet(new Position(1600,hero.getHeight()* 2 / 3), 100, 100, 0, -50, 0);
+					monsters.add(e);
+					everything.add(e);
+					RenderableHolder.getInstance().add(e);
+				}
+				else if(monsterType.nextInt(2) == 1) {
+					Monster e = new Skeleton(new Position(1600,0), 100, 100, 0, -50, 0);
+					monsters.add(e);
+					everything.add(e);
+					RenderableHolder.getInstance().add(e);
+				}
+			}
+			else if (Hero.getStage() == 4) {
+				if(monsterType.nextInt(2) == 0) {
+					Monster e = new Slime(new Position(1600,0), 100, 100, 0, -50, 0);
+					monsters.add(e);
+					everything.add(e);
+					RenderableHolder.getInstance().add(e);
+				}
+				else if(monsterType.nextInt(2) == 1) {
+					Monster e = new Bat(new Position(1600,hero.getHeight()* 2 / 3), 100, 100, 0, -50, 0);
+					monsters.add(e);
+					everything.add(e);
+					RenderableHolder.getInstance().add(e);
+				}
+			}
+			try {
+				wait(800);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+		}
+	}
+
 	public void BossAttackGen() {
 		Random attackPattern = new Random();
 		Random attackType = new Random();
@@ -423,6 +526,7 @@ public class GameLogic {
 			}
 		}
 	}
+	
 	
 	
 	public static void keyPressed(KeyEvent e) {
