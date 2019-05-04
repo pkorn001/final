@@ -16,23 +16,23 @@ public class Resource {
 		return im;
 	}
 	
-	// stage 0
+	// stage 0 normal
 	public static Image Stage0,Ground0,ObstacleTall_01,ObstacleTall_02,ObstacleTall_03
 				,Obstacle_01,Obstacle_02,Obstacle_03,Hero0;
 	
-	// stage 1
+	// stage 1 red
 	public static Image Stage1,Ground1,ObstacleTall_11,ObstacleTall_12,ObstacleTall_13
 				,Obstacle_11,Obstacle_12,Obstacle_13,Hero1;
 	
-	// stage 2
+	// stage 2 green
 	public static Image Stage2,Ground2,ObstacleTall_21,ObstacleTall_22,ObstacleTall_23
 				,Obstacle_21,Obstacle_22,Obstacle_23,Hero2;
 	
-	// stage 3
+	// stage 3 black
 	public static Image Stage3,Ground3,ObstacleTall_31,ObstacleTall_32,ObstacleTall_33
 				,Obstacle_31,Obstacle_32,Obstacle_33,Hero3;
 	
-	// stage 4
+	// stage 4 purple
 	public static Image Stage4,Ground4,ObstacleTall_41,ObstacleTall_42,ObstacleTall_43
 				,Obstacle_41,Obstacle_42,Obstacle_43,Hero4;
 	
@@ -102,7 +102,7 @@ public class Resource {
 		
 		//stage2
 		Stage2 = getImage("image/Stage2.png");
-		Ground2 = getImage("image/Ground2.png");
+		Ground2 = getImage("image/Ground0.png");  //use the same as start
 		ObstacleTall_21 = getImage("image/ObstacleTall_21.png");
 		ObstacleTall_22 = getImage("image/ObstacleTall_22.png");
 		ObstacleTall_23 = getImage("image/ObstacleTall_23.png");
