@@ -3,12 +3,12 @@ package render;
 import javafx.scene.image.Image;
 
 public class Resource {
+	
 	private static Image getImage(String directory) {
 		Image im;
 		try {
 			String image_path = ClassLoader.getSystemResource(directory).toString();
 			im = new Image(image_path);
-			
 		} catch (Exception e) {
 			im = null;
 		}
@@ -42,7 +42,7 @@ public class Resource {
 	public static Image Coin1,Coin2,Coin3,Coin4;
 	
 	//HeroAttack
-	public static Image FireBall;
+	public static Image FireBall, Boomerang;
 	
 	//BossAttack
 	public static Image BossAttack,ParriedBall1,ParriedBall2;
@@ -51,6 +51,7 @@ public class Resource {
 		
 		//HeroAttack
 		FireBall = getImage("image/FireBall.png");
+		Boomerang  = getImage("image/Boomerange.png");
 		
 		//BossAttack
 		BossAttack = getImage("image/BossAttack.png");
