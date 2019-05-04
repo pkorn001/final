@@ -16,6 +16,10 @@ public class Boomeranger extends Hero implements Attackable {
 		super(position, speed);
 	}
 
+	public Hitbox getAttackBox() {
+		return attackBox;
+	}
+
 	@Override
 	public void attack() {
 		Boomerang boomerange = new Boomerang(new Position(this.C.getX() + 1, this.C.getY() / 2));
@@ -32,26 +36,25 @@ public class Boomeranger extends Hero implements Attackable {
 	@Override
 	public void updateScore(Monster monster) {
 		// TODO Auto-generated method stub
-		score += monster.getMonsterPoint();
-		monster.setDestroyed(true);
-	}
-
-	@Override
-	public boolean IsVisible() {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	@Override
-	public int getZ() {
-		// TODO Auto-generated method stub
-		return 0;
+		setScore( getScore() + monster.getMonsterPoint());
 	}
 
 	@Override
 	public void draw(GraphicsContext g2d) {
 		// TODO Auto-generated method stub
 		
+	}
+
+	@Override
+	public boolean IsVisible() {
+		// TODO Auto-generated method stub
+		return true;
+	}
+
+	@Override
+	public int getZ() {
+		// TODO Auto-generated method stub
+		return z--;
 	}
 
 }

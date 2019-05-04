@@ -4,6 +4,7 @@ import javafx.animation.AnimationTimer;
 import logic.Hitbox;
 import logic.Position;
 import obstacle.Monster;
+import obstacle.ObstacleBox;
 import render.Irenderable;
 
 public abstract class Hero extends Hitbox implements Irenderable {
@@ -12,6 +13,7 @@ public abstract class Hero extends Hitbox implements Irenderable {
 	private static int score;
 	private static int stage;
 	
+	protected int z;
 	protected int xSpeed;
 	protected Position position = new Position(this.C.getX(), this.C.getY() / 2);
 	protected Hitbox hero;
@@ -23,6 +25,7 @@ public abstract class Hero extends Hitbox implements Irenderable {
 		};
 		Hero.stage = 0;
 		Hero.score = 0;
+		this.z = Integer.MAX_VALUE;
 		this.position = a;
 		this.xSpeed = xSpeed;
 	}
@@ -107,10 +110,23 @@ public abstract class Hero extends Hitbox implements Irenderable {
 		return HEIGHT;
 	}
 	
-	// when hit with st what happen?
+	// when hit with stage what happen? >> hero died >> if(hero.collide) >> change gc of hero to dead body.
 	@Override
 	public boolean collide(Hitbox hitbox) {
-		return false;
+		if(hitbox instanceof Monster || hitbox instanceof ObstacleBox) {
+			if (((this.getA().getX() < hitbox.getD().getX()) && (this.getA().getX() > hitbox.getA().getX()) && (this.getB().getY() > hitbox.getD().getY()))
+					|| ((this.getA().getX() < hitbox.getC().getX()) && (this.getD().getX() > hitbox.getC().getX()) && (this.getA().getY() < hitbox.getC().getY()) && (this.getB().getY() > hitbox.getC().getY()))
+					|| ((this.getD().getX() > hitbox.getA().getX() && (this.getA().getX() < hitbox.getA().getX()) && (this.getC().getY() > hitbox.getA().getY())))
+					|| ((this.getD().getX() > hitbox.getB().getX() && (this.getA().getX() < hitbox.getB().getX()) && (this.getC().getY() > hitbox.getB().getY()) && (this.getD().getY() < hitbox.getB().getY())))
+					) {
+				this.setDestroyed(true);
+			}
+		}
+		return isDestroyed;
+	}
+
+	public void setDestroyed(boolean isDestroyed) {
+		this.isDestroyed = isDestroyed;
 	}
 
 	@Override

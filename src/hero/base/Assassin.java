@@ -19,11 +19,11 @@ public class Assassin extends Hero implements Attackable {
 	public void attack() {
 		// TODO Auto-generated method stub
 		if (!didShort) {
-			this.attackBox = new Hitbox(new Position(this.C.getX() + 1, this.C.getY()/2), 1, 1) {
+			attackBox = new Hitbox(new Position(this.C.getX() + 1, this.C.getY()/2), 1, 1) {
 			};
 			this.didShort = true;
 		} else {
-			this.attackBox = new Hitbox(new Position(this.C.getX()+5, this.C.getY()/2), 1, 1){
+			attackBox = new Hitbox(new Position(this.C.getX()+5, this.C.getY()/2), 1, 1){
 			};
 			this.didShort = false;
 		}
@@ -32,20 +32,11 @@ public class Assassin extends Hero implements Attackable {
 	@Override
 	public void updateScore(Monster monster) {
 		// TODO Auto-generated method stub
-		score += monster.getMonsterPoint();
-		monster.setDestroyed(true);
+		setScore( getScore() + monster.getMonsterPoint());
 	}
 
-	@Override
-	public boolean IsVisible() {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	@Override
-	public int getZ() {
-		// TODO Auto-generated method stub
-		return 0;
+	public static Hitbox getAttackBox() {
+		return attackBox;
 	}
 
 	@Override
@@ -54,8 +45,16 @@ public class Assassin extends Hero implements Attackable {
 		
 	}
 
-	public static Hitbox getAttackBox() {
-		return attackBox;
+	@Override
+	public boolean IsVisible() {
+		// TODO Auto-generated method stub
+		return true;
+	}
+
+	@Override
+	public int getZ() {
+		// TODO Auto-generated method stub
+		return z--;
 	}
 
 }

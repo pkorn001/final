@@ -32,21 +32,7 @@ public class Mage extends Hero implements Attackable {
 	@Override
 	public void updateScore(Monster monster) {
 		// TODO Auto-generated method stub
-		score += monster.getMonsterPoint();
-		monster.setDestroyed(true);
-	}
-
-
-	@Override
-	public boolean IsVisible() {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	@Override
-	public int getZ() {
-		// TODO Auto-generated method stub
-		return 0;
+		setScore( getScore() + monster.getMonsterPoint());
 	}
 
 	@Override
@@ -54,6 +40,19 @@ public class Mage extends Hero implements Attackable {
 		// TODO Auto-generated method stub
 		
 	}
+
+	@Override
+	public boolean IsVisible() {
+		// TODO Auto-generated method stub
+		return true;
+	}
+
+	@Override
+	public int getZ() {
+		// TODO Auto-generated method stub
+		return z--;
+	}
+
 
 
 }

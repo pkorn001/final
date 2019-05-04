@@ -23,14 +23,7 @@ public class Swordman extends Hero implements Attackable {
 	@Override
 	public void updateScore(Monster monster) {
 		// TODO Auto-generated method stub
-		score += monster.getMonsterPoint();
-		monster.setDestroyed(true);
-	}
-
-	@Override
-	public boolean IsVisible() {
-		// TODO Auto-generated method stub
-		return false;
+		setScore( getScore() + monster.getMonsterPoint());
 	}
 	
 	public static Hitbox getAttackBox() {
@@ -38,15 +31,21 @@ public class Swordman extends Hero implements Attackable {
 	}
 
 	@Override
-	public int getZ() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
 	public void draw(GraphicsContext g2d) {
 		// TODO Auto-generated method stub
 		
+	}
+
+	@Override
+	public boolean IsVisible() {
+		// TODO Auto-generated method stub
+		return true;
+	}
+
+	@Override
+	public int getZ() {
+		// TODO Auto-generated method stub
+		return z--;
 	}
 
 
