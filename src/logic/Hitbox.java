@@ -31,7 +31,7 @@ public abstract class Hitbox {
 	}
 
 	public void setySpeed(double ySpeed) {
-		this.ySpeed = ySpeed;
+		this.ySpeed = ySpeed*GameLogic.getSpeedFactor();
 	}
 
 	public void setB(Position b) {
@@ -64,7 +64,7 @@ public abstract class Hitbox {
 
 	//Obstacle has only X-velocity
 	public Hitbox(Position position, double speed) {
-		this.xSpeed = speed;
+		this.xSpeed = speed*GameLogic.getSpeedFactor();
 		
 	}
 	
@@ -94,8 +94,8 @@ public abstract class Hitbox {
 		this.B = new Position(a.getX(), a.getY()+height);
 		this.C = new Position(a.getX()+width, a.getY()+height);
 		this.D = new Position(a.getX()+width, a.getY());
-		this.xSpeed = xSpeed;
-		this.ySpeed = ySpeed;
+		setxSpeed(xSpeed);
+		setySpeed(ySpeed);
 	}
 
 	public boolean collide(Hitbox hitbox) {
