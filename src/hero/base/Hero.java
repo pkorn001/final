@@ -14,7 +14,7 @@ public abstract class Hero extends Hitbox implements Irenderable {
 
 	public static final int HEIGHT = 100;
 	private static int score;
-	private static int stage;
+	private static int stage = 0;
 
 	protected int z;
 	protected int xSpeed;
@@ -47,15 +47,19 @@ public abstract class Hero extends Hitbox implements Irenderable {
 			switch (item.getItemType()) {
 			case ("Mage"):
 				hero = new Mage(position, 0);
+				setStage(1);
 				break;
 			case ("Boomeranger"):
 				hero = new Boomeranger(position, 0);
+				setStage(2);
 				break;
 			case ("Swordman"):
 				hero = new Swordman(position, 0);
+				setStage(3);
 				break;
 			case ("Assassin"):
 				hero = new Assassin(position, 0);
+				setStage(4);
 				break;
 			}
 		}
