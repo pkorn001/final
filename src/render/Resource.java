@@ -17,12 +17,12 @@ public class Resource {
 	}
 	
 	// stage 0 normal
-	public static Image Stage0,ObstacleTall_01,ObstacleTall_02,ObstacleTall_03
-				,Obstacle_01,Obstacle_02,Obstacle_03,Hero0;
+	public static Image Stage0,ObstacleTall_0,Obstacle_0,Hero0;
 	public static WritableImage Ground0;
 	
 	// stage 1 red
-	public static Image Stage10,Stage11,Stage12,Stage13,Stage14,Stage15,Stage16,Stage17,Stage1_lava1,Stage1_lava2,ObstacleTall_1,Obstacle_1,Hero1;
+	public static Image Stage10,Stage11,Stage12,Stage13,Stage14,Stage15,Stage16,Stage17,Stage1_lava1,Stage1_lava2,ObstacleTall_1
+						,Obstacle_1,Hero1;
 	public static WritableImage Ground1;
 	
 	// stage 2 green
