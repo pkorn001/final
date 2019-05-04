@@ -51,8 +51,8 @@ public class GameLogic {
 		screen = new GameScreen(1920, 1080);
 		this.speedFactor = 1;
 		
-		RenderableHolder.getInstance().add(hero);
-		RenderableHolder.getInstance().add(boss);
+		RenderableHolder.getInstance().getEntities().add(hero);
+		RenderableHolder.getInstance().getEntities().add(boss);
 		everything.add(hero);
 		everything.add(boss);
 	}
@@ -71,7 +71,7 @@ public class GameLogic {
 				ObstacleBox e = new ObstacleBox(new Position(1600,0),50, obstacleBox_Type.nextInt(2),0);
 				obstacleBoxes.add(e);
 				everything.add(e);
-				RenderableHolder.getInstance().add(e);
+				RenderableHolder.getInstance().getEntities().add(e);
 				try {
 					wait(800);
 				} catch (InterruptedException e1) {
@@ -87,20 +87,20 @@ public class GameLogic {
 				Monster e = new Hornet(new Position(1600,hero.getHeight()* 2 / 3), 100, 100, 0, -50, 0);
 				monsters.add(e);
 				everything.add(e);
-				RenderableHolder.getInstance().add(e);
+				RenderableHolder.getInstance().getEntities().add(e);
 			}
 			else if (Hero.getStage() == 1) {
 				if(monsterType.nextInt(2) == 0) {
 					Monster e = new Slime(new Position(1600,0), 100, 100, 0, -50, 0);
 					monsters.add(e);
 					everything.add(e);
-					RenderableHolder.getInstance().add(e);
+					RenderableHolder.getInstance().getEntities().add(e);
 				}
 				else if(monsterType.nextInt(2) == 1) {
 					Monster e = new FlyingFire(new Position(1600,250), 100, 100, 0, -50, 0);
 					monsters.add(e);
 					everything.add(e);
-					RenderableHolder.getInstance().add(e);
+					RenderableHolder.getInstance().getEntities().add(e);
 				}
 			}
 			else if (Hero.getStage() == 2) {
@@ -108,13 +108,13 @@ public class GameLogic {
 					Monster e = new Hornet(new Position(1600,hero.getHeight()* 2 / 3), 100, 100, 0, -50, 0);
 					monsters.add(e);
 					everything.add(e);
-					RenderableHolder.getInstance().add(e);
+					RenderableHolder.getInstance().getEntities().add(e);
 				}
 				else if(monsterType.nextInt(2) == 1) {
 					Monster e = new EvilFairy(new Position(1600,250), 100, 100, 0, -50, 0);
 					monsters.add(e);
 					everything.add(e);
-					RenderableHolder.getInstance().add(e);
+					RenderableHolder.getInstance().getEntities().add(e);
 				}
 				
 			}
@@ -123,13 +123,13 @@ public class GameLogic {
 					Monster e = new Hornet(new Position(1600,hero.getHeight()* 2 / 3), 100, 100, 0, -50, 0);
 					monsters.add(e);
 					everything.add(e);
-					RenderableHolder.getInstance().add(e);
+					RenderableHolder.getInstance().getEntities().add(e);
 				}
 				else if(monsterType.nextInt(2) == 1) {
 					Monster e = new Skeleton(new Position(1600,0), 100, 100, 0, -50, 0);
 					monsters.add(e);
 					everything.add(e);
-					RenderableHolder.getInstance().add(e);
+					RenderableHolder.getInstance().getEntities().add(e);
 				}
 			}
 			else if (Hero.getStage() == 4) {
@@ -137,13 +137,13 @@ public class GameLogic {
 					Monster e = new Slime(new Position(1600,0), 100, 100, 0, -50, 0);
 					monsters.add(e);
 					everything.add(e);
-					RenderableHolder.getInstance().add(e);
+					RenderableHolder.getInstance().getEntities().add(e);
 				}
 				else if(monsterType.nextInt(2) == 1) {
 					Monster e = new Bat(new Position(1600,hero.getHeight()* 2 / 3), 100, 100, 0, -50, 0);
 					monsters.add(e);
 					everything.add(e);
-					RenderableHolder.getInstance().add(e);
+					RenderableHolder.getInstance().getEntities().add(e);
 				}
 			}
 			try {
@@ -181,60 +181,60 @@ public class GameLogic {
 						ParriedBall e = (ParriedBall) boss.create(new Position(1920, 100),0,-1,-50, 0);
 						boss_Attack.add(e);
 						everything.add(e);
-						RenderableHolder.getInstance().add(e);
+						RenderableHolder.getInstance().getEntities().add(e);
 					}
 	
 					else if (i == 1) {
 						ParriedBall e = (ParriedBall) boss.create(new Position(1920, 100),0,-1,-50, 0);
 						boss_Attack.add(e);
 						everything.add(e);
-						RenderableHolder.getInstance().add(e);
+						RenderableHolder.getInstance().getEntities().add(e);
 					}
 	
 					else if (i == 2) {
 						ParriedBall e = (ParriedBall) boss.create(new Position(1920, 250),0,-1,-50, 0);
 						boss_Attack.add(e);
 						everything.add(e);
-						RenderableHolder.getInstance().add(e);
+						RenderableHolder.getInstance().getEntities().add(e);
 					}
 	
 					else if (i == 3) {
 						ParriedBall e = (ParriedBall) boss.create(new Position(1920, 250),0,-1,-50, 0);
 						boss_Attack.add(e);
 						everything.add(e);
-						RenderableHolder.getInstance().add(e);
+						RenderableHolder.getInstance().getEntities().add(e);
 					}
 	
 					else if (i == 4) {
 						BossAttack e = (BossAttack) boss.create(new Position(1920, 100),1,-1,-50, 0);
 						boss_Attack.add(e);
 						everything.add(e);
-						RenderableHolder.getInstance().add(e);
+						RenderableHolder.getInstance().getEntities().add(e);
 					} else if (i == 5) {
 						BossAttack e = (BossAttack) boss.create(new Position(1920, 100),1,-1,-50, 0);
 						boss_Attack.add(e);
 						everything.add(e);
-						RenderableHolder.getInstance().add(e);
+						RenderableHolder.getInstance().getEntities().add(e);
 					} else if (i == 6) {
 						BossAttack e = (BossAttack) boss.create(new Position(1920, 100),1,-1,-50, 0);
 						boss_Attack.add(e);
 						everything.add(e);
-						RenderableHolder.getInstance().add(e);
+						RenderableHolder.getInstance().getEntities().add(e);
 					} else if (i == 7) {
 						BossAttack e = (BossAttack) boss.create(new Position(1920, 250),1,-1,-50, 0);
 						boss_Attack.add(e);
 						everything.add(e);
-						RenderableHolder.getInstance().add(e);
+						RenderableHolder.getInstance().getEntities().add(e);
 					} else if (i == 8) {
 						BossAttack e = (BossAttack) boss.create(new Position(1920, 250),1,-1,-50, 0);
 						boss_Attack.add(e);
 						everything.add(e);
-						RenderableHolder.getInstance().add(e);
+						RenderableHolder.getInstance().getEntities().add(e);
 					} else if (i == 7) {
 						BossAttack e = (BossAttack) boss.create(new Position(1920, 250),1,-1,-50, 0);
 						boss_Attack.add(e);
 						everything.add(e);
-						RenderableHolder.getInstance().add(e);
+						RenderableHolder.getInstance().getEntities().add(e);
 					}
 					try {
 						wait(200);
@@ -252,17 +252,17 @@ public class GameLogic {
 							ParriedBall e = (ParriedBall) boss.create(new Position(boss.getB().getX(),hero.getA().getY()+100),0,-1,-50, 0);
 							boss_Attack.add(e);
 							everything.add(e);
-							RenderableHolder.getInstance().add(e);
+							RenderableHolder.getInstance().getEntities().add(e);
 						} else if (attackType.nextInt(3) == 1) {
 							BossAttack e = (BossAttack) boss.create(new Position(boss.getB().getX(),hero.getB().getY()-100),1,-1,-50, 0);
 							boss_Attack.add(e);
 							everything.add(e);
-							RenderableHolder.getInstance().add(e);
+							RenderableHolder.getInstance().getEntities().add(e);
 						} else if (attackType.nextInt(3) == 2) {
 							Monster e = (Monster) boss.create(new Position(boss.getB().getX(),hero.getA().getY()+100),2,monsterType.nextInt(6)+1,-50, 0);
 							boss_Attack.add(e);
 							everything.add(e);
-							RenderableHolder.getInstance().add(e);
+							RenderableHolder.getInstance().getEntities().add(e);
 						}
 						try {
 							wait(1000);
@@ -290,10 +290,10 @@ public class GameLogic {
 						everything.add(e2);
 						everything.add(e3);
 						everything.add(e4);
-						RenderableHolder.getInstance().add(e1);
-						RenderableHolder.getInstance().add(e2);
-						RenderableHolder.getInstance().add(e3);
-						RenderableHolder.getInstance().add(e4);
+						RenderableHolder.getInstance().getEntities().add(e1);
+						RenderableHolder.getInstance().getEntities().add(e2);
+						RenderableHolder.getInstance().getEntities().add(e3);
+						RenderableHolder.getInstance().getEntities().add(e4);
 					}
 	
 					else if (i == 1) {
@@ -309,10 +309,10 @@ public class GameLogic {
 						everything.add(e2);
 						everything.add(e3);
 						everything.add(e4);
-						RenderableHolder.getInstance().add(e1);
-						RenderableHolder.getInstance().add(e2);
-						RenderableHolder.getInstance().add(e3);
-						RenderableHolder.getInstance().add(e4);
+						RenderableHolder.getInstance().getEntities().add(e1);
+						RenderableHolder.getInstance().getEntities().add(e2);
+						RenderableHolder.getInstance().getEntities().add(e3);
+						RenderableHolder.getInstance().getEntities().add(e4);
 					}
 	
 					else if (i == 2) {
@@ -328,10 +328,10 @@ public class GameLogic {
 						everything.add(e2);
 						everything.add(e3);
 						everything.add(e4);
-						RenderableHolder.getInstance().add(e1);
-						RenderableHolder.getInstance().add(e2);
-						RenderableHolder.getInstance().add(e3);
-						RenderableHolder.getInstance().add(e4);
+						RenderableHolder.getInstance().getEntities().add(e1);
+						RenderableHolder.getInstance().getEntities().add(e2);
+						RenderableHolder.getInstance().getEntities().add(e3);
+						RenderableHolder.getInstance().getEntities().add(e4);
 					}
 	
 					else if (i == 3) {
@@ -347,10 +347,10 @@ public class GameLogic {
 						everything.add(e2);
 						everything.add(e3);
 						everything.add(e4);
-						RenderableHolder.getInstance().add(e1);
-						RenderableHolder.getInstance().add(e2);
-						RenderableHolder.getInstance().add(e3);
-						RenderableHolder.getInstance().add(e4);
+						RenderableHolder.getInstance().getEntities().add(e1);
+						RenderableHolder.getInstance().getEntities().add(e2);
+						RenderableHolder.getInstance().getEntities().add(e3);
+						RenderableHolder.getInstance().getEntities().add(e4);
 	
 					}
 					try {
@@ -373,60 +373,60 @@ public class GameLogic {
 						ParriedBall e = (ParriedBall) boss.create(new Position(1920, 100),0,-1,-50, 0);
 						boss_Attack.add(e);
 						everything.add(e);
-						RenderableHolder.getInstance().add(e);
+						RenderableHolder.getInstance().getEntities().add(e);
 					}
 	
 					else if (i == 1) {
 						ParriedBall e = (ParriedBall) boss.create(new Position(1920, 100),0,-1,-50, 0);
 						boss_Attack.add(e);
 						everything.add(e);
-						RenderableHolder.getInstance().add(e);
+						RenderableHolder.getInstance().getEntities().add(e);
 					}
 	
 					else if (i == 2) {
 						ParriedBall e = (ParriedBall) boss.create(new Position(1920, 250),0,-1,-50, 0);
 						boss_Attack.add(e);
 						everything.add(e);
-						RenderableHolder.getInstance().add(e);
+						RenderableHolder.getInstance().getEntities().add(e);
 					}
 	
 					else if (i == 3) {
 						ParriedBall e = (ParriedBall) boss.create(new Position(1920, 250),0,-1,-50, 0);
 						boss_Attack.add(e);
 						everything.add(e);
-						RenderableHolder.getInstance().add(e);
+						RenderableHolder.getInstance().getEntities().add(e);
 					}
 	
 					else if (i == 4) {
 						BossAttack e = (BossAttack) boss.create(new Position(1920, 100),1,-1,-50, 0);
 						boss_Attack.add(e);
 						everything.add(e);
-						RenderableHolder.getInstance().add(e);
+						RenderableHolder.getInstance().getEntities().add(e);
 					} else if (i == 5) {
 						BossAttack e = (BossAttack) boss.create(new Position(1920, 100),1,-1,-50, 0);
 						boss_Attack.add(e);
 						everything.add(e);
-						RenderableHolder.getInstance().add(e);
+						RenderableHolder.getInstance().getEntities().add(e);
 					} else if (i == 6) {
 						BossAttack e = (BossAttack) boss.create(new Position(1920, 100),1,-1,-50, 0);
 						boss_Attack.add(e);
 						everything.add(e);
-						RenderableHolder.getInstance().add(e);
+						RenderableHolder.getInstance().getEntities().add(e);
 					} else if (i == 7) {
 						BossAttack e = (BossAttack) boss.create(new Position(1920, 250),1,-1,-50, 0);
 						boss_Attack.add(e);
 						everything.add(e);
-						RenderableHolder.getInstance().add(e);
+						RenderableHolder.getInstance().getEntities().add(e);
 					} else if (i == 8) {
 						BossAttack e = (BossAttack) boss.create(new Position(1920, 250),1,-1,-50, 0);
 						boss_Attack.add(e);
 						everything.add(e);
-						RenderableHolder.getInstance().add(e);
+						RenderableHolder.getInstance().getEntities().add(e);
 					} else if (i == 7) {
 						BossAttack e = (BossAttack) boss.create(new Position(1920, 250),1,-1,-50, 0);
 						boss_Attack.add(e);
 						everything.add(e);
-						RenderableHolder.getInstance().add(e);
+						RenderableHolder.getInstance().getEntities().add(e);
 					}
 					try {
 						wait(200);
@@ -454,10 +454,10 @@ public class GameLogic {
 						everything.add(e2);
 						everything.add(e3);
 						everything.add(e4);
-						RenderableHolder.getInstance().add(e1);
-						RenderableHolder.getInstance().add(e2);
-						RenderableHolder.getInstance().add(e3);
-						RenderableHolder.getInstance().add(e4);
+						RenderableHolder.getInstance().getEntities().add(e1);
+						RenderableHolder.getInstance().getEntities().add(e2);
+						RenderableHolder.getInstance().getEntities().add(e3);
+						RenderableHolder.getInstance().getEntities().add(e4);
 					}
 	
 					else if (i == 1) {
@@ -473,10 +473,10 @@ public class GameLogic {
 						everything.add(e2);
 						everything.add(e3);
 						everything.add(e4);
-						RenderableHolder.getInstance().add(e1);
-						RenderableHolder.getInstance().add(e2);
-						RenderableHolder.getInstance().add(e3);
-						RenderableHolder.getInstance().add(e4);
+						RenderableHolder.getInstance().getEntities().add(e1);
+						RenderableHolder.getInstance().getEntities().add(e2);
+						RenderableHolder.getInstance().getEntities().add(e3);
+						RenderableHolder.getInstance().getEntities().add(e4);
 					}
 	
 					else if (i == 2) {
@@ -492,10 +492,10 @@ public class GameLogic {
 						everything.add(e2);
 						everything.add(e3);
 						everything.add(e4);
-						RenderableHolder.getInstance().add(e1);
-						RenderableHolder.getInstance().add(e2);
-						RenderableHolder.getInstance().add(e3);
-						RenderableHolder.getInstance().add(e4);
+						RenderableHolder.getInstance().getEntities().add(e1);
+						RenderableHolder.getInstance().getEntities().add(e2);
+						RenderableHolder.getInstance().getEntities().add(e3);
+						RenderableHolder.getInstance().getEntities().add(e4);
 					}
 	
 					else if (i == 3) {
@@ -511,10 +511,10 @@ public class GameLogic {
 						everything.add(e2);
 						everything.add(e3);
 						everything.add(e4);
-						RenderableHolder.getInstance().add(e1);
-						RenderableHolder.getInstance().add(e2);
-						RenderableHolder.getInstance().add(e3);
-						RenderableHolder.getInstance().add(e4);
+						RenderableHolder.getInstance().getEntities().add(e1);
+						RenderableHolder.getInstance().getEntities().add(e2);
+						RenderableHolder.getInstance().getEntities().add(e3);
+						RenderableHolder.getInstance().getEntities().add(e4);
 	
 					}
 					try {
