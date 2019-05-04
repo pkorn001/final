@@ -1,7 +1,6 @@
 package obstacle;
 
-import java.awt.Graphics2D;
-
+import hero.base.Hero;
 import javafx.scene.canvas.GraphicsContext;
 import logic.Hitbox;
 import logic.Position;
@@ -25,7 +24,6 @@ public class ObstacleBox extends Hitbox implements Irenderable{
 	 2 = green
 	 3 = black
 	 4 = purple */
-	private int stage;
 	private int z;
 	private final static int[] OBSTACLE_HEIGHT = {20,40};
 	private final static int[] OBSTACLE_WIDTH = {20,40,60};
@@ -35,11 +33,11 @@ public class ObstacleBox extends Hitbox implements Irenderable{
 		super(a, speed);
 		z = Integer.MAX_VALUE;
 		this.obstacleBox_Type = obstacleBox_Type;
-		this.stage = Stage;
-		Position A = new Position(a.getX(), a.getY());
-		Position B = new Position(a.getX(), a.getY()+ ObstacleBox.setHeight(obstacleBox_Type));
-		Position C = new Position(a.getX()+ ObstacleBox.setWidth(obstacleBox_Size), a.getY()+ ObstacleBox.setHeight(obstacleBox_Type));
-		Position D = new Position(a.getX()+ ObstacleBox.setWidth(obstacleBox_Size), a.getY());
+		Hero.setStage(Stage);
+		super.A = new Position(a.getX(), a.getY());
+		super.B = new Position(a.getX(), a.getY()+ ObstacleBox.setHeight(obstacleBox_Type));
+		super.C = new Position(a.getX()+ ObstacleBox.setWidth(obstacleBox_Size), a.getY()+ ObstacleBox.setHeight(obstacleBox_Type));
+		super.D = new Position(a.getX()+ ObstacleBox.setWidth(obstacleBox_Size), a.getY());
 		movePattern = new ForwardMove(this);
 		// TODO Auto-generated constructor stub
 	}
@@ -67,18 +65,10 @@ public class ObstacleBox extends Hitbox implements Irenderable{
 	public void setObstacleBox_Size(int obstacleBox_Size) {
 		this.obstacleBox_Size = obstacleBox_Size;
 	}
-
-	public int getStage() {
-		return this.stage;
-	}
-
-	public void setStage(int stage) {
-		this.stage = stage;
-	}
 	
 	@Override
 	public void draw(GraphicsContext g2d) {
-		switch(this.getStage()) {
+		switch(Hero.getStage()) {
 		
 		case 1 :{
 			switch(this.obstacleBox_Type) {
