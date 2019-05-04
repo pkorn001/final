@@ -23,7 +23,7 @@ public class Boomeranger extends Hero implements Attackable {
 
 	@Override
 	public void attack() {
-		Boomerang boomerange = new Boomerang(new Position(this.C.getX() + 1, this.C.getY() / 2));
+		Boomerang boomerange = new Boomerang(new Position(this.getC().getX() + 1, this.getC().getY() / 2));
 		new AnimationTimer() {
 
 			@Override
@@ -42,7 +42,7 @@ public class Boomeranger extends Hero implements Attackable {
 	@Override
 	public void draw(GraphicsContext g2d) {
 		// TODO Auto-generated method stub
-		g2d.drawImage(Resource.Hero2, position.getX(), position.getY());
+		g2d.drawImage(Resource.Hero2, this.getA().getX(), this.getA().getY(), this.getWidth(), this.getHeight());
 	}
 
 	@Override

@@ -17,7 +17,7 @@ public class Swordman extends Hero implements Attackable {
 
 	@Override
 	public void attack() {
-		attackBox = new Hitbox(new Position(this.C.getX() + 1, this.C.getY() / 2), 1, 1) {
+		attackBox = new Hitbox(new Position(this.getC().getX() + 1, this.getC().getY() / 2), 1, 1) {
 		};
 	}
 
@@ -33,7 +33,7 @@ public class Swordman extends Hero implements Attackable {
 
 	@Override
 	public void draw(GraphicsContext g2d) {
-		g2d.drawImage(Resource.Hero3, position.getX(), position.getY());
+		g2d.drawImage(Resource.Hero3, this.getA().getX(), this.getA().getY(), this.getWidth(), this.getHeight());
 	}
 
 	@Override

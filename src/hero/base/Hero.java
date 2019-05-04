@@ -1,5 +1,6 @@
 package hero.base;
 
+import item.Item;
 import javafx.animation.AnimationTimer;
 import javafx.scene.canvas.GraphicsContext;
 import logic.Hitbox;
@@ -27,9 +28,28 @@ public abstract class Hero extends Hitbox implements Irenderable {
 		};
 		Hero.stage = 0;
 		Hero.score = 0;
-		this.z = Integer.MAX_VALUE;
+		this.z = Integer.	MAX_VALUE;
 		this.position = a;
 		this.xSpeed = xSpeed;
+	}
+
+	public void tranform(Item item) {
+		 if(this.collide(item)) {
+			 switch(item.getItemType()) {
+			 case("Mage"):
+				 hero = new Mage(position, 0);
+				 break;
+			 case("Boomeranger"):
+				 hero = new Boomeranger(position, 0);
+				 break;
+			 case("Swordman"):
+				 hero = new Swordman(position, 0);
+				 break;
+			 case("Assassin"):
+				 hero = new Assassin(position, 0);
+				 break;
+			 }
+		 }
 	}
 
 	public void jump() {
