@@ -9,7 +9,9 @@ import render.Irenderable;
 public abstract class Hero extends Hitbox implements Irenderable {
 
 	public static final int HEIGHT = 100;
-	public static int score;
+	private static int score;
+	private static int state;
+	
 	protected int xSpeed;
 	protected Position position = new Position(this.C.getX(), this.C.getY() / 2);
 	protected Hitbox hero;
@@ -19,6 +21,8 @@ public abstract class Hero extends Hitbox implements Irenderable {
 		super(a, xSpeed);
 		this.hero = new Hitbox(a, 3, 5) {
 		};
+		this.state = 0;
+		this.score = 0;
 		this.position = a;
 		this.xSpeed = xSpeed;
 	}
@@ -87,12 +91,26 @@ public abstract class Hero extends Hitbox implements Irenderable {
 		return score;
 	}
 
-	public void setScore(int score) {
-		this.score = score;
+	public static void setScore(int score) {
+		score = score;
+	}
+	
+	public static int getState() {
+		return state;
+	}
+	
+	public static void setState(int state) {
+		state = state;
 	}
 
 	public double getHeight() {
 		return HEIGHT;
+	}
+	
+	// when hit with st what happen?
+	@Override
+	public boolean collide(Hitbox hitbox) {
+		return false;
 	}
 
 	@Override
