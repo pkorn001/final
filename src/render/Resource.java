@@ -119,7 +119,7 @@ public class Resource {
 		Stage33 = getImage("image/Stage33.png");
 		Stage34 = getImage("image/Stage34.png");
 		Ground3 = getImage("image/Ground3.png");
-		ObstacleTall_3 = getImage("image/ObstacleTall_03.png");
+		ObstacleTall_3 = getImage("image/ObstacleTall_03.gif");
 		Obstacle_3 = getImage("image/Ostacl_03.png");
 		Hero3 = getImage("image/Hero3.gif");
 
@@ -130,14 +130,12 @@ public class Resource {
 		Stage42 = getImage("image/Stage42.png");
 		Stage43 = getImage("image/Stage43.png");
 		Stage44 = getImage("image/Stage44.png");
-		Stage4_prisoner1 = getImage("image/Stage4_prisoner1.png");
-		Stage4_prisoner2 = getImage("image/Stage4_prisoner2.png");
+		Stage4_prisoner1 = getImage("image/Stage4_prisoner1.gif");
+		Stage4_prisoner2 = getImage("image/Stage4_prisoner2.gif");
 		Ground4 = getImage("image/Ground4.png");
 		ObstacleTall_4 = getImage("image/ObstacleTall_04.png");
 		Obstacle_4 = getImage("image/Ostacl_04.png");
 		Hero4 = getImage("image/Hero4.gif");
-
 		
 	}
-	
 }
