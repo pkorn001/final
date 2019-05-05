@@ -14,6 +14,7 @@ import hero.base.Hero;
 import hero.base.Mage;
 import hero.base.Swordman;
 import item.Item;
+import javafx.scene.canvas.GraphicsContext;
 import obstacle.Bat;
 import obstacle.EvilFairy;
 import obstacle.FlyingFire;
