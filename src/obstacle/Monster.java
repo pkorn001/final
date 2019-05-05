@@ -83,7 +83,7 @@ public abstract class Monster extends Hitbox implements Irenderable{
 
 	@Override
 	public int getZ() {
-		return z--;
+		return Integer.MAX_VALUE;
 	}
 }
 	

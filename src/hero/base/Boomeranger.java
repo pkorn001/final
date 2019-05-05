@@ -35,7 +35,7 @@ public class Boomeranger extends Hero implements Attackable {
 	}
 
 	public Boomeranger(Position position, int speed) {
-		super(position, speed);
+		super(position);
 	}
 	
 	@Override
