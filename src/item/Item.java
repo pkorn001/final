@@ -26,7 +26,7 @@ public abstract class Item extends Hitbox implements Irenderable {
 	}
 
 	@Override
-	public void draw(GraphicsContext g2d) {
+	public void draw(GraphicsContext g2d, long time) {
 
 		switch (HERO_ITEM[itemType]) {
 		case ("Mage"):

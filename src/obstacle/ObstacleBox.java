@@ -46,7 +46,7 @@ public class ObstacleBox extends Hitbox implements Irenderable {
 	}
 
 	@Override
-	public void draw(GraphicsContext g2d) {
+	public void draw(GraphicsContext g2d, long time) {
 		switch (Hero.getStage()) {
 
 		case 1: {

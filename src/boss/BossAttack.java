@@ -16,7 +16,7 @@ public class BossAttack  extends Hitbox implements Irenderable {
 
 
 	@Override
-	public void draw(GraphicsContext g2d) {
+	public void draw(GraphicsContext g2d, long time) {
 		// TODO Auto-generated method stub
 		g2d.drawImage(Resource.BossAttack,this.getB().getX(),this.getB().getY(),this.getWidth(),this.getHeight());
 

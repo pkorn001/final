@@ -43,7 +43,7 @@ public class Assassin extends Hero implements Attackable{
 	}
 
 	@Override
-	public void draw(GraphicsContext g2d) {
+	public void draw(GraphicsContext g2d, long time) {
 		// TODO Auto-generated method stub
 		g2d.drawImage(Resource.Hero4, this.getA().getX(), this.getA().getY(), this.getWidth(), this.getHeight());
 	}

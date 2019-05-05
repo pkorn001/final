@@ -178,7 +178,7 @@ public abstract class Hero extends Hitbox implements Irenderable {
 	}
 
 	@Override
-	public void draw(GraphicsContext g2d) {
+	public void draw(GraphicsContext g2d, long time) {
 		// TODO Auto-generated method stub
 		g2d.drawImage(Resource.Hero0, position.getX(), position.getY());
 	}

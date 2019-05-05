@@ -20,32 +20,33 @@ public class GameScreen extends Canvas {
 	private WritableImage croppedImage2;
 	private Canvas canvas = new Canvas(1600, 900);
 	private boolean inGame = true;
-	
-	public GameScreen(double time, int stage){
-		new AnimationTimer() {
-			
-			@Override
-			public void handle(long now) {
-				long currentTime = (now - System.nanoTime())/1000000000;
-				draw(canvas.getGraphicsContext2D(), currentTime);
-			}
-		};
+
+	public GameScreen(){
+		Background.loadResource();
+		background = new Background();
+		
+	}
+
+	public void update(long time) {
+		GraphicsContext g2d = this.getGraphicsContext2D();
+		draw(g2d, time);
+		
 	}
 	
 	public void draw(GraphicsContext g2d, long currentTime) {
 		Background.loadResource();
 		image = Resource.Stage0;
 		g2d.drawImage(image, currentTime % SCENE_WIDTH, 0, SCENE_WIDTH, SCENE_HEIGHT);
-		
+
 	}
-	
+
 	public void paintComponent() {
-	
+
 		GraphicsContext gc = this.getGraphicsContext2D();
 		for (Irenderable entity : RenderableHolder.getInstance().getEntities()) {
 			// System.out.println(entity.getZ());
 			if (entity.IsVisible() && !entity.isDestroyed()) {
-				entity.draw(gc);
+				entity.draw(gc, 0); //edit later
 			}
 		}
 	}
