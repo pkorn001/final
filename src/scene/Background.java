@@ -31,10 +31,6 @@ public class Background implements Irenderable {
 		this.x = x;
 	}
 
-	static {
-		loadResource();
-	}
-
 	public static void loadResource() {
 		try {
 			stages1.addAll(Arrays.asList(new Image[] {Resource.Stage10,Resource.Stage11,Resource.Stage12,Resource.Stage13,Resource.Stage14,Resource.Stage15,Resource.Stage16,Resource.Stage17,Resource.Stage1_lava1,Resource.Stage1_lava2} ));

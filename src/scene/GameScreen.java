@@ -11,6 +11,8 @@ import render.Resource;
 
 public class GameScreen extends Canvas {
 
+	public static final int SCENE_WIDTH = 1600;
+	public static final int SCENE_HEIGHT = 900;
 	private Background background;
 	private Image image;
 	private Image image2;
@@ -33,7 +35,7 @@ public class GameScreen extends Canvas {
 	public void draw(GraphicsContext g2d, long currentTime) {
 		Background.loadResource();
 		image = Resource.Stage0;
-		g2d.drawImage(image, 0, 0, 1600 % currentTime, 900);
+		g2d.drawImage(image, currentTime % SCENE_WIDTH, 0, SCENE_WIDTH, SCENE_HEIGHT);
 		
 	}
 	
