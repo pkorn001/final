@@ -12,7 +12,7 @@ import render.Resource;
 
 public class Hero extends Hitbox implements Irenderable {
 
-	public static final int HEIGHT = 100;
+	public static final int HEIGHT = 167;
 	private static int score;
 	private static int stage = 0;
 
@@ -132,7 +132,7 @@ public class Hero extends Hitbox implements Irenderable {
 	@Override
 	public void draw(GraphicsContext g2d, long time) {
 		// TODO Auto-generated method stub
-		g2d.drawImage(Resource.Hero0, position.getX(), position.getY());
+		g2d.drawImage(Resource.Hero0,this.getA().getX(), this.getA().getY(),167,300);
 	}
 
 	@Override
@@ -144,7 +144,7 @@ public class Hero extends Hitbox implements Irenderable {
 	@Override
 	public int getZ() {
 		// TODO Auto-generated method stub
-		return Integer.MAX_VALUE;
+		return 5;
 	}
 
 }

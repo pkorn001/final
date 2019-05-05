@@ -21,10 +21,10 @@ public class GameScreen extends Canvas {
 	}
 	
 	public void paintComponent() {
-		System.out.println("--------------------------------------------------");
+		System.out.println("-----------------------------------------");
 		for (Irenderable entity : RenderableHolder.getInstance().getEntities()) {
-			System.out.println(entity.toString());
 			if (entity.IsVisible() && !entity.isDestroyed()) {
+				System.out.println(entity);
 				entity.draw(gc,0); // edit later
 			}
 		}

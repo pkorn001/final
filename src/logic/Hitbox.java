@@ -63,7 +63,8 @@ public abstract class Hitbox {
 	}
 
 	//Obstacle has only X-velocity
-	public Hitbox(Position position, double speed) {
+	public Hitbox(Position position,int width,int height, double speed) {
+		this(position, width, height);
 		setxSpeed(speed);
 		
 	}
@@ -83,6 +84,8 @@ public abstract class Hitbox {
 		this.B = new Position(a.getX(), a.getY()+height);
 		this.C = new Position(a.getX()+width, a.getY()+height);
 		this.D = new Position(a.getX()+width, a.getY());
+		this.width = width;
+		this.height = height;
 	}
 	
 	//Monster has XY-velocity

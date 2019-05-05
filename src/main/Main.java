@@ -22,6 +22,7 @@ public class Main extends Application{
 		 root.getChildren().add(gameScreen);
 		 primaryStage.show();
 		 
+		 
 		 new AnimationTimer() {
 			 @Override
 			 public void handle(long now) {

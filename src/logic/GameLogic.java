@@ -45,13 +45,12 @@ public class GameLogic {
 	private static int boss_Timer = 0;
 	
 	private GameLogic() {
-		hero = new Hero(new Position(50.00,0.00));
+		hero = new Hero(new Position(100.00,500));
 			
 		bg = new Background();
 		boss = new Boss(new Position(1600,0), 0, 0);
 		speedFactor = 1;
-		
-		
+
 		RenderableHolder.getInstance().getEntities().add(hero);
 		RenderableHolder.getInstance().getEntities().add(bg);
 		RenderableHolder.getInstance().getEntities().add(boss);
@@ -70,7 +69,7 @@ public class GameLogic {
 	public static void ObstacleBoxesGen() {
 		if (counter % 48 == 0) {
 			Random obstacleBox_Type = new Random();
-			ObstacleBox e = new ObstacleBox(new Position(1000,0),50, obstacleBox_Type.nextInt(2),0);
+			ObstacleBox e = new ObstacleBox(new Position(600,500),100, obstacleBox_Type.nextInt(2),0);
 			obstacleBoxes.add(e);
 			everything.add(e);
 			RenderableHolder.getInstance().getEntities().add(e);
@@ -81,12 +80,12 @@ public class GameLogic {
 		Random monsterType = new Random();
 		if(counter % 48 == 0) {
 			if (Hero.getStage() == 0) {
-				Monster e = new Hornet(new Position(1000,hero.getHeight()* 2 / 3), 100, 100, 0, -50, 0);
+				Monster e = new Hornet(new Position(1000,500), 100, 100, 0, -50, 0);
 				monsters.add(e);
 				everything.add(e);
 				RenderableHolder.getInstance().getEntities().add(e);
 			}
-			else if (Hero.getStage() == 1) {
+			else if (Hero.getStage() == 1) {	
 				if(monsterType.nextInt(2) == 0) {
 					Monster e = new Slime(new Position(1000,0), 100, 100, 0, -50, 0);
 					monsters.add(e);
@@ -475,8 +474,10 @@ public class GameLogic {
 	
 	public static void update() {
 		counter++;
-		if(isMonsterGen.nextBoolean()) {
-			MonstersGen();
+		if(counter % 45 == 0) {
+			if(isMonsterGen.nextBoolean()) {
+				MonstersGen();
+			}
 		}
 		if(counter % 30 == 0) {
 			ObstacleBoxesGen();

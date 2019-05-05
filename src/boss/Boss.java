@@ -121,13 +121,13 @@ public class Boss extends Hitbox implements Irenderable {
 
 	@Override
 	public boolean IsVisible() {
-		if (Hero.getScore() > 5000 && Hero.getScore() % 5000 <= 500) {setAppeared(true);};
-		return isAppeared;
+		//if (Hero.getScore() > 5000 && Hero.getScore() % 5000 <= 500) {setAppeared(true);};
+		return true;
 	}
 
 	@Override
 	public int getZ() {
-		return z--;
+		return 3;
 	}
 
 }

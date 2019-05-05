@@ -13,24 +13,22 @@ public class ObstacleBox extends Hitbox implements Irenderable {
 
 	// 0 = stone 1 = tree
 	private int obstacleBox_Type;
-	
-	/* 0 = normal 
-	 1 = red 
-	 2 = green
-	 3 = black
-	 4 = purple */
+
+	/*
+	 * 0 = normal 1 = red 2 = green 3 = black 4 = purple
+	 */
 	private int z;
-	private final static int[] OBSTACLE_HEIGHT = {150,300};
+	private final static int[] OBSTACLE_HEIGHT = { 150, 300 };
 	private Move movePattern;
-	
-	public ObstacleBox(Position a,double speed,int obstacleBox_Type,int width) {
-		super(a, speed);
+
+	public ObstacleBox(Position a, int width, int obstacleBox_Type, double speed) {
+		super(a, width, ObstacleBox.setHeight(obstacleBox_Type), speed);
 		z = Integer.MAX_VALUE;
 		this.obstacleBox_Type = obstacleBox_Type;
 		super.A = new Position(a.getX(), a.getY());
-		super.B = new Position(a.getX(), a.getY()+ ObstacleBox.setHeight(obstacleBox_Type));
-		super.C = new Position(a.getX()+ width, a.getY()+ ObstacleBox.setHeight(obstacleBox_Type));
-		super.D = new Position(a.getX()+ width, a.getY());
+		super.B = new Position(a.getX(), a.getY() + ObstacleBox.setHeight(obstacleBox_Type));
+		super.C = new Position(a.getX() + width, a.getY() + ObstacleBox.setHeight(obstacleBox_Type));
+		super.D = new Position(a.getX() + width, a.getY());
 		movePattern = new ForwardMove(this);
 		// TODO Auto-generated constructor stub
 	}
@@ -46,11 +44,11 @@ public class ObstacleBox extends Hitbox implements Irenderable {
 	public void setObstacleBox_Type(int obstacleBox_Type) {
 		this.obstacleBox_Type = obstacleBox_Type;
 	}
-	
+
 	@Override
 	public void draw(GraphicsContext g2d, long time) {
+		System.out.println(this.getB().getX() + ":" + this.getB().getY() + ":" + this.getWidth() + ":" + this.getHeight());
 		switch (Hero.getStage()) {
-
 		case 1: {
 			switch (this.obstacleBox_Type) {
 			case 0: {
@@ -61,49 +59,58 @@ public class ObstacleBox extends Hitbox implements Irenderable {
 				g2d.drawImage(Resource.ObstacleTall_1, this.getB().getX(), this.getB().getY(), this.getWidth(),
 						this.getHeight());
 			}
-		}
-		}
-		
-		case 2 : {
-			switch(this.obstacleBox_Type) {
-			case 0:{
-				g2d.drawImage(Resource.Obstacle_2,this.getB().getX(),this.getB().getY(),this.getWidth(),this.getHeight());
-				}
-			case 1:{
-				g2d.drawImage(Resource.ObstacleTall_2,this.getB().getX(),this.getB().getY(),this.getWidth(),this.getHeight());
-			}
 			}
 		}
-			
-		case 3 : {
-			switch(this.obstacleBox_Type) {
-			case 0:{
-				g2d.drawImage(Resource.Obstacle_3,this.getB().getX(),this.getB().getY(),this.getWidth(),this.getHeight());
+
+		case 2: {
+			switch (this.obstacleBox_Type) {
+			case 0: {
+				g2d.drawImage(Resource.Obstacle_2, this.getB().getX(), this.getB().getY(), this.getWidth(),
+						this.getHeight());
 			}
-			case 1:{
-				g2d.drawImage(Resource.ObstacleTall_3,this.getB().getX(),this.getB().getY(),this.getWidth(),this.getHeight());
+			case 1: {
+				g2d.drawImage(Resource.ObstacleTall_2, this.getB().getX(), this.getB().getY(), this.getWidth(),
+						this.getHeight());
 			}
 			}
 		}
-		
-		case 4 : {
-			switch(this.obstacleBox_Type) {
-			case 0:{
-				g2d.drawImage(Resource.Obstacle_4,this.getB().getX(),this.getB().getY(),this.getWidth(),this.getHeight());
+
+		case 3: {
+			switch (this.obstacleBox_Type) {
+			case 0: {
+				g2d.drawImage(Resource.Obstacle_3, this.getB().getX(), this.getB().getY(), this.getWidth(),
+						this.getHeight());
 			}
-			case 1:{
-				g2d.drawImage(Resource.ObstacleTall_4,this.getB().getX(),this.getB().getY(),this.getWidth(),this.getHeight());
+			case 1: {
+				g2d.drawImage(Resource.ObstacleTall_3, this.getB().getX(), this.getB().getY(), this.getWidth(),
+						this.getHeight());
 			}
 			}
 		}
-		
-		default : {
-			switch(this.obstacleBox_Type) {
-			case 0:{
-				g2d.drawImage(Resource.Obstacle_0,this.getB().getX(),this.getB().getY(),this.getWidth(),this.getHeight());
+
+		case 4: {
+			switch (this.obstacleBox_Type) {
+			case 0: {
+				g2d.drawImage(Resource.Obstacle_4, this.getB().getX(), this.getB().getY(), this.getWidth(),
+						this.getHeight());
 			}
-			case 1:{
-				g2d.drawImage(Resource.ObstacleTall_0,this.getB().getX(),this.getB().getY(),this.getWidth(),this.getHeight());
+			case 1: {
+				g2d.drawImage(Resource.ObstacleTall_4, this.getB().getX(), this.getB().getY(), this.getWidth(),
+						this.getHeight());
+			}
+			}
+		}
+
+		default: {
+			System.out.println("----------------------");
+			switch (this.obstacleBox_Type) {
+			case 0: {
+				g2d.drawImage(Resource.Obstacle_0, this.getB().getX(), 500, this.getWidth(),
+						this.getHeight());
+			}
+			case 1: {
+				g2d.drawImage(Resource.ObstacleTall_0, this.getB().getX(), 500, this.getWidth(),
+						this.getHeight());
 			}
 			}
 		}
@@ -117,7 +124,7 @@ public class ObstacleBox extends Hitbox implements Irenderable {
 
 	@Override
 	public int getZ() {
-		return z--;
+		return -1;
 	}
 
 	@Override
