@@ -30,9 +30,10 @@ import scene.Background;
 
 public class GameLogic {
 
+	private static GameLogic instance = new GameLogic();
+	
 	private Background bg;
 	private static boolean gameOver = false;
-	private static GameLogic instance = new GameLogic();
 	protected Hero hero;
 	protected Boss boss;
 	protected GameScreen screen;
@@ -581,7 +582,12 @@ public class GameLogic {
 	}
 
 	public void logicUpdate(long time) {
+		BossAttackGen();
+		MonstersGen();
+		ObstacleBoxesGen();
+		ItemGen();
 		for(Hitbox e : everything) {
+			
 			if(e instanceof Monster || e instanceof BossAttack) {  //for monster
 				if(e.collide(hero)) {
 					hero.setDestroyed(true);
@@ -598,16 +604,14 @@ public class GameLogic {
 						if(((Mage) e).getFireball().collide(hb)) {
 							((Mage)e).getFireball().setDestroyed(true);
 							if(hb instanceof Monster) {
-								everything.remove(hb);
-								monsters.remove(hb);
+								((Monster) hb).setDestroyed(true);
 							}
 						}
 					}
 				} else if (e instanceof Boomeranger) {
 					for (Monster monster : monsters) {
 						if(((Boomeranger)e).getBoomerang().collide(monster)) {
-							everything.remove(monster);
-							monsters.remove(monster);
+							monster.setDestroyed(true);
 						}
 					}
 				} else if (e instanceof Swordman) {
@@ -615,8 +619,6 @@ public class GameLogic {
 						if(((Swordman)e).getAttackBox().collide(monster)) {
 							((Swordman)e).updateScore(monster);
 							monster.setDestroyed(true);
-							everything.remove(monster);
-							monsters.remove(monster);
 						}
 					}
 				} else if (e instanceof Assassin) {
@@ -624,8 +626,6 @@ public class GameLogic {
 						if(((Assassin)e).getAttackBox().collide(monster)) {
 							((Assassin)e).updateScore(monster);
 							monster.setDestroyed(true);
-							everything.remove(monster);
-							monsters.remove(monster);
 						}
 					}				
 				} else if(e instanceof ObstacleBox){
@@ -634,6 +634,10 @@ public class GameLogic {
 						setGameOver(true);
 					}
 				}
+			}
+			if(((Monster)e).isDestroyed() || e.getD().getX() < 0) {
+				RenderableHolder.getInstance().getEntities().remove(e);
+				everything.remove(e);
 			}
 		}
 	}
