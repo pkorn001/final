@@ -1,5 +1,6 @@
 package obstacle;
 
+import hero.base.Hero;
 import javafx.scene.canvas.GraphicsContext;
 import logic.Hitbox;
 import logic.Position;
@@ -26,7 +27,6 @@ public class Slime extends Monster {
 			}else {
 				g2d.drawImage(Resource.Monster6,this.getB().getX(),this.getB().getY(),this.getWidth(),this.getHeight());
 			}
-			
 		}
 	}
 	
@@ -37,6 +37,7 @@ public class Slime extends Monster {
 				|| ((this.getD().getX() > hitbox.getA().getX() && (this.getA().getX() < hitbox.getA().getX()) && (this.getC().getY() > hitbox.getA().getY())))					
 				|| ((this.getD().getX() > hitbox.getB().getX() && (this.getA().getX() < hitbox.getB().getX()) && (this.getC().getY() > hitbox.getB().getY()) && (this.getD().getY() < hitbox.getB().getY())))) {
 			this.setDestroyed(true);
+			Hero.setScore(Hero.getScore()+this.getMonsterPoint());
 		}
 		return isDestroyed();
 	}

@@ -22,7 +22,7 @@ public class SineMove implements Move {
 	@Override
 	public Position move(long time) {
 		double x = this.xSpeed * time;
-		double y = 400 * Math.sin(ySpeed * time);
+		double y = 200 * Math.sin(ySpeed * time);
 		return new Position(x, y);
 	}
 }

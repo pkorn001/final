@@ -1,15 +1,13 @@
 package obstacle;
 
-import java.awt.Graphics2D;
 
 import javafx.scene.canvas.GraphicsContext;
 import logic.Hitbox;
 import logic.Position;
 import move.Move;
 import render.Irenderable;
-import render.Resource;
 
-public class Monster extends Hitbox implements Irenderable{
+public abstract class Monster extends Hitbox implements Irenderable{
 	
 	/* 0 = normal 
 	 1 = red 
@@ -18,7 +16,7 @@ public class Monster extends Hitbox implements Irenderable{
 	 4 = purple */
 	protected int monsterType;
 	protected int monsterPoint;
-	protected final static int[] MONSTER_POINT = {0,700,200,50,60,50};
+	protected final static int[] MONSTER_POINT = {0,0,70,200,50,60,50};
 	protected boolean destroyed;
 	protected Move movePattern;
 	protected int z;

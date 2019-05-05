@@ -3,9 +3,10 @@ package boss;
 
 import javafx.scene.canvas.GraphicsContext;
 import logic.Position;
+import render.Irenderable;
 import render.Resource;
 
-public class ParriedBall extends BossAttack{
+public class ParriedBall extends BossAttack implements Irenderable{
 	
 	private int z;
 	private boolean isParried;

@@ -1,6 +1,8 @@
 package obstacle;
 
+import hero.base.Swordman;
 import javafx.scene.canvas.GraphicsContext;
+import logic.Hitbox;
 import logic.Position;
 import move.ForwardMove;
 import render.Resource;
@@ -18,7 +20,7 @@ public class Hornet extends Monster{
 			g2d.drawImage(Resource.Dead,this.getB().getX(),this.getB().getY(),this.getWidth(),this.getHeight());
 		}
 		else {
-			g2d.drawImage(Resource.Monster3,this.getB().getX(),this.getB().getY(),this.getWidth(),this.getHeight());
+			g2d.drawImage(Resource.Monster1,this.getB().getX(),this.getB().getY(),this.getWidth(),this.getHeight());
 		}
 	}
 }

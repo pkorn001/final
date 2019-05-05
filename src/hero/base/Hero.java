@@ -15,7 +15,6 @@ public abstract class Hero extends Hitbox implements Irenderable {
 	public static final int HEIGHT = 100;
 	private static int score;
 	private static int stage = 0;
-
 	protected int z;
 	protected int xSpeed;
 	protected Position position = new Position(this.C.getX(), this.C.getY() / 2);
