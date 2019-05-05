@@ -18,8 +18,8 @@ public class Item extends Hitbox implements Irenderable {
 	 * 0 = mage 1 = boomeranger 2 = swordman 3 = assassin
 	 */
 
-	public Item(Position a, int fps, int stage) {
-		super(a, fps);
+	public Item(Position a, double speed, int stage) {
+		super(a, (int) speed);
 		super.A = new Position(a.getX(), a.getY());
 		super.B = new Position(a.getX(), a.getY()+1);
 		super.C = new Position(a.getX()+1, a.getY()+1);

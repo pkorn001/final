@@ -61,14 +61,7 @@ public class ObstacleBox extends Hitbox implements Irenderable {
 				g2d.drawImage(Resource.ObstacleTall_1, this.getB().getX(), this.getB().getY(), this.getWidth(),
 						this.getHeight());
 			}
-<<<<<<< HEAD
-			}
-||||||| merged common ancestors
-			case 1:{
-				g2d.drawImage(Resource.ObstacleTall_1,this.getB().getX(),this.getB().getY(),this.getWidth(),this.getHeight());
-			}
-=======
->>>>>>> 1744ad215e28e74f46172d896fdaa04f964e8412
+		}
 		}
 		
 		case 2 : {
