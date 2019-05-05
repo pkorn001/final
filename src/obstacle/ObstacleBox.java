@@ -20,7 +20,7 @@ public class ObstacleBox extends Hitbox implements Irenderable {
 	 3 = black
 	 4 = purple */
 	private int z;
-	private final static int[] OBSTACLE_HEIGHT = {20,40};
+	private final static int[] OBSTACLE_HEIGHT = {150,300};
 	private Move movePattern;
 	
 	public ObstacleBox(Position a,double speed,int obstacleBox_Type,int width) {
@@ -60,9 +60,6 @@ public class ObstacleBox extends Hitbox implements Irenderable {
 			case 1: {
 				g2d.drawImage(Resource.ObstacleTall_1, this.getB().getX(), this.getB().getY(), this.getWidth(),
 						this.getHeight());
-			}
-			case 1:{
-				g2d.drawImage(Resource.ObstacleTall_1,this.getB().getX(),this.getB().getY(),this.getWidth(),this.getHeight());
 			}
 		}
 		}

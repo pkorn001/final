@@ -13,7 +13,7 @@ public class Mage extends Hero implements Attackable {
 	final long startNanoTime = System.nanoTime();
 
 	public Mage(Position position, int speed) {
-		super(position, speed);
+		super(position);
 	}
 
 	@Override
@@ -54,12 +54,4 @@ public class Mage extends Hero implements Attackable {
 		// TODO Auto-generated method stub
 		return 0;
 	}
-
-	@Override
-	public void draw(GraphicsContext g2d) {
-		// TODO Auto-generated method stub
-		g2d.drawImage(Resource.Hero1, this.getA().getX(), this.getA().getY(), this.getWidth(), this.getHeight());
-	}
-
-
 }

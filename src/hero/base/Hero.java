@@ -10,59 +10,36 @@ import obstacle.ObstacleBox;
 import render.Irenderable;
 import render.Resource;
 
-public abstract class Hero extends Hitbox implements Irenderable {
+public class Hero extends Hitbox implements Irenderable {
 
 	public static final int HEIGHT = 100;
 	private static int score;
 	private static int stage = 0;
 
 	protected int z;
-	protected int xSpeed;
-	protected Position position = new Position(this.C.getX(), this.C.getY() / 2);
-	protected Hitbox hero;
+	protected Position position;
 	protected boolean isDestroyed = false;
 	protected boolean isJumped = false;
 
-	public Hero(Position a, int xSpeed) {
-		super(a, xSpeed);
-		this.hero = new Hitbox(a, 3, 5) {
-		};
+	public Hero(Position a) {
+		super(a, 167, 300);
 		Hero.stage = 0;
 		Hero.score = 0;
 		this.z = Integer.MAX_VALUE;
 		this.position = a;
-		this.xSpeed = xSpeed;
 	}
-
+	
+	public void updateScore(Monster monster) {
+		// TODO Auto-generated method stub
+		setScore( getScore() + monster.getMonsterPoint());
+	}
+	
 	public boolean isJumped() {
 		return isJumped;
 	}
 
 	public void setJumped(boolean isJumped) {
 		this.isJumped = isJumped;
-	}
-
-	public void tranform(Item item) {
-		if (this.collide(item)) {
-			switch (item.getItemType()) {
-			case ("Mage"):
-				hero = new Mage(position, 0);
-				setStage(1);
-				break;
-			case ("Boomeranger"):
-				hero = new Boomeranger(position, 0);
-				setStage(2);
-				break;
-			case ("Swordman"):
-				hero = new Swordman(position, 0);
-				setStage(3);
-				break;
-			case ("Assassin"):
-				hero = new Assassin(position, 0);
-				setStage(4);
-				break;
-			}
-		}
 	}
 
 	public void jump() {
@@ -107,8 +84,6 @@ public abstract class Hero extends Hitbox implements Irenderable {
 		}.start();
 	}
 
-	public abstract void updateScore(Monster monster);
-
 	public double getxSpeed() {
 		return xSpeed;
 	}
@@ -145,29 +120,6 @@ public abstract class Hero extends Hitbox implements Irenderable {
 		return HEIGHT;
 	}
 
-	// when hit with stage what happen? >> hero died >> if(hero.collide) >> change
-	// gc of hero to dead body.
-	@Override
-	public boolean collide(Hitbox hitbox) {
-		if (hitbox instanceof Monster || hitbox instanceof ObstacleBox) {
-			if (((this.getA().getX() < hitbox.getD().getX()) && (this.getA().getX() > hitbox.getA().getX())
-					&& (this.getB().getY() > hitbox.getD().getY()))
-					|| ((this.getA().getX() < hitbox.getC().getX()) && (this.getD().getX() > hitbox.getC().getX())
-							&& (this.getA().getY() < hitbox.getC().getY())
-							&& (this.getB().getY() > hitbox.getC().getY()))
-					|| ((this.getD().getX() > hitbox.getA().getX() && (this.getA().getX() < hitbox.getA().getX())
-							&& (this.getC().getY() > hitbox.getA().getY())))
-					|| ((this.getD().getX() > hitbox.getB().getX() && (this.getA().getX() < hitbox.getB().getX())
-							&& (this.getC().getY() > hitbox.getB().getY())
-							&& (this.getD().getY() < hitbox.getB().getY())))) {
-				this.setDestroyed(true);
-			} else if (hitbox instanceof Item) {
-				this.tranform((Item) hitbox);
-			}
-		}
-		return isDestroyed;
-	}
-
 	public void setDestroyed(boolean isDestroyed) {
 		this.isDestroyed = isDestroyed;
 	}
@@ -192,7 +144,7 @@ public abstract class Hero extends Hitbox implements Irenderable {
 	@Override
 	public int getZ() {
 		// TODO Auto-generated method stub
-		return z--;
+		return Integer.MAX_VALUE;
 	}
 
 }

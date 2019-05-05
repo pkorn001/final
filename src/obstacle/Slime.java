@@ -22,8 +22,6 @@ public class Slime extends Monster {
 		else {
 			if(((SlimeMove)movePattern).isHasJumped() && !((SlimeMove)movePattern).isHasJumped()) {
 				g2d.drawImage(Resource.Monster6_Jump1,this.getB().getX(),this.getB().getY(),this.getWidth(),this.getHeight());
-			}else if (((SlimeMove)movePattern).isHasJumped() && ((SlimeMove)movePattern).isHasJumpedDown()) {
-				g2d.drawImage(Resource.Monster6_Jump2,this.getB().getX(),this.getB().getY(),this.getWidth(),this.getHeight());
 			}else {
 				g2d.drawImage(Resource.Monster6,this.getB().getX(),this.getB().getY(),this.getWidth(),this.getHeight());
 			}

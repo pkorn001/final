@@ -32,7 +32,7 @@ public class Boomeranger extends Hero implements Attackable {
 	private boolean isAttacked = false;
 
 	public Boomeranger(Position position, int speed) {
-		super(position, speed);
+		super(position);
 	}
 
 	public Hitbox getAttackBox() {

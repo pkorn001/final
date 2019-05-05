@@ -15,7 +15,7 @@ public class Assassin extends Hero implements Attackable{
 	private boolean isAttacked = false;
 	
 	public Assassin(Position position, int speed) {
-		super(position, speed);
+		super(position);
 	}
 	
 	@Override

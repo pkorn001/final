@@ -30,7 +30,7 @@ public class Swordman extends Hero implements Attackable {
 	}
 
 	public Swordman(Position position, int speed) {
-		super(position, speed);
+		super(position);
 	}
 
 	@Override

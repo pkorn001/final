@@ -1,10 +1,10 @@
 package boss;
 
-import java.awt.Graphics2D;
 import java.util.ArrayList;
 import java.util.List;
 
 import hero.action.Attackable;
+import hero.base.Hero;
 import javafx.scene.canvas.GraphicsContext;
 import logic.GameLogic;
 import logic.Hitbox;
@@ -26,11 +26,21 @@ public class Boss extends Hitbox implements Irenderable {
 	private final static int KILLED_POINT = 100 * 200;
 	private static boolean destroyed;
 	private int z;
+	private boolean isAppeared;
+	
+	public boolean isAppeared() {
+		return isAppeared;
+	}
+
+	public void setAppeared(boolean isAppeared) {
+		isAppeared = isAppeared;
+	}
 
 	public Boss(Position a, int xSpeed, int ySpeed) {
 		super(a, 200, 500, xSpeed, ySpeed);
 		this.z = Integer.MAX_VALUE;
 		this.destroyed = false;
+		setAppeared(false);
 	}
 
 	public static void isAttacked() {
@@ -111,7 +121,8 @@ public class Boss extends Hitbox implements Irenderable {
 
 	@Override
 	public boolean IsVisible() {
-		return true;
+		if (Hero.getScore() > 5000 && Hero.getScore() % 5000 <= 500) {setAppeared(true);};
+		return isAppeared;
 	}
 
 	@Override
