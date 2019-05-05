@@ -25,10 +25,10 @@ public class Item extends Hitbox implements Irenderable {
 		super.C = new Position(a.getX()+1, a.getY()+1);
 		super.D = new Position(a.getX()+1, a.getY());
 		this.itemType = stage;
-		}
-	
-		@Override
-		public void draw(GraphicsContext g2d) {
+	}
+
+	@Override
+	public void draw(GraphicsContext g2d, long time) {
 
 		switch(HERO_ITEM[itemType]) {
 		case("Mage"):

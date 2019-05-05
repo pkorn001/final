@@ -96,7 +96,7 @@ public class Boss extends Hitbox implements Irenderable {
 	}	
 
 	@Override
-	public void draw(GraphicsContext g2d) {
+	public void draw(GraphicsContext g2d, long time) {
 		if (isDestroyed()) {
 			g2d.drawImage(Resource.Dead, this.getB().getX(), this.getB().getY(), this.getWidth(), this.getHeight());
 		} else {

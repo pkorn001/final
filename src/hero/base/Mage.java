@@ -37,6 +37,11 @@ public class Mage extends Hero implements Attackable {
 		monster.setDestroyed(true);
 	}
 
+	@Override
+	public void draw(GraphicsContext g2d, long time) {
+		// TODO Auto-generated method stub
+		g2d.drawImage(Resource.Hero1, this.getA().getX(), this.getA().getY(), this.getWidth(), this.getHeight());
+	}
 
 	@Override
 	public boolean IsVisible() {

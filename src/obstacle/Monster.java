@@ -65,7 +65,8 @@ public abstract class Monster extends Hitbox implements Irenderable{
 
 
 	@Override
-	public abstract void draw(GraphicsContext g2d);
+	public void draw(GraphicsContext g2d, long time) {
+	}
 
 	@Override
 	public void update(double xSpeed, double ySpeed, long time) {

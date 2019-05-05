@@ -23,6 +23,7 @@ import obstacle.Skeleton;
 import obstacle.Slime;
 import render.RenderableHolder;
 import scene.GameScreen;
+import scene.Background;
 
 public class GameLogic {
 	
@@ -37,6 +38,10 @@ public class GameLogic {
 	protected static boolean jump;
 	protected static boolean attack;
 	protected static double speedFactor;
+	private Hero hero;
+	private Background bg;
+	private static boolean jump;
+	private static boolean attack;
 	
 	public GameLogic() {
 		hero = new Hero(new Position(50.00,0.00),0) {
