@@ -6,10 +6,12 @@ import hero.base.Boomeranger;
 import hero.base.Hero;
 import hero.base.Mage;
 import hero.base.Swordman;
+import scene.Background;
 
 public class GameLogic {
 
 	private Hero hero;
+	private Background bg;
 	private static boolean jump;
 	private static boolean attack;
 
