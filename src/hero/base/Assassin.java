@@ -10,7 +10,7 @@ import render.Resource;
 public class Assassin extends Hero implements Attackable{
 
 	private static Hitbox attackBox;
-	private boolean didShort = false;
+	private static boolean didShort = false;
 	private boolean isJumped = false;
 	private boolean isAttacked = false;
 	
