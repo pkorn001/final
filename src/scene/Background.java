@@ -13,19 +13,25 @@ public class Background implements Irenderable {
 		// TODO Auto-generated method stub
 		switch (Hero.getStage()) {
 		case (0):
+			
 			g2d.drawImage(Resource.Stage0, 0, 0, 1600, 900);
+			g2d.drawImage(Resource.Ground0, 0, 400, 1600, 500);
 			break;
 		case (1):
 			g2d.drawImage(Resource.Stage10, 0, 0, 1600, 900);
+			g2d.drawImage(Resource.Ground1, 0, 400, 1600, 500);
 			break;
 		case (2):
 			g2d.drawImage(Resource.Stage2, 0, 0, 1600, 900);
+			g2d.drawImage(Resource.Ground2, 0, 400, 1600, 500);
 			break;
 		case (3):
 			g2d.drawImage(Resource.Stage30, 0, 0, 1600, 900);
+			g2d.drawImage(Resource.Ground3, 0, 400, 1600, 500);
 			break;
 		case (4):
 			g2d.drawImage(Resource.Stage40, 0, 0, 1600, 900);
+			g2d.drawImage(Resource.Ground4, 0, 400, 1600, 500);
 			break;
 		}
 	}
