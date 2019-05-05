@@ -3,10 +3,12 @@ package scene;
 import hero.base.Hero;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.StackPane;
+import render.Irenderable;
 import render.Resource;
 
 public class Logo {
