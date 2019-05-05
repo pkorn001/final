@@ -527,8 +527,6 @@ public class GameLogic {
 		}
 	}
 	
-	
-	
 	public static void keyPressed(KeyEvent e) {
 		if (e.getKeyCode() == KeyEvent.VK_SPACE && !jump) {
 			setJump(true);
@@ -562,6 +560,10 @@ public class GameLogic {
 				((Assassin) hero).attack();
 			}
 		}
+	}
+	
+	public void update(long time) {
+		
 	}
 
 	public static boolean isJump() {
