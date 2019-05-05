@@ -1,31 +1,59 @@
 package scene;
 
+import javafx.animation.AnimationTimer;
 import javafx.scene.canvas.Canvas;
+import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 import javafx.scene.image.WritableImage;
+import render.Irenderable;
+import render.RenderableHolder;
+import render.Resource;
 
 public class GameScreen extends Canvas {
 
-	private Image background;
+	private Background background;
+	private Image image;
+	private Image image2;
+	private WritableImage croppedImage;
+	private WritableImage croppedImage2;
 	private Canvas canvas = new Canvas(1600, 900);
+	private boolean inGame = true;
 	
 	public GameScreen(double time, int stage){
-		switch(stage) {
-		case(0):
+		new AnimationTimer() {
 			
-			break;
-		case(1):
-			
-			break;
-		case(2):
-			
-			break;
-		case(3):
-			
-			break;
-		case(4):
-			
-			break;
+			@Override
+			public void handle(long now) {
+				long currentTime = (now - System.nanoTime())/1000000000;
+				draw(canvas.getGraphicsContext2D(), currentTime);
+			}
+		};
+	}
+	
+	public void draw(GraphicsContext g2d, long currentTime) {
+		Background.loadResource();
+		image = Resource.Stage0;
+		g2d.drawImage(image, 0, 0, 1600 % currentTime, 900);
+		
+	}
+	
+	public void paintComponent() {
+	
+		GraphicsContext gc = this.getGraphicsContext2D();
+		for (Irenderable entity : RenderableHolder.getInstance().getEntities()) {
+			// System.out.println(entity.getZ());
+			if (entity.IsVisible() && !entity.isDestroyed()) {
+				entity.draw(gc);
+			}
 		}
 	}
+
+	public boolean isInGame() {
+		return inGame;
+	}
+
+	public void setInGame(boolean inGame) {
+		this.inGame = inGame;
+	}
+
 }
