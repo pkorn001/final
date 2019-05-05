@@ -44,7 +44,12 @@ public class Resource {
 	//BossAttack
 	public static Image BossAttack,ParriedBall1,ParriedBall2;
 	
+	//GameLogo
+	public static Image Logo;
+	
 	static {
+		
+		Logo = getImage("image/Logo.png");
 		
 		//HeroAttack
 		FireBall = getImage("image/FireBall.png");
