@@ -3,7 +3,9 @@ package main;
 import javafx.animation.AnimationTimer;
 import javafx.application.Application;
 import javafx.scene.Scene;
+import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Button;
+import javafx.scene.image.Image;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import logic.GameLogic;
@@ -17,17 +19,8 @@ public class Main extends Application{
 		StackPane root = new StackPane();
 		Scene scene = new Scene(root, 1600, 900);
 		GameScreen screen = new GameScreen();
-		
-		new AnimationTimer() {
-			
-			@Override
-			public void handle(long now) {
-				// TODO Auto-generated method stub
-				long time = now - System.nanoTime();
-				screen.paintComponent();
-			}
-		}.start();
 		root.getChildren().add(screen);
+		screen.paintComponent();
 		primaryStage.setScene(scene);
 		primaryStage.setTitle("The adventure of a little hero"); 
 		primaryStage.show();
