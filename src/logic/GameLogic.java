@@ -1,19 +1,25 @@
 package logic;
 
 import java.awt.event.KeyEvent;
+import java.util.List;
+
+import boss.Boss;
 import hero.base.Assassin;
 import hero.base.Boomeranger;
 import hero.base.Hero;
 import hero.base.Mage;
 import hero.base.Swordman;
+import obstacle.Monster;
 import scene.Background;
 
 public class GameLogic {
 
-	private Hero hero;
-	private Background bg;
 	private static boolean jump;
 	private static boolean attack;
+
+	public GameLogic() {
+		
+	}
 
 	public static void keyPressed(KeyEvent e) {
 		if (e.getKeyCode() == KeyEvent.VK_SPACE && !jump) {
@@ -48,6 +54,10 @@ public class GameLogic {
 				((Assassin) hero).attack();
 			}
 		}
+	}
+
+	public void updateLogic() {
+
 	}
 
 	public static boolean isJump() {
