@@ -21,20 +21,21 @@ public class GameScreen extends Canvas {
 	private Canvas canvas = new Canvas(1600, 900);
 	private boolean inGame = true;
 
-	public GameScreen(){
-		Background.loadResource();
+	public GameScreen() {
+		super(SCENE_WIDTH, SCENE_HEIGHT);
+		this.setVisible(true);
 		background = new Background();
-		
+		RenderableHolder.getInstance().getEntities().add(background);
 	}
 
 	public void update(long time) {
 		GraphicsContext g2d = this.getGraphicsContext2D();
 		draw(g2d, time);
-		
+
 	}
-	
+
 	public void draw(GraphicsContext g2d, long currentTime) {
-		Background.loadResource();
+//		Background.loadResource();
 		image = Resource.Stage0;
 		g2d.drawImage(image, currentTime % SCENE_WIDTH, 0, SCENE_WIDTH, SCENE_HEIGHT);
 
@@ -46,7 +47,7 @@ public class GameScreen extends Canvas {
 		for (Irenderable entity : RenderableHolder.getInstance().getEntities()) {
 			// System.out.println(entity.getZ());
 			if (entity.IsVisible() && !entity.isDestroyed()) {
-				entity.draw(gc, 0); //edit later
+				entity.draw(gc, 0); // edit later
 			}
 		}
 	}

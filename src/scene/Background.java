@@ -32,44 +32,59 @@ public class Background implements Irenderable {
 	}
 
 	public static void loadResource() {
-		stages1.addAll(Arrays.asList(new Image[] { Resource.Stage10, Resource.Stage11, Resource.Stage12,
-				Resource.Stage13, Resource.Stage14, Resource.Stage15, Resource.Stage16, Resource.Stage17,
-				Resource.Stage1_lava1, Resource.Stage1_lava2 }));
-		stages3.addAll(Arrays.asList(new Image[] { Resource.Stage30, Resource.Stage31, Resource.Stage32,
-				Resource.Stage33, Resource.Stage34 }));
-		stages4.addAll(Arrays.asList(new Image[] { Resource.Stage40, Resource.Stage41, Resource.Stage42,
-				Resource.Stage43, Resource.Stage44, Resource.Stage4_prisoner1, Resource.Stage4_prisoner2 }));
+		stages1.add(Resource.Stage10);
+		stages1.add(Resource.Stage11);
+		stages1.add(Resource.Stage12);
+		stages1.add(Resource.Stage13);
+		stages1.add(Resource.Stage14);
+		stages1.add(Resource.Stage15);
+		stages1.add(Resource.Stage16);
+		stages1.add(Resource.Stage17);
+		stages1.add(Resource.Stage1_lava1);
+		stages1.add(Resource.Stage1_lava2);
+		
+		stages3.add(Resource.Stage30);
+		stages3.add(Resource.Stage31);
+		stages3.add(Resource.Stage32);
+		stages3.add(Resource.Stage33);
+		stages3.add(Resource.Stage34);
+		
+		stages4.add(Resource.Stage40);
+		stages4.add(Resource.Stage41);
+		stages4.add(Resource.Stage42);
+		stages4.add(Resource.Stage43);
+		stages4.add(Resource.Stage44);
+		stages4.add(Resource.Stage4_prisoner1);
+		stages4.add(Resource.Stage4_prisoner2);
 	}
 
 	@Override
 	public void draw(GraphicsContext g2d, long time) {
 		// TODO Auto-generated method stub
-		switch (Hero.getStage()) {
-		case (0):
-			g2d.drawImage(Resource.Stage0, 0, 0, 1600, 900);
-			image = Resource.Stage0;
-			break;
-		case (1):
-			image = getRandomElement(stages1);
-			g2d.drawImage(image, 0, 0, 1600, 900);
-			break;
-		case (2):
-			g2d.drawImage(Resource.Stage2, 0, 0, 1600, 900);
-			image = Resource.Stage2;
-			break;
-		case (3):
-			image = getRandomElement(stages3);
-			g2d.drawImage(image, 0, 0, 1600, 900);
-			break;
-		case (4):
-			image = getRandomElement(stages4);
-			g2d.drawImage(image, 0, 0, 1600, 900);
-			break;
-		}
-		this.x -= 5;
-		if (this.x <= -image.getWidth()) {
-			this.x = (int) (this.x + image.getWidth() * 2);
-		}
+		g2d.drawImage(Resource.Stage0, 0, 0, 1600, 900);
+//		switch (Hero.getStage()) {
+//		case (0):
+//			g2d.drawImage(Resource.Stage0, 0, 0, 1600, 900);
+//			image = Resource.Stage0;
+//			break;
+//		case (1):
+//			image = getRandomElement(stages1);
+//			g2d.drawImage(image, 0, 0, 1600, 900);
+//			break;
+//		case (2):
+//			g2d.drawImage(Resource.Stage2, 0, 0, 1600, 900);
+//			image = Resource.Stage2;
+//			break;
+//		case (3):
+//			image = getRandomElement(stages3);
+//			g2d.drawImage(image, 0, 0, 1600, 900);
+//			break;
+//		case (4):
+//			image = getRandomElement(stages4);
+//			g2d.drawImage(image, 0, 0, 1600, 900);
+//			break;
+//		}
+		
 	}
 
 	public Image getImage() {

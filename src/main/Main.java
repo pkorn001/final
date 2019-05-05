@@ -17,13 +17,14 @@ public class Main extends Application{
 		StackPane root = new StackPane();
 		Scene scene = new Scene(root, 1600, 900);
 		GameScreen screen = new GameScreen();
+		
 		new AnimationTimer() {
 			
 			@Override
 			public void handle(long now) {
 				// TODO Auto-generated method stub
 				long time = now - System.nanoTime();
-				screen.update(time);
+				screen.paintComponent();
 			}
 		}.start();
 		root.getChildren().add(screen);
