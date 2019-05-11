@@ -4,6 +4,7 @@ import hero.action.Attackable;
 import hero.action.Boomerang;
 import javafx.animation.AnimationTimer;
 import javafx.scene.canvas.GraphicsContext;
+import logic.GameLogic;
 import logic.Position;
 import obstacle.Monster;
 import render.Resource;
@@ -58,8 +59,11 @@ public class Boomeranger extends Hero implements Attackable {
 
 	@Override
 	public void draw(GraphicsContext g2d, long  time) {
-		// TODO Auto-generated method stub
-		g2d.drawImage(Resource.Hero2, this.getA().getX(), this.getA().getY(), this.getWidth(), this.getHeight());
+		if(GameLogic.isAttack()) {
+			g2d.drawImage(Resource.Hero2_Attack, this.getA().getX(), this.getA().getY(), this.getWidth(), this.getHeight());
+		}else {
+			g2d.drawImage(Resource.Hero2, this.getA().getX(), this.getA().getY(), this.getWidth(), this.getHeight());
+		}
 	}
 
 	@Override

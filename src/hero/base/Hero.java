@@ -3,6 +3,7 @@ package hero.base;
 import item.Item;
 import javafx.animation.AnimationTimer;
 import javafx.scene.canvas.GraphicsContext;
+import logic.GameLogic;
 import logic.Hitbox;
 import logic.Position;
 import obstacle.Monster;
@@ -27,12 +28,12 @@ public class Hero extends Hitbox implements Irenderable {
 		this.z = Integer.MAX_VALUE;
 		this.position = a;
 	}
-	
+
 	public void updateScore(Monster monster) {
 		// TODO Auto-generated method stub
-		setScore( getScore() + monster.getMonsterPoint());
+		setScore(getScore() + monster.getMonsterPoint());
 	}
-	
+
 	public boolean isJumped() {
 		return isJumped;
 	}
