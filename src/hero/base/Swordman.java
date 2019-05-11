@@ -34,7 +34,7 @@ public class Swordman extends Hero implements Attackable {
 		this.isAttacked = isAttacked;
 	}
 
-	public Swordman(Position position, int speed) {
+	public Swordman(Position position) {
 		super(position);
 	}
 

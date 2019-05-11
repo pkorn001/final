@@ -19,7 +19,7 @@ public class Assassin extends Hero implements Attackable{
 	private boolean isJumped = false;
 	private boolean isAttacked = false;
 	
-	public Assassin(Position position, int speed) {
+	public Assassin(Position position) {
 		super(position);
 	}
 	
