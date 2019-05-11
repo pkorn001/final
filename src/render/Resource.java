@@ -39,7 +39,7 @@ public class Resource {
 	public static Image Coin1,Coin2,Coin3,Coin4;
 	
 	//HeroAttack
-	public static Image FireBall, Boomerang;
+	public static Image FireBall, Boomerang,Scythe;
 	
 	//BossAttack
 	public static Image BossAttack,ParriedBall1,ParriedBall2;
@@ -54,6 +54,7 @@ public class Resource {
 		//HeroAttack
 		FireBall = getImage("image/FireBall.png");
 		Boomerang  = getImage("image/Boomerange.png");
+		Scythe = getImage("image/Scythe.gif");
 		Hero1_Attack = getImage("image/Hero1_Attack.gif");
 		Hero2_Attack = getImage("image/Hero2_Attack.gif");
 		Hero3_Attack = getImage("image/Hero3_Attack.gif");
