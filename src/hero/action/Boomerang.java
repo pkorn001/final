@@ -24,8 +24,7 @@ public class Boomerang extends Hitbox implements Irenderable {
 		heroPoint = new Position(position.getX()-1, position.getY());
 		originPoint = new Position(position.getX(), position.getY());
 		returnPoint = new Position(position.getX() + 8, position.getY()/2 + 4);
-		hero = new Hitbox(heroPoint, 0) {
-		};
+		
 	}
 	
 	public void move() {
