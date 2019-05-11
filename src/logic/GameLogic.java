@@ -500,8 +500,9 @@ public class GameLogic {
 			if(isMonsterGen.nextBoolean()) {
 				MonstersGen();
 			}
-		if(counter % 60){
-			Hero.setScore(Hero.getScore() + 10); //score increase every second
+		}
+		if(counter % 6 == 0){
+			Hero.setScore(Hero.getScore() + 1); //score increase every second
 		}
 		if(counter % 1700 == 0) {
 			ItemGen();
