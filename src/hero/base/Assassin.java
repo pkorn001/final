@@ -2,6 +2,7 @@ package hero.base;
 
 import hero.action.Attackable;
 import javafx.scene.canvas.GraphicsContext;
+import logic.GameLogic;
 import logic.Hitbox;
 import logic.Position;
 import obstacle.Monster;
@@ -11,6 +12,10 @@ public class Assassin extends Hero implements Attackable{
 
 	private static Hitbox attackBox;
 	private static boolean didShort = false;
+	public static boolean isDidShort() {
+		return didShort;
+	}
+
 	private boolean isJumped = false;
 	private boolean isAttacked = false;
 	
@@ -45,7 +50,15 @@ public class Assassin extends Hero implements Attackable{
 	@Override
 	public void draw(GraphicsContext g2d, long time) {
 		// TODO Auto-generated method stub
-		g2d.drawImage(Resource.Hero4, this.getA().getX(), this.getA().getY(), this.getWidth(), this.getHeight());
+		if(GameLogic.isAttack()) {
+			if(!didShort) {
+				g2d.drawImage(Resource.Hero4_Attack1, this.getA().getX(), this.getA().getY(), this.getWidth(), this.getHeight());
+			}else {
+				g2d.drawImage(Resource.Hero4_Attack2, this.getA().getX(), this.getA().getY(), this.getWidth(), this.getHeight());
+			}
+		}else {
+			g2d.drawImage(Resource.Hero4, this.getA().getX(), this.getA().getY(), this.getWidth(), this.getHeight());
+		}
 	}
 
 	@Override

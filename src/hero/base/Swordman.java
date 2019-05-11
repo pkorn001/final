@@ -2,6 +2,7 @@ package hero.base;
 
 import hero.action.Attackable;
 import javafx.scene.canvas.GraphicsContext;
+import logic.GameLogic;
 import logic.Hitbox;
 import logic.Position;
 import obstacle.Monster;
@@ -52,7 +53,11 @@ public class Swordman extends Hero implements Attackable {
 
 	@Override
 	public void draw(GraphicsContext g2d, long time) {
-		g2d.drawImage(Resource.Hero3, this.getA().getX(), this.getA().getY(), this.getWidth(), this.getHeight());
+		if(GameLogic.isAttack()) {
+			g2d.drawImage(Resource.Hero3_Attack, this.getA().getX(), this.getA().getY(), this.getWidth(), this.getHeight());
+		}else {
+			g2d.drawImage(Resource.Hero3, this.getA().getX(), this.getA().getY(), this.getWidth(), this.getHeight());
+		}
 	}
 
 	@Override
