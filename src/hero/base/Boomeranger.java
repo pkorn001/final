@@ -35,7 +35,7 @@ public class Boomeranger extends Hero implements Attackable {
 		this.isAttacked = isAttacked;
 	}
 
-	public Boomeranger(Position position, int speed) {
+	public Boomeranger(Position position) {
 		super(position);
 	}
 	

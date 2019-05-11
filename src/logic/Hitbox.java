@@ -113,10 +113,9 @@ public abstract class Hitbox {
 		}
 	
 	public void update(long time) {
-		System.out.println("Hi");
 		for(Position i  : new Position[] {this.A, this.B, this.C, this.D}){
-			i.setX(i.getX() + xSpeed * time);
-			i.setY(i.getY() + ySpeed * time);
+			i.setX(i.getX() + this.xSpeed * time);
+			i.setY(i.getY() + this.ySpeed * time);
 		}
 
 	}

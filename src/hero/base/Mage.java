@@ -14,7 +14,7 @@ public class Mage extends Hero implements Attackable {
 	final long startNanoTime = System.nanoTime();
 	private FireBall fireball;
 
-	public Mage(Position position, int speed) {
+	public Mage(Position position) {
 		super(position);
 	}
 
@@ -31,7 +31,7 @@ public class Mage extends Hero implements Attackable {
 			public void handle(long now) {
 				// TODO Auto-generated method stub
 				long time =  (now - System.nanoTime()) * 60 / 1000000000;
-				fireball.update(FireBall.FIREBALL_SPEED, 0, time );
+				fireball.update(time);
 			}
 		}.start();
 	}
