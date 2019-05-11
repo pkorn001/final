@@ -1,12 +1,7 @@
 package boss;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import hero.action.Attackable;
 import hero.base.Hero;
 import javafx.scene.canvas.GraphicsContext;
-import logic.GameLogic;
 import logic.Hitbox;
 import logic.Position;
 import obstacle.Bat;
@@ -121,8 +116,8 @@ public class Boss extends Hitbox implements Irenderable {
 
 	@Override
 	public boolean IsVisible() {
-		//if (Hero.getScore() > 5000 && Hero.getScore() % 5000 <= 500) {setAppeared(true);};
-		return true;
+		if (Hero.getScore() > 5000 && Hero.getScore() % 5000 <= 500) {setAppeared(true);};
+		return isAppeared;
 	}
 
 	@Override
