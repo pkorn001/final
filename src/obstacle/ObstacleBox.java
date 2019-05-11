@@ -18,7 +18,7 @@ public class ObstacleBox extends Hitbox implements Irenderable {
 	 * 0 = normal 1 = red 2 = green 3 = black 4 = purple
 	 */
 	private int z;
-	private final static int[] OBSTACLE_HEIGHT = { 150, 300 };
+	private final static int[] OBSTACLE_HEIGHT = { 200, 270 };
 	private Move movePattern;
 
 	public ObstacleBox(Position a, int width, int obstacleBox_Type, double speed) {
@@ -47,7 +47,6 @@ public class ObstacleBox extends Hitbox implements Irenderable {
 
 	@Override
 	public void draw(GraphicsContext g2d, long time) {
-		System.out.println(this.getB().getX() + ":" + this.getB().getY() + ":" + this.getWidth() + ":" + this.getHeight());
 		switch (Hero.getStage()) {
 		case 1: {
 			switch (this.obstacleBox_Type) {
@@ -102,14 +101,15 @@ public class ObstacleBox extends Hitbox implements Irenderable {
 		}
 
 		default: {
-			System.out.println("----------------------");
+			System.out.println(this.A.getX());
 			switch (this.obstacleBox_Type) {
 			case 0: {
-				g2d.drawImage(Resource.Obstacle_0, this.getB().getX(), 500, this.getWidth(),
+				g2d.drawImage(Resource.Obstacle_0, this.getB().getX(), this.getA().getY()+50, this.getWidth(),
 						this.getHeight());
+				System.out.println("damn");
 			}
 			case 1: {
-				g2d.drawImage(Resource.ObstacleTall_0, this.getB().getX(), 500, this.getWidth(),
+				g2d.drawImage(Resource.ObstacleTall_0, this.getA().getX(), this.getA().getY(), this.getWidth(),
 						this.getHeight());
 			}
 			}
@@ -124,7 +124,7 @@ public class ObstacleBox extends Hitbox implements Irenderable {
 
 	@Override
 	public int getZ() {
-		return -1;
+		return z--;
 	}
 
 	@Override
@@ -134,7 +134,7 @@ public class ObstacleBox extends Hitbox implements Irenderable {
 	}
 
 	@Override
-	public void update(double xSpeed, double ySpeed, long time) {
+	public void update(long time) {
 		for (Position i : new Position[] { this.A, this.B, this.C, this.D }) {
 			i.setX(i.getX() + this.movePattern.move(time).getX());
 			i.setY(i.getY() + this.movePattern.move(time).getY());

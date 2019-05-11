@@ -132,7 +132,7 @@ public class Hero extends Hitbox implements Irenderable {
 	@Override
 	public void draw(GraphicsContext g2d, long time) {
 		// TODO Auto-generated method stub
-		g2d.drawImage(Resource.Hero0,this.getA().getX(), this.getA().getY(),167,300);
+		g2d.drawImage(Resource.Hero0,this.getA().getX(), this.getA().getY()+100,167,300);
 	}
 
 	@Override

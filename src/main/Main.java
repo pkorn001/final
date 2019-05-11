@@ -26,9 +26,10 @@ public class Main extends Application{
 		 new AnimationTimer() {
 			 @Override
 			 public void handle(long now) {
-			    // TODO Add another canvas update 
+			    // TODO Add another canvas update
+				 long time = (now - System.nanoTime())/1000000000;
 				RenderableHolder.getInstance().update();
-				GameLogic.update();
+				GameLogic.logicUpdate(time);
 				gameScreen.paintComponent();
 			}
 		}.start();

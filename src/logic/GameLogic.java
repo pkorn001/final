@@ -81,7 +81,7 @@ public class GameLogic {
 	public static void ObstacleBoxesGen() {
 		if (counter % 48 == 0) {
 			Random obstacleBox_Type = new Random();
-			ObstacleBox e = new ObstacleBox(new Position(600,500),100, obstacleBox_Type.nextInt(2),0);
+			ObstacleBox e = new ObstacleBox(new Position(600,550),200, 0,-50);
 			obstacleBoxes.add(e);
 			everything.add(e);
 			RenderableHolder.getInstance().getEntities().add(e);
@@ -477,7 +477,7 @@ public class GameLogic {
 		}
 	}
 
-	public void updateState() {
+	public static void updateState() {
 		if (isJump()) {
 			hero.jump();
 		}
@@ -522,17 +522,20 @@ public class GameLogic {
 		}
 	}
 	
-	public void logicUpdate(long time) {
+	public static void logicUpdate(long time) {
 		update();
 		for (Hitbox e : everything) {
+			if (! (e instanceof Hero))
+				System.out.println(time);
+				e.update(time);
 			if (e instanceof Monster || e instanceof BossAttack) { // for monster
-				e.update(e.xSpeed, e.ySpeed, time);
+				//e.update(time);
 				if (e.collide(hero)) {
 					hero.setDestroyed(true);
 					setGameOver(true);
 				}
 			} else if (e instanceof Item) { // for item
-				e.update(e.xSpeed, e.ySpeed, time);
+				//e.update(time);
 				if (hero.collide(e)) {
 					switch (((Item) e).getItemType()) {
 					case ("Mage"):
@@ -547,7 +550,7 @@ public class GameLogic {
 				}
 			} else if (e instanceof Hero) { // for hero
 				updateState();
-				e.update(e.xSpeed, e.ySpeed, time);
+				//e.update(time);
 				if (e instanceof Mage) {
 					for (Hitbox hb : everything) {
 						if (((Mage) e).getFireball().collide(hb)) {
@@ -584,17 +587,12 @@ public class GameLogic {
 					}
 				}
 			}
-			if (((Monster) e).isDestroyed() || e.getD().getX() < 0) {
-				new Thread(new  Runnable() {
-					
-					@Override
-					public void run() {
-						// TODO Auto-generated method stub
+			if (e instanceof Monster)
+				if (((Monster) e).isDestroyed() || e.getD().getX() < 0) {
 						RenderableHolder.getInstance().getEntities().remove(e);
 						everything.remove(e);
-					}
-				}).start();;
-			}
+				}
+			
 
 		}
 	}
