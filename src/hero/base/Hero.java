@@ -15,7 +15,6 @@ public class Hero extends Hitbox implements Irenderable {
 	public static final int HEIGHT = 167;
 	private static int score;
 	private static int stage = 0;
-
 	protected int z;
 	protected Position position;
 	protected boolean isDestroyed = false;

@@ -13,6 +13,8 @@ import hero.base.Boomeranger;
 import hero.base.Hero;
 import hero.base.Mage;
 import hero.base.Swordman;
+import item.Item;
+import javafx.scene.canvas.GraphicsContext;
 import obstacle.Bat;
 import obstacle.EvilFairy;
 import obstacle.FlyingFire;
@@ -32,12 +34,14 @@ public class GameLogic {
 	
 	protected static Hero hero;
 	protected static Boss boss;
+	protected static List<Item> items = new ArrayList<Item>();
 	protected static List<Monster> monsters = new ArrayList<Monster>();
 	protected static List<ObstacleBox> obstacleBoxes = new ArrayList<ObstacleBox>();
 	protected static List<Hitbox> boss_Attack = new ArrayList<Hitbox>();
 	protected static List<Hitbox> everything = new ArrayList<Hitbox>();
 	protected static boolean jump;
 	protected static boolean attack;
+	protected static boolean gameOver;
 	protected static double speedFactor;
 	private Background bg;
 	static Random isMonsterGen = new Random();
@@ -51,13 +55,21 @@ public class GameLogic {
 		boss = new Boss(new Position(1600,0), 0, 0);
 		speedFactor = 1;
 
+		gameOver = false;
 		RenderableHolder.getInstance().getEntities().add(hero);
 		RenderableHolder.getInstance().getEntities().add(bg);
 		RenderableHolder.getInstance().getEntities().add(boss);
-		//everything.add(hero);
-		//everything.add(boss);
+	
 	}
 	
+	public static boolean isGameOver() {
+		return gameOver;
+	}
+
+	public static void setGameOver(boolean gameOver) {
+		GameLogic.gameOver = gameOver;
+	}
+
 	public static double getSpeedFactor() {
 		return speedFactor;
 	}
@@ -76,6 +88,16 @@ public class GameLogic {
 		}
 	}
 	
+	public static void ItemGen() {
+		if (counter % 48 == 0) {
+			Random itemType = new Random();
+			Item e = new Item(new Position(1000,0),50,itemType.nextInt(4));
+			items.add(e);
+			everything.add(e);
+			RenderableHolder.getInstance().getEntities().add(e);
+		}
+	}
+
 	public static void MonstersGen() {
 		Random monsterType = new Random();
 		if(counter % 48 == 0) {
@@ -478,6 +500,11 @@ public class GameLogic {
 			if(isMonsterGen.nextBoolean()) {
 				MonstersGen();
 			}
+		if(counter % 60){
+			Hero.setScore(Hero.getScore() + 10); //score increase every second
+		}
+		if(counter % 1700 == 0) {
+			ItemGen();
 		}
 		if(counter % 30 == 0) {
 			ObstacleBoxesGen();
@@ -491,6 +518,83 @@ public class GameLogic {
 					boss_Timer = 0;
 				}
 			}
+		}
+	}
+	
+	public void logicUpdate(long time) {
+		update();
+		for (Hitbox e : everything) {
+			if (e instanceof Monster || e instanceof BossAttack) { // for monster
+				e.update(e.xSpeed, e.ySpeed, time);
+				if (e.collide(hero)) {
+					hero.setDestroyed(true);
+					setGameOver(true);
+				}
+			} else if (e instanceof Item) { // for item
+				e.update(e.xSpeed, e.ySpeed, time);
+				if (hero.collide(e)) {
+					switch (((Item) e).getItemType()) {
+					case ("Mage"):
+						break;
+					case ("Boomeranger"):
+						break;
+					case ("Swordman"):
+						break;
+					case ("Assassin"):
+						break;
+					}
+				}
+			} else if (e instanceof Hero) { // for hero
+				updateState();
+				e.update(e.xSpeed, e.ySpeed, time);
+				if (e instanceof Mage) {
+					for (Hitbox hb : everything) {
+						if (((Mage) e).getFireball().collide(hb)) {
+							((Mage) e).getFireball().setDestroyed(true);
+							if (hb instanceof Monster) {
+								((Monster) hb).setDestroyed(true);
+							}
+						}
+					}
+				} else if (e instanceof Boomeranger) {
+					for (Monster monster : monsters) {
+						if (((Boomeranger) e).getBoomerang().collide(monster)) {
+							monster.setDestroyed(true);
+						}
+					}
+				} else if (e instanceof Swordman) {
+					for (Monster monster : monsters) {
+						if (((Swordman) e).getAttackBox().collide(monster)) {
+							((Swordman) e).updateScore(monster);
+							monster.setDestroyed(true);
+						}
+					}
+				} else if (e instanceof Assassin) {
+					for (Monster monster : monsters) {
+						if (((Assassin) e).getAttackBox().collide(monster)) {
+							((Assassin) e).updateScore(monster);
+							monster.setDestroyed(true);
+						}
+					}
+				} else if (e instanceof ObstacleBox) {
+					if (e.collide(hero)) {
+						hero.setDestroyed(true);
+						setGameOver(true);
+					}
+				}
+			}
+			if (((Monster) e).isDestroyed() || e.getD().getX() < 0) {
+				new Thread(new  Runnable() {
+					
+					@Override
+					public void run() {
+						// TODO Auto-generated method stub
+						RenderableHolder.getInstance().getEntities().remove(e);
+						everything.remove(e);
+					}
+				}).start();;
+			}
+
 		}
 	}
 

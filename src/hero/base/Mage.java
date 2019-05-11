@@ -11,14 +11,19 @@ import render.Resource;
 public class Mage extends Hero implements Attackable {
 
 	final long startNanoTime = System.nanoTime();
+	private FireBall fireball;
 
 	public Mage(Position position, int speed) {
 		super(position);
 	}
 
+	public FireBall getFireball() {
+		return fireball;
+	}
+
 	@Override
 	public void attack() {
-		FireBall fireball = new FireBall(new Position(this.C.getX(), this.C.getY() / 2));
+		fireball = new FireBall(new Position(this.C.getX(), this.C.getY() / 2));
 		new AnimationTimer() {
 
 			@Override
@@ -54,4 +59,5 @@ public class Mage extends Hero implements Attackable {
 		// TODO Auto-generated method stub
 		return 0;
 	}
+
 }

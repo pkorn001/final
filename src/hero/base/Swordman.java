@@ -24,6 +24,10 @@ public class Swordman extends Hero implements Attackable {
 	public boolean isAttacked() {
 		return isAttacked;
 	}
+	
+	public static Hitbox getAttackBox() {
+		return attackBox;
+	}
 
 	public void setAttacked(boolean isAttacked) {
 		this.isAttacked = isAttacked;
@@ -44,10 +48,7 @@ public class Swordman extends Hero implements Attackable {
 		// TODO Auto-generated method stub
 		setScore( getScore() + monster.getMonsterPoint());
 	}
-	
-	public static Hitbox getAttackBox() {
-		return attackBox;
-	}
+
 
 	@Override
 	public void draw(GraphicsContext g2d, long time) {

@@ -4,16 +4,22 @@ import hero.action.Attackable;
 import hero.action.Boomerang;
 import javafx.animation.AnimationTimer;
 import javafx.scene.canvas.GraphicsContext;
-import logic.Hitbox;
 import logic.Position;
 import obstacle.Monster;
 import render.Resource;
 
 public class Boomeranger extends Hero implements Attackable {
 
-	private Hitbox attackBox;
+	private boolean isJumped =  false;
+	private boolean isAttacked = false;
+	private Boomerang boomerang;
+	
 	public boolean isJumped() {
 		return isJumped;
+	}
+
+	public Boomerang getBoomerang() {
+		return boomerang;
 	}
 
 	public void setJumped(boolean isJumped) {
@@ -28,25 +34,18 @@ public class Boomeranger extends Hero implements Attackable {
 		this.isAttacked = isAttacked;
 	}
 
-	private boolean isJumped =  false;
-	private boolean isAttacked = false;
-
 	public Boomeranger(Position position, int speed) {
 		super(position);
 	}
-
-	public Hitbox getAttackBox() {
-		return attackBox;
-	}
-
+	
 	@Override
 	public void attack() {
-		Boomerang boomerange = new Boomerang(new Position(this.getC().getX() + 1, this.getC().getY() / 2));
+		boomerang = new Boomerang(new Position(this.getC().getX() + 1, this.getC().getY() / 2));
 		new AnimationTimer() {
 
 			@Override
 			public void handle(long now) {
-				boomerange.move();
+				boomerang.move();
 			}
 		}.start();
 	}
