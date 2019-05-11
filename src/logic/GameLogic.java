@@ -522,15 +522,9 @@ public class GameLogic {
 					hero.setDestroyed(true);
 					setGameOver(true);
 				}
-				if (((Monster) e).isDestroyed() || e.getD().getX() < 0) {
+				if (((Monster) e).isDestroyed()) {
 					RenderableHolder.getInstance().getEntities().remove(e);
 					monsters.remove(e);
-					everything.remove(e);
-				}
-			} else if (e instanceof ObstacleBox) { // for obstaclebox
-				if (e.getD().getX() < 0) {
-					RenderableHolder.getInstance().getEntities().remove(e);
-					obstacleBoxes.remove(e);
 					everything.remove(e);
 				}
 			} else if (e instanceof Item) { // for item
@@ -583,9 +577,10 @@ public class GameLogic {
 						setGameOver(true);
 					}
 				}
-			}
-			if (e instanceof Monster || e instanceof ObstacleBox) {
-
+				if(e.getC().getY() < 0) {
+					everything.remove(e);
+					RenderableHolder.getInstance().getEntities().remove(e);
+				}
 			}
 		}
 	}

@@ -75,5 +75,7 @@ public class StartScreen extends StackPane{
 		background.draw(gc, 0);
 		
 		getChildren().addAll(canvas, ui);
+		
+		
 	}
 }
