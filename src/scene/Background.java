@@ -35,7 +35,6 @@ public class Background implements Irenderable {
 		}
 	}
 
-
 	@Override
 	public boolean IsVisible() {
 		// TODO Auto-generated method stub
