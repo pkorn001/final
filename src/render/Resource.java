@@ -12,6 +12,7 @@ public class Resource {
 			im = new Image(image_path);
 		} catch (Exception e) {
 			im = null;
+			
 		}
 		return im;
 	}
