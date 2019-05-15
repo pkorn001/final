@@ -13,7 +13,7 @@ public class ForwardMove implements Move {
 	
 	public ForwardMove (Hitbox obj) {
 		this.obj = obj;
-		this.xSpeed = -50;
+		this.xSpeed = -25;
 		this.ySpeed = 0;
 		obj.setxSpeed(xSpeed); 
 		obj.setySpeed(ySpeed); 

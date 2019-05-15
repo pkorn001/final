@@ -19,10 +19,6 @@ public class Mage extends Hero implements Attackable {
 		setStage(1);
 	}
 
-	public FireBall getFireball() {
-		return fireball;
-	}
-
 	@Override
 	public void attack() {
 		fireball = new FireBall(new Position(this.C.getX(), this.C.getY() / 2));
@@ -63,6 +59,10 @@ public class Mage extends Hero implements Attackable {
 	public int getZ() {
 		// TODO Auto-generated method stub
 		return 0;
+	}
+
+	public FireBall getFireball() {
+		return fireball;
 	}
 
 }

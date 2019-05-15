@@ -10,7 +10,7 @@ import render.Resource;
 
 public class Hero extends Hitbox implements Irenderable {
 
-	public static final int HEIGHT = 100;
+	public static final int HEIGHT = 167;
 	private static int score;
 	private static int stage = 0;
 	protected int z;
@@ -25,17 +25,28 @@ public class Hero extends Hitbox implements Irenderable {
 		this.z = Integer.MAX_VALUE;
 		this.position = a;
 	}
-
-	public void updateScore(Monster monster) {
-		setScore(getScore() + monster.getMonsterPoint());
+	
+	@Override
+	public void draw(GraphicsContext g2d, long time) {
+		// TODO Auto-generated method stub
+		g2d.drawImage(Resource.Hero0,this.getA().getX(), this.getA().getY()+100,167,300);
 	}
 
-	public boolean isJumped() {
-		return isJumped;
+	@Override
+	public boolean IsVisible() {
+		// TODO Auto-generated method stub
+		return true;
 	}
 
-	public void setJumped(boolean isJumped) {
-		this.isJumped = isJumped;
+	@Override
+	public int getZ() {
+		// TODO Auto-generated method stub
+		return 5;
+	}
+
+	@Override
+	public boolean isDestroyed() {
+		return isDestroyed;
 	}
 
 	public void jump() {
@@ -80,6 +91,18 @@ public class Hero extends Hitbox implements Irenderable {
 		}.start();
 	}
 
+	public void updateScore(Monster monster) {
+		setScore(getScore() + monster.getMonsterPoint());
+	}
+	
+	public boolean isJumped() {
+		return isJumped;
+	}
+
+	public void setJumped(boolean isJumped) {
+		this.isJumped = isJumped;
+	}
+
 	public double getxSpeed() {
 		return xSpeed;
 	}
@@ -119,28 +142,4 @@ public class Hero extends Hitbox implements Irenderable {
 	public void setDestroyed(boolean isDestroyed) {
 		this.isDestroyed = isDestroyed;
 	}
-
-	@Override
-	public boolean isDestroyed() {
-		return isDestroyed;
-	}
-
-	@Override
-	public void draw(GraphicsContext g2d, long time) {
-		// TODO Auto-generated method stub
-		g2d.drawImage(Resource.Hero0, position.getX(), position.getY());
-	}
-
-	@Override
-	public boolean IsVisible() {
-		// TODO Auto-generated method stub
-		return true;
-	}
-
-	@Override
-	public int getZ() {
-		// TODO Auto-generated method stub
-		return Integer.MAX_VALUE;
-	}
-
 }

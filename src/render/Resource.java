@@ -39,7 +39,7 @@ public class Resource {
 	public static Image Coin1,Coin2,Coin3,Coin4;
 	
 	//HeroAttack
-	public static Image FireBall, Boomerang;
+	public static Image FireBall, Boomerang,Scythe;
 	
 	//BossAttack
 	public static Image BossAttack,ParriedBall1,ParriedBall2;
@@ -54,6 +54,7 @@ public class Resource {
 		//HeroAttack
 		FireBall = getImage("image/FireBall.png");
 		Boomerang  = getImage("image/Boomerange.png");
+		Scythe = getImage("image/Scythe.gif");
 		Hero1_Attack = getImage("image/Hero1_Attack.gif");
 		Hero2_Attack = getImage("image/Hero2_Attack.gif");
 		Hero3_Attack = getImage("image/Hero3_Attack.gif");
@@ -68,7 +69,7 @@ public class Resource {
 		
 		
 		//Monster  Dead for dead object
-		Dead = getImage("image/Dead.png"); 
+		Dead = getImage("image/Dead.gif"); 
 		Monster1 = getImage("image/Monster1.gif");
 		Monster2 = getImage("image/Monster2.gif");
 		Monster3 = getImage("image/Monster3.gif");
@@ -91,6 +92,9 @@ public class Resource {
 		ObstacleTall_0 = getImage("image/ObstacleTall_00.png");
 		Obstacle_0 = getImage("image/Ostacl_00.png");
 		Hero0 = getImage("image/Hero0.gif");
+		ObstacleTall_0 = getImage("image/ObstacleTall_0.png");
+		Obstacle_0 = getImage("image/Ostacl_0.png");
+		Hero0 = getImage("image/Hero0.gif");
 		
 		//stage1
 		Stage10 = getImage("image/Stage10.png");
@@ -104,16 +108,16 @@ public class Resource {
 		Stage1_lava1 = getImage("image/Stage1_lava1.png");
 		Stage1_lava2 = getImage("image/Stage1_lava2.png");
 		Ground1 = getImage("image/Ground1.gif");
-		ObstacleTall_1 = getImage("image/ObstacleTall_01.png");
-		Obstacle_1 = getImage("image/Ostacl_01.png");
+		ObstacleTall_1 = getImage("image/ObstacleTall_1.png");
+		Obstacle_1 = getImage("image/Ostacl_1.png");
 		Hero1 = getImage("image/Hero1.gif");
 
 		
 		//stage2
 		Stage2 = getImage("image/Stage2.png");
 		Ground2 = getImage("image/Ground0.png");  //use the same as start
-		ObstacleTall_2 = getImage("image/ObstacleTall_00.png");
-		Obstacle_2 = getImage("image/Ostacl_00.png");
+		ObstacleTall_2 = getImage("image/ObstacleTall_2.png");
+		Obstacle_2 = getImage("image/Ostacl_2.png");
 		Hero2 = getImage("image/Hero2.gif");
 		
 		
@@ -124,8 +128,8 @@ public class Resource {
 		Stage33 = getImage("image/Stage33.png");
 		Stage34 = getImage("image/Stage34.png");
 		Ground3 = getImage("image/Ground3.png");
-		ObstacleTall_3 = getImage("image/ObstacleTall_03.gif");
-		Obstacle_3 = getImage("image/Ostacl_03.png");
+		ObstacleTall_3 = getImage("image/ObstacleTall_3.gif");
+		Obstacle_3 = getImage("image/Ostacl_3.png");
 		Hero3 = getImage("image/Hero3.gif");
 
 		
@@ -138,8 +142,8 @@ public class Resource {
 		Stage4_prisoner1 = getImage("image/Stage4_prisoner1.gif");
 		Stage4_prisoner2 = getImage("image/Stage4_prisoner2.gif");
 		Ground4 = getImage("image/Ground4.png");
-		ObstacleTall_4 = getImage("image/ObstacleTall_04.png");
-		Obstacle_4 = getImage("image/Ostacl_04.png");
+		ObstacleTall_4 = getImage("image/ObstacleTall_4.png");
+		Obstacle_4 = getImage("image/Ostacl_4.png");
 		Hero4 = getImage("image/Hero4.gif");
 		
 	}

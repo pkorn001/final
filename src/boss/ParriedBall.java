@@ -6,7 +6,7 @@ import logic.Position;
 import render.Irenderable;
 import render.Resource;
 
-public class ParriedBall extends BossAttack implements Irenderable{
+public class ParriedBall extends BossAttack implements Irenderable {
 	
 	private int z;
 	private boolean isParried;
@@ -15,14 +15,6 @@ public class ParriedBall extends BossAttack implements Irenderable{
 		super(a, width, height, xSpeed, ySpeed);
 		z = Integer.MAX_VALUE;
 		isParried = false;
-	}
-	
-	public boolean isParried() {
-		return isParried;
-	}
-
-	public void setParried(boolean isParried) {
-		this.isParried = isParried;
 	}
 	
 	@Override
@@ -39,5 +31,13 @@ public class ParriedBall extends BossAttack implements Irenderable{
 	public boolean IsVisible() {
 		// TODO Auto-generated method stub
 		return !isParried();
+	}
+	
+	public boolean isParried() {
+		return isParried;
+	}
+
+	public void setParried(boolean isParried) {
+		this.isParried = isParried;
 	}
 }

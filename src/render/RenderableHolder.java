@@ -41,5 +41,6 @@ public class RenderableHolder {
 			if(entities.get(i).isDestroyed())
 				entities.remove(i);
 		}
+		Collections.sort(entities, comparator);
 	}
 }

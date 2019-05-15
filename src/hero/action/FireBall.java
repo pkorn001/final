@@ -54,10 +54,6 @@ public class FireBall extends Hitbox implements Irenderable {
 		// TODO Auto-generated method stub
 		return this.isDestroyed;
 	}
-	
-	public void setDestroyed(boolean isDestroyed) {
-		this.isDestroyed = isDestroyed;
-	}
 
 	@Override
 	public void draw(GraphicsContext g2d, long time) {
@@ -65,4 +61,9 @@ public class FireBall extends Hitbox implements Irenderable {
 		g2d.drawImage(Resource.FireBall, heroPoint.getX()+1, heroPoint.getY());
 		// draw in front of hero
 	}
+	
+	public void setDestroyed(boolean isDestroyed) {
+		this.isDestroyed = isDestroyed;
+	}
+
 }

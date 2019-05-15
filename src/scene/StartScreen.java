@@ -30,7 +30,7 @@ public class StartScreen extends Scene {
 
 	public StartScreen(StackPane stackpane) {
 		super(stackpane);
-		hero = new Hero(new Position(10, 430));
+		hero = new Hero(new Position(100, 460));
 		background = new Background();
 		RenderableHolder.getInstance().getEntities().add(background);
 		RenderableHolder.getInstance().getEntities().add(hero);

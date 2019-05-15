@@ -27,11 +27,17 @@ public class GameScreen extends Scene {
 	}
 
 	public void paintComponent() {
-		System.out.println("--------------------------------------------------");
+		System.out.println("-----------------------------------------");
 		for (Irenderable entity : RenderableHolder.getInstance().getEntities()) {
-			System.out.println(entity.toString());
 			if (entity.IsVisible() && !entity.isDestroyed()) {
+<<<<<<< HEAD
 				entity.draw(gc, 0); // edit later
+||||||| merged common ancestors
+				entity.draw(gc,0); // edit later
+=======
+				System.out.println(entity);
+				entity.draw(gc,0); // edit later
+>>>>>>> dbe49095c9206d9955f3dbae469709e0cc8f8842
 			}
 		}
 	}

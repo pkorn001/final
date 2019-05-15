@@ -1,12 +1,7 @@
 package boss;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import hero.action.Attackable;
 import hero.base.Hero;
 import javafx.scene.canvas.GraphicsContext;
-import logic.GameLogic;
 import logic.Hitbox;
 import logic.Position;
 import obstacle.Bat;
@@ -27,45 +22,37 @@ public class Boss extends Hitbox implements Irenderable {
 	private static boolean destroyed;
 	private int z;
 	private boolean isAppeared;
-	
-	public boolean isAppeared() {
-		return isAppeared;
-	}
-
-	public void setAppeared(boolean isAppeared) {
-		isAppeared = isAppeared;
-	}
 
 	public Boss(Position a, int xSpeed, int ySpeed) {
 		super(a, 200, 500, xSpeed, ySpeed);
 		this.z = Integer.MAX_VALUE;
-		this.destroyed = false;
+		destroyed = false;
 		setAppeared(false);
 	}
-
-	public static void isAttacked() {
-		if (!destroyed) {
-			bossHp--;
+	
+	@Override
+	public void draw(GraphicsContext g2d, long time) {
+		if (isDestroyed()) {
+			g2d.drawImage(Resource.Dead, this.getB().getX(), this.getB().getY(), this.getWidth(), this.getHeight());
+		} else {
+			if (getBossHp() <= 100) {
+				g2d.drawImage(Resource.HardBoss, this.getB().getX(), this.getB().getY(), this.getWidth(),
+						this.getHeight());
+			} else {
+				g2d.drawImage(Resource.Boss, this.getB().getX(), this.getB().getY(), this.getWidth(), this.getHeight());
+			}
 		}
-		if (getBossHp() == 0) {
-			destroyed = true;
-		}
 	}
 
-	public int getHIT_POINT() {
-		return HIT_POINT;
+	@Override
+	public boolean IsVisible() {
+		if (Hero.getScore() > 5000 && Hero.getScore() % 5000 <= 500) {setAppeared(true);};
+		return isAppeared;
 	}
 
-	public int getKILLED_POINT() {
-		return KILLED_POINT;
-	}
-
-	public static int getBossHp() {
-		return bossHp;
-	}
-
-	public boolean isDestroyed() {
-		return destroyed;
+	@Override
+	public int getZ() {
+		return z;
 	}
 
 	public Hitbox create(Position p,int attackType,int MonsterType, double xSpeed, double ySpeed) {
@@ -104,30 +91,38 @@ public class Boss extends Hitbox implements Irenderable {
 			}
 		}
 	}	
-
-	@Override
-	public void draw(GraphicsContext g2d, long time) {
-		if (isDestroyed()) {
-			g2d.drawImage(Resource.Dead, this.getB().getX(), this.getB().getY(), this.getWidth(), this.getHeight());
-		} else {
-			if (getBossHp() <= 100) {
-				g2d.drawImage(Resource.HardBoss, this.getB().getX(), this.getB().getY(), this.getWidth(),
-						this.getHeight());
-			} else {
-				g2d.drawImage(Resource.Boss, this.getB().getX(), this.getB().getY(), this.getWidth(), this.getHeight());
-			}
+	
+	public static void isAttacked() {
+		if (!destroyed) {
+			bossHp--;
+		}
+		if (getBossHp() == 0) {
+			destroyed = true;
 		}
 	}
-
-	@Override
-	public boolean IsVisible() {
-		if (Hero.getScore() > 5000 && Hero.getScore() % 5000 <= 500) {setAppeared(true);};
+	
+	public boolean isAppeared() {
 		return isAppeared;
 	}
 
-	@Override
-	public int getZ() {
-		return z--;
+	public void setAppeared(boolean isAppeared) {
+		this.isAppeared = isAppeared;
 	}
 
+	public int getHIT_POINT() {
+		return HIT_POINT;
+	}
+
+	public int getKILLED_POINT() {
+		return KILLED_POINT;
+	}
+
+	public static int getBossHp() {
+		return bossHp;
+	}
+
+	public boolean isDestroyed() {
+		return destroyed;
+	}
+	
 }
