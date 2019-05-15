@@ -13,6 +13,7 @@ public abstract class Hitbox {
 	protected double ySpeed;
 	protected double width;
 	protected double height;
+	protected boolean destroyed;
 	
 	public Position getA() {
 		return A;
@@ -30,6 +31,10 @@ public abstract class Hitbox {
 		return ySpeed;
 	}
 
+	public void setDestroyed(boolean destroyed) {
+		this.destroyed = destroyed;
+	}
+	
 	public void setySpeed(double ySpeed) {
 		this.ySpeed = ySpeed*GameLogic.getSpeedFactor();
 	}
@@ -80,10 +85,10 @@ public abstract class Hitbox {
 	//Hero has no velocity
 	public Hitbox(Position a,int width,int height) {
 		super();
-		this.A = new Position(a.getX(), a.getY());
-		this.B = new Position(a.getX(), a.getY()+height);
-		this.C = new Position(a.getX()+width, a.getY()+height);
-		this.D = new Position(a.getX()+width, a.getY());
+		this.A = new Position(a.getX(), a.getY()+height);
+		this.B = new Position(a.getX(), a.getY());
+		this.C = new Position(a.getX()+width, a.getY());
+		this.D = new Position(a.getX()+width, a.getY()+height);
 		this.width = width;
 		this.height = height;
 	}
@@ -93,10 +98,10 @@ public abstract class Hitbox {
 		super();
 		this.width = width;
 		this.height = height;
-		this.A = new Position(a.getX(), a.getY());
-		this.B = new Position(a.getX(), a.getY()+height);
-		this.C = new Position(a.getX()+width, a.getY()+height);
-		this.D = new Position(a.getX()+width, a.getY());
+		this.A = new Position(a.getX(), a.getY()+height);
+		this.B = new Position(a.getX(), a.getY());
+		this.C = new Position(a.getX()+width, a.getY());
+		this.D = new Position(a.getX()+width, a.getY()+height);
 		setxSpeed(xSpeed);
 		setySpeed(ySpeed);
 	}
@@ -107,15 +112,16 @@ public abstract class Hitbox {
 				|| ((this.D.getX() > hitbox.A.getX() && (this.A.getX() < hitbox.A.getX()) && (this.C.getY() > hitbox.A.getY())))
 				|| ((this.D.getX() > hitbox.B.getX() && (this.A.getX() < hitbox.B.getX()) && (this.C.getY() > hitbox.B.getY()) && (this.D.getY() < hitbox.B.getY())))
 				) {
+			System.out.println("hited");
 			return true;
 		}
 		return false;
 		}
 	
-	public void update(long time) {
+	public void update() {
 		for(Position i  : new Position[] {this.A, this.B, this.C, this.D}){
-			i.setX(i.getX() + this.xSpeed * time);
-			i.setY(i.getY() + this.ySpeed * time);
+			i.setX(i.getX() + this.xSpeed);
+			i.setY(i.getY() + this.ySpeed);
 		}
 
 	}

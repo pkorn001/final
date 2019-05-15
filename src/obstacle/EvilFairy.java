@@ -16,7 +16,7 @@ public class EvilFairy extends Monster{
 	}
 
 	@Override
-	public void draw(GraphicsContext g2d, long  time) {
+	public void draw(GraphicsContext g2d) {
 		if (isDestroyed()) {
 			g2d.drawImage(Resource.Dead,this.getB().getX(),this.getB().getY(),this.getWidth(),this.getHeight());
 		}

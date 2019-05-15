@@ -13,16 +13,16 @@ public class SineMove implements Move {
 	
 	public SineMove(Hitbox obj) {
 		this.obj = obj;
-		this.xSpeed = -50;
+		this.xSpeed = -25;
 		this.ySpeed = 10;
 		obj.setxSpeed(xSpeed); 
 		obj.setySpeed(ySpeed); 
 	}
 
 	@Override
-	public Position move(long time) {
-		double x = this.xSpeed * time;
-		double y = 200 * Math.sin(ySpeed * time);
+	public Position move() {
+		double x = this.xSpeed;
+		double y = 200 * Math.sin(ySpeed);
 		return new Position(x, y);
 	}
 }

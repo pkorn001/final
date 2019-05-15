@@ -29,13 +29,11 @@ import scene.Background;
 
 public class GameLogic {
 	
-	static {
-		new GameLogic();
-	}
 	
 	protected static Hero hero;
 	protected static Boss boss;
 	protected static List<Item> items = new ArrayList<Item>();
+	protected static List<Hitbox> trashes = new ArrayList<Hitbox>();
 	protected static List<Monster> monsters = new ArrayList<Monster>();
 	protected static List<ObstacleBox> obstacleBoxes = new ArrayList<ObstacleBox>();
 	protected static List<Hitbox> boss_Attack = new ArrayList<Hitbox>();
@@ -44,23 +42,22 @@ public class GameLogic {
 	protected static boolean attack;
 	protected static boolean gameOver;
 	protected static double speedFactor;
-	private Background bg;
+	private static Background bg = new Background();;
 	static Random isMonsterGen = new Random();
 	private static int counter = 0;
 	private static int boss_Timer = 0;
 	
-	private GameLogic() {
-		hero = new Hero(new Position(100.00,500));
-			
-		bg = new Background();
-		boss = new Boss(new Position(1600,0), 0, 0);
-		speedFactor = 1;
 
-		gameOver = false;
-		RenderableHolder.getInstance().getEntities().add(hero);
-		RenderableHolder.getInstance().getEntities().add(bg);
-		RenderableHolder.getInstance().getEntities().add(boss);
+	static {
+		new GameLogic();
+	}
 	
+	private GameLogic() {
+		hero = new Hero(new Position(100.00,600));
+		boss = new Boss(new Position(1600,0), 0, 0);
+		speedFactor = 0.7;
+		gameOver = false;
+		everything.add(hero);
 	}
 	
 	public static boolean isGameOver() {
@@ -82,20 +79,20 @@ public class GameLogic {
 	public static void ObstacleBoxesGen() {
 		if (counter % 48 == 0) {
 			Random obstacleBox_Type = new Random();
-			ObstacleBox e = new ObstacleBox(new Position(1600,550),200, 0,0);
+			ObstacleBox e = new ObstacleBox(new Position(1600,hero.getB().getY()),200, obstacleBox_Type.nextInt(2),0);
 			obstacleBoxes.add(e);
 			everything.add(e);
-			RenderableHolder.getInstance().getEntities().add(e);
+			
 		}
 	}
 	
 	public static void ItemGen() {
 		if (counter % 48 == 0) {
 			Random itemType = new Random();
-			Item e = new Item(new Position(1600,0),50,itemType.nextInt(4));
+			Item e = new Item(new Position(1600,hero.getA().getY()-200),-20,itemType.nextInt(4));
 			items.add(e);
 			everything.add(e);
-			RenderableHolder.getInstance().getEntities().add(e);
+			
 		}
 	}
 
@@ -103,66 +100,67 @@ public class GameLogic {
 		Random monsterType = new Random();
 		if(counter % 48 == 0) {
 			if (Hero.getStage() == 0) {
-				Monster e = new Hornet(new Position(1600,500), 100, 100, 0, -50, 0);
+				Monster e = new Hornet(new Position(1600,hero.getB().getY()), 150, 150, 0, -50, 0);
 				monsters.add(e);
 				everything.add(e);
-				RenderableHolder.getInstance().getEntities().add(e);
+				
 			}
-			else if (Hero.getStage() == 1) {	
+			else if (Hero.getStage() == 1) {
+				
 				if(monsterType.nextInt(2) == 0) {
-					Monster e = new Slime(new Position(1000,0), 100, 100, 0, -50, 0);
+					Monster e = new Slime(new Position(1600,hero.getB().getY()), 300, 300, 0, -50, 0);
 					monsters.add(e);
 					everything.add(e);
-					RenderableHolder.getInstance().getEntities().add(e);
+					
 				}
 				else if(monsterType.nextInt(2) == 1) {
-					Monster e = new FlyingFire(new Position(1000,250), 100, 100, 0, -50, 0);
+					Monster e = new FlyingFire(new Position(1600,hero.getB().getY()), 300, 300, 0, -50, 0);
 					monsters.add(e);
 					everything.add(e);
-					RenderableHolder.getInstance().getEntities().add(e);
+					
 				}
 			}
 			else if (Hero.getStage() == 2) {
 				if(monsterType.nextInt(2) == 0) {
-					Monster e = new Hornet(new Position(1000,hero.getHeight()* 2 / 3), 100, 100, 0, -50, 0);
+					Monster e = new Hornet(new Position(1600,hero.getB().getY()), 150, 150, 0, -50, 0);
 					monsters.add(e);
 					everything.add(e);
-					RenderableHolder.getInstance().getEntities().add(e);
+					
 				}
 				else if(monsterType.nextInt(2) == 1) {
-					Monster e = new EvilFairy(new Position(1600,250), 100, 100, 0, -50, 0);
+					Monster e = new EvilFairy(new Position(1600,hero.getB().getY()), 150, 150, 0, -50, 0);
 					monsters.add(e);
 					everything.add(e);
-					RenderableHolder.getInstance().getEntities().add(e);
+					
 				}
 				
 			}
 			else if (Hero.getStage() == 3) {
 				if(monsterType.nextInt(2) == 0) {
-					Monster e = new Hornet(new Position(1600,hero.getHeight()* 2 / 3), 100, 100, 0, -50, 0);
+					Monster e = new Hornet(new Position(1600,hero.getB().getY()), 150, 150, 0, -50, 0);
 					monsters.add(e);
 					everything.add(e);
-					RenderableHolder.getInstance().getEntities().add(e);
+					
 				}
 				else if(monsterType.nextInt(2) == 1) {
-					Monster e = new Skeleton(new Position(1600,0), 100, 100, 0, -50, 0);
+					Monster e = new Skeleton(new Position(1600,hero.getB().getY()), 150, 150, 0, -50, 0);
 					monsters.add(e);
 					everything.add(e);
-					RenderableHolder.getInstance().getEntities().add(e);
+					
 				}
 			}
 			else if (Hero.getStage() == 4) {
 				if(monsterType.nextInt(2) == 0) {
-					Monster e = new Slime(new Position(1600,0), 100, 100, 0, -50, 0);
+					Monster e = new Slime(new Position(1600,hero.getB().getY()), 150, 150, 0, -50, 0);
 					monsters.add(e);
 					everything.add(e);
-					RenderableHolder.getInstance().getEntities().add(e);
+					
 				}
 				else if(monsterType.nextInt(2) == 1) {
-					Monster e = new Bat(new Position(1600,hero.getHeight()* 2 / 3), 100, 100, 0, -50, 0);
+					Monster e = new Bat(new Position(1600,hero.getB().getY()), 150, 150, 0, -50, 0);
 					monsters.add(e);
 					everything.add(e);
-					RenderableHolder.getInstance().getEntities().add(e);
+					
 				}
 			}
 		}
@@ -191,37 +189,37 @@ public class GameLogic {
 						ParriedBall e = (ParriedBall) boss.create(new Position(1920, 100),0,-1,-50, 0);
 						boss_Attack.add(e);
 						everything.add(e);
-						RenderableHolder.getInstance().getEntities().add(e);
+						
 					}
 		
 					else if (i == 2) {
 						ParriedBall e = (ParriedBall) boss.create(new Position(1920, 250),0,-1,-50, 0);
 						boss_Attack.add(e);
 						everything.add(e);
-						RenderableHolder.getInstance().getEntities().add(e);
+						
 					}
 		
 					else if (i == 4) {
 						BossAttack e = (BossAttack) boss.create(new Position(1920, 100),1,-1,-50, 0);
 						boss_Attack.add(e);
 						everything.add(e);
-						RenderableHolder.getInstance().getEntities().add(e);
+						
 					} else if (i == 5) {
 						BossAttack e = (BossAttack) boss.create(new Position(1920, 100),1,-1,-50, 0);
 						boss_Attack.add(e);
 						everything.add(e);
-						RenderableHolder.getInstance().getEntities().add(e);
+						
 		
 					} else if (i == 7) {
 							BossAttack e = (BossAttack) boss.create(new Position(1920, 250),1,-1,-50, 0);
 							boss_Attack.add(e);
 							everything.add(e);
-							RenderableHolder.getInstance().getEntities().add(e);
+							
 					} else if (i == 8) {
 						BossAttack e = (BossAttack) boss.create(new Position(1920, 250),1,-1,-50, 0);
 						boss_Attack.add(e);
 						everything.add(e);
-						RenderableHolder.getInstance().getEntities().add(e);
+						
 					}
 				}
 	
@@ -234,17 +232,17 @@ public class GameLogic {
 							ParriedBall e = (ParriedBall) boss.create(new Position(boss.getB().getX(),hero.getA().getY()+100),0,-1,-50, 0);
 							boss_Attack.add(e);
 							everything.add(e);
-							RenderableHolder.getInstance().getEntities().add(e);
+							
 						} else if (attackType.nextInt(3) == 1) {
 							BossAttack e = (BossAttack) boss.create(new Position(boss.getB().getX(),hero.getB().getY()-100),1,-1,-50, 0);
 							boss_Attack.add(e);
 							everything.add(e);
-							RenderableHolder.getInstance().getEntities().add(e);
+							
 						} else if (attackType.nextInt(3) == 2) {
 							Monster e = (Monster) boss.create(new Position(boss.getB().getX(),hero.getA().getY()+100),2,monsterType.nextInt(6)+1,-50, 0);
 							boss_Attack.add(e);
 							everything.add(e);
-							RenderableHolder.getInstance().getEntities().add(e);
+							
 						}
 					}
 
@@ -322,11 +320,6 @@ public class GameLogic {
 							everything.add(e2);
 							everything.add(e3);
 							everything.add(e4);
-							RenderableHolder.getInstance().getEntities().add(e1);
-							RenderableHolder.getInstance().getEntities().add(e2);
-							RenderableHolder.getInstance().getEntities().add(e3);
-							RenderableHolder.getInstance().getEntities().add(e4);
-		
 						}
 					}
 				}
@@ -341,37 +334,37 @@ public class GameLogic {
 						ParriedBall e = (ParriedBall) boss.create(new Position(1920, 100),0,-1,-50, 0);
 						boss_Attack.add(e);
 						everything.add(e);
-						RenderableHolder.getInstance().getEntities().add(e);
+						
 					}
 		
 					else if (i == 2) {
 						ParriedBall e = (ParriedBall) boss.create(new Position(1920, 250),0,-1,-50, 0);
 						boss_Attack.add(e);
 						everything.add(e);
-						RenderableHolder.getInstance().getEntities().add(e);
+						
 					}
 		
 					else if (i == 4) {
 						BossAttack e = (BossAttack) boss.create(new Position(1920, 100),1,-1,-50, 0);
 						boss_Attack.add(e);
 						everything.add(e);
-						RenderableHolder.getInstance().getEntities().add(e);
+						
 					} else if (i == 5) {
 						BossAttack e = (BossAttack) boss.create(new Position(1920, 100),1,-1,-50, 0);
 						boss_Attack.add(e);
 						everything.add(e);
-						RenderableHolder.getInstance().getEntities().add(e);
+						
 		
 					} else if (i == 7) {
 							BossAttack e = (BossAttack) boss.create(new Position(1920, 250),1,-1,-50, 0);
 							boss_Attack.add(e);
 							everything.add(e);
-							RenderableHolder.getInstance().getEntities().add(e);
+							
 					} else if (i == 8) {
 						BossAttack e = (BossAttack) boss.create(new Position(1920, 250),1,-1,-50, 0);
 						boss_Attack.add(e);
 						everything.add(e);
-						RenderableHolder.getInstance().getEntities().add(e);
+						
 					}
 				}
 	
@@ -392,10 +385,6 @@ public class GameLogic {
 						everything.add(e2);
 						everything.add(e3);
 						everything.add(e4);
-						RenderableHolder.getInstance().getEntities().add(e1);
-						RenderableHolder.getInstance().getEntities().add(e2);
-						RenderableHolder.getInstance().getEntities().add(e3);
-						RenderableHolder.getInstance().getEntities().add(e4);
 					}
 	
 					else if (i1 == 1) {
@@ -411,10 +400,6 @@ public class GameLogic {
 						everything.add(e2);
 						everything.add(e3);
 						everything.add(e4);
-						RenderableHolder.getInstance().getEntities().add(e1);
-						RenderableHolder.getInstance().getEntities().add(e2);
-						RenderableHolder.getInstance().getEntities().add(e3);
-						RenderableHolder.getInstance().getEntities().add(e4);
 					}
 	
 					else if (i1 == 2) {
@@ -430,10 +415,6 @@ public class GameLogic {
 						everything.add(e2);
 						everything.add(e3);
 						everything.add(e4);
-						RenderableHolder.getInstance().getEntities().add(e1);
-						RenderableHolder.getInstance().getEntities().add(e2);
-						RenderableHolder.getInstance().getEntities().add(e3);
-						RenderableHolder.getInstance().getEntities().add(e4);
 					}
 	
 					else if (i1 == 3) {
@@ -449,11 +430,6 @@ public class GameLogic {
 						everything.add(e2);
 						everything.add(e3);
 						everything.add(e4);
-						RenderableHolder.getInstance().getEntities().add(e1);
-						RenderableHolder.getInstance().getEntities().add(e2);
-						RenderableHolder.getInstance().getEntities().add(e3);
-						RenderableHolder.getInstance().getEntities().add(e4);
-	
 					}
 				}
 			}
@@ -477,8 +453,72 @@ public class GameLogic {
 			setAttack(false);
 		}
 	}
-
-	public static void updateState() {
+	
+	public static void logicUpdate() {
+		counter++;
+		speedFactor = Math.min(speedFactor + 0.00005, 2);
+		bg.update();
+		
+		if(counter % 6 == 0){
+			Hero.setScore(Hero.getScore() + 1); //score increase every second
+		}
+		
+		if(counter % (int)(1701 - speedFactor) == 0) {
+			ItemGen();
+		}
+		
+		else if(counter % (int)(43 - speedFactor) == 0) {
+			MonstersGen();
+		}
+		
+		else if(counter % (int)(31 - speedFactor) == 0) {
+			ObstacleBoxesGen();
+		}
+		
+		
+		
+		if (boss.IsVisible()){
+			if(counter % 40 == 0) {
+				boss_Timer++;
+				BossAttackGen();
+				if (boss_Timer == 10) {
+					boss.setAppeared(false);
+					boss_Timer = 0;
+				}
+			}
+		}
+		
+		for (Monster e : monsters) {  // for monster
+			//e.update(time);
+			if (e.collide(hero)) {
+				hero.setDestroyed(true);
+				setGameOver(true);
+			}
+		}
+		
+		for (Hitbox e : boss_Attack) {
+			if (e.collide(hero)) {
+				hero.setDestroyed(true);
+				setGameOver(true);
+			}
+		}
+	
+		for (Item e :items) { // for item
+			//e.update(time);s
+			if (hero.collide(e)) {
+				switch (((Item) e).getItemType()) {
+				case ("Mage"):
+					break;
+				case ("Boomeranger"):
+					break;
+				case ("Swordman"):
+					break;
+				case ("Assassin"):
+					break;
+				}
+			}
+		}
+		
 		if (isJump()) {
 			hero.jump();
 		}
@@ -493,110 +533,71 @@ public class GameLogic {
 				((Assassin) hero).attack();
 			}
 		}
-	}
-	
-	public static void update() {
-		counter++;
-		if(counter % 45 == 0) {
-			if(isMonsterGen.nextBoolean()) {
-				MonstersGen();
-			}
-		}
-		if(counter % 6 == 0){
-			Hero.setScore(Hero.getScore() + 1); //score increase every second
-		}
-		if(counter % 1700 == 0) {
-			ItemGen();
-		}
-		if(counter % 30 == 0) {
-			ObstacleBoxesGen();
-		}
-		if (boss.IsVisible()){
-			if(counter % 40 == 0) {
-				boss_Timer++;
-				BossAttackGen();
-				if (boss_Timer == 10) {
-					boss.setAppeared(false);
-					boss_Timer = 0;
+			//e.update(time);
+			if (hero instanceof Mage) {
+				for (Monster monster : monsters) {
+					if (((Mage) hero).getFireball().collide(monster)) {
+						//TODO: new Fireball
+						((Mage) hero).getFireball().setDestroyed(true);
+						hero.updateScore(monster);
+						monster.setDestroyed(true);
+					}
+				}
+			} else if (hero instanceof Boomeranger) {
+				for (Monster monster : monsters) {
+					if (((Boomeranger) hero).getBoomerang().collide(monster)){
+						hero.updateScore(monster);
+						monster.setDestroyed(true);
+					}
+					if (((Boomeranger) hero).getBoomerang().collide(hero)){
+					}
+				}
+			} else if (hero instanceof Swordman) {
+				for (Monster monster : monsters) {
+					if (((Swordman) hero).getAttackBox().collide(monster)) {
+						((Swordman) hero).updateScore(monster);
+						monster.setDestroyed(true);
+					}
+				}
+				
+			} else if (hero instanceof Assassin) {
+				for (Monster monster : monsters) {
+					if (((Assassin) hero).getAttackBox().collide(monster)) {
+						((Assassin) hero).updateScore(monster);
+						monster.setDestroyed(true);
+					}
 				}
 			}
-		}
-	}
-	
-	public static void logicUpdate(long time) {
-		update();
-		for (Hitbox e : everything) {
-			if (e.getD().getX() < 0) {
-				RenderableHolder.getInstance().getEntities().remove(e);
-				obstacleBoxes.remove(e);
-				everything.remove(e);
-			}
 			
-			if (! (e instanceof Hero)) {
-				e.update(time);
-			}
-			
-			if (e instanceof Monster || e instanceof BossAttack) { // for monster
-				//e.update(time);
+			for (ObstacleBox e : obstacleBoxes) {
 				if (e.collide(hero)) {
 					hero.setDestroyed(true);
 					setGameOver(true);
 				}
-		
-			} else if (e instanceof Item) { // for item
-				//e.update(time);s
-				if (hero.collide(e)) {
-					switch (((Item) e).getItemType()) {
-					case ("Mage"):
-						break;
-					case ("Boomeranger"):
-						break;
-					case ("Swordman"):
-						break;
-					case ("Assassin"):
-						break;
-					}
-				}
-			} else if (e instanceof Hero) { // for hero
-				updateState();
-				//e.update(time);
-				if (e instanceof Mage) {
-					for (Hitbox hb : everything) {
-						if (((Mage) e).getFireball().collide(hb)) {
-							((Mage) e).getFireball().setDestroyed(true);
-							if (hb instanceof Monster) {
-								((Monster) hb).setDestroyed(true);
-							}
-						}
-					}
-				} else if (e instanceof Boomeranger) {
-					for (Monster monster : monsters) {
-						if (((Boomeranger) e).getBoomerang().collide(monster)) {
-							monster.setDestroyed(true);
-						}
-					}
-				} else if (e instanceof Swordman) {
-					for (Monster monster : monsters) {
-						if (((Swordman) e).getAttackBox().collide(monster)) {
-							((Swordman) e).updateScore(monster);
-							monster.setDestroyed(true);
-						}
-					}
-				} else if (e instanceof Assassin) {
-					for (Monster monster : monsters) {
-						if (((Assassin) e).getAttackBox().collide(monster)) {
-							((Assassin) e).updateScore(monster);
-							monster.setDestroyed(true);
-						}
-					}
-				} else if (e instanceof ObstacleBox) {
-					if (e.collide(hero)) {
-						hero.setDestroyed(true);
-						setGameOver(true);
-					}
-				}
+			}
+	
+		for (Hitbox e : everything) {
+			e.update();
+			if (e.getD().getX() < -300) {
+				trashes.add(e);
+				e.setDestroyed(true);
 			}
 		}
+		
+		for (Hitbox e : trashes) {
+			everything.remove(e);
+		}
+		
+		trashes.clear();
+			
+		RenderableHolder.getInstance().getEntities().clear();
+		
+		RenderableHolder.getInstance().getEntities().add(bg);
+		for (Hitbox e : everything) {
+			Irenderable i = (Irenderable) e;
+			RenderableHolder.getInstance().getEntities().add(i);
+		}
+	
 	}
 
 	public static boolean isJump() {

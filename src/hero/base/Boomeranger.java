@@ -7,9 +7,10 @@ import javafx.scene.canvas.GraphicsContext;
 import logic.GameLogic;
 import logic.Position;
 import obstacle.Monster;
+import render.Irenderable;
 import render.Resource;
 
-public class Boomeranger extends Hero implements Attackable {
+public class Boomeranger extends Hero implements Attackable,Irenderable {
 
 	private boolean isJumped =  false;
 	private boolean isAttacked = false;
@@ -58,7 +59,7 @@ public class Boomeranger extends Hero implements Attackable {
 	}
 
 	@Override
-	public void draw(GraphicsContext g2d, long  time) {
+	public void draw(GraphicsContext g2d) {
 		if(GameLogic.isAttack()) {
 			g2d.drawImage(Resource.Hero2_Attack, this.getA().getX(), this.getA().getY(), this.getWidth(), this.getHeight());
 		}else {

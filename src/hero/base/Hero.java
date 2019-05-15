@@ -15,7 +15,7 @@ public class Hero extends Hitbox implements Irenderable {
 
 	public static final int HEIGHT = 167;
 	private static int score;
-	private static int stage = 0;
+	private static int stage = 2;
 	protected int z;
 	protected Position position;
 	protected boolean isDestroyed = false;
@@ -23,7 +23,6 @@ public class Hero extends Hitbox implements Irenderable {
 
 	public Hero(Position a) {
 		super(a, 167, 300);
-		Hero.stage = 0;
 		Hero.score = 0;
 		this.z = Integer.MAX_VALUE;
 		this.position = a;
@@ -130,9 +129,9 @@ public class Hero extends Hitbox implements Irenderable {
 	}
 
 	@Override
-	public void draw(GraphicsContext g2d, long time) {
+	public void draw(GraphicsContext g2d) {
 		// TODO Auto-generated method stub
-		g2d.drawImage(Resource.Hero0,this.getA().getX(), this.getA().getY()+100,167,300);
+		g2d.drawImage(Resource.Hero0,getA().getX(), getB().getY(),167,300);
 	}
 
 	@Override

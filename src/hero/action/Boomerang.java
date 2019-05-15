@@ -97,7 +97,7 @@ public class Boomerang extends Hitbox implements Irenderable {
 	}
 
 	@Override
-	public void draw(GraphicsContext g2d, long  time) {
+	public void draw(GraphicsContext g2d) {
 		// TODO Auto-generated method stub
 		g2d.drawImage(Resource.Boomerang, originPoint.getX(), originPoint.getY());
 	}

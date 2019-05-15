@@ -7,9 +7,10 @@ import javafx.scene.canvas.GraphicsContext;
 import logic.GameLogic;
 import logic.Position;
 import obstacle.Monster;
+import render.Irenderable;
 import render.Resource;
 
-public class Mage extends Hero implements Attackable {
+public class Mage extends Hero implements Attackable,Irenderable {
 
 	final long startNanoTime = System.nanoTime();
 	private FireBall fireball;
@@ -31,7 +32,7 @@ public class Mage extends Hero implements Attackable {
 			public void handle(long now) {
 				// TODO Auto-generated method stub
 				long time =  (now - System.nanoTime()) * 60 / 1000000000;
-				fireball.update(time);
+				fireball.update();
 			}
 		}.start();
 	}
@@ -44,24 +45,24 @@ public class Mage extends Hero implements Attackable {
 	}
 
 	@Override
-	public void draw(GraphicsContext g2d, long time) {
+	public void draw(GraphicsContext g2d) {
 		// TODO Auto-generated method stub
 		if(GameLogic.isAttack()) {
-			g2d.drawImage(Resource.Hero1_Attack, this.getA().getX(), this.getA().getY(), this.getWidth(), this.getHeight());
+			g2d.drawImage(Resource.Hero1_Attack, this.getA().getX(), this.getB().getY(), this.getWidth(), this.getHeight());
 		}else {
-			g2d.drawImage(Resource.Hero1, this.getA().getX(), this.getA().getY(), this.getWidth(), this.getHeight());
+			g2d.drawImage(Resource.Hero1, this.getA().getX(), this.getB().getY(),167,300);
 		}
 	}
 	@Override
 	public boolean IsVisible() {
 		// TODO Auto-generated method stub
-		return false;
+		return true;
 	}
 
 	@Override
 	public int getZ() {
 		// TODO Auto-generated method stub
-		return 0;
+		return 5;
 	}
 
 }

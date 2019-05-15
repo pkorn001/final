@@ -25,7 +25,7 @@ public class GameScreen extends Canvas {
 		for (Irenderable entity : RenderableHolder.getInstance().getEntities()) {
 			if (entity.IsVisible() && !entity.isDestroyed()) {
 				System.out.println(entity);
-				entity.draw(gc,0); // edit later
+				entity.draw(gc); // edit later
 			}
 		}
 	}

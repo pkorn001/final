@@ -9,22 +9,22 @@ public class SlimeMove implements Move {
 	private double ySpeed;
 	private Hitbox obj;
 	private long time;
-	private double ground = 0;
-	private double gravity = 2400;
+	private double ground = 800;
+	private double gravity = 2;
 	private boolean hasJumped;
 	private boolean hasJumpedDown;
 	
 	public SlimeMove(Hitbox obj) {
 		this.obj = obj;
-		this.xSpeed = -50;
+		this.xSpeed = -25;
 		this.ySpeed = 0;
 		obj.setxSpeed(xSpeed); 
 		obj.setySpeed(ySpeed); 
 	}
 	
-	public void jump(long time) {
+	public void jump(double time) {
 		hasJumped = false;
-		this.ySpeed = 1200;
+		this.ySpeed = 10;
 		if (hasJumped) {
 			if(obj.getA().getY() == ground) {
 				obj.setySpeed(0);
@@ -33,7 +33,7 @@ public class SlimeMove implements Move {
 			}
 		}else {
 			hasJumped = true;
-			obj.setySpeed(this.ySpeed - (gravity * time));
+			obj.setySpeed(this.ySpeed + (gravity * time));
 			if (obj.getySpeed() < 0) {
 				hasJumpedDown = true;
 			}
@@ -49,10 +49,10 @@ public class SlimeMove implements Move {
 	}
 
 	@Override
-	public Position move(long time) {
+	public Position move() {
 		jump(time);
-		double x = this.xSpeed * time;
-		double y = this.ySpeed * time;
+		double x = this.xSpeed;
+		double y = this.ySpeed;
 		return new Position(x, y);
 	}
 

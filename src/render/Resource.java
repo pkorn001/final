@@ -103,8 +103,8 @@ public class Resource {
 		Stage15 = getImage("image/Stage15.png");
 		Stage16 = getImage("image/Stage16.png");
 		Stage17 = getImage("image/Stage17.png");
-		Stage1_lava1 = getImage("image/Stage1_lava1.png");
-		Stage1_lava2 = getImage("image/Stage1_lava2.png");
+		Stage1_lava1 = getImage("image/Stage1_lava1.gif");
+		Stage1_lava2 = getImage("image/Stage1_lava2.gif");
 		Ground1 = getImage("image/Ground1.gif");
 		ObstacleTall_1 = getImage("image/ObstacleTall_1.png");
 		Obstacle_1 = getImage("image/Ostacl_1.png");
@@ -120,7 +120,7 @@ public class Resource {
 		
 		
 		//stage3
-		Stage30 = getImage("image/Stage3.png");
+		Stage30 = getImage("image/Stage30.png");
 		Stage31 = getImage("image/Stage31.png");
 		Stage32 = getImage("image/Stage32.png");
 		Stage33 = getImage("image/Stage33.png");

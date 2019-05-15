@@ -10,6 +10,9 @@ import render.RenderableHolder;
 import scene.GameScreen;
 
 public class Main extends Application {
+	
+	private boolean isFirstFrame = true;
+	private long startlong;
 
 	@Override
 	public void start(Stage primaryStage) {
@@ -27,9 +30,8 @@ public class Main extends Application {
 			 @Override
 			 public void handle(long now) {
 			    // TODO Add another canvas update
-				long time = 1;
+				GameLogic.logicUpdate();
 				RenderableHolder.getInstance().update();
-				GameLogic.logicUpdate(time);
 				gameScreen.paintComponent();
 			}
 		}.start();

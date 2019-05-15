@@ -6,9 +6,10 @@ import logic.GameLogic;
 import logic.Hitbox;
 import logic.Position;
 import obstacle.Monster;
+import render.Irenderable;
 import render.Resource;
 
-public class Assassin extends Hero implements Attackable{
+public class Assassin extends Hero implements Attackable,Irenderable{
 
 	private static Hitbox attackBox;
 	private static boolean didShort = false;
@@ -48,7 +49,7 @@ public class Assassin extends Hero implements Attackable{
 	}
 
 	@Override
-	public void draw(GraphicsContext g2d, long time) {
+	public void draw(GraphicsContext g2d) {
 		// TODO Auto-generated method stub
 		if(GameLogic.isAttack()) {
 			if(!didShort) {

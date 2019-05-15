@@ -52,7 +52,7 @@ public class Swordman extends Hero implements Attackable {
 
 
 	@Override
-	public void draw(GraphicsContext g2d, long time) {
+	public void draw(GraphicsContext g2d) {
 		if(GameLogic.isAttack()) {
 			g2d.drawImage(Resource.Hero3_Attack, this.getA().getX(), this.getA().getY(), this.getWidth(), this.getHeight());
 		}else {
