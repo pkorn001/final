@@ -8,8 +8,7 @@ public class SineMove implements Move {
 	
 	private double xSpeed;
 	private double ySpeed;
-	private Hitbox obj;;
-	private long time;
+	private Hitbox obj;
 	
 	public SineMove(Hitbox obj) {
 		this.obj = obj;
@@ -21,8 +20,26 @@ public class SineMove implements Move {
 
 	@Override
 	public Position move() {
-		double x = this.xSpeed;
-		double y = 200 * Math.sin(ySpeed);
+		double x = obj.getxSpeed();
+		double y = obj.getySpeed();
 		return new Position(x, y);
 	}
+
+	public double getxSpeed() {
+		return xSpeed;
+	}
+
+	public void setxSpeed(double xSpeed) {
+		this.xSpeed = xSpeed;
+	}
+
+	public double getySpeed() {
+		return ySpeed;
+	}
+
+	public void setySpeed(double ySpeed) {
+		this.ySpeed = ySpeed;
+	}
+	
+	
 }

@@ -14,9 +14,8 @@ import hero.base.Hero;
 import hero.base.Mage;
 import hero.base.Swordman;
 import item.Item;
-import javafx.scene.canvas.GraphicsContext;
 import obstacle.Bat;
-import obstacle.EvilFairy;
+import obstacle.Evil;
 import obstacle.FlyingFire;
 import obstacle.Hornet;
 import obstacle.Monster;
@@ -53,7 +52,7 @@ public class GameLogic {
 	}
 	
 	private GameLogic() {
-		hero = new Hero(new Position(100.00,600));
+		hero = new Hero(new Position(100.00,550));
 		boss = new Boss(new Position(1600,0), 0, 0);
 		speedFactor = 0.7;
 		gameOver = false;
@@ -77,13 +76,10 @@ public class GameLogic {
 	}
 
 	public static void ObstacleBoxesGen() {
-		if (counter % 48 == 0) {
-			Random obstacleBox_Type = new Random();
-			ObstacleBox e = new ObstacleBox(new Position(1600,hero.getB().getY()),200, obstacleBox_Type.nextInt(2),0);
-			obstacleBoxes.add(e);
-			everything.add(e);
-			
-		}
+		Random obstacleBox_Type = new Random();
+		ObstacleBox e = new ObstacleBox(new Position(1600,hero.getB().getY()),200, obstacleBox_Type.nextInt(2),0);
+		obstacleBoxes.add(e);
+		everything.add(e);
 	}
 	
 	public static void ItemGen() {
@@ -98,70 +94,56 @@ public class GameLogic {
 
 	public static void MonstersGen() {
 		Random monsterType = new Random();
-		if(counter % 48 == 0) {
-			if (Hero.getStage() == 0) {
-				Monster e = new Hornet(new Position(1600,hero.getB().getY()), 150, 150, 0, -50, 0);
+		if (Hero.getStage() == 0) {
+			Monster e = new Hornet(new Position(1600,hero.getB().getY()), 150, 150, 0, -50, 0);
+			monsters.add(e);
+			everything.add(e);	
+		}
+		else if (Hero.getStage() == 1) {
+			if(monsterType.nextInt(3) == 0) {
+				Monster e = new Slime(new Position(1600,hero.getB().getY()), 300, 300, 0, -50, 0);
+				monsters.add(e);
+				everything.add(e);	
+			}
+			else{
+				Monster e = new FlyingFire(new Position(1600,hero.getB().getY()), 300, 300, 0, -50, 0);
 				monsters.add(e);
 				everything.add(e);
 				
 			}
-			else if (Hero.getStage() == 1) {
-				
-				if(monsterType.nextInt(2) == 0) {
-					Monster e = new Slime(new Position(1600,hero.getB().getY()), 300, 300, 0, -50, 0);
-					monsters.add(e);
-					everything.add(e);
-					
-				}
-				else if(monsterType.nextInt(2) == 1) {
-					Monster e = new FlyingFire(new Position(1600,hero.getB().getY()), 300, 300, 0, -50, 0);
-					monsters.add(e);
-					everything.add(e);
-					
-				}
+		}
+		else if (Hero.getStage() == 2) {
+			if(monsterType.nextInt(3) == 0) {
+				Monster e = new Hornet(new Position(1600,hero.getB().getY()), 150, 150, 0, -50, 0);
+				monsters.add(e);
+				everything.add(e);	
 			}
-			else if (Hero.getStage() == 2) {
-				if(monsterType.nextInt(2) == 0) {
-					Monster e = new Hornet(new Position(1600,hero.getB().getY()), 150, 150, 0, -50, 0);
-					monsters.add(e);
-					everything.add(e);
-					
+			else{
+				Monster e = new Evil(new Position(1600,hero.getB().getY()), 150, 150, 0, -50, 0);
+				monsters.add(e);
+				everything.add(e);		
+			}	
+		}
+		else if (Hero.getStage() == 3) {
+			if(monsterType.nextInt(2) == 0) {
+				Monster e = new Hornet(new Position(1600,hero.getB().getY()), 150, 150, 0, -50, 0);
+				monsters.add(e);
+				everything.add(e);
+			}else{
+				Monster e = new Skeleton(new Position(1600,hero.getB().getY()), 150, 150, 0, -50, 0);
+				monsters.add(e);
+				everything.add(e);
 				}
-				else if(monsterType.nextInt(2) == 1) {
-					Monster e = new EvilFairy(new Position(1600,hero.getB().getY()), 150, 150, 0, -50, 0);
-					monsters.add(e);
-					everything.add(e);
-					
-				}
-				
-			}
-			else if (Hero.getStage() == 3) {
-				if(monsterType.nextInt(2) == 0) {
-					Monster e = new Hornet(new Position(1600,hero.getB().getY()), 150, 150, 0, -50, 0);
-					monsters.add(e);
-					everything.add(e);
-					
-				}
-				else if(monsterType.nextInt(2) == 1) {
-					Monster e = new Skeleton(new Position(1600,hero.getB().getY()), 150, 150, 0, -50, 0);
-					monsters.add(e);
-					everything.add(e);
-					
-				}
-			}
-			else if (Hero.getStage() == 4) {
-				if(monsterType.nextInt(2) == 0) {
-					Monster e = new Slime(new Position(1600,hero.getB().getY()), 150, 150, 0, -50, 0);
-					monsters.add(e);
-					everything.add(e);
-					
-				}
-				else if(monsterType.nextInt(2) == 1) {
-					Monster e = new Bat(new Position(1600,hero.getB().getY()), 150, 150, 0, -50, 0);
-					monsters.add(e);
-					everything.add(e);
-					
-				}
+		}
+		else if (Hero.getStage() == 4) {
+			if(monsterType.nextInt(2) == 0) {
+				Monster e = new Slime(new Position(1600,hero.getB().getY()), 150, 150, 0, -50, 0);
+				monsters.add(e);
+				everything.add(e);
+			}else{
+				Monster e = new Bat(new Position(1600,hero.getB().getY()), 150, 150, 0, -50, 0);
+				monsters.add(e);
+				everything.add(e);
 			}
 		}
 	}
@@ -463,19 +445,13 @@ public class GameLogic {
 			Hero.setScore(Hero.getScore() + 1); //score increase every second
 		}
 		
-		if(counter % (int)(1701 - speedFactor) == 0) {
+		if(counter % (1701 - ((int) speedFactor)) == 0) {
 			ItemGen();
-		}
-		
-		else if(counter % (int)(43 - speedFactor) == 0) {
+		}else if(counter % (300 - ((int) speedFactor)) == 0) {
 			MonstersGen();
-		}
-		
-		else if(counter % (int)(31 - speedFactor) == 0) {
+		}else if(counter % (150  - ((int) speedFactor)) == 0) {
 			ObstacleBoxesGen();
 		}
-		
-		
 		
 		if (boss.IsVisible()){
 			if(counter % 40 == 0) {
@@ -591,7 +567,6 @@ public class GameLogic {
 		trashes.clear();
 			
 		RenderableHolder.getInstance().getEntities().clear();
-		
 		RenderableHolder.getInstance().getEntities().add(bg);
 		for (Hitbox e : everything) {
 			Irenderable i = (Irenderable) e;

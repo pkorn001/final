@@ -20,7 +20,7 @@ public class ForwardMove implements Move {
 
 	@Override
 	public Position move() {
-		double x = this.xSpeed;
+		double x = obj.getxSpeed();
 		double y = 0;
 		return new Position(x, y);
 	}

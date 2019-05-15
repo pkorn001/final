@@ -52,6 +52,10 @@ public class ObstacleBox extends Hitbox implements Irenderable {
 
 	@Override
 	public void draw(GraphicsContext g2d) {
+		g2d.drawImage(Resource.BossAttack,A.getX(),A.getY(),5,5);
+		g2d.drawImage(Resource.BossAttack,B.getX(),B.getY(),5,5);
+		g2d.drawImage(Resource.BossAttack,C.getX(),C.getY(),5,5);
+		g2d.drawImage(Resource.BossAttack,D.getX(),D.getY(),5,5);
 		if (Hero.getStage() == 1) {
 			if(this.obstacleBox_Type == 0) {
 				g2d.drawImage(Resource.Obstacle_1, this.getB().getX(), this.getB().getY(), this.getWidth(),

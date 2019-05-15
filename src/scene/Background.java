@@ -45,8 +45,8 @@ public class Background implements Irenderable {
 			g2d.drawImage(Resource.Ground1, (xG + 1600), 330, 1600, 570);
 			break;
 		case (2):
-			g2d.drawImage(Resource.Stage2, xlist[0], 0, 1600, 820);
-			g2d.drawImage(Resource.Stage2, xlist[1], 0, 1600, 820);
+			g2d.drawImage(Resource.Stage21, xlist[0], 0, 1600, 820);
+			g2d.drawImage(Resource.Stage21, xlist[1], 0, 1600, 820);
 			g2d.drawImage(Resource.Ground2, xG, 330, 1600, 570);
 			g2d.drawImage(Resource.Ground2, xG+1600, 330, 1600, 570);
 			break;

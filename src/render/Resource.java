@@ -25,7 +25,7 @@ public class Resource {
 						,Obstacle_1,Hero1,Hero1_Attack,Ground1;
 	
 	// stage 2 green
-	public static Image Stage2,ObstacleTall_2,Obstacle_2,Hero2,Hero2_Attack,Ground2;
+	public static Image Stage2,Stage21,ObstacleTall_2,Obstacle_2,Hero2,Hero2_Attack,Ground2;
 	
 	// stage 3 black
 	public static Image Stage30,Stage31,Stage32,Stage33,Stage34,ObstacleTall_3,Obstacle_3,Hero3,Hero3_Attack,Ground3;
@@ -112,10 +112,11 @@ public class Resource {
 
 		
 		//stage2
-		Stage2 = getImage("image/Stage2.png");
+		
+		Stage21 = getImage("image/Stage21.png");
 		Ground2 = getImage("image/Ground0.png");  //use the same as start
-		ObstacleTall_2 = getImage("image/ObstacleTall_2.png");
-		Obstacle_2 = getImage("image/Ostacl_2.png");
+		ObstacleTall_2 = getImage("image/ObstacleTall_0.png");
+		Obstacle_2 = getImage("image/Ostacl_0.png");
 		Hero2 = getImage("image/Hero2.gif");
 		
 		

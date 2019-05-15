@@ -71,8 +71,8 @@ public class StartScreen extends StackPane{
 		//drawing part
 		Canvas canvas = new Canvas();
 		GraphicsContext gc = canvas.getGraphicsContext2D();
-		hero.draw(gc, 0);
-		background.draw(gc, 0);
+		hero.draw(gc);
+		background.draw(gc);
 		
 		getChildren().addAll(canvas, ui);
 	}

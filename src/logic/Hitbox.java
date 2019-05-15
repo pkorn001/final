@@ -107,12 +107,11 @@ public abstract class Hitbox {
 	}
 
 	public boolean collide(Hitbox hitbox) {
-		if (((this.A.getX() < hitbox.D.getX()) && (this.A.getX() > hitbox.A.getX()) && (this.B.getY() > hitbox.D.getY()))
-				|| ((this.A.getX() < hitbox.C.getX()) && (this.D.getX() > hitbox.C.getX()) && (this.A.getY() < hitbox.C.getY()) && (this.B.getY() > hitbox.C.getY()))
-				|| ((this.D.getX() > hitbox.A.getX() && (this.A.getX() < hitbox.A.getX()) && (this.C.getY() > hitbox.A.getY())))
-				|| ((this.D.getX() > hitbox.B.getX() && (this.A.getX() < hitbox.B.getX()) && (this.C.getY() > hitbox.B.getY()) && (this.D.getY() < hitbox.B.getY())))
+		if ((D.getX() > hitbox.A.getX()) && ((D.getX() < hitbox.D.getX()) && (D.getY() > B.getY()) && (C.getY() < B.getY()))
+				|| (A.getX() > hitbox.A.getX()) && ((A.getX() < hitbox.D.getX()) && (D.getY() > B.getY()) && (C.getY() < B.getY()))
+				|| ( (D.getX() > hitbox.A.getX()) && ((D.getX() < hitbox.D.getX()) && (C.getY() > B.getY()) && (C.getY() < A.getY()))
+				|| (A.getX() > hitbox.A.getX()) && ((A.getX() < hitbox.D.getX()) && (C.getY() > B.getY())) && (C.getY() < A.getY()))
 				) {
-			System.out.println("hited");
 			return true;
 		}
 		return false;
