@@ -13,29 +13,10 @@ public class Swordman extends Hero implements Attackable {
 	private static Hitbox attackBox;
 	private boolean isJumped = false;
 	private boolean isAttacked = false;
-	
-	public boolean isJumped() {
-		return isJumped;
-	}
-
-	public void setJumped(boolean isJumped) {
-		this.isJumped = isJumped;
-	}
-
-	public boolean isAttacked() {
-		return isAttacked;
-	}
-	
-	public static Hitbox getAttackBox() {
-		return attackBox;
-	}
-
-	public void setAttacked(boolean isAttacked) {
-		this.isAttacked = isAttacked;
-	}
 
 	public Swordman(Position position) {
 		super(position);
+		this.setStage(3);
 	}
 
 	@Override
@@ -72,5 +53,24 @@ public class Swordman extends Hero implements Attackable {
 		return z--;
 	}
 
+	public boolean isJumped() {
+		return isJumped;
+	}
+
+	public void setJumped(boolean isJumped) {
+		this.isJumped = isJumped;
+	}
+
+	public boolean isAttacked() {
+		return isAttacked;
+	}
+	
+	public static Hitbox getAttackBox() {
+		return attackBox;
+	}
+
+	public void setAttacked(boolean isAttacked) {
+		this.isAttacked = isAttacked;
+	}
 
 }

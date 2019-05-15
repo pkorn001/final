@@ -61,12 +61,6 @@ public abstract class Hitbox {
 	public void setxSpeed(double xSpeed) {
 		this.xSpeed = xSpeed *GameLogic.getSpeedFactor();
 	}
-
-	//Obstacle has only X-velocity
-	public Hitbox(Position position, double speed) {
-		setxSpeed(speed);
-		
-	}
 	
 	public double getWidth() {
 		return this.width;
@@ -75,6 +69,12 @@ public abstract class Hitbox {
 	public double getHeight() {
 		return this.height;
 	}
+	
+	//Obstacle has only X-velocity
+		public Hitbox(Position position, double speed) {
+			setxSpeed(speed);
+			
+		}
 
 	//Hero has no velocity
 	public Hitbox(Position a,int width,int height) {

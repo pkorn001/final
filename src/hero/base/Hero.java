@@ -30,7 +30,6 @@ public class Hero extends Hitbox implements Irenderable {
 	}
 
 	public void updateScore(Monster monster) {
-		// TODO Auto-generated method stub
 		setScore(getScore() + monster.getMonsterPoint());
 	}
 

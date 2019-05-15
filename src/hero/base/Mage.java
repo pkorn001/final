@@ -16,6 +16,7 @@ public class Mage extends Hero implements Attackable {
 
 	public Mage(Position position) {
 		super(position);
+		this.setStage(1);
 	}
 
 	public FireBall getFireball() {

@@ -1,8 +1,8 @@
 package main;
 
+import java.awt.event.KeyEvent;
 import javafx.animation.AnimationTimer;
 import javafx.application.Application;
-import javafx.scene.Scene;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import logic.GameLogic;
@@ -15,23 +15,21 @@ public class Main extends Application {
 	@Override
 	public void start(Stage primaryStage) {
 		// TODO Auto-generated method stub
-		StartScreen start = new StartScreen();
+		
 		StackPane root = new StackPane();
-		Scene scene = new Scene(root);
-		primaryStage.setScene(scene);
+		StartScreen startScreen = new StartScreen(root);
+		primaryStage.setScene(startScreen);
 		primaryStage.setTitle("LITTLE HERO");
-		GameScreen gameScreen = new GameScreen();
-		root.getChildren().add(start);
 		primaryStage.show();
-
+		
 		new AnimationTimer() {
+			
 			@Override
 			public void handle(long now) {
 				// TODO Add another canvas update
-				RenderableHolder.getInstance().update();
-				GameLogic.update();
-				gameScreen.paintComponent();
-			}
+				startScreen.paintComponent();
+				}
+			
 		}.start();
 	}
 

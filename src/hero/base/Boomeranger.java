@@ -15,28 +15,10 @@ public class Boomeranger extends Hero implements Attackable {
 	private boolean isAttacked = false;
 	private Boomerang boomerang;
 	
-	public boolean isJumped() {
-		return isJumped;
-	}
-
-	public Boomerang getBoomerang() {
-		return boomerang;
-	}
-
-	public void setJumped(boolean isJumped) {
-		this.isJumped = isJumped;
-	}
-
-	public boolean isAttacked() {
-		return isAttacked;
-	}
-
-	public void setAttacked(boolean isAttacked) {
-		this.isAttacked = isAttacked;
-	}
 
 	public Boomeranger(Position position) {
 		super(position);
+		this.setStage(2);
 	}
 	
 	@Override
@@ -78,4 +60,23 @@ public class Boomeranger extends Hero implements Attackable {
 		return z--;
 	}
 
+	public boolean isJumped() {
+		return isJumped;
+	}
+
+	public Boomerang getBoomerang() {
+		return boomerang;
+	}
+
+	public void setJumped(boolean isJumped) {
+		this.isJumped = isJumped;
+	}
+
+	public boolean isAttacked() {
+		return isAttacked;
+	}
+
+	public void setAttacked(boolean isAttacked) {
+		this.isAttacked = isAttacked;
+	}
 }

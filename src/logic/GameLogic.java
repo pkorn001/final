@@ -1,10 +1,8 @@
 package logic;
 
-import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
-
 import boss.Boss;
 import boss.BossAttack;
 import boss.ParriedBall;
@@ -24,6 +22,8 @@ import obstacle.Skeleton;
 import obstacle.Slime;
 import render.RenderableHolder;
 import scene.Background;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 
 public class GameLogic {
 
@@ -452,19 +452,19 @@ public class GameLogic {
 	}
 
 	public static void keyPressed(KeyEvent e) {
-		if (e.getKeyCode() == KeyEvent.VK_SPACE && !jump) {
+		if(e.getCode() == KeyCode.SPACE && !jump) {
 			setJump(true);
 		}
-		if (e.getKeyCode() == KeyEvent.VK_A && !attack) {
+		if (e.getCode() == KeyCode.A && !attack) {
 			setAttack(true);
 		}
 	}
 
 	public static void keyRelease(KeyEvent e) {
-		if (e.getKeyCode() == KeyEvent.VK_SPACE) {
+		if (e.getCode() == KeyCode.SPACE) {
 			setJump(false);
 		}
-		if (e.getKeyCode() == KeyEvent.VK_A) {
+		if (e.getCode() == KeyCode.A) {
 			setAttack(false);
 		}
 	}

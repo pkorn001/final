@@ -12,15 +12,12 @@ public class Assassin extends Hero implements Attackable{
 
 	private static Hitbox attackBox;
 	private static boolean didShort = false;
-	public static boolean isDidShort() {
-		return didShort;
-	}
-
 	private boolean isJumped = false;
 	private boolean isAttacked = false;
 	
 	public Assassin(Position position) {
 		super(position);
+		this.setStage(4);
 	}
 	
 	@Override
@@ -41,10 +38,6 @@ public class Assassin extends Hero implements Attackable{
 	public void updateScore(Monster monster) {
 		// TODO Auto-generated method stub
 		setScore( getScore() + monster.getMonsterPoint());
-	}
-
-	public static Hitbox getAttackBox() {
-		return attackBox;
 	}
 
 	@Override
@@ -73,4 +66,13 @@ public class Assassin extends Hero implements Attackable{
 		return z--;
 	}
 
+	public static boolean isDidShort() {
+		return didShort;
+	}
+	
+
+	public static Hitbox getAttackBox() {
+		return attackBox;
+	}
 }
+

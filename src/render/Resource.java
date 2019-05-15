@@ -90,7 +90,7 @@ public class Resource {
 		Ground0 = getImage("image/Ground0.png");
 		ObstacleTall_0 = getImage("image/ObstacleTall_00.png");
 		Obstacle_0 = getImage("image/Ostacl_00.png");
-		Hero0 = getImage("image/Hero0.png");
+		Hero0 = getImage("image/Hero0.gif");
 		
 		//stage1
 		Stage10 = getImage("image/Stage10.png");
