@@ -18,7 +18,7 @@ public class Boomeranger extends Hero implements Attackable {
 
 	public Boomeranger(Position position) {
 		super(position);
-		this.setStage(2);
+		setStage(2);
 	}
 	
 	@Override

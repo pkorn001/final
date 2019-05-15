@@ -1,13 +1,10 @@
 package hero.base;
 
-import item.Item;
 import javafx.animation.AnimationTimer;
 import javafx.scene.canvas.GraphicsContext;
-import logic.GameLogic;
 import logic.Hitbox;
 import logic.Position;
 import obstacle.Monster;
-import obstacle.ObstacleBox;
 import render.Irenderable;
 import render.Resource;
 

@@ -12,12 +12,10 @@ public class Assassin extends Hero implements Attackable{
 
 	private static Hitbox attackBox;
 	private static boolean didShort = false;
-	private boolean isJumped = false;
-	private boolean isAttacked = false;
 	
 	public Assassin(Position position) {
 		super(position);
-		this.setStage(4);
+		setStage(4);
 	}
 	
 	@Override

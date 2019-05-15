@@ -1,7 +1,6 @@
 package scene;
 
 import hero.base.Hero;
-import hero.base.Mage;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;

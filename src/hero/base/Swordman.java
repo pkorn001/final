@@ -16,7 +16,7 @@ public class Swordman extends Hero implements Attackable {
 
 	public Swordman(Position position) {
 		super(position);
-		this.setStage(3);
+		setStage(3);
 	}
 
 	@Override
