@@ -17,9 +17,9 @@ import render.Resource;
 
 public class Boss extends Hitbox implements Irenderable {
 
-	private final static int HIT_POINT = 100;
+	private final static int HIT_POINT = 300;
 	private static int bossHp = 200;
-	private final static int KILLED_POINT = 100 * 200;
+	private final static int KILLED_POINT = 300 * 200;
 	private static boolean destroyed;
 	private int z;
 	private boolean isAppeared;
@@ -42,8 +42,10 @@ public class Boss extends Hitbox implements Irenderable {
 	public static void isAttacked() {
 		if (!destroyed) {
 			bossHp--;
+			Hero.setScore(Hero.getScore() + HIT_POINT);
 		}
 		if (getBossHp() == 0) {
+			Hero.setScore(Hero.getScore() + KILLED_POINT); 
 			destroyed = true;
 		}
 	}

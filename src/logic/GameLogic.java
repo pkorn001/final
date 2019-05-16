@@ -1,10 +1,8 @@
 package logic;
 
-import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
-
 import boss.Boss;
 import boss.BossAttack;
 import boss.ParriedBall;
@@ -16,6 +14,9 @@ import hero.base.Hero;
 import hero.base.Mage;
 import hero.base.Swordman;
 import item.Item;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
+import main.Main;
 import obstacle.Bat;
 import obstacle.Evil;
 import obstacle.FlyingFire;
@@ -27,6 +28,7 @@ import obstacle.Slime;
 import render.Irenderable;
 import render.RenderableHolder;
 import scene.Background;
+import scene.GameScreen;
 import scene.StartScreen;
 
 public class GameLogic {
@@ -46,13 +48,14 @@ public class GameLogic {
 	private static Background bg = new Background();;
 	static Random isMonsterGen = new Random();
 	private static int counter = 1700;
+	private static Position heroPosition = new Position(100, 550);
 	
 	static {
 		new GameLogic();
 	}
 	
 	private GameLogic() {
-		hero = new Hero(new Position(100.00,550));
+		hero = new Mage(heroPosition);
 		boss = new Boss(new Position(1100,200), 0, 0);
 		speedFactor = 0.9;
 		gameOver = false;
@@ -66,6 +69,19 @@ public class GameLogic {
 
 	public static void setGameOver(boolean gameOver) {
 		GameLogic.gameOver = gameOver;
+	}
+	
+	public static void End() {
+		Alert over = new Alert(AlertType.INFORMATION);
+		over.setHeaderText("GAME OVER !!");
+		over.setContentText("You have lost to the game" + '\n' + "Max score : " + Hero.getScore());
+		over.show();
+		setGameOver(false);
+		Main.ui.setVisible(true);
+		StartScreen.setStart(false);
+		Hero.setScore(0);
+		hero = new Hero(heroPosition);
+		everything.add(hero);
 	}
 
 	public static double getSpeedFactor() {
@@ -91,7 +107,7 @@ public class GameLogic {
 	
 	public static void ItemGen() {
 		Random itemType = new Random();
-		Item e = new Item(new Position(1600,hero.getA().getY()-200),-20,3);
+		Item e = new Item(new Position(1600,hero.getA().getY()-200),-20, itemType.nextInt(4));
 		items.add(e);
 		everything.add(e);
 	}
@@ -180,7 +196,7 @@ public class GameLogic {
 			list2.add(e);
 		}
 		
-		if ((boss.getBossHp() <= 100)) {
+		if (Boss.getBossHp() <= 100) {
 			switch (attackPattern.nextInt(3)) {
 			case 1:
 				int i = attackPattern.nextInt(list.size());
@@ -433,10 +449,14 @@ public class GameLogic {
 	
 	public static void logicUpdate() {
 		bg.update();
-		counter++;
+		if(StartScreen.isStart) {
+			counter++;
+			speedFactor = Math.min(speedFactor + 0.00008, 2);
+		}
+			//System.out.println(counter);
 		if(counter % 6 == 0){
 			Hero.setScore(Hero.getScore() + 1); //score increase every second
-		}
+		} 
 		
 		if (counter == 5410) {
 			boss.setAppeared(true);
@@ -455,9 +475,9 @@ public class GameLogic {
 			}
 			else if(counter % 180 == 0) {
 				BossAttackGen();
-			if (counter > 7220) {
-				boss.setAppeared(false);
-				counter = 0;
+				if (counter > 7220) {
+					boss.setAppeared(false);
+					counter = 1;
 				}
 			}
 		}
@@ -465,6 +485,7 @@ public class GameLogic {
 		
 		for (ObstacleBox e : obstacleBoxes) {
 			if (hero.collide(e)) {
+				obstacleBoxes.remove(e);
 				hero.setDestroyed(true);
 				setGameOver(true);
 			}
@@ -472,6 +493,7 @@ public class GameLogic {
 		
 		for (Monster e : monsters) {
 			if (hero.collide(e)) {
+				monsters.remove(e);
 				hero.setDestroyed(true);
 				setGameOver(true);
 			}
@@ -490,14 +512,14 @@ public class GameLogic {
 				switch (((Item) e).getItemType()) {
 				case ("Mage"):
 					everything.remove(hero);
-					hero = new Mage(new Position(100.00,550));
+					hero = new Mage(heroPosition);
 					everything.add(hero);
 					e.setDestroyed(true);
 					trashes.add(e);
 					break;
 				case ("Boomeranger"):
 					everything.remove(hero);
-					hero = new Boomeranger(new Position(100.00,550));
+					hero = new Boomeranger(heroPosition);
 					everything.add(hero);
 					e.setDestroyed(true);
 					trashes.add(e);
@@ -527,14 +549,19 @@ public class GameLogic {
 		}
 		if (isAttack()) {
 			if (hero instanceof Mage) {
+				setAttack(false);
 				FireBall fireball = ((Mage) hero).getAttack();
 				((Mage)hero).attack();
 				everything.add(fireball);
 				for (Monster monster : monsters) {
 					if (fireball.collide(monster)) {
-						fireball.setDestroyed(true);
 						hero.updateScore(monster);
+						fireball.setDestroyed(true);
 						monster.setDestroyed(true);
+						monsters.remove(monster);
+						everything.remove(monster); 
+						everything.remove(fireball);
+						System.out.println("I collided!");
 					}
 				}
 				for (ObstacleBox obstacle : obstacleBoxes) {
@@ -542,8 +569,20 @@ public class GameLogic {
 						fireball.setDestroyed(true);
 					}
 				}
+				for (Hitbox e : boss_Attack) {
+					if (e instanceof ParriedBall) {
+						if (fireball.collide(e)) {
+							boss.isAttacked();
+							fireball.setDestroyed(true);
+							boss_Attack.remove(e);
+							e.setDestroyed(true);
+							everything.remove(e); 
+						}
+					}
+				}
 				
 			} else if (hero instanceof Boomeranger) { 
+				setAttack(false);
 				Boomerang boomerang = ((Boomeranger) hero).getAttack();
 				((Boomeranger)hero).attack();
 				everything.add(boomerang);
@@ -551,17 +590,43 @@ public class GameLogic {
 					if (boomerang.collide(monster)) {
 						hero.updateScore(monster);
 						monster.setDestroyed(true);
+						monsters.remove(monster);
+						everything.remove(monster); 
 					}
-					if (boomerang.isReturn()) {
+					if (hero.collide(boomerang)) {
+						boomerang.setDestroyed(true);
 						everything.remove(boomerang);
 					}
 				}
+				for (Hitbox e : boss_Attack) {
+					if (e instanceof ParriedBall) {
+						if (boomerang.collide(e)) {
+							boss.isAttacked();
+							boss_Attack.remove(e);
+							e.setDestroyed(true);
+							everything.remove(e); 
+						}
+					}
+				}
+				
 			} else if (hero instanceof Swordman) {
 				((Swordman) hero).attack();
 				for (Monster monster : monsters) {
 					if (((Swordman) hero).getAttack().collide(monster)) {
-						((Swordman) hero).updateScore(monster);
+						hero.updateScore(monster);
+						monsters.remove(monster);
 						monster.setDestroyed(true);
+						everything.remove(monster); 
+					}
+				}
+				for (Hitbox e : boss_Attack) {
+					if (e instanceof ParriedBall) {
+						if (((Swordman) hero).getAttack().collide(e)) {
+							boss.isAttacked();
+							boss_Attack.remove(e);
+							e.setDestroyed(true);
+							everything.remove(e); 
+						}
 					}
 				}
 
@@ -569,8 +634,20 @@ public class GameLogic {
 				((Assassin) hero).attack();
 				for (Monster monster : monsters) {
 					if (((Assassin) hero).getAttack().collide(monster)) {
-						((Assassin) hero).updateScore(monster);
+						hero.updateScore(monster);
+						monsters.remove(monster);
 						monster.setDestroyed(true);
+						everything.remove(monster);
+					}
+				}
+				for (Hitbox e : boss_Attack) {
+					if (e instanceof ParriedBall) {
+						if (((Assassin) hero).getAttack().collide(e)) {
+							boss.isAttacked();
+							boss_Attack.remove(e);
+							e.setDestroyed(true);
+							everything.remove(e); 
+						}
 					}
 				}
 			}
@@ -606,9 +683,10 @@ public class GameLogic {
 			Irenderable i = (Irenderable) e;
 			RenderableHolder.getInstance().getEntities().add(i);
 		}
-				
+		GameScreen.updateScore();
 	}
-
+	
+	
 	public static boolean isJump() {
 		return jump;
 	}

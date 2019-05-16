@@ -11,22 +11,21 @@ import render.Resource;
 
 public class Hero extends Hitbox implements Irenderable {
 
-	public static final int HEIGHT = 250;
-	private static int score;
+	public static int score = 0;
 	private static int stage = 0;
 	protected int z;
 	protected Position position;
 	protected boolean isDestroyed = false;
 	protected boolean isJumped = false;
-	private double ground = 560;
+	protected double ground = 550;
 	private double i;
 	private AudioClip sound;
 
 	public Hero(Position a) {
 		super(a, 130, 250);
-		Hero.score = 0;
 		this.z = Integer.MAX_VALUE;
 		this.position = a;
+		stage = 0 ;
 	}
 
 	@Override
@@ -57,21 +56,21 @@ public class Hero extends Hitbox implements Irenderable {
 	}
 	
 	public void jump() {
-		setSound(Resource.Jump_Sound);
 		if(!isJumped) {
-			getSound().play();
-			setJumped(true);
+			Resource.Jump_Sound.play();
+			isJumped = true;
 		}
-		getA().setY(ground - 500 * Math.sin(Math.toRadians(i)) + this.height);
-		getB().setY(ground - 500 * Math.sin(Math.toRadians(i)));
-		getC().setY(ground - 500 * Math.sin(Math.toRadians(i)));
-		getD().setY(ground - 500 * Math.sin(Math.toRadians(i)) + this.height);
+		getA().setY(ground - 400 * Math.sin(Math.toRadians(i)) + this.height);
+		getB().setY(ground - 400 * Math.sin(Math.toRadians(i)));
+		getC().setY(ground - 400 * Math.sin(Math.toRadians(i)));
+		getD().setY(ground - 400 * Math.sin(Math.toRadians(i)) + this.height);
 		i += GameLogic.getSpeedFactor()*6;
 		if (i > 180) {
 			i = 0;
 			GameLogic.setJump(false);
-			setJumped(false);
+			isJumped = false;
 		}
+		System.out.println("did jump! at : " + this.getB().getX() + ", " + this.getB().getY() );
 	}
 
 	public void updateScore(Monster monster) {
@@ -116,10 +115,6 @@ public class Hero extends Hitbox implements Irenderable {
 
 	public static void setStage(int stage) {
 		Hero.stage = stage;
-	}
-
-	public double getHeight() {
-		return HEIGHT;
 	}
 
 	public void setDestroyed(boolean isDestroyed) {

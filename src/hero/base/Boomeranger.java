@@ -22,7 +22,7 @@ public class Boomeranger extends Hero implements Attackable,Irenderable {
 	
 	@Override
 	public Boomerang getAttack() {
-		boomerang = new Boomerang(new Position(this.position.getX() + 1, this.position.getY() / 2));
+		boomerang = new Boomerang(new Position(this.position.getX() + 10, this.position.getY() + 70));
 		return boomerang;
 	}
 
@@ -39,9 +39,9 @@ public class Boomeranger extends Hero implements Attackable,Irenderable {
 		g2d.drawImage(Resource.BossAttack,C.getX(),C.getY(),5,5);
 		g2d.drawImage(Resource.BossAttack,D.getX(),D.getY(),5,5);
 		if(GameLogic.isAttack()) {
-			g2d.drawImage(Resource.Hero2_Attack, this.position.getX(), this.position.getY(), this.getWidth(), this.getHeight());
+			g2d.drawImage(Resource.Hero2_Attack, this.getB().getX(), this.getB().getY(), this.getWidth(), this.getHeight());
 		}else {
-			g2d.drawImage(Resource.Hero2,getA().getX(), getB().getY(),130,250);
+			g2d.drawImage(Resource.Hero2, this.getB().getX(), this.getB().getY(), this.getWidth(), this.getHeight());
 		}
 	}
 
@@ -67,9 +67,7 @@ public class Boomeranger extends Hero implements Attackable,Irenderable {
 
 	@Override
 	public void attack() {
-		setSound(Resource.Hero2_Attack_Sound);
-		getSound().play();
-		this.boomerang.move();
+		Resource.Hero2_Attack_Sound.play();
 		// TODO Auto-generated method stub
 		
 	}

@@ -1,9 +1,13 @@
 package main;
 
+import javax.print.attribute.SetOfIntegerSyntax;
+
+import hero.base.Hero;
 import javafx.animation.AnimationTimer;
 import javafx.application.Application;
-import javafx.scene.Scene;
-import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.canvas.Canvas;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import logic.GameLogic;
@@ -12,38 +16,43 @@ import scene.GameScreen;
 import scene.StartScreen;
 
 public class Main extends Application {
-	
-	private boolean isFirstFrame = true;
-	private long startlong;
 
+	private StartScreen startScreen;
+	private GameScreen gameScreen;
+	private StackPane root;
+	public static StackPane ui = StartScreen.createUI();
+	private Canvas canvas = StartScreen.createCanvas();
+	
 	@Override
 	public void start(Stage primaryStage) {
 		// TODO Auto-generated method stub
-		StackPane root = new StackPane();
-		StackPane root2 = new StackPane();
-		StartScreen startScreen = new StartScreen(root);
-		GameScreen gameScreen = new GameScreen(root2);
-		primaryStage.setScene(startScreen);
+		root = new StackPane();
+		gameScreen = new GameScreen(root);
+		root.getChildren().addAll(canvas, ui);
+		primaryStage.setScene(gameScreen);
 		primaryStage.setTitle("LITTLE HERO");
 		primaryStage.show();
-		
-		 new AnimationTimer() {
-			 @Override
-			 public void handle(long now) {
-			    // TODO Add another canvas update
-				GameLogic.logicUpdate();
-				RenderableHolder.getInstance().update();
-				if(StartScreen.isStart) {
-					primaryStage.setScene(gameScreen);
-					gameScreen.paintComponent();
-				}else {
-					startScreen.paintComponent();
-				}
+		new AnimationTimer() {
+			@Override
+			public void handle(long now) {
+				// TODO Add another canvas update
+				gameLoop(primaryStage);
 			}
 		}.start();
 	}
 
 	public static void main(String[] args) {
 		launch(args);
+	}
+	
+	public void gameLoop(Stage primaryStage) {
+		if(!GameLogic.isGameOver()) {
+			gameScreen.paintComponent();
+			GameLogic.logicUpdate();
+			RenderableHolder.getInstance().update();
+		}else {
+			GameLogic.End();
+		}
+		
 	}
 }
