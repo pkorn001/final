@@ -33,11 +33,15 @@ public class Hero extends Hitbox implements Irenderable {
 	public boolean isDestroyed() {
 		return isDestroyed;
 	}
-
+	
 	@Override
 	public void draw(GraphicsContext g2d) {
 		// TODO Auto-generated method stub
-		g2d.drawImage(Resource.Hero0, this.getB().getX(), this.getB().getY(), this.getWidth(), this.getHeight());
+		g2d.drawImage(Resource.BossAttack,A.getX(),A.getY(),5,5);
+		g2d.drawImage(Resource.BossAttack,B.getX(),B.getY(),5,5);
+		g2d.drawImage(Resource.BossAttack,C.getX(),C.getY(),5,5);
+		g2d.drawImage(Resource.BossAttack,D.getX(),D.getY(),5,5);
+		g2d.drawImage(Resource.Hero2, this.getB().getX(), this.getB().getY(), this.getWidth(), this.getHeight());
 	}
 
 	@Override
@@ -58,8 +62,11 @@ public class Hero extends Hitbox implements Irenderable {
 			getSound().play();
 			setJumped(true);
 		}
-		getB().setY(ground - 200 * Math.sin(Math.toRadians(i)));
-		i += GameLogic.getSpeedFactor()*8;
+		getA().setY(ground - 500 * Math.sin(Math.toRadians(i)) + this.height);
+		getB().setY(ground - 500 * Math.sin(Math.toRadians(i)));
+		getC().setY(ground - 500 * Math.sin(Math.toRadians(i)));
+		getD().setY(ground - 500 * Math.sin(Math.toRadians(i)) + this.height);
+		i += GameLogic.getSpeedFactor()*6;
 		if (i > 180) {
 			i = 0;
 			GameLogic.setJump(false);

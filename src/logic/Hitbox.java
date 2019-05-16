@@ -107,10 +107,10 @@ public abstract class Hitbox {
 	}
 
 	public boolean collide(Hitbox hitbox) {
-		return ((D.getX() >= hitbox.A.getX()) && ((D.getX() <= hitbox.D.getX()) && (D.getY() >= B.getY()) && (C.getY() <= B.getY()))
-				|| (A.getX() >= hitbox.A.getX()) && ((A.getX() <= hitbox.D.getX()) && (D.getY() >= B.getY()) && (C.getY() <= B.getY()))
-				|| ( (D.getX() >= hitbox.A.getX()) && ((D.getX() <= hitbox.D.getX()) && (C.getY() >= B.getY()) && (C.getY() <= A.getY()))
-				|| (A.getX() >= hitbox.A.getX()) && ((A.getX() <= hitbox.D.getX()) && (C.getY() >= B.getY())) && (C.getY() <= A.getY())));
+		return ((D.getX() >= hitbox.A.getX()) && (D.getX() <= hitbox.D.getX()) && (D.getY() >= hitbox.B.getY()) && (D.getY() <= hitbox.A.getY()))
+				|| ((A.getX() >= hitbox.A.getX()) && (A.getX() <= hitbox.D.getX()) && (D.getY() >= hitbox.B.getY()) && (C.getY() <= hitbox.A.getY()))
+				|| ((D.getX() >= hitbox.A.getX()) && (D.getX() <= hitbox.D.getX()) && (C.getY() >= hitbox.B.getY()) && (C.getY() <= hitbox.A.getY()))
+				|| ((A.getX() >= hitbox.A.getX()) && (A.getX() <= hitbox.D.getX()) && (C.getY() >= hitbox.B.getY()) && (C.getY() <= hitbox.A.getY()));
 		}
 	
 	public void update() {

@@ -26,10 +26,6 @@ public class ObstacleBox extends Hitbox implements Irenderable {
 		super(a, width, ObstacleBox.setHeight(obstacleBox_Type), speed);
 		z = Integer.MAX_VALUE;
 		this.obstacleBox_Type = obstacleBox_Type;
-		super.A = new Position(a.getX(), a.getY() + ObstacleBox.setHeight(obstacleBox_Type));
-		super.B = new Position(a.getX(), a.getY() );
-		super.C = new Position(a.getX() + width, a.getY());
-		super.D = new Position(a.getX() + width, a.getY() + ObstacleBox.setHeight(obstacleBox_Type));
 		movePattern = new ForwardMove(this);
 		destroyed = false;
 	}

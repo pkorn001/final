@@ -39,9 +39,10 @@ public class Mage extends Hero implements Attackable, Irenderable {
 		g2d.drawImage(Resource.BossAttack,D.getX(),D.getY(),5,5);
 		// TODO Auto-generated method stub
 		if(GameLogic.isAttack()) {
-			g2d.drawImage(Resource.Hero1_Attack, this.position.getX(), this.position.getY(), this.getWidth(), this.getHeight());
+			g2d.drawImage(Resource.Hero1_Attack, getB().getX(), getB().getY(), this.getWidth(), this.getHeight());
+			GameLogic.setAttack(false);
 		}else {
-			g2d.drawImage(Resource.Hero1, this.position.getX(), this.position.getY(), this.getWidth(), this.getHeight());
+			g2d.drawImage(Resource.Hero1, getB().getX(), getB().getY(), this.getWidth(), this.getHeight());
 		}
 	}
 	

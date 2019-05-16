@@ -138,7 +138,11 @@ public class Background implements Irenderable {
 	}
 	
 	public void update() {
-		xSpeed = -20 * GameLogic.getSpeedFactor();
+		if(!GameLogic.getHero().isDestroyed()) {
+			xSpeed = -20 * GameLogic.getSpeedFactor();
+		}else {
+			xSpeed = 0;
+		}
 		for (int i = 0; i < 10 ; i++) {
 			xlist[i] += xSpeed/3;
 		}

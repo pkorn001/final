@@ -5,14 +5,27 @@ import javafx.scene.image.WritableImage;
 import javafx.scene.media.AudioClip;
 
 public class Resource {
+	
+	private static AudioClip getAudio(String directory) {
+		AudioClip au;
+		try {
+			String audio_path = ClassLoader.getSystemResource(directory).toString();
+			au = new AudioClip(audio_path);
+		} catch (Exception e) {
+			au = null;
+		}
+		return au;
+	}
 
 	private static Image getImage(String directory) {
 		Image im;
+		String error = directory;
 		try {
 			String image_path = ClassLoader.getSystemResource(directory).toString();
 			im = new Image(image_path);
 		} catch (Exception e) {
 			im = null;
+			System.out.println(error);
 		}
 		return im;
 	}
@@ -57,21 +70,21 @@ public class Resource {
 
 	static {
 		//Sound
-		DeadSound = new AudioClip("file:sound/sound/Dead.wav");
+		DeadSound = getAudio("sound/Dead.wav");
 		
-		Hero1_Attack_Sound = new AudioClip("file:sound/sound/Hero1_Attack.wav");
-		Hero2_Attack_Sound = new AudioClip("file:sound/sound/Hero2_Attack.wav");
-		Hero3_Attack_Sound = new AudioClip("file:sound/sound/Hero3_Attack.wav");
-		Hero4_Attack1_Sound = new AudioClip("file:sound/sound/Hero4_Attack1.wav");
-		Hero4_Attack2_Sound = new AudioClip("file:sound/sound/Hero4_Attack2.wav");
+		Hero1_Attack_Sound = getAudio("sound/Hero1_Attack.wav");
+		Hero2_Attack_Sound = getAudio("sound/Hero2_Attack.wav");
+		Hero3_Attack_Sound = getAudio("sound/Hero3_Attack.wav");
+		Hero4_Attack1_Sound = getAudio("sound/Hero4_Attack1.wav");
+		Hero4_Attack2_Sound = getAudio("sound/Hero4_Attack2.wav");
 		
-		Jump_Sound = new AudioClip("file:sound/sound/Jump.wav");
+		Jump_Sound = getAudio("sound/Jump.wav");
 		
-		Stage0_Music = new AudioClip("file:sound/sound/Stage0.mp3");
-		Stage1_Music = new AudioClip("file:sound/sound/Volcano.mp3");
-		Stage2_Music = new AudioClip("file:sound/sound/Stage2.wav");
-		Stage3_Music = new AudioClip("file:sound/sound/Stage3.wav");
-		Stage4_Music = new AudioClip("file:sound/sound/Stage4.wav");
+		Stage0_Music = getAudio("sound/Stage0.mp3");
+		Stage1_Music = getAudio("sound/Volcano.mp3");
+		Stage2_Music = getAudio("sound/Stage2.wav");
+		Stage3_Music = getAudio("sound/Stage3.wav");
+		Stage4_Music = getAudio("sound/Stage4.wav");
 		
 		//Logo
 		Logo = getImage("image/Logo.png");
@@ -80,7 +93,7 @@ public class Resource {
 		FireBall = getImage("image/FireBall.gif");
 		Boomerang = getImage("image/Boomerange.gif");
 		Scythe = getImage("image/Scythe.gif");
-		Hero1_Attack = getImage("image/Hero1_Attack.gif");
+		Hero1_Attack = getImage("image/Hero1_Attack.png");
 		Hero2_Attack = getImage("image/Hero2_Attack.gif");
 		Hero3_Attack = getImage("image/Hero3_Attack.gif");
 		Hero4_Attack1 = getImage("image/Hero4_Attack1.gif");
@@ -111,8 +124,6 @@ public class Resource {
 		// stage0
 		Stage0 = getImage("image/Stage0.png");
 		Ground0 = getImage("image/Ground0.png");
-		ObstacleTall_0 = getImage("image/ObstacleTall_00.png");
-		Obstacle_0 = getImage("image/Ostacl_00.png");
 		Hero0 = getImage("image/Hero0.gif");
 		ObstacleTall_0 = getImage("image/ObstacleTall_0.png");
 		Obstacle_0 = getImage("image/Ostacl_0.png");
@@ -137,8 +148,8 @@ public class Resource {
 		//stage2
 		Stage21 = getImage("image/Stage2.png");
 		Ground2 = getImage("image/Ground0.png");  //use the same as start
-		ObstacleTall_2 = getImage("image/ObstacleTall_2.png");
-		Obstacle_2 = getImage("image/Ostacl_2.png");
+		ObstacleTall_2 = getImage("image/ObstacleTall_0.png");
+		Obstacle_2 = getImage("image/Ostacl_0.png");
 		Hero2 = getImage("image/Hero2.gif");
 
 		// stage3
@@ -155,7 +166,6 @@ public class Resource {
 		// stage4
 		Stage40 = getImage("image/Stage40.png");
 		Stage41 = getImage("image/Stage41.png");
-		Stage42 = getImage("image/Stage42.png");
 		Stage43 = getImage("image/Stage43.png");
 		Stage44 = getImage("image/Stage44.png");
 		Stage4_prisoner1 = getImage("image/Stage4_prisoner1.gif");

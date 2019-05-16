@@ -45,14 +45,14 @@ public class GameLogic {
 	protected static double speedFactor;
 	private static Background bg = new Background();;
 	static Random isMonsterGen = new Random();
-	private static int counter = 1698;
+	private static int counter = 1700;
 	
 	static {
 		new GameLogic();
 	}
 	
 	private GameLogic() {
-		hero = new Hero (new Position(100.00,550));
+		hero = new Hero(new Position(100.00,550));
 		boss = new Boss(new Position(1100,200), 0, 0);
 		speedFactor = 0.9;
 		gameOver = false;
@@ -91,7 +91,7 @@ public class GameLogic {
 	
 	public static void ItemGen() {
 		Random itemType = new Random();
-		Item e = new Item(new Position(1600,hero.getA().getY()-200),-20,0);
+		Item e = new Item(new Position(1600,hero.getA().getY()-200),-20,3);
 		items.add(e);
 		everything.add(e);
 	}
@@ -105,7 +105,6 @@ public class GameLogic {
 		}
 		else if (Hero.getStage() == 1) {
 			if(monsterType.nextInt(3) == 0) {
-				System.out.println("------------------------------");
 				Monster e = new Slime(new Position(1600,700), 100, 100, 6, -50, 0);
 				monsters.add(e);
 				everything.add(e);	
@@ -434,7 +433,7 @@ public class GameLogic {
 	
 	public static void logicUpdate() {
 		bg.update();
-		System.out.println(counter);
+		counter++;
 		if(counter % 6 == 0){
 			Hero.setScore(Hero.getScore() + 1); //score increase every second
 		}
@@ -443,7 +442,6 @@ public class GameLogic {
 			boss.setAppeared(true);
 		}
 		if(!boss.IsVisible()) {
-
 			if(counter % 1701 == 0) {
 				ItemGen();
 			}else if(counter % 300 == 0) {
@@ -451,31 +449,19 @@ public class GameLogic {
 			}else if(counter % 150 == 0) {
 				ObstacleBoxesGen();
 			}
-			
-			if (counter == 5410) {
-				boss.setAppeared(true);
+		}else{
+			if(counter % 120 == 0) {
+				BossAttackGen();
 			}
-			if(!boss.IsVisible()) {
-				if(counter % 1701 == 0) {
-				//	ItemGen();
-				}else if(counter % 300 == 0) {
-					MonstersGen();
-				}else if(counter % 150 == 0) {
-					ObstacleBoxesGen();
-				}
-			}else{
-				if(counter % 120 == 0) {
-					BossAttackGen();
-				}
-				else if(counter % 180 == 0) {
-					BossAttackGen();
-					if (counter > 7220) {
-						boss.setAppeared(false);
-						counter = 0;
-					}
+			else if(counter % 180 == 0) {
+				BossAttackGen();
+			if (counter > 7220) {
+				boss.setAppeared(false);
+				counter = 0;
 				}
 			}
 		}
+	
 		
 		for (ObstacleBox e : obstacleBoxes) {
 			if (hero.collide(e)) {
@@ -521,6 +507,7 @@ public class GameLogic {
 					hero = new Swordman(new Position(100.00,550));
 					everything.add(hero);
 					hero.setStage(3);
+					e.setDestroyed(true);
 					trashes.add(e);
 					break;
 				case ("Assassin"):
@@ -528,6 +515,7 @@ public class GameLogic {
 					hero = new Assassin(new Position(100.00,550));
 					everything.add(hero);
 					hero.setStage(4);
+					e.setDestroyed(true);
 					trashes.add(e);
 					break;
 				}
@@ -539,7 +527,6 @@ public class GameLogic {
 		}
 		if (isAttack()) {
 			if (hero instanceof Mage) {
-				setAttack(false);		
 				FireBall fireball = ((Mage) hero).getAttack();
 				((Mage)hero).attack();
 				everything.add(fireball);
@@ -555,6 +542,7 @@ public class GameLogic {
 						fireball.setDestroyed(true);
 					}
 				}
+				
 			} else if (hero instanceof Boomeranger) { 
 				Boomerang boomerang = ((Boomeranger) hero).getAttack();
 				((Boomeranger)hero).attack();
@@ -587,6 +575,7 @@ public class GameLogic {
 				}
 			}
 		}
+		
 		for (Hitbox e : everything) {
 			e.update();
 			if (e.getD().getX() < -300) {
@@ -617,6 +606,7 @@ public class GameLogic {
 			Irenderable i = (Irenderable) e;
 			RenderableHolder.getInstance().getEntities().add(i);
 		}
+				
 	}
 
 	public static boolean isJump() {

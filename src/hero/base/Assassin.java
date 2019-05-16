@@ -46,12 +46,12 @@ public class Assassin extends Hero implements Attackable,Irenderable{
 		// TODO Auto-generated method stub
 		if(GameLogic.isAttack()) {
 			if(!didShort) {
-				g2d.drawImage(Resource.Hero4_Attack1, this.position.getX(), this.position.getY(), this.getWidth(), this.getHeight());
+				g2d.drawImage(Resource.Hero4_Attack1, B.getX(), B.getY(), this.getWidth(), this.getHeight());
 			}else {
-				g2d.drawImage(Resource.Hero4_Attack2, this.position.getX(), this.position.getY(), this.getWidth(), this.getHeight());
+				g2d.drawImage(Resource.Hero4_Attack2, B.getX(), B.getY(), this.getWidth(), this.getHeight());
 			}
 		}else {
-			g2d.drawImage(Resource.Hero4, this.position.getX(), this.position.getY(), this.getWidth(), this.getHeight());
+			g2d.drawImage(Resource.Hero4, B.getX(), B.getY(), this.getWidth(), this.getHeight());
 		}
 	}
 
