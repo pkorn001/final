@@ -9,20 +9,25 @@ import logic.Hitbox;
 import logic.Position;
 import move.ForwardMove;
 import move.SineMove;
+import render.Irenderable;
 import render.Resource;
 
-public class FlyingFire extends Monster{
+public class FlyingFire extends Monster implements Irenderable{
 	
-	Random moveType;
+	Random moveType = new Random();
 
 	public FlyingFire(Position a,int width,int height,int monsterType, double xSpeed, double ySpeed) {
 		super(a,width,height,monsterType, xSpeed, ySpeed);
-		if(moveType.nextInt(3) == 0) movePattern = new SineMove(this);
-		else movePattern = new ForwardMove(this);
+		if(moveType.nextInt(3) == 0) {
+			movePattern = new SineMove(this);
+		}
+		else {
+			movePattern = new ForwardMove(this);
+		}
 	}
 	
 	@Override
-	public void draw(GraphicsContext g2d, long time) {
+	public void draw(GraphicsContext g2d) {
 		if (isDestroyed()) {
 			g2d.drawImage(Resource.Dead,this.getB().getX(),this.getB().getY(),this.getWidth(),this.getHeight());
 		}

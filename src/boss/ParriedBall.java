@@ -18,7 +18,7 @@ public class ParriedBall extends BossAttack implements Irenderable {
 	}
 	
 	@Override
-	public void draw(GraphicsContext g2d, long  time) {
+	public void draw(GraphicsContext g2d) {
 		if (!isParried) {
 			g2d.drawImage(Resource.ParriedBall1,this.getB().getX(),this.getB().getY(),this.getWidth(),this.getHeight());
 	}

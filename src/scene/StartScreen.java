@@ -16,7 +16,6 @@ import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
-import logic.Position;
 import render.Irenderable;
 import render.RenderableHolder;
 import render.Resource;
@@ -24,17 +23,10 @@ import render.Resource;
 public class StartScreen extends Scene {
 
 	public static boolean isStart = false;
-	private Hero hero;
-	private Background background;
 	GraphicsContext gc;
 
 	public StartScreen(StackPane stackpane) {
 		super(stackpane);
-		hero = new Hero(new Position(100, 460));
-		background = new Background();
-		RenderableHolder.getInstance().getEntities().add(background);
-		RenderableHolder.getInstance().getEntities().add(hero);
-		
 		Canvas canvas = createCanvas();
 		StackPane ui = createUI();
 		stackpane.setPrefHeight(GameScreen.SCENE_HEIGHT);
@@ -91,7 +83,7 @@ public class StartScreen extends Scene {
 		for (Irenderable entity : RenderableHolder.getInstance().getEntities()) {
 			// System.out.println(entity.toString());
 			if (entity.IsVisible() && !entity.isDestroyed()) {
-				entity.draw(gc, 0); // edit later for 0
+				entity.draw(gc); // edit later for 0
 			}
 		}
 	}

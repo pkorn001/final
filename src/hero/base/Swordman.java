@@ -11,8 +11,8 @@ import render.Resource;
 public class Swordman extends Hero implements Attackable {
 
 	private static Hitbox attackBox;
-	private boolean isJumped = false;
 	private boolean isAttacked = false;
+	private int i = 0;
 
 	public Swordman(Position position) {
 		super(position);
@@ -20,9 +20,25 @@ public class Swordman extends Hero implements Attackable {
 	}
 
 	@Override
-	public void attack() {
-		attackBox = new Hitbox(new Position(this.getC().getX() + 1, this.getC().getY() / 2), 1, 1) {
+	public Hitbox  getAttack() {
+		attackBox = new Hitbox(new Position(this.position.getX() + 10, this.position.getY() / 2), 167, 150) {
 		};
+		return attackBox;
+	}
+
+	@Override
+	public void attack() {
+		// TODO Auto-generated method stub
+		i++;
+		if(i <= 4) {
+			setSound(Resource.Hero3_Attack_Sound);
+			getSound().play();
+		}
+		if(i == 19) {
+			GameLogic.setAttack(false);
+		}else if(i > 19) {
+			i = 0;
+		}
 	}
 
 	@Override
@@ -33,11 +49,11 @@ public class Swordman extends Hero implements Attackable {
 
 
 	@Override
-	public void draw(GraphicsContext g2d, long time) {
+	public void draw(GraphicsContext g2d) {
 		if(GameLogic.isAttack()) {
-			g2d.drawImage(Resource.Hero3_Attack, this.getA().getX(), this.getA().getY(), this.getWidth(), this.getHeight());
+			g2d.drawImage(Resource.Hero3_Attack, this.position.getX(), this.position.getY(), 167, 300);
 		}else {
-			g2d.drawImage(Resource.Hero3, this.getA().getX(), this.getA().getY(), this.getWidth(), this.getHeight());
+			g2d.drawImage(Resource.Hero3, this.position.getX(), this.position.getY(), 167, 300);
 		}
 	}
 
@@ -50,15 +66,7 @@ public class Swordman extends Hero implements Attackable {
 	@Override
 	public int getZ() {
 		// TODO Auto-generated method stub
-		return z--;
-	}
-
-	public boolean isJumped() {
-		return isJumped;
-	}
-
-	public void setJumped(boolean isJumped) {
-		this.isJumped = isJumped;
+		return 5;
 	}
 
 	public boolean isAttacked() {
@@ -72,5 +80,4 @@ public class Swordman extends Hero implements Attackable {
 	public void setAttacked(boolean isAttacked) {
 		this.isAttacked = isAttacked;
 	}
-
 }

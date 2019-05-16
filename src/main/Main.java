@@ -5,16 +5,22 @@ import javafx.application.Application;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import logic.GameLogic;
+import render.RenderableHolder;
 import scene.GameScreen;
 import scene.StartScreen;
 
 public class Main extends Application {
+	
+	private boolean isFirstFrame = true;
+	private long startlong;
 
 	@Override
 	public void start(Stage primaryStage) {
 		// TODO Auto-generated method stub
 		StackPane root = new StackPane();
+		StackPane root2 = new StackPane();
 		StartScreen startScreen = new StartScreen(root);
+		GameScreen gameScreen = new GameScreen(root2);
 		primaryStage.setScene(startScreen);
 		primaryStage.setTitle("LITTLE HERO");
 		primaryStage.show();
@@ -23,9 +29,14 @@ public class Main extends Application {
 			@Override
 			public void handle(long now) {
 				// TODO Add another canvas update
-//				RenderableHolder.getInstance().update();
-//				GameLogic.update();
-				startScreen.paintComponent();
+				RenderableHolder.getInstance().update();
+				GameLogic.logicUpdate();
+				if(StartScreen.isStart) {
+					primaryStage.setScene(gameScreen);
+					gameScreen.paintComponent();
+				}else {
+					startScreen.paintComponent();
+				}
 			}
 		}.start();
 	}

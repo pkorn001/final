@@ -65,14 +65,14 @@ public abstract class Monster extends Hitbox implements Irenderable{
 
 
 	@Override
-	public void draw(GraphicsContext g2d, long time) {
+	public void draw(GraphicsContext g2d) {
 	}
 
 	@Override
-	public void update(long time) {
+	public void update() {
 		for(Position i  : new Position[] {this.A, this.B, this.C, this.D}){
-			i.setX(i.getX()+this.movePattern.move(time).getX());
-			i.setY(i.getY()+this.movePattern.move(time).getY());
+			i.setX(i.getX()+this.movePattern.move().getX());
+			i.setY(i.getY()+this.movePattern.move().getY());
 		}
 	}
 	

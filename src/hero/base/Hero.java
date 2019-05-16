@@ -1,7 +1,8 @@
 package hero.base;
 
-import javafx.animation.AnimationTimer;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.media.AudioClip;
+import logic.GameLogic;
 import logic.Hitbox;
 import logic.Position;
 import obstacle.Monster;
@@ -17,19 +18,26 @@ public class Hero extends Hitbox implements Irenderable {
 	protected Position position;
 	protected boolean isDestroyed = false;
 	protected boolean isJumped = false;
+	private double ground = getB().getY();
+	private double i;
+	private AudioClip sound;
 
 	public Hero(Position a) {
 		super(a, 167, 300);
-		Hero.stage = 0;
 		Hero.score = 0;
 		this.z = Integer.MAX_VALUE;
 		this.position = a;
 	}
-	
+
 	@Override
-	public void draw(GraphicsContext g2d, long time) {
+	public boolean isDestroyed() {
+		return isDestroyed;
+	}
+
+	@Override
+	public void draw(GraphicsContext g2d) {
 		// TODO Auto-generated method stub
-		g2d.drawImage(Resource.Hero0,this.getA().getX(), this.getA().getY()+100,167,300);
+		g2d.drawImage(Resource.Hero0, this.position.getX(), this.position.getY(), 167, 300);
 	}
 
 	@Override
@@ -43,52 +51,20 @@ public class Hero extends Hitbox implements Irenderable {
 		// TODO Auto-generated method stub
 		return 5;
 	}
-
-	@Override
-	public boolean isDestroyed() {
-		return isDestroyed;
-	}
-
+	
 	public void jump() {
-		new AnimationTimer() {
-
-			@Override
-			public void handle(long now) {
-				boolean hasJumped = false;
-				double maxHeight = getC().getY() + 2;
-				double ground = getA().getY();
-				long time = (now - System.nanoTime()) * 60 / 1000000000;
-				if (getC().getY() < maxHeight && !hasJumped) {
-					for (Position i : new Position[] { getA(), getB(), getC(), getD() }) {
-						if (getB().getY() > maxHeight) {
-							getB().setY(maxHeight);
-							getC().setY(maxHeight);
-							hasJumped = true;
-							break;
-						} else {
-							i.setY(i.getY() + 2 * time);
-						}
-					}
-				}
-				try {
-					wait(1000);
-				} catch (InterruptedException e) {
-					e.printStackTrace();
-				}
-				if (hasJumped) {
-					for (Position i : new Position[] { getA(), getB(), getC(), getD() }) {
-						if (getA().getY() < 0) {
-							getA().setY(ground);
-							getD().setY(ground);
-							stop();
-						} else {
-							i.setY(i.getY() - 2 * time);
-						}
-					}
-				}
-			}
-
-		}.start();
+		if(!isJumped) {
+			setSound(Resource.Jump_Sound);
+			getSound().play();
+			setJumped(true);
+		}
+		position.setY(ground - 200 * Math.sin(Math.toRadians(i)));
+		i += GameLogic.getSpeedFactor()*8;
+		if (i > 180) {
+			i = 0;
+			GameLogic.setJump(false);
+			setJumped(false);
+		}
 	}
 
 	public void updateScore(Monster monster) {
@@ -142,4 +118,13 @@ public class Hero extends Hitbox implements Irenderable {
 	public void setDestroyed(boolean isDestroyed) {
 		this.isDestroyed = isDestroyed;
 	}
+
+	public AudioClip getSound() {
+		return sound;
+	}
+
+	public void setSound(AudioClip sound) {
+		this.sound = sound;
+	}
+
 }

@@ -2,35 +2,26 @@ package hero.base;
 
 import hero.action.Attackable;
 import hero.action.FireBall;
-import javafx.animation.AnimationTimer;
 import javafx.scene.canvas.GraphicsContext;
 import logic.GameLogic;
 import logic.Position;
 import obstacle.Monster;
+import render.Irenderable;
 import render.Resource;
 
-public class Mage extends Hero implements Attackable {
-
-	final long startNanoTime = System.nanoTime();
+public class Mage extends Hero implements Attackable, Irenderable {
+	private int i;
 	private FireBall fireball;
-
+	
 	public Mage(Position position) {
 		super(position);
+		this.position = position;
 		setStage(1);
 	}
 
-	@Override
-	public void attack() {
-		fireball = new FireBall(new Position(this.C.getX(), this.C.getY() / 2));
-		new AnimationTimer() {
-
-			@Override
-			public void handle(long now) {
-				// TODO Auto-generated method stub
-				long time =  (now - System.nanoTime()) * 60 / 1000000000;
-				fireball.update(time);
-			}
-		}.start();
+	public FireBall getAttack() {
+		fireball = new FireBall(new Position(this.position.getX(), this.position.getY()+20));
+		return fireball;
 	}
 
 	@Override
@@ -41,28 +32,35 @@ public class Mage extends Hero implements Attackable {
 	}
 
 	@Override
-	public void draw(GraphicsContext g2d, long time) {
+	public void draw(GraphicsContext g2d) {
 		// TODO Auto-generated method stub
 		if(GameLogic.isAttack()) {
-			g2d.drawImage(Resource.Hero1_Attack, this.getA().getX(), this.getA().getY(), this.getWidth(), this.getHeight());
+			g2d.drawImage(Resource.Hero1_Attack, this.position.getX(), this.position.getY(), 167, 300);
 		}else {
-			g2d.drawImage(Resource.Hero1, this.getA().getX(), this.getA().getY(), this.getWidth(), this.getHeight());
+			g2d.drawImage(Resource.Hero1, this.position.getX(), this.position.getY(),167,300);
 		}
 	}
 	@Override
 	public boolean IsVisible() {
 		// TODO Auto-generated method stub
-		return false;
+		return true;
 	}
 
 	@Override
 	public int getZ() {
 		// TODO Auto-generated method stub
-		return 0;
+		return 5;
 	}
 
-	public FireBall getFireball() {
-		return fireball;
+	@Override
+	public void attack() {
+		i++;
+		if(i <= 10) {
+			setSound(Resource.Hero1_Attack_Sound);
+			getSound().play();
+		}else {
+			i = 0;
+		}
 	}
 
 }

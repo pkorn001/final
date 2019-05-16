@@ -19,13 +19,13 @@ public class Item extends Hitbox implements Irenderable {
 	 */
 
 	public Item(Position a, int fps, int stage) {
-		super(a,100,100,fps);
+		super(a,150,150,fps);
 		this.itemType = stage;
 	}
 
 	@Override
-	public void draw(GraphicsContext g2d, long time) {
-
+	public void draw(GraphicsContext g2d) {
+		System.out.println(this.getA().getX());
 		switch(HERO_ITEM[itemType]) {
 		case("Mage"):
 			g2d.drawImage(Resource.Coin1,this.getB().getX(),this.getB().getY(),this.getWidth(),this.getHeight());
@@ -67,7 +67,7 @@ public class Item extends Hitbox implements Irenderable {
 	@Override
 	public int getZ() {
 		// TODO Auto-generated method stub
-		return Integer.MIN_VALUE;
+		return Integer.MAX_VALUE;
 	}
 
 	@Override

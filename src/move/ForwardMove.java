@@ -9,7 +9,6 @@ public class ForwardMove implements Move {
 	private double xSpeed;
 	private double ySpeed;
 	private Hitbox obj;
-	private long time;
 	
 	public ForwardMove (Hitbox obj) {
 		this.obj = obj;
@@ -20,8 +19,8 @@ public class ForwardMove implements Move {
 	}
 
 	@Override
-	public Position move(long time) {
-		double x = this.xSpeed * time;
+	public Position move() {
+		double x = this.xSpeed;
 		double y = 0;
 		return new Position(x, y);
 	}
