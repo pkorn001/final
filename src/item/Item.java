@@ -25,7 +25,6 @@ public class Item extends Hitbox implements Irenderable {
 
 	@Override
 	public void draw(GraphicsContext g2d) {
-		System.out.println(this.getA().getX());
 		switch(HERO_ITEM[itemType]) {
 		case("Mage"):
 			g2d.drawImage(Resource.Coin1,this.getB().getX(),this.getB().getY(),this.getWidth(),this.getHeight());

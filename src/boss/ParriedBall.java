@@ -23,7 +23,7 @@ public class ParriedBall extends BossAttack implements Irenderable {
 			g2d.drawImage(Resource.ParriedBall1,this.getB().getX(),this.getB().getY(),this.getWidth(),this.getHeight());
 	}
 		else {
-			IsVisible();
+			g2d.drawImage(Resource.ParriedBall2,this.getB().getX(),this.getB().getY(),this.getWidth(),this.getHeight());
 		}
 	}
 	
@@ -39,5 +39,6 @@ public class ParriedBall extends BossAttack implements Irenderable {
 
 	public void setParried(boolean isParried) {
 		this.isParried = isParried;
+		
 	}
 }

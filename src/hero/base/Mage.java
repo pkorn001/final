@@ -19,8 +19,7 @@ public class Mage extends Hero implements Attackable, Irenderable {
 	}
 
 	public FireBall getAttack() {
-		fireball = new FireBall(new Position(this.position.getX(), this.position.getY() + 50));
-		System.out.println(fireball.getA().getX());
+		fireball = new FireBall(new Position(this.getB().getX()+15, this.getB().getY()+90));
 		return fireball;
 	}
 
@@ -35,9 +34,9 @@ public class Mage extends Hero implements Attackable, Irenderable {
 	public void draw(GraphicsContext g2d) {
 		// TODO Auto-generated method stub
 		if(GameLogic.isAttack()) {
-			g2d.drawImage(Resource.Hero1_Attack, this.position.getX(), this.position.getY(), this.getWidth(), this.getHeight());
+			g2d.drawImage(Resource.Hero1_Attack, this.getB().getX(), this.getB().getY(), this.getWidth(), this.getHeight());  
 		}else {
-			g2d.drawImage(Resource.Hero1, this.position.getX(), this.position.getY(), this.getWidth(), this.getHeight());
+			g2d.drawImage(Resource.Hero1, this.getB().getX(), this.getB().getY(), this.getWidth(), this.getHeight());
 		}
 	}
 	
@@ -56,9 +55,8 @@ public class Mage extends Hero implements Attackable, Irenderable {
 	@Override
 	public void attack() {
 		i++;
-		if(i <= 10) {
-			setSound(Resource.Hero1_Attack_Sound);
-			getSound().play();
+		if(i < 10) {
+			Resource.Hero1_Attack_Sound.play();
 		}else {
 			i = 0;
 		}

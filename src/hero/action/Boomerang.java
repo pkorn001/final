@@ -1,74 +1,26 @@
 package hero.action;
 
-
 import javafx.scene.canvas.GraphicsContext;
+import logic.GameLogic;
 import logic.Hitbox;
 import logic.Position;
-import obstacle.Evil;
-import obstacle.Monster;
-import obstacle.Slime;
+import move.SineMove;
 import render.Irenderable;
 import render.Resource;
 
 public class Boomerang extends Hitbox implements Irenderable {
-	
-	private Position returnPoint;
-	private Position originPoint;
-	private Hitbox hero;
-	private boolean isReturn = false;
-	private boolean doneFirst = false;
-	
+
+	private double i;
+	private boolean isDestroyed = false;
+
 	public Boomerang(Position position) {
-		super(position, 1, 1, 0, 0);
-		originPoint = new Position(position.getX(), position.getY());
-		returnPoint = new Position(position.getX() + 8, position.getY()/2 + 4);
+		super(position, 150, 150, 20, 0);
 	}
-	
-	public void move() {
-		if(this.C.getX() < returnPoint.getX() && this.C.getY()/2 < returnPoint.getY()) {
-			this.setA(new Position(this.A.getX()+2, this.A.getY()+1));
-			this.setB(new Position(this.B.getX()+2, this.B.getY()+1));
-			this.setC(new Position(this.C.getX()+2, this.C.getY()+1));
-			this.setD(new Position(this.D.getX()+2, this.D.getY()+1));
-		}else if(this.C.getX() >= returnPoint.getX() && this.C.getY() > returnPoint.getY()) {
-			doneFirst = true;
-			this.setA(new Position(this.A.getX()+1, this.A.getY()-2));
-			this.setB(new Position(this.B.getX()+1, this.B.getY()-2));
-			this.setC(new Position(this.C.getX()+1, this.C.getY()-2));
-			this.setD(new Position(this.D.getX()+1, this.D.getY()-2));
-		}else if(this.C.getX() >= returnPoint.getX() && this.C.getY() > originPoint.getY()){
-			this.setA(new Position(this.A.getX()-1, this.A.getY()-2));
-			this.setB(new Position(this.B.getX()-1, this.B.getY()-2));
-			this.setC(new Position(this.C.getX()-1, this.C.getY()-2));
-			this.setD(new Position(this.D.getX()-1, this.D.getY()-2));
-		}else if(doneFirst  && this.C.getX() > originPoint.getX() && this.C.getY() == originPoint.getY()) {
-			this.setA(new Position(this.A.getX()-2, this.A.getY()));
-			this.setB(new Position(this.B.getX()-2, this.B.getY()));
-			this.setC(new Position(this.C.getX()-2, this.C.getY()));
-			this.setD(new Position(this.D.getX()-2, this.D.getY()));	
-		}
-		if(this.collide(hero)) {
-			setReturn(true);
-		}
-	}
-	@Override
-	public boolean collide(Hitbox hitbox) {
-		if(hitbox instanceof Slime || hitbox instanceof Evil ) {
-			if(((this.getA().getX() < hitbox.getD().getX()) && (this.getA().getX() > hitbox.getA().getX()) && (this.getB().getY() > hitbox.getD().getY()))
-					|| ((this.getA().getX() < hitbox.getC().getX()) && (this.getD().getX() > hitbox.getC().getX()) && (this.getA().getY() < hitbox.getC().getY()) && (this.getB().getY() > hitbox.getC().getY()))
-					|| ((this.getD().getX() > hitbox.getA().getX() && (this.getA().getX() < hitbox.getA().getX()) && (this.getC().getY() > hitbox.getA().getY())))
-					|| ((this.getD().getX() > hitbox.getB().getX() && (this.getA().getX() < hitbox.getB().getX()) && (this.getC().getY() > hitbox.getB().getY()) && (this.getD().getY() < hitbox.getB().getY())))
-					) {
-				((Monster) hitbox).setDestroyed(true);
-			}
-		}
-		return isDestroyed();
-	}
-	
+
 	@Override
 	public boolean IsVisible() {
 		// TODO Auto-generated method stub
-		return false;
+		return true;
 	}
 
 	@Override
@@ -78,22 +30,34 @@ public class Boomerang extends Hitbox implements Irenderable {
 	}
 
 	@Override
-	public boolean isDestroyed() {
+	public boolean isDestroyed() {  //destroyed when return
 		// TODO Auto-generated method stub
-		return this.collide(hero);
+		return isDestroyed;
 	}
 
 	@Override
 	public void draw(GraphicsContext g2d) {
 		// TODO Auto-generated method stub
-		g2d.drawImage(Resource.Boomerang, originPoint.getX(), originPoint.getY());
+		g2d.drawImage(Resource.Boomerang, this.B.getX(),this.B.getY(), 90, 90);
 	}
 
-	public boolean isReturn() {
-		return isReturn;
+	public void setDestroyed(boolean isDestroyed) {
+		this.isDestroyed = isDestroyed;
 	}
-
-	public void setReturn(boolean isReturn) {
-		this.isReturn = isReturn;
+	
+	@Override
+	public void update() {
+		// TODO Auto-generated method stub
+		if(this.getB().getX() >= 1000) {
+			this.setxSpeed(-20);
+		}
+		
+		for(Position i  : new Position[] {this.A, this.B, this.C, this.D}){
+			i.setX(i.getX() + this.xSpeed);
+			i.setY(i.getY() + this.ySpeed);
+		}
 	}
+	
+	
+	
 }

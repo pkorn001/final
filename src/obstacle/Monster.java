@@ -2,6 +2,7 @@ package obstacle;
 
 
 import javafx.scene.canvas.GraphicsContext;
+import logic.GameLogic;
 import logic.Hitbox;
 import logic.Position;
 import move.Move;
@@ -16,7 +17,7 @@ public abstract class Monster extends Hitbox implements Irenderable{
 	 4 = purple */
 	protected int monsterType;
 	protected int monsterPoint;
-	protected final static int[] MONSTER_POINT = {0,0,70,200,50,60,0};
+	protected final static int[] MONSTER_POINT = {0,20,70,200,50,60,50};
 	protected boolean destroyed;
 	protected Move movePattern;
 	protected int z;
@@ -43,6 +44,7 @@ public abstract class Monster extends Hitbox implements Irenderable{
 	}
 
 	public void setDestroyed(boolean destroyed) {
+		GameLogic.getHero().setScore(GameLogic.getHero().getScore() + this.getMonsterPoint());
 		this.destroyed = destroyed;
 	}
 	

@@ -24,11 +24,11 @@ public class Assassin extends Hero implements Attackable,Irenderable{
 	public Hitbox getAttack() {
 		// TODO Auto-generated method stub
 		if (!didShort) {
-			attackBox = new Hitbox(new Position(this.getC().getX() + 1, this.getC().getY()/2), 40, 40) {
+			attackBox = new Hitbox(new Position(this.getC().getX() + 50, this.getC().getY()), 130, 250) {
 			};
 			didShort = true;
 		} else {
-			attackBox = new Hitbox(new Position(this.getC().getX()+5, this.getC().getY()/2), 40, 40){
+			attackBox = new Hitbox(new Position(this.getC().getX() + 70, this.getC().getY()), 130, 250){
 			};
 			didShort = false;
 		}
@@ -44,15 +44,19 @@ public class Assassin extends Hero implements Attackable,Irenderable{
 	@Override
 	public void draw(GraphicsContext g2d) {
 		// TODO Auto-generated method stub
+		g2d.drawImage(Resource.Hero4, this.getB().getX(), this.getB().getY(), this.getWidth(), this.getHeight());
+		g2d.drawImage(Resource.BossAttack, getA().getX(), getA().getY(),10,10);
+		g2d.drawImage(Resource.BossAttack, getB().getX(), getB().getY(),10,10);
+		g2d.drawImage(Resource.BossAttack, getC().getX(), getC().getY(),10,10);
+		g2d.drawImage(Resource.BossAttack, getD().getX(), getD().getY(),10,10);
 		if(GameLogic.isAttack()) {
 			if(!didShort) {
-				g2d.drawImage(Resource.Hero4_Attack1, this.position.getX(), this.position.getY(), this.getWidth(), this.getHeight());
+				g2d.drawImage(Resource.Hero4_Attack1, this.getB().getX()+150, this.getB().getY(), this.getWidth()+50, this.getHeight());
 			}else {
-				g2d.drawImage(Resource.Hero4_Attack2, this.position.getX(), this.position.getY(), this.getWidth(), this.getHeight());
+				g2d.drawImage(Resource.Hero4_Attack2, this.getB().getX()+150, this.getB().getY(), this.getWidth()+50, this.getHeight());
 			}
-		}else {
-			g2d.drawImage(Resource.Hero4, this.position.getX(), this.position.getY(), this.getWidth(), this.getHeight());
 		}
+	
 	}
 
 	@Override
@@ -82,15 +86,14 @@ public class Assassin extends Hero implements Attackable,Irenderable{
 		i++;
 		if(i <= 4) {
 			if(!didShort) {
-				setSound(Resource.Hero4_Attack1_Sound);
+				Resource.Hero4_Attack1_Sound.play();
 			}else {
-				setSound(Resource.Hero4_Attack2_Sound);
+				Resource.Hero4_Attack2_Sound.play();
 			}
-			getSound().play();
 		}
-		if(i == 19) {
+		if(i == 10) {
 			GameLogic.setAttack(false);
-		}else if(i > 19) {
+		}else if(i > 10) {
 			i = 0;
 		}
 	}

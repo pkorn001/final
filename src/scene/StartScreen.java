@@ -1,6 +1,5 @@
 package scene;
 
-import hero.base.Hero;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -23,7 +22,7 @@ import render.Resource;
 public class StartScreen extends Scene {
 
 	public static boolean isStart = false;
-	GraphicsContext gc;
+	static GraphicsContext gc;
 
 	public StartScreen(StackPane stackpane) {
 		super(stackpane);
@@ -36,7 +35,7 @@ public class StartScreen extends Scene {
 		setKey();
 	}
 
-	public Canvas createCanvas() {
+	public static Canvas createCanvas() {
 		Canvas canvas = new Canvas();
 		canvas.setWidth(GameScreen.SCENE_WIDTH);
 		canvas.setHeight(GameScreen.SCENE_HEIGHT);
@@ -45,7 +44,7 @@ public class StartScreen extends Scene {
 		return canvas;
 	}
 
-	public StackPane createUI() {
+	public static StackPane createUI() {
 		StackPane ui = new StackPane();
 
 		Image logo = Resource.Logo;
@@ -65,7 +64,7 @@ public class StartScreen extends Scene {
 		title.setPrefHeight(300);
 
 		HBox startText = new HBox();
-		Text text = new Text("Press any key to start");
+		Text text = new Text("Press Enter to start");
 		text.setTextAlignment(TextAlignment.CENTER);
 		text.setFont(Font.font("Verdana", FontWeight.BOLD, 22));
 		text.setFill(Color.WHITE);

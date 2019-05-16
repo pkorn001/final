@@ -20,8 +20,8 @@ public class Swordman extends Hero implements Attackable {
 	}
 
 	@Override
-	public Hitbox  getAttack() {
-		attackBox = new Hitbox(new Position(this.position.getX() + 10, this.position.getY() / 2), 167, 150) {
+	public Hitbox getAttack() {
+		attackBox = new Hitbox(new Position(this.position.getX() + 50, this.position.getY()), 130, 250) {
 		};
 		return attackBox;
 	}
@@ -31,8 +31,7 @@ public class Swordman extends Hero implements Attackable {
 		// TODO Auto-generated method stub
 		i++;
 		if(i <= 4) {
-			setSound(Resource.Hero3_Attack_Sound);
-			getSound().play();
+			Resource.Hero3_Attack_Sound.play();
 		}
 		if(i == 19) {
 			GameLogic.setAttack(false);
@@ -51,9 +50,9 @@ public class Swordman extends Hero implements Attackable {
 	@Override
 	public void draw(GraphicsContext g2d) {
 		if(GameLogic.isAttack()) {
-			g2d.drawImage(Resource.Hero3_Attack, this.position.getX(), this.position.getY(), this.getWidth(), this.getHeight());
+			g2d.drawImage(Resource.Hero3_Attack, this.getB().getX(), this.getB().getY(), this.getWidth()+60, this.getHeight());
 		}else {
-			g2d.drawImage(Resource.Hero3, this.position.getX(), this.position.getY(), this.getWidth(), this.getHeight());
+			g2d.drawImage(Resource.Hero3, this.getB().getX(), this.getB().getY(), this.getWidth(), this.getHeight());
 		}
 	}
 
