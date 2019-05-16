@@ -107,15 +107,11 @@ public abstract class Hitbox {
 	}
 
 	public boolean collide(Hitbox hitbox) {
-		if((D.getX() >= hitbox.A.getX()) && ((D.getX() <= hitbox.D.getX()))){
-			return (((D.getY() >= B.getY()) && (C.getY() <= B.getY())) || ((C.getY() >= B.getY()) && (C.getY() <= A.getY())));
-		}else if ((A.getX() >= hitbox.A.getX()) && ((A.getX() <= hitbox.D.getX()))) {
-			return (((D.getY() >= B.getY()) && (C.getY() <= B.getY()) || ((C.getY() >= B.getY())) && (C.getY() <= A.getY())));
+		return ((D.getX() >= hitbox.A.getX()) && ((D.getX() <= hitbox.D.getX()) && (D.getY() >= B.getY()) && (C.getY() <= B.getY()))
+				|| (A.getX() >= hitbox.A.getX()) && ((A.getX() <= hitbox.D.getX()) && (D.getY() >= B.getY()) && (C.getY() <= B.getY()))
+				|| ( (D.getX() >= hitbox.A.getX()) && ((D.getX() <= hitbox.D.getX()) && (C.getY() >= B.getY()) && (C.getY() <= A.getY()))
+				|| (A.getX() >= hitbox.A.getX()) && ((A.getX() <= hitbox.D.getX()) && (C.getY() >= B.getY())) && (C.getY() <= A.getY())));
 		}
-		else {
-			return false;
-		}
-	}
 	
 	public void update() {
 		for(Position i  : new Position[] {this.A, this.B, this.C, this.D}){

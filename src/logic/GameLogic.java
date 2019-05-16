@@ -43,7 +43,7 @@ public class GameLogic {
 	protected static double speedFactor;
 	private static Background bg = new Background();;
 	static Random isMonsterGen = new Random();
-	private static int counter = 1700;
+	private static int counter = 1698;
 	
 
 	static {
@@ -51,7 +51,7 @@ public class GameLogic {
 	}
 	
 	private GameLogic() {
-		hero = new Hero(new Position(100.00,550));
+		hero = new Hero (new Position(100.00,550));
 		boss = new Boss(new Position(1100,200), 0, 0);
 		speedFactor = 0.9;
 		gameOver = false;
@@ -463,6 +463,7 @@ public class GameLogic {
 			boss.setAppeared(true);
 		}
 		if(!boss.IsVisible()) {
+
 			if(counter % 1701 == 0) {
 				ItemGen();
 			}else if(counter % 300 == 0) {
@@ -513,7 +514,6 @@ public class GameLogic {
 					hero = new Mage(new Position(100.00,550));
 					everything.add(hero);
 					hero.setStage(1);
-					e.setDestroyed(true);
 					trashes.add(e);
 					break;
 				case ("Boomeranger"):
@@ -521,16 +521,21 @@ public class GameLogic {
 					hero = new Boomeranger(new Position(100.00,550));
 					everything.add(hero);
 					hero.setStage(2);
-					e.setDestroyed(true);
 					trashes.add(e);
 					break;
 				case ("Swordman"):
+					everything.remove(hero);
 					hero = new Swordman(new Position(100.00,550));
+					everything.add(hero);
 					hero.setStage(3);
+					trashes.add(e);
 					break;
 				case ("Assassin"):
+					everything.remove(hero);
 					hero = new Assassin(new Position(100.00,550));
+					everything.add(hero);
 					hero.setStage(4);
+					trashes.add(e);
 					break;
 				}
 			}
@@ -596,6 +601,9 @@ public class GameLogic {
 		
 		for (Hitbox e : trashes) {
 			everything.remove(e);
+			if (e instanceof Item) {
+				items.remove(e);
+			}
 			if (e instanceof Monster) {
 				monsters.remove(e);
 			}if (e instanceof BossAttack) {

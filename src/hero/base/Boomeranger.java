@@ -60,10 +60,14 @@ public class Boomeranger extends Hero implements Attackable,Irenderable {
 
 	@Override
 	public void draw(GraphicsContext g2d) {
+		g2d.drawImage(Resource.BossAttack,A.getX(),A.getY(),5,5);
+		g2d.drawImage(Resource.BossAttack,B.getX(),B.getY(),5,5);
+		g2d.drawImage(Resource.BossAttack,C.getX(),C.getY(),5,5);
+		g2d.drawImage(Resource.BossAttack,D.getX(),D.getY(),5,5);
 		if(GameLogic.isAttack()) {
 			g2d.drawImage(Resource.Hero2_Attack, this.getA().getX(), this.getA().getY(), this.getWidth(), this.getHeight());
 		}else {
-			g2d.drawImage(Resource.Hero2, this.getA().getX(), this.getA().getY(), this.getWidth(), this.getHeight());
+			g2d.drawImage(Resource.Hero4_Attack2,getA().getX(), getB().getY(),130,250);
 		}
 	}
 
