@@ -10,7 +10,7 @@ import render.Irenderable;
 import render.Resource;
 
 public class Mage extends Hero implements Attackable, Irenderable {
-	private int i;
+	private int i = 0;
 	private FireBall fireball;
 	
 	public Mage(Position position) {
@@ -21,6 +21,7 @@ public class Mage extends Hero implements Attackable, Irenderable {
 
 	public FireBall getAttack() {
 		fireball = new FireBall(new Position(this.position.getX(), this.position.getY()+20));
+		System.out.println(fireball.getA().getX());
 		return fireball;
 	}
 
@@ -40,6 +41,7 @@ public class Mage extends Hero implements Attackable, Irenderable {
 			g2d.drawImage(Resource.Hero1, this.position.getX(), this.position.getY(),167,300);
 		}
 	}
+	
 	@Override
 	public boolean IsVisible() {
 		// TODO Auto-generated method stub

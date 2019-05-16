@@ -55,7 +55,7 @@ public class GameLogic {
 	}
 
 	private GameLogic() {
-		hero = new Assassin(heroPosition);
+		hero = new  Mage(heroPosition);
 		boss = new Boss(new Position(1600, 0), 0, 0);
 		speedFactor = 0.7;
 		gameOver = false;
@@ -518,8 +518,9 @@ public class GameLogic {
 				// e.update(time);
 				
 				if (hero instanceof Mage) {// just create fireball, have to calculate thr movement in AnimationTimer to
-											// finish.
+					setAttack(false);		// finish.
 					FireBall fireball = ((Mage) hero).getAttack();
+					((Mage)hero).attack();
 					everything.add(fireball);
 					for (Monster monster : monsters) {
 						if (fireball.collide(monster)) {
@@ -537,6 +538,7 @@ public class GameLogic {
 				} else if (hero instanceof Boomeranger) { // just create boomerang, have to calculate the movement in
 															// AnimationTimer to finish.
 					Boomerang boomerang = ((Boomeranger) hero).getAttack();
+					((Boomeranger)hero).attack();
 					everything.add(boomerang);
 					for (Monster monster : monsters) {
 						if (boomerang.collide(monster)) {
@@ -566,15 +568,19 @@ public class GameLogic {
 					}
 				}
 			}
-
+			
+			int i  = 0;
 			for (Hitbox e : everything) {
 				e.update();
+				if (e instanceof FireBall) {
+					i++;
+				}
 				if (e.getD().getX() < -300) {
 					trashes.add(e);
 					e.setDestroyed(true);
 				}
 			}
-
+			System.out.println(i);
 			for (Hitbox e : trashes) {
 				everything.remove(e);
 			}

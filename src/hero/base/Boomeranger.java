@@ -23,8 +23,6 @@ public class Boomeranger extends Hero implements Attackable,Irenderable {
 	
 	@Override
 	public Boomerang getAttack() {
-		setSound(Resource.Hero2_Attack_Sound);
-		getSound().play();
 		boomerang = new Boomerang(new Position(this.position.getX() + 1, this.position.getY() / 2));
 		return boomerang;
 	}
@@ -55,15 +53,7 @@ public class Boomeranger extends Hero implements Attackable,Irenderable {
 		// TODO Auto-generated method stub
 		return 5;
 	}
-
-	public boolean isJumped() {
-		return isJumped;
-	}
 	
-	public void setJumped(boolean isJumped) {
-		this.isJumped = isJumped;
-	}
-
 	public boolean isAttacked() {
 		return isAttacked;
 	}
@@ -74,6 +64,9 @@ public class Boomeranger extends Hero implements Attackable,Irenderable {
 
 	@Override
 	public void attack() {
+		setSound(Resource.Hero2_Attack_Sound);
+		getSound().play();
+		this.boomerang.move();
 		// TODO Auto-generated method stub
 		
 	}

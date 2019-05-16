@@ -106,8 +106,8 @@ public abstract class Hitbox {
 		this.B = new Position(a.getX(), a.getY());
 		this.C = new Position(a.getX()+width, a.getY());
 		this.D = new Position(a.getX()+width, a.getY()+height);
-		setxSpeed(xSpeed);
-		setySpeed(ySpeed);
+		this.xSpeed = xSpeed;
+		this.ySpeed = ySpeed;
 	}
 
 	public boolean collide(Hitbox hitbox) {
