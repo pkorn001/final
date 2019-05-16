@@ -13,29 +13,26 @@ public class Assassin extends Hero implements Attackable,Irenderable{
 
 	private static Hitbox attackBox;
 	private static boolean didShort = false;
-	public static boolean isDidShort() {
-		return didShort;
-	}
-
-	private boolean isJumped = false;
-	private boolean isAttacked = false;
+	private int i = 0;
 	
 	public Assassin(Position position) {
 		super(position);
+		setStage(4);
 	}
 	
 	@Override
-	public void attack() {
+	public Hitbox getAttack() {
 		// TODO Auto-generated method stub
 		if (!didShort) {
-			attackBox = new Hitbox(new Position(this.getC().getX() + 1, this.getC().getY()/2), 1, 1) {
+			attackBox = new Hitbox(new Position(this.getC().getX() + 1, this.getC().getY()/2), 40, 40) {
 			};
 			didShort = true;
 		} else {
-			attackBox = new Hitbox(new Position(this.getC().getX()+5, this.getC().getY()/2), 1, 1){
+			attackBox = new Hitbox(new Position(this.getC().getX()+5, this.getC().getY()/2), 40, 40){
 			};
 			didShort = false;
 		}
+		return attackBox;
 	}
 	
 	@Override
@@ -44,21 +41,17 @@ public class Assassin extends Hero implements Attackable,Irenderable{
 		setScore( getScore() + monster.getMonsterPoint());
 	}
 
-	public static Hitbox getAttackBox() {
-		return attackBox;
-	}
-
 	@Override
 	public void draw(GraphicsContext g2d) {
 		// TODO Auto-generated method stub
 		if(GameLogic.isAttack()) {
 			if(!didShort) {
-				g2d.drawImage(Resource.Hero4_Attack1, this.getA().getX(), this.getA().getY(), this.getWidth(), this.getHeight());
+				g2d.drawImage(Resource.Hero4_Attack1, this.position.getX(), this.position.getY(), this.getWidth(), this.getHeight());
 			}else {
-				g2d.drawImage(Resource.Hero4_Attack2, this.getA().getX(), this.getA().getY(), this.getWidth(), this.getHeight());
+				g2d.drawImage(Resource.Hero4_Attack2, this.position.getX(), this.position.getY(), this.getWidth(), this.getHeight());
 			}
 		}else {
-			g2d.drawImage(Resource.Hero4, this.getA().getX(), this.getA().getY(), this.getWidth(), this.getHeight());
+			g2d.drawImage(Resource.Hero4, this.position.getX(), this.position.getY(), this.getWidth(), this.getHeight());
 		}
 	}
 
@@ -71,7 +64,36 @@ public class Assassin extends Hero implements Attackable,Irenderable{
 	@Override
 	public int getZ() {
 		// TODO Auto-generated method stub
-		return z--;
+		return 5;
 	}
 
+	public static boolean isDidShort() {
+		return didShort;
+	}
+	
+
+	public static Hitbox getAttackBox() {
+		return attackBox;
+	}
+
+	@Override
+	public void attack() {
+		// TODO Auto-generated method stub
+		i++;
+		if(i <= 4) {
+			if(!didShort) {
+				setSound(Resource.Hero4_Attack1_Sound);
+			}else {
+				setSound(Resource.Hero4_Attack2_Sound);
+			}
+			getSound().play();
+		}
+		if(i == 19) {
+			GameLogic.setAttack(false);
+		}else if(i > 19) {
+			i = 0;
+		}
+	}
+		
 }
+

@@ -11,15 +11,62 @@ import render.Resource;
 public class Swordman extends Hero implements Attackable {
 
 	private static Hitbox attackBox;
-	private boolean isJumped = false;
 	private boolean isAttacked = false;
-	
-	public boolean isJumped() {
-		return isJumped;
+	private int i = 0;
+
+	public Swordman(Position position) {
+		super(position);
+		setStage(3);
 	}
 
-	public void setJumped(boolean isJumped) {
-		this.isJumped = isJumped;
+	@Override
+	public Hitbox  getAttack() {
+		attackBox = new Hitbox(new Position(this.position.getX() + 10, this.position.getY() / 2), 167, 150) {
+		};
+		return attackBox;
+	}
+
+	@Override
+	public void attack() {
+		// TODO Auto-generated method stub
+		i++;
+		if(i <= 4) {
+			setSound(Resource.Hero3_Attack_Sound);
+			getSound().play();
+		}
+		if(i == 19) {
+			GameLogic.setAttack(false);
+		}else if(i > 19) {
+			i = 0;
+		}
+	}
+
+	@Override
+	public void updateScore(Monster monster) {
+		// TODO Auto-generated method stub
+		setScore( getScore() + monster.getMonsterPoint());
+	}
+
+
+	@Override
+	public void draw(GraphicsContext g2d) {
+		if(GameLogic.isAttack()) {
+			g2d.drawImage(Resource.Hero3_Attack, this.position.getX(), this.position.getY(), this.getWidth(), this.getHeight());
+		}else {
+			g2d.drawImage(Resource.Hero3, this.position.getX(), this.position.getY(), this.getWidth(), this.getHeight());
+		}
+	}
+
+	@Override
+	public boolean IsVisible() {
+		// TODO Auto-generated method stub
+		return true;
+	}
+
+	@Override
+	public int getZ() {
+		// TODO Auto-generated method stub
+		return 5;
 	}
 
 	public boolean isAttacked() {
@@ -33,44 +80,4 @@ public class Swordman extends Hero implements Attackable {
 	public void setAttacked(boolean isAttacked) {
 		this.isAttacked = isAttacked;
 	}
-
-	public Swordman(Position position) {
-		super(position);
-	}
-
-	@Override
-	public void attack() {
-		attackBox = new Hitbox(new Position(this.getC().getX() + 1, this.getC().getY() / 2), 1, 1) {
-		};
-	}
-
-	@Override
-	public void updateScore(Monster monster) {
-		// TODO Auto-generated method stub
-		setScore( getScore() + monster.getMonsterPoint());
-	}
-
-
-	@Override
-	public void draw(GraphicsContext g2d) {
-		if(GameLogic.isAttack()) {
-			g2d.drawImage(Resource.Hero3_Attack, this.getA().getX(), this.getA().getY(), this.getWidth(), this.getHeight());
-		}else {
-			g2d.drawImage(Resource.Hero3, this.getA().getX(), this.getA().getY(), this.getWidth(), this.getHeight());
-		}
-	}
-
-	@Override
-	public boolean IsVisible() {
-		// TODO Auto-generated method stub
-		return true;
-	}
-
-	@Override
-	public int getZ() {
-		// TODO Auto-generated method stub
-		return z--;
-	}
-
-
 }

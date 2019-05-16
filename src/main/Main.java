@@ -9,6 +9,7 @@ import javafx.stage.Stage;
 import logic.GameLogic;
 import render.RenderableHolder;
 import scene.GameScreen;
+import scene.StartScreen;
 
 public class Main extends Application {
 	
@@ -19,13 +20,12 @@ public class Main extends Application {
 	public void start(Stage primaryStage) {
 		// TODO Auto-generated method stub
 		StackPane root = new StackPane();
-		Scene scene = new Scene(root);
-		primaryStage.setScene(scene);
+		StackPane root2 = new StackPane();
+		StartScreen startScreen = new StartScreen(root);
+		GameScreen gameScreen = new GameScreen(root2);
+		primaryStage.setScene(startScreen);
 		primaryStage.setTitle("LITTLE HERO");
-		GameScreen gameScreen = new GameScreen();
-		root.getChildren().add(gameScreen);
 		primaryStage.show();
-		
 		
 		 new AnimationTimer() {
 			 @Override
@@ -33,7 +33,12 @@ public class Main extends Application {
 			    // TODO Add another canvas update
 				GameLogic.logicUpdate();
 				RenderableHolder.getInstance().update();
-				gameScreen.paintComponent();
+				if(StartScreen.isStart) {
+					primaryStage.setScene(gameScreen);
+					gameScreen.paintComponent();
+				}else {
+					startScreen.paintComponent();
+				}
 			}
 		}.start();
 	}

@@ -1,12 +1,15 @@
 package scene;
 
+import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.input.KeyCode;
+import javafx.scene.layout.StackPane;
 import logic.GameLogic;
 import render.Irenderable;
 import render.RenderableHolder;
 
-public class GameScreen extends Canvas {
+public class GameScreen extends Scene {
 
 	public static final int SCENE_WIDTH = 1600;
 	public static final int SCENE_HEIGHT = 900;
@@ -14,17 +17,30 @@ public class GameScreen extends Canvas {
 	private boolean inGame = true;
 	GraphicsContext gc;
 
-	public GameScreen() {
-		super(SCENE_WIDTH, SCENE_HEIGHT);
-		this.setVisible(true);
-		gc = this.getGraphicsContext2D();
+	public GameScreen(StackPane stackpane) {
+		super(stackpane);
+		stackpane.setPrefHeight(SCENE_HEIGHT);
+		stackpane.setPrefWidth(SCENE_WIDTH);
+		
+		Canvas canvas = createCanvas();
+		stackpane.getChildren().add(canvas);
+		setKey();
+	}
+	
+	public Canvas createCanvas() {
+		Canvas canvas = new Canvas();
+		canvas.setWidth(GameScreen.SCENE_WIDTH);
+		canvas.setHeight(GameScreen.SCENE_HEIGHT);
+		canvas.setVisible(true);
+		gc = canvas.getGraphicsContext2D();
+		return canvas;
 	}
 	
 	public void paintComponent() {
-		System.out.println("-----------------------------------------");
+		//System.out.println("-----------------------------------------");
 		for (Irenderable entity : RenderableHolder.getInstance().getEntities()) {
-			System.out.println(entity);
 			if (entity.IsVisible() && !entity.isDestroyed()) {
+				//System.out.println(entity);
 				entity.draw(gc);
 			}
 		}
@@ -38,4 +54,13 @@ public class GameScreen extends Canvas {
 		this.inGame = inGame;
 	}
 
+	public void setKey() {
+		this.setOnKeyPressed(e -> {
+			if(e.getCode() == KeyCode.SPACE) {
+				GameLogic.setJump(true);
+			}else if(e.getCode() == KeyCode.A) {
+				GameLogic.setAttack(true);
+			}
+		});
+	}
 }

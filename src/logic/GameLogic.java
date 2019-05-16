@@ -8,6 +8,8 @@ import java.util.Random;
 import boss.Boss;
 import boss.BossAttack;
 import boss.ParriedBall;
+import hero.action.Boomerang;
+import hero.action.FireBall;
 import hero.base.Assassin;
 import hero.base.Boomeranger;
 import hero.base.Hero;
@@ -25,9 +27,9 @@ import obstacle.Slime;
 import render.Irenderable;
 import render.RenderableHolder;
 import scene.Background;
+import scene.StartScreen;
 
 public class GameLogic {
-	
 	
 	private static Hero hero;
 	protected static Boss boss;
@@ -45,7 +47,6 @@ public class GameLogic {
 	static Random isMonsterGen = new Random();
 	private static int counter = 1698;
 	
-
 	static {
 		new GameLogic();
 	}
@@ -431,28 +432,7 @@ public class GameLogic {
 		}
 	}
 	
-	public static void keyPressed(KeyEvent e) {
-		if (e.getKeyCode() == KeyEvent.VK_SPACE && !jump) {
-			setJump(true);
-		}
-		if (e.getKeyCode() == KeyEvent.VK_A && !attack) {
-			setAttack(true);
-		}
-	}
-
-	public static void keyRelease(KeyEvent e) {
-		if (e.getKeyCode() == KeyEvent.VK_SPACE) {
-			setJump(false);
-		}
-		if (e.getKeyCode() == KeyEvent.VK_A) {
-			setAttack(false);
-		}
-	}
-	
 	public static void logicUpdate() {
-		
-		counter++;
-		speedFactor = Math.min(speedFactor + 0.00008, 2);
 		bg.update();
 		System.out.println(counter);
 		if(counter % 6 == 0){
@@ -471,15 +451,28 @@ public class GameLogic {
 			}else if(counter % 150 == 0) {
 				ObstacleBoxesGen();
 			}
-		}else{
-			if(counter % 120 == 0) {
-				BossAttackGen();
+			
+			if (counter == 5410) {
+				boss.setAppeared(true);
 			}
-			else if(counter % 180 == 0) {
-				BossAttackGen();
-				if (counter > 7220) {
-					boss.setAppeared(false);
-					counter = 0;
+			if(!boss.IsVisible()) {
+				if(counter % 1701 == 0) {
+				//	ItemGen();
+				}else if(counter % 300 == 0) {
+					MonstersGen();
+				}else if(counter % 150 == 0) {
+					ObstacleBoxesGen();
+				}
+			}else{
+				if(counter % 120 == 0) {
+					BossAttackGen();
+				}
+				else if(counter % 180 == 0) {
+					BossAttackGen();
+					if (counter > 7220) {
+						boss.setAppeared(false);
+						counter = 0;
+					}
 				}
 			}
 		}
@@ -513,14 +506,14 @@ public class GameLogic {
 					everything.remove(hero);
 					hero = new Mage(new Position(100.00,550));
 					everything.add(hero);
-					hero.setStage(1);
+					e.setDestroyed(true);
 					trashes.add(e);
 					break;
 				case ("Boomeranger"):
 					everything.remove(hero);
 					hero = new Boomeranger(new Position(100.00,550));
 					everything.add(hero);
-					hero.setStage(2);
+					e.setDestroyed(true);
 					trashes.add(e);
 					break;
 				case ("Swordman"):
@@ -545,52 +538,55 @@ public class GameLogic {
 			hero.jump();
 		}
 		if (isAttack()) {
-			if (getHero() instanceof Mage) {
-				((Mage) getHero()).attack();
-			} else if (getHero() instanceof Boomeranger) {
-				((Boomeranger) getHero()).attack();
-			} else if (getHero() instanceof Swordman) {
-				((Swordman) getHero()).attack();
-			} else if (getHero() instanceof Assassin) {
-				((Assassin) getHero()).attack();
+			if (hero instanceof Mage) {
+				setAttack(false);		
+				FireBall fireball = ((Mage) hero).getAttack();
+				((Mage)hero).attack();
+				everything.add(fireball);
+				for (Monster monster : monsters) {
+					if (fireball.collide(monster)) {
+						fireball.setDestroyed(true);
+						hero.updateScore(monster);
+						monster.setDestroyed(true);
+					}
+				}
+				for (ObstacleBox obstacle : obstacleBoxes) {
+					if (fireball.collide(obstacle)) {
+						fireball.setDestroyed(true);
+					}
+				}
+			} else if (hero instanceof Boomeranger) { 
+				Boomerang boomerang = ((Boomeranger) hero).getAttack();
+				((Boomeranger)hero).attack();
+				everything.add(boomerang);
+				for (Monster monster : monsters) {
+					if (boomerang.collide(monster)) {
+						hero.updateScore(monster);
+						monster.setDestroyed(true);
+					}
+					if (boomerang.isReturn()) {
+						everything.remove(boomerang);
+					}
+				}
+			} else if (hero instanceof Swordman) {
+				((Swordman) hero).attack();
+				for (Monster monster : monsters) {
+					if (((Swordman) hero).getAttack().collide(monster)) {
+						((Swordman) hero).updateScore(monster);
+						monster.setDestroyed(true);
+					}
+				}
+
+			} else if (hero instanceof Assassin) {
+				((Assassin) hero).attack();
+				for (Monster monster : monsters) {
+					if (((Assassin) hero).getAttack().collide(monster)) {
+						((Assassin) hero).updateScore(monster);
+						monster.setDestroyed(true);
+					}
+				}
 			}
 		}
-			//e.update(time);
-			/*if (getHero() instanceof Mage) {
-				for (Monster monster : monsters) {
-					if (((Mage) getHero()).getFireball().collide(monster)) {
-						//TODO: new Fireball
-						((Mage) getHero()).getFireball().setDestroyed(true);
-						hero.updateScore(monster);
-						monster.setDestroyed(true);
-					}
-				}
-			} else if (getHero() instanceof Boomeranger) {
-				for (Monster monster : monsters) {
-					if (((Boomeranger) getHero()).getBoomerang().collide(monster)){
-						hero.updateScore(monster);
-						monster.setDestroyed(true);
-					}
-					if (((Boomeranger) getHero()).getBoomerang().collide(getHero())){
-					}
-				}
-			} else if (getHero() instanceof Swordman) {
-				for (Monster monster : monsters) {
-					if (((Swordman) getHero()).getAttackBox().collide(monster)) {
-						((Swordman) getHero()).updateScore(monster);
-						monster.setDestroyed(true);
-					}
-				}
-				
-			} else if (getHero() instanceof Assassin) {
-				for (Monster monster : monsters) {
-					if (((Assassin) getHero()).getAttackBox().collide(monster)) {
-						((Assassin) getHero()).updateScore(monster);
-						monster.setDestroyed(true);
-					}
-				}
-			}*/
-	
 		for (Hitbox e : everything) {
 			e.update();
 			if (e.getD().getX() < -300) {
@@ -646,4 +642,5 @@ public class GameLogic {
 	public static void setHero(Hero hero) {
 		GameLogic.hero = hero;
 	}
+
 }

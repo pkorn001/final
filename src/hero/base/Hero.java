@@ -1,13 +1,11 @@
 package hero.base;
 
-import item.Item;
-import javafx.animation.AnimationTimer;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.media.AudioClip;
 import logic.GameLogic;
 import logic.Hitbox;
 import logic.Position;
 import obstacle.Monster;
-import obstacle.ObstacleBox;
 import render.Irenderable;
 import render.Resource;
 
@@ -20,6 +18,9 @@ public class Hero extends Hitbox implements Irenderable {
 	protected Position position;
 	protected boolean isDestroyed = false;
 	protected boolean isJumped = false;
+	private double ground = 560;
+	private double i;
+	private AudioClip sound;
 
 	public Hero(Position a) {
 		super(a, 130, 250);
@@ -28,59 +29,54 @@ public class Hero extends Hitbox implements Irenderable {
 		this.position = a;
 	}
 
-	public void updateScore(Monster monster) {
-		// TODO Auto-generated method stub
-		setScore(getScore() + monster.getMonsterPoint());
+	@Override
+	public boolean isDestroyed() {
+		return isDestroyed;
 	}
 
+	@Override
+	public void draw(GraphicsContext g2d) {
+		// TODO Auto-generated method stub
+		g2d.drawImage(Resource.Hero0, this.getB().getX(), this.getB().getY(), this.getWidth(), this.getHeight());
+	}
+
+	@Override
+	public boolean IsVisible() {
+		// TODO Auto-generated method stub
+		return true;
+	}
+
+	@Override
+	public int getZ() {
+		// TODO Auto-generated method stub
+		return 5;
+	}
+	
+	public void jump() {
+		setSound(Resource.Jump_Sound);
+		if(!isJumped) {
+			getSound().play();
+			setJumped(true);
+		}
+		getB().setY(ground - 200 * Math.sin(Math.toRadians(i)));
+		i += GameLogic.getSpeedFactor()*8;
+		if (i > 180) {
+			i = 0;
+			GameLogic.setJump(false);
+			setJumped(false);
+		}
+	}
+
+	public void updateScore(Monster monster) {
+		setScore(getScore() + monster.getMonsterPoint());
+	}
+	
 	public boolean isJumped() {
 		return isJumped;
 	}
 
 	public void setJumped(boolean isJumped) {
 		this.isJumped = isJumped;
-	}
-
-	public void jump() {
-		new AnimationTimer() {
-
-			@Override
-			public void handle(long now) {
-				boolean hasJumped = false;
-				double maxHeight = getC().getY() + 2;
-				double ground = getA().getY();
-				long time = (now - System.nanoTime()) * 60 / 1000000000;
-				if (getC().getY() < maxHeight && !hasJumped) {
-					for (Position i : new Position[] { getA(), getB(), getC(), getD() }) {
-						if (getB().getY() > maxHeight) {
-							getB().setY(maxHeight);
-							getC().setY(maxHeight);
-							hasJumped = true;
-							break;
-						} else {
-							i.setY(i.getY() + 2 * time);
-						}
-					}
-				}
-				try {
-					wait(1000);
-				} catch (InterruptedException e) {
-					e.printStackTrace();
-				}
-				if (hasJumped) {
-					for (Position i : new Position[] { getA(), getB(), getC(), getD() }) {
-						if (getA().getY() < 0) {
-							getA().setY(ground);
-							getD().setY(ground);
-							stop();
-						} else {
-							i.setY(i.getY() - 2 * time);
-						}
-					}
-				}
-			}
-
-		}.start();
 	}
 
 	public double getxSpeed() {
@@ -123,31 +119,12 @@ public class Hero extends Hitbox implements Irenderable {
 		this.isDestroyed = isDestroyed;
 	}
 
-	@Override
-	public boolean isDestroyed() {
-		return isDestroyed;
-	}
-	
-	@Override
-	public void draw(GraphicsContext g2d) {
-		// TODO Auto-generated method stub
-		g2d.drawImage(Resource.Hero0,getA().getX(), getB().getY(),130,250);
-		g2d.drawImage(Resource.BossAttack,A.getX(),A.getY(),5,5);
-		g2d.drawImage(Resource.BossAttack,B.getX(),B.getY(),5,5);
-		g2d.drawImage(Resource.BossAttack,C.getX(),C.getY(),5,5);
-		g2d.drawImage(Resource.BossAttack,D.getX(),D.getY(),5,5);
+	public AudioClip getSound() {
+		return sound;
 	}
 
-	@Override
-	public boolean IsVisible() {
-		// TODO Auto-generated method stub
-		return true;
-	}
-
-	@Override
-	public int getZ() {
-		// TODO Auto-generated method stub
-		return z;
+	public void setSound(AudioClip sound) {
+		this.sound = sound;
 	}
 
 }

@@ -129,3 +129,4 @@ public class Boss extends Hitbox implements Irenderable {
 	}
 
 }
+

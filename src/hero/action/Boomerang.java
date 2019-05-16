@@ -14,17 +14,14 @@ public class Boomerang extends Hitbox implements Irenderable {
 	
 	private Position returnPoint;
 	private Position originPoint;
-	private Position heroPoint;
 	private Hitbox hero;
 	private boolean isReturn = false;
 	private boolean doneFirst = false;
 	
 	public Boomerang(Position position) {
 		super(position, 1, 1, 0, 0);
-		heroPoint = new Position(position.getX()-1, position.getY());
 		originPoint = new Position(position.getX(), position.getY());
 		returnPoint = new Position(position.getX() + 8, position.getY()/2 + 4);
-		
 	}
 	
 	public void move() {
@@ -54,7 +51,6 @@ public class Boomerang extends Hitbox implements Irenderable {
 			setReturn(true);
 		}
 	}
-	
 	@Override
 	public boolean collide(Hitbox hitbox) {
 		if(hitbox instanceof Slime || hitbox instanceof Evil ) {
@@ -68,16 +64,7 @@ public class Boomerang extends Hitbox implements Irenderable {
 		}
 		return isDestroyed();
 	}
-
-
-	public boolean isReturn() {
-		return isReturn;
-	}
-
-	public void setReturn(boolean isReturn) {
-		this.isReturn = isReturn;
-	}
-
+	
 	@Override
 	public boolean IsVisible() {
 		// TODO Auto-generated method stub
@@ -100,5 +87,13 @@ public class Boomerang extends Hitbox implements Irenderable {
 	public void draw(GraphicsContext g2d) {
 		// TODO Auto-generated method stub
 		g2d.drawImage(Resource.Boomerang, originPoint.getX(), originPoint.getY());
+	}
+
+	public boolean isReturn() {
+		return isReturn;
+	}
+
+	public void setReturn(boolean isReturn) {
+		this.isReturn = isReturn;
 	}
 }

@@ -2,6 +2,7 @@ package scene;
 
 import hero.base.Hero;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.media.AudioClip;
 import logic.GameLogic;
 import render.Irenderable;
 import render.Resource;
@@ -12,6 +13,7 @@ public class Background implements Irenderable {
 	private double xSpeed;
 	private double[] xlist = new double[10]; 
 	private double xG = 0;
+	private AudioClip sound;
 	
 	public Background() {
 		// TODO Auto-generated constructor stub
@@ -25,6 +27,10 @@ public class Background implements Irenderable {
 		// TODO Auto-generated method stub
 		switch (Hero.getStage()) {
 		case (0):
+			sound = Resource.Stage0_Music;
+			if(!sound.isPlaying()) {
+				sound.play();
+			}
 			g2d.drawImage(Resource.Stage0, xlist[0] , 0, 1600, 770);
 			g2d.drawImage(Resource.Stage0, (xlist[1]), 0, 1600  , 770);
 			g2d.drawImage(Resource.Stage0, xlist[2] , 0, 1600, 770);
@@ -39,6 +45,10 @@ public class Background implements Irenderable {
 			g2d.drawImage(Resource.Ground0, (xG + 1600), 330, 1600, 570);
 			break;
 		case (1):
+			sound = Resource.Stage1_Music;
+			if(!sound.isPlaying()) {
+				sound.play();
+			}
 			g2d.drawImage(Resource.Stage10, xlist[0], 0, 1600, 780);
 			g2d.drawImage(Resource.Stage13, xlist[1] , 0, 1600, 780);
 			g2d.drawImage(Resource.Stage16, xlist[2] , 0, 1600, 780);
@@ -53,6 +63,12 @@ public class Background implements Irenderable {
 			g2d.drawImage(Resource.Ground1, (xG + 1600), 330, 1600, 570);
 			break;
 		case (2):
+			sound = Resource.Stage2_Music;
+			if(!sound.isPlaying()) {
+				sound.play();
+			}
+			g2d.drawImage(Resource.Stage21, xlist[0], 0, 1600, 820);
+			g2d.drawImage(Resource.Stage21, xlist[1], 0, 1600, 820);
 			g2d.drawImage(Resource.Stage21, xlist[0], 0, 1600, 820);
 			g2d.drawImage(Resource.Stage21, xlist[1], 0, 1600, 820);
 			g2d.drawImage(Resource.Stage21, xlist[2], 0, 1600, 820);
@@ -67,6 +83,10 @@ public class Background implements Irenderable {
 			g2d.drawImage(Resource.Ground2, xG+1600, 330, 1600, 570);
 			break;
 		case (3):
+			sound = Resource.Stage3_Music;
+			if(!sound.isPlaying()) {
+				sound.play();
+			}
 			g2d.drawImage(Resource.Stage32, xlist[0], 0, 1600, 770);
 			g2d.drawImage(Resource.Stage33, xlist[1], 0, 1600, 770);
 			g2d.drawImage(Resource.Stage31, xlist[2], 0, 1600, 770);
@@ -80,6 +100,10 @@ public class Background implements Irenderable {
 			g2d.drawImage(Resource.Ground3, xG+1600, 330, 1600, 570);
 			break;
 		case (4):
+			sound = Resource.Stage4_Music;
+			if(!sound.isPlaying()) {
+				sound.play();
+			}
 			g2d.drawImage(Resource.Stage44, xlist[0], 0, 1600, 770);
 			g2d.drawImage(Resource.Stage40, xlist[1], 0, 1600, 770);
 			g2d.drawImage(Resource.Stage41, xlist[2], 0, 1600, 770);
@@ -94,7 +118,6 @@ public class Background implements Irenderable {
 			break;
 		}
 	}
-
 
 	@Override
 	public boolean IsVisible() {

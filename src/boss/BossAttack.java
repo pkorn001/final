@@ -14,7 +14,6 @@ public class BossAttack  extends Hitbox implements Irenderable {
 		z = Integer.MAX_VALUE;
 	}
 
-
 	@Override
 	public void draw(GraphicsContext g2d) {
 		// TODO Auto-generated method stub

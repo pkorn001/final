@@ -2,7 +2,6 @@ package hero.base;
 
 import hero.action.Attackable;
 import hero.action.Boomerang;
-import javafx.animation.AnimationTimer;
 import javafx.scene.canvas.GraphicsContext;
 import logic.GameLogic;
 import logic.Position;
@@ -12,44 +11,19 @@ import render.Resource;
 
 public class Boomeranger extends Hero implements Attackable,Irenderable {
 
-	private boolean isJumped =  false;
 	private boolean isAttacked = false;
 	private Boomerang boomerang;
 	
-	public boolean isJumped() {
-		return isJumped;
-	}
-
-	public Boomerang getBoomerang() {
-		return boomerang;
-	}
-
-	public void setJumped(boolean isJumped) {
-		this.isJumped = isJumped;
-	}
-
-	public boolean isAttacked() {
-		return isAttacked;
-	}
-
-	public void setAttacked(boolean isAttacked) {
-		this.isAttacked = isAttacked;
-	}
 
 	public Boomeranger(Position position) {
 		super(position);
+		setStage(2);
 	}
 	
 	@Override
-	public void attack() {
-		boomerang = new Boomerang(new Position(this.getC().getX() + 1, this.getC().getY() / 2));
-		new AnimationTimer() {
-
-			@Override
-			public void handle(long now) {
-				boomerang.move();
-			}
-		}.start();
+	public Boomerang getAttack() {
+		boomerang = new Boomerang(new Position(this.position.getX() + 1, this.position.getY() / 2));
+		return boomerang;
 	}
 
 	@Override
@@ -65,9 +39,9 @@ public class Boomeranger extends Hero implements Attackable,Irenderable {
 		g2d.drawImage(Resource.BossAttack,C.getX(),C.getY(),5,5);
 		g2d.drawImage(Resource.BossAttack,D.getX(),D.getY(),5,5);
 		if(GameLogic.isAttack()) {
-			g2d.drawImage(Resource.Hero2_Attack, this.getA().getX(), this.getA().getY(), this.getWidth(), this.getHeight());
+			g2d.drawImage(Resource.Hero2_Attack, this.position.getX(), this.position.getY(), this.getWidth(), this.getHeight());
 		}else {
-			g2d.drawImage(Resource.Hero4_Attack2,getA().getX(), getB().getY(),130,250);
+			g2d.drawImage(Resource.Hero2,getA().getX(), getB().getY(),130,250);
 		}
 	}
 
@@ -80,7 +54,23 @@ public class Boomeranger extends Hero implements Attackable,Irenderable {
 	@Override
 	public int getZ() {
 		// TODO Auto-generated method stub
-		return z--;
+		return 5;
+	}
+	
+	public boolean isAttacked() {
+		return isAttacked;
 	}
 
+	public void setAttacked(boolean isAttacked) {
+		this.isAttacked = isAttacked;
+	}
+
+	@Override
+	public void attack() {
+		setSound(Resource.Hero2_Attack_Sound);
+		getSound().play();
+		this.boomerang.move();
+		// TODO Auto-generated method stub
+		
+	}
 }

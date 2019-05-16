@@ -12,16 +12,14 @@ import render.Resource;
 
 public class FireBall extends Hitbox implements Irenderable {
 	//xSpeed > map's speed, graphic, collide?, 
-	public static final int FIREBALL_SPEED = 2;
-	private int z;
-	private Position heroPoint;
+	public static final double FIREBALL_SPEED = 10.0;
+	private Position position;
 	private boolean isDestroyed = false;
 	
 	
 	public FireBall(Position position) {
-		super(position, 1, 1, FIREBALL_SPEED, 0);
-		this.z = Integer.MAX_VALUE;
-		heroPoint = new Position(position.getX()-1, position.getY());
+		super(position, 10, 10, FIREBALL_SPEED, 0);
+		this.position = position;
 	}
 	
 	@Override
@@ -46,7 +44,7 @@ public class FireBall extends Hitbox implements Irenderable {
 
 	@Override
 	public int getZ() {
-		return z--;
+		return 5;
 	}
 
 	@Override
@@ -54,15 +52,25 @@ public class FireBall extends Hitbox implements Irenderable {
 		// TODO Auto-generated method stub
 		return this.isDestroyed;
 	}
+
+	@Override
+	public void draw(GraphicsContext g2d) {
+		// TODO Auto-generated method stub
+		
+		g2d.drawImage(Resource.FireBall, this.B.getX(), this.B.getY());
+		// draw in front of hero
+	}
 	
 	public void setDestroyed(boolean isDestroyed) {
 		this.isDestroyed = isDestroyed;
 	}
 
-	@Override
-	public void draw(GraphicsContext g2d) {
-		// TODO Auto-generated method stub
-		g2d.drawImage(Resource.FireBall, heroPoint.getX()+1, heroPoint.getY());
-		// draw in front of hero
+	public Position getPosition() {
+		return position;
 	}
+
+	public void setPosition(Position position) {
+		this.position = position;
+	}
+
 }
