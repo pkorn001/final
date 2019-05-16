@@ -12,8 +12,8 @@ public class SineMove implements Move {
 	
 	public SineMove(Hitbox obj) {
 		this.obj = obj;
-		this.xSpeed = -25;
-		this.ySpeed = 10;
+		this.xSpeed = -20;
+		this.ySpeed = 20;
 		obj.setxSpeed(xSpeed); 
 		obj.setySpeed(ySpeed); 
 	}

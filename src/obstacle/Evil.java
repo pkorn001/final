@@ -33,20 +33,16 @@ public class Evil extends Monster{
 	@Override
 	public void update() {
 		// TODO Auto-generated method stub
-		if(this.getB().getY() <= 600) {
+		if(this.getB().getY() <= 100) {
 			this.setySpeed(((SineMove)movePattern).getySpeed());
 			
-		}else if(this.getB().getY() >= 900) {
+		}else if(this.getB().getY() >= 600) {
 			this.setySpeed(((SineMove)movePattern).getySpeed() * -1);
 		}
 		for(Position i  : new Position[] {this.A, this.B, this.C, this.D}){
 			i.setX(i.getX() + this.xSpeed);
 			i.setY(i.getY() + this.ySpeed);
 		}
-		System.out.println(((SineMove)movePattern).getySpeed());
-		System.out.println(this.xSpeed + " " + this.ySpeed);
-		System.out.println(this.A.getX());
-		System.out.println(this.A.getY());
 	}
 	
 	@Override

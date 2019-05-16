@@ -23,8 +23,8 @@ public class GameScreen extends Canvas {
 	public void paintComponent() {
 		System.out.println("-----------------------------------------");
 		for (Irenderable entity : RenderableHolder.getInstance().getEntities()) {
+			System.out.println(entity);
 			if (entity.IsVisible() && !entity.isDestroyed()) {
-				System.out.println(entity);
 				entity.draw(gc);
 			}
 		}

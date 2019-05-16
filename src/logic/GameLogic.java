@@ -29,7 +29,7 @@ import scene.Background;
 public class GameLogic {
 	
 	
-	protected static Hero hero;
+	private static Hero hero;
 	protected static Boss boss;
 	protected static List<Item> items = new ArrayList<Item>();
 	protected static List<Hitbox> trashes = new ArrayList<Hitbox>();
@@ -43,8 +43,7 @@ public class GameLogic {
 	protected static double speedFactor;
 	private static Background bg = new Background();;
 	static Random isMonsterGen = new Random();
-	private static int counter = 0;
-	private static int boss_Timer = 0;
+	private static int counter = 1700;
 	
 
 	static {
@@ -53,10 +52,11 @@ public class GameLogic {
 	
 	private GameLogic() {
 		hero = new Hero(new Position(100.00,550));
-		boss = new Boss(new Position(1600,0), 0, 0);
-		speedFactor = 0.7;
+		boss = new Boss(new Position(1100,200), 0, 0);
+		speedFactor = 0.9;
 		gameOver = false;
-		everything.add(hero);
+		everything.add(getHero());
+		everything.add(boss);
 	}
 	
 	public static boolean isGameOver() {
@@ -77,36 +77,40 @@ public class GameLogic {
 
 	public static void ObstacleBoxesGen() {
 		Random obstacleBox_Type = new Random();
-		ObstacleBox e = new ObstacleBox(new Position(1600,hero.getB().getY()),200, obstacleBox_Type.nextInt(2),0);
-		obstacleBoxes.add(e);
-		everything.add(e);
+		if(obstacleBox_Type.nextInt(2) == 0) {
+			ObstacleBox e = new ObstacleBox(new Position(1600,700),200,0,0);
+			obstacleBoxes.add(e);
+			everything.add(e);
+		}else {
+			ObstacleBox e = new ObstacleBox(new Position(1600,600),200,1,0);
+			obstacleBoxes.add(e);
+			everything.add(e);
+		}
 	}
 	
 	public static void ItemGen() {
-		if (counter % 48 == 0) {
-			Random itemType = new Random();
-			Item e = new Item(new Position(1600,hero.getA().getY()-200),-20,itemType.nextInt(4));
-			items.add(e);
-			everything.add(e);
-			
-		}
+		Random itemType = new Random();
+		Item e = new Item(new Position(1600,hero.getA().getY()-200),-20,0);
+		items.add(e);
+		everything.add(e);
 	}
 
 	public static void MonstersGen() {
 		Random monsterType = new Random();
 		if (Hero.getStage() == 0) {
-			Monster e = new Hornet(new Position(1600,hero.getB().getY()), 150, 150, 0, -50, 0);
+			Monster e = new Hornet(new Position(1600,hero.getB().getY()+60), 100, 100, 1, -50, 0);
 			monsters.add(e);
 			everything.add(e);	
 		}
 		else if (Hero.getStage() == 1) {
 			if(monsterType.nextInt(3) == 0) {
-				Monster e = new Slime(new Position(1600,hero.getB().getY()), 300, 300, 0, -50, 0);
+				System.out.println("------------------------------");
+				Monster e = new Slime(new Position(1600,700), 100, 100, 6, -50, 0);
 				monsters.add(e);
 				everything.add(e);	
 			}
 			else{
-				Monster e = new FlyingFire(new Position(1600,hero.getB().getY()), 300, 300, 0, -50, 0);
+				Monster e = new FlyingFire(new Position(1600,hero.getB().getY()+60), 150, 150, 2, -50, 0);
 				monsters.add(e);
 				everything.add(e);
 				
@@ -114,34 +118,48 @@ public class GameLogic {
 		}
 		else if (Hero.getStage() == 2) {
 			if(monsterType.nextInt(3) == 0) {
-				Monster e = new Hornet(new Position(1600,hero.getB().getY()), 150, 150, 0, -50, 0);
+				Monster e = new Hornet(new Position(1600,hero.getB().getY()+60), 100, 100, 1, -50, 0);
 				monsters.add(e);
 				everything.add(e);	
 			}
 			else{
-				Monster e = new Evil(new Position(1600,hero.getB().getY()), 150, 150, 0, -50, 0);
+				Monster e = new Evil(new Position(1600,hero.getB().getY()), 200, 200, 3, -50, 0);
 				monsters.add(e);
 				everything.add(e);		
 			}	
 		}
 		else if (Hero.getStage() == 3) {
-			if(monsterType.nextInt(2) == 0) {
-				Monster e = new Hornet(new Position(1600,hero.getB().getY()), 150, 150, 0, -50, 0);
+			if(monsterType.nextInt(3) == 0) {
+				Monster e = new Hornet(new Position(1600,hero.getB().getY()+60), 100, 100, 1, -50, 0);
 				monsters.add(e);
 				everything.add(e);
 			}else{
-				Monster e = new Skeleton(new Position(1600,hero.getB().getY()), 150, 150, 0, -50, 0);
+				Monster e = new Skeleton(new Position(1600,550), 250, 250, 4, -50, 0);
+				if(monsterType.nextInt(3) == 1) {
+					Monster e1 = new Skeleton(new Position(1750,550), 250, 250, 4, -50, 0);
+					monsters.add(e1);
+					everything.add(e1);
+			}
 				monsters.add(e);
 				everything.add(e);
 				}
 		}
 		else if (Hero.getStage() == 4) {
-			if(monsterType.nextInt(2) == 0) {
-				Monster e = new Slime(new Position(1600,hero.getB().getY()), 150, 150, 0, -50, 0);
+			if(monsterType.nextInt(3) == 0) {
+				Monster e = new Slime(new Position(1600,700), 100, 100, 6, -50, 0);
 				monsters.add(e);
 				everything.add(e);
 			}else{
-				Monster e = new Bat(new Position(1600,hero.getB().getY()), 150, 150, 0, -50, 0);
+				Monster e = new Bat(new Position(1600,hero.getB().getY()+60), 100, 100, 5, -50, 0);
+				if(monsterType.nextInt(3) == 0) {
+					Monster e1 = new Bat(new Position(3000,hero.getB().getY()+60), 100, 100, 5, -50, 0);
+					monsters.add(e1);
+					everything.add(e1);
+				}else if(monsterType.nextInt(3) == 1) {
+					Monster e1 = new Bat(new Position(1750,hero.getB().getY()+60), 100, 100, 5, -50, 0);
+					monsters.add(e1);
+					everything.add(e1);
+				}
 				monsters.add(e);
 				everything.add(e);
 			}
@@ -163,80 +181,82 @@ public class GameLogic {
 		}
 		
 		if ((boss.getBossHp() <= 100)) {
-			switch (attackPattern.nextInt(2)) {
+			switch (attackPattern.nextInt(3)) {
 			case 1:
 				int i = attackPattern.nextInt(list.size());
-				if(counter % 12 == 0) {
+				if(counter % 120 == 0) {
 					if (i == 0) {
-						ParriedBall e = (ParriedBall) boss.create(new Position(1920, 100),0,-1,-50, 0);
+						ParriedBall e = (ParriedBall) boss.create(new Position(boss.getA().getX()+100,700),0,-1,-20, 0);
 						boss_Attack.add(e);
 						everything.add(e);
 						
 					}
 		
 					else if (i == 2) {
-						ParriedBall e = (ParriedBall) boss.create(new Position(1920, 250),0,-1,-50, 0);
+						ParriedBall e = (ParriedBall) boss.create(new Position(boss.getA().getX()+100, 700),0,-1,-20, 0);
 						boss_Attack.add(e);
 						everything.add(e);
 						
 					}
 		
 					else if (i == 4) {
-						BossAttack e = (BossAttack) boss.create(new Position(1920, 100),1,-1,-50, 0);
+						BossAttack e = (BossAttack) boss.create(new Position(boss.getA().getX()+100, 700),1,-1,-20, 0);
 						boss_Attack.add(e);
 						everything.add(e);
 						
 					} else if (i == 5) {
-						BossAttack e = (BossAttack) boss.create(new Position(1920, 100),1,-1,-50, 0);
+						BossAttack e = (BossAttack) boss.create(new Position(boss.getA().getX()+100, 700),1,-1,-20, 0);
 						boss_Attack.add(e);
 						everything.add(e);
 						
 		
 					} else if (i == 7) {
-							BossAttack e = (BossAttack) boss.create(new Position(1920, 250),1,-1,-50, 0);
+							BossAttack e = (BossAttack) boss.create(new Position(boss.getA().getX()+100, 450),1,-1,-20, 0);
 							boss_Attack.add(e);
 							everything.add(e);
 							
 					} else if (i == 8) {
-						BossAttack e = (BossAttack) boss.create(new Position(1920, 250),1,-1,-50, 0);
+						BossAttack e = (BossAttack) boss.create(new Position(boss.getA().getX()+100, 450),1,-1,-20, 0);
 						boss_Attack.add(e);
 						everything.add(e);
 						
 					}
 				}
+				break;
 	
 			case 2:
 						/*
 						 * 0 = parried 1 = boss_fireball 2 = monster
 						 */
-					if (counter % 60 == 0) {
+					if (counter % 480 == 0) {
 						if (attackType.nextInt(3) == 0) {
-							ParriedBall e = (ParriedBall) boss.create(new Position(boss.getB().getX(),hero.getA().getY()+100),0,-1,-50, 0);
+							ParriedBall e = (ParriedBall) boss.create(new Position(boss.getA().getX(),hero.getA().getY()+100),0,-1,-20, 0);
 							boss_Attack.add(e);
 							everything.add(e);
 							
 						} else if (attackType.nextInt(3) == 1) {
-							BossAttack e = (BossAttack) boss.create(new Position(boss.getB().getX(),hero.getB().getY()-100),1,-1,-50, 0);
+							BossAttack e = (BossAttack) boss.create(new Position(boss.getB().getX(),hero.getB().getY()-100),1,-1,-20, 0);
 							boss_Attack.add(e);
 							everything.add(e);
 							
 						} else if (attackType.nextInt(3) == 2) {
-							Monster e = (Monster) boss.create(new Position(boss.getB().getX(),hero.getA().getY()+100),2,monsterType.nextInt(6)+1,-50, 0);
+							Monster e = (Monster) boss.create(new Position(boss.getB().getX(),hero.getA().getY()+100),2,monsterType.nextInt(6)+1,-20, 0);
 							boss_Attack.add(e);
 							everything.add(e);
 							
 						}
 					}
+					break;
 
 			default:
 					int i1 = attackPattern.nextInt(list2.size());
 					
-					if (counter % 60 == 0) {
+					if (counter % 360 == 0) {
 						if (i1 == 0) {
-							ParriedBall e1 = (ParriedBall) boss.create(new Position(1920, 100),0,-1,-50, 0);
-							BossAttack e2 = (BossAttack) boss.create(new Position(1920, 150),1,-1,-50, 0);
-							BossAttack e3 = (BossAttack) boss.create(new Position(1920, 200),1,-1,-50, 0);
-							BossAttack e4 = (BossAttack) boss.create(new Position(1920, 250),1,-1,-50, 0);
+							ParriedBall e1 = (ParriedBall) boss.create(new Position(boss.getA().getX()+100, 760),0,-1,-5, 0);
+							BossAttack e2 = (BossAttack) boss.create(new Position(boss.getA().getX()+100, 710),1,-1,-5, 0);
+							BossAttack e3 = (BossAttack) boss.create(new Position(boss.getA().getX()+100, 660),1,-1,-5, 0);
+							BossAttack e4 = (BossAttack) boss.create(new Position(boss.getA().getX()+100, 610),1,-1,-5, 0);
 							boss_Attack.add(e1);
 							boss_Attack.add(e2);
 							boss_Attack.add(e3);
@@ -245,17 +265,13 @@ public class GameLogic {
 							everything.add(e2);
 							everything.add(e3);
 							everything.add(e4);
-							RenderableHolder.getInstance().getEntities().add(e1);
-							RenderableHolder.getInstance().getEntities().add(e2);
-							RenderableHolder.getInstance().getEntities().add(e3);
-							RenderableHolder.getInstance().getEntities().add(e4);
 						}
 		
 						else if (i1 == 1) {
-							ParriedBall e1 = (ParriedBall) boss.create(new Position(1920, 150),0,-1,-50, 0);
-							BossAttack e2 = (BossAttack) boss.create(new Position(1920, 100),1,-1,-50, 0);
-							BossAttack e3 = (BossAttack) boss.create(new Position(1920, 200),1,-1,-50, 0);
-							BossAttack e4 = (BossAttack) boss.create(new Position(1920, 250),1,-1,-50, 0);
+							ParriedBall e1 = (ParriedBall) boss.create(new Position(boss.getA().getX()+100, 710),0,-1,-5, 0);
+							BossAttack e2 = (BossAttack) boss.create(new Position(boss.getA().getX()+100, 760),1,-1,-5, 0);
+							BossAttack e3 = (BossAttack) boss.create(new Position(boss.getA().getX()+100, 660),1,-1,-5, 0);
+							BossAttack e4 = (BossAttack) boss.create(new Position(boss.getA().getX()+100, 610),1,-1,-5, 0);
 							boss_Attack.add(e1);
 							boss_Attack.add(e2);
 							boss_Attack.add(e3);
@@ -264,17 +280,13 @@ public class GameLogic {
 							everything.add(e2);
 							everything.add(e3);
 							everything.add(e4);
-							RenderableHolder.getInstance().getEntities().add(e1);
-							RenderableHolder.getInstance().getEntities().add(e2);
-							RenderableHolder.getInstance().getEntities().add(e3);
-							RenderableHolder.getInstance().getEntities().add(e4);
 						}
 		
 						else if (i1 == 2) {
-							ParriedBall e1 = (ParriedBall) boss.create(new Position(1920, 200),0,-1,-50, 0);
-							BossAttack e2 = (BossAttack) boss.create(new Position(1920, 100),1,-1,-50, 0);
-							BossAttack e3 = (BossAttack) boss.create(new Position(1920, 150),1,-1,-50, 0);
-							BossAttack e4 = (BossAttack) boss.create(new Position(1920, 250),1,-1,-50, 0);
+							ParriedBall e1 = (ParriedBall) boss.create(new Position(boss.getA().getX()+100, 660),0,-1,-5, 0);
+							BossAttack e2 = (BossAttack) boss.create(new Position(boss.getA().getX()+100, 760),1,-1,-5, 0);
+							BossAttack e3 = (BossAttack) boss.create(new Position(boss.getA().getX()+100, 710),1,-1,-5, 0);
+							BossAttack e4 = (BossAttack) boss.create(new Position(boss.getA().getX()+100, 610),1,-1,-5, 0);
 							boss_Attack.add(e1);
 							boss_Attack.add(e2);
 							boss_Attack.add(e3);
@@ -283,17 +295,13 @@ public class GameLogic {
 							everything.add(e2);
 							everything.add(e3);
 							everything.add(e4);
-							RenderableHolder.getInstance().getEntities().add(e1);
-							RenderableHolder.getInstance().getEntities().add(e2);
-							RenderableHolder.getInstance().getEntities().add(e3);
-							RenderableHolder.getInstance().getEntities().add(e4);
 						}
 		
 						else if (i1 == 3) {
-							ParriedBall e1 = (ParriedBall) boss.create(new Position(1920, 250),0,-1,-50, 0);
-							BossAttack e2 = (BossAttack) boss.create(new Position(1920, 100),1,-1,-50, 0);
-							BossAttack e3 = (BossAttack) boss.create(new Position(1920, 150),1,-1,-50, 0);
-							BossAttack e4 = (BossAttack) boss.create(new Position(1920, 200),1,-1,-50, 0);
+							ParriedBall e1 = (ParriedBall) boss.create(new Position(boss.getA().getX()+100, 610),0,-1,-5, 0);
+							BossAttack e2 = (BossAttack) boss.create(new Position(boss.getA().getX()+100, 760),1,-1,-5, 0);
+							BossAttack e3 = (BossAttack) boss.create(new Position(boss.getA().getX()+100, 660),1,-1,-5, 0);
+							BossAttack e4 = (BossAttack) boss.create(new Position(boss.getA().getX()+100, 710),1,-1,-5, 0);
 							boss_Attack.add(e1);
 							boss_Attack.add(e2);
 							boss_Attack.add(e3);
@@ -302,63 +310,67 @@ public class GameLogic {
 							everything.add(e2);
 							everything.add(e3);
 							everything.add(e4);
+		
 						}
 					}
+					break;
 				}
 		
 		} else {
 	
-			switch (attackPattern.nextInt(1)) {
+			switch (attackPattern.nextInt(2)) {
 			case 1:
 				int i = attackPattern.nextInt(list.size());
-				if(counter % 12 == 0) {
+				if(counter % 120 == 0) {
 					if (i == 0) {
-						ParriedBall e = (ParriedBall) boss.create(new Position(1920, 100),0,-1,-50, 0);
+						ParriedBall e = (ParriedBall) boss.create(new Position(boss.getA().getX()+100,700),0,-1,-20, 0);
 						boss_Attack.add(e);
 						everything.add(e);
 						
 					}
 		
 					else if (i == 2) {
-						ParriedBall e = (ParriedBall) boss.create(new Position(1920, 250),0,-1,-50, 0);
+						ParriedBall e = (ParriedBall) boss.create(new Position(boss.getA().getX()+100, 700),0,-1,-20, 0);
 						boss_Attack.add(e);
 						everything.add(e);
 						
 					}
 		
 					else if (i == 4) {
-						BossAttack e = (BossAttack) boss.create(new Position(1920, 100),1,-1,-50, 0);
+						BossAttack e = (BossAttack) boss.create(new Position(boss.getA().getX()+100, 700),1,-1,-20, 0);
 						boss_Attack.add(e);
 						everything.add(e);
 						
 					} else if (i == 5) {
-						BossAttack e = (BossAttack) boss.create(new Position(1920, 100),1,-1,-50, 0);
+						BossAttack e = (BossAttack) boss.create(new Position(boss.getA().getX()+100, 700),1,-1,-20, 0);
 						boss_Attack.add(e);
 						everything.add(e);
 						
 		
 					} else if (i == 7) {
-							BossAttack e = (BossAttack) boss.create(new Position(1920, 250),1,-1,-50, 0);
+							BossAttack e = (BossAttack) boss.create(new Position(boss.getA().getX()+100, 450),1,-1,-20, 0);
 							boss_Attack.add(e);
 							everything.add(e);
 							
 					} else if (i == 8) {
-						BossAttack e = (BossAttack) boss.create(new Position(1920, 250),1,-1,-50, 0);
+						BossAttack e = (BossAttack) boss.create(new Position(boss.getA().getX()+100, 450),1,-1,-20, 0);
 						boss_Attack.add(e);
 						everything.add(e);
 						
 					}
 				}
+				
+				break;
 	
 			default:
 				int i1 = attackPattern.nextInt(list2.size());
 				
-				if (counter % 60 == 0) {
+				if (counter % 360 == 0) {
 					if (i1 == 0) {
-						ParriedBall e1 = (ParriedBall) boss.create(new Position(1920, 100),0,-1,-50, 0);
-						BossAttack e2 = (BossAttack) boss.create(new Position(1920, 150),1,-1,-50, 0);
-						BossAttack e3 = (BossAttack) boss.create(new Position(1920, 200),1,-1,-50, 0);
-						BossAttack e4 = (BossAttack) boss.create(new Position(1920, 250),1,-1,-50, 0);
+						ParriedBall e1 = (ParriedBall) boss.create(new Position(boss.getA().getX()+100, 760),0,-1,-5, 0);
+						BossAttack e2 = (BossAttack) boss.create(new Position(boss.getA().getX()+100, 710),1,-1,-5, 0);
+						BossAttack e3 = (BossAttack) boss.create(new Position(boss.getA().getX()+100, 660),1,-1,-5, 0);
+						BossAttack e4 = (BossAttack) boss.create(new Position(boss.getA().getX()+100, 610),1,-1,-5, 0);
 						boss_Attack.add(e1);
 						boss_Attack.add(e2);
 						boss_Attack.add(e3);
@@ -370,10 +382,10 @@ public class GameLogic {
 					}
 	
 					else if (i1 == 1) {
-						ParriedBall e1 = (ParriedBall) boss.create(new Position(1920, 150),0,-1,-50, 0);
-						BossAttack e2 = (BossAttack) boss.create(new Position(1920, 100),1,-1,-50, 0);
-						BossAttack e3 = (BossAttack) boss.create(new Position(1920, 200),1,-1,-50, 0);
-						BossAttack e4 = (BossAttack) boss.create(new Position(1920, 250),1,-1,-50, 0);
+						ParriedBall e1 = (ParriedBall) boss.create(new Position(boss.getA().getX()+100, 710),0,-1,-5, 0);
+						BossAttack e2 = (BossAttack) boss.create(new Position(boss.getA().getX()+100, 760),1,-1,-5, 0);
+						BossAttack e3 = (BossAttack) boss.create(new Position(boss.getA().getX()+100, 660),1,-1,-5, 0);
+						BossAttack e4 = (BossAttack) boss.create(new Position(boss.getA().getX()+100, 610),1,-1,-5, 0);
 						boss_Attack.add(e1);
 						boss_Attack.add(e2);
 						boss_Attack.add(e3);
@@ -385,10 +397,10 @@ public class GameLogic {
 					}
 	
 					else if (i1 == 2) {
-						ParriedBall e1 = (ParriedBall) boss.create(new Position(1920, 200),0,-1,-50, 0);
-						BossAttack e2 = (BossAttack) boss.create(new Position(1920, 100),1,-1,-50, 0);
-						BossAttack e3 = (BossAttack) boss.create(new Position(1920, 150),1,-1,-50, 0);
-						BossAttack e4 = (BossAttack) boss.create(new Position(1920, 250),1,-1,-50, 0);
+						ParriedBall e1 = (ParriedBall) boss.create(new Position(boss.getA().getX()+100, 660),0,-1,-5, 0);
+						BossAttack e2 = (BossAttack) boss.create(new Position(boss.getA().getX()+100, 760),1,-1,-5, 0);
+						BossAttack e3 = (BossAttack) boss.create(new Position(boss.getA().getX()+100, 710),1,-1,-5, 0);
+						BossAttack e4 = (BossAttack) boss.create(new Position(boss.getA().getX()+100, 610),1,-1,-5, 0);
 						boss_Attack.add(e1);
 						boss_Attack.add(e2);
 						boss_Attack.add(e3);
@@ -400,10 +412,10 @@ public class GameLogic {
 					}
 	
 					else if (i1 == 3) {
-						ParriedBall e1 = (ParriedBall) boss.create(new Position(1920, 250),0,-1,-50, 0);
-						BossAttack e2 = (BossAttack) boss.create(new Position(1920, 100),1,-1,-50, 0);
-						BossAttack e3 = (BossAttack) boss.create(new Position(1920, 150),1,-1,-50, 0);
-						BossAttack e4 = (BossAttack) boss.create(new Position(1920, 200),1,-1,-50, 0);
+						ParriedBall e1 = (ParriedBall) boss.create(new Position(boss.getA().getX()+100, 610),0,-1,-5, 0);
+						BossAttack e2 = (BossAttack) boss.create(new Position(boss.getA().getX()+100, 760),1,-1,-5, 0);
+						BossAttack e3 = (BossAttack) boss.create(new Position(boss.getA().getX()+100, 660),1,-1,-5, 0);
+						BossAttack e4 = (BossAttack) boss.create(new Position(boss.getA().getX()+100, 710),1,-1,-5, 0);
 						boss_Attack.add(e1);
 						boss_Attack.add(e2);
 						boss_Attack.add(e3);
@@ -414,6 +426,7 @@ public class GameLogic {
 						everything.add(e4);
 					}
 				}
+				break;
 			}
 		}
 	}
@@ -437,43 +450,55 @@ public class GameLogic {
 	}
 	
 	public static void logicUpdate() {
-		counter++;
-		speedFactor = Math.min(speedFactor + 0.00005, 2);
-		bg.update();
 		
+		counter++;
+		speedFactor = Math.min(speedFactor + 0.00008, 2);
+		bg.update();
+		System.out.println(counter);
 		if(counter % 6 == 0){
 			Hero.setScore(Hero.getScore() + 1); //score increase every second
 		}
 		
-		if(counter % (1701 - ((int) speedFactor)) == 0) {
-			ItemGen();
-		}else if(counter % (300 - ((int) speedFactor)) == 0) {
-			MonstersGen();
-		}else if(counter % (150  - ((int) speedFactor)) == 0) {
-			ObstacleBoxesGen();
+		if (counter == 5410) {
+			boss.setAppeared(true);
 		}
-		
-		if (boss.IsVisible()){
-			if(counter % 40 == 0) {
-				boss_Timer++;
+		if(!boss.IsVisible()) {
+			if(counter % 1701 == 0) {
+				ItemGen();
+			}else if(counter % 300 == 0) {
+				MonstersGen();
+			}else if(counter % 150 == 0) {
+				ObstacleBoxesGen();
+			}
+		}else{
+			if(counter % 120 == 0) {
 				BossAttackGen();
-				if (boss_Timer == 10) {
+			}
+			else if(counter % 180 == 0) {
+				BossAttackGen();
+				if (counter > 7220) {
 					boss.setAppeared(false);
-					boss_Timer = 0;
+					counter = 0;
 				}
 			}
 		}
 		
-		for (Monster e : monsters) {  // for monster
-			//e.update(time);
-			if (e.collide(hero)) {
+		for (ObstacleBox e : obstacleBoxes) {
+			if (hero.collide(e)) {
+				hero.setDestroyed(true);
+				setGameOver(true);
+			}
+		}
+		
+		for (Monster e : monsters) {
+			if (hero.collide(e)) {
 				hero.setDestroyed(true);
 				setGameOver(true);
 			}
 		}
 		
 		for (Hitbox e : boss_Attack) {
-			if (e.collide(hero)) {
+			if (hero.collide(e)) {
 				hero.setDestroyed(true);
 				setGameOver(true);
 			}
@@ -484,12 +509,28 @@ public class GameLogic {
 			if (hero.collide(e)) {
 				switch (((Item) e).getItemType()) {
 				case ("Mage"):
+					everything.remove(hero);
+					hero = new Mage(new Position(100.00,550));
+					everything.add(hero);
+					hero.setStage(1);
+					e.setDestroyed(true);
+					trashes.add(e);
 					break;
 				case ("Boomeranger"):
+					everything.remove(hero);
+					hero = new Boomeranger(new Position(100.00,550));
+					everything.add(hero);
+					hero.setStage(2);
+					e.setDestroyed(true);
+					trashes.add(e);
 					break;
 				case ("Swordman"):
+					hero = new Swordman(new Position(100.00,550));
+					hero.setStage(3);
 					break;
 				case ("Assassin"):
+					hero = new Assassin(new Position(100.00,550));
+					hero.setStage(4);
 					break;
 				}
 			}
@@ -499,58 +540,51 @@ public class GameLogic {
 			hero.jump();
 		}
 		if (isAttack()) {
-			if (hero instanceof Mage) {
-				((Mage) hero).attack();
-			} else if (hero instanceof Boomeranger) {
-				((Boomeranger) hero).attack();
-			} else if (hero instanceof Swordman) {
-				((Swordman) hero).attack();
-			} else if (hero instanceof Assassin) {
-				((Assassin) hero).attack();
+			if (getHero() instanceof Mage) {
+				((Mage) getHero()).attack();
+			} else if (getHero() instanceof Boomeranger) {
+				((Boomeranger) getHero()).attack();
+			} else if (getHero() instanceof Swordman) {
+				((Swordman) getHero()).attack();
+			} else if (getHero() instanceof Assassin) {
+				((Assassin) getHero()).attack();
 			}
 		}
 			//e.update(time);
-			if (hero instanceof Mage) {
+			/*if (getHero() instanceof Mage) {
 				for (Monster monster : monsters) {
-					if (((Mage) hero).getFireball().collide(monster)) {
+					if (((Mage) getHero()).getFireball().collide(monster)) {
 						//TODO: new Fireball
-						((Mage) hero).getFireball().setDestroyed(true);
+						((Mage) getHero()).getFireball().setDestroyed(true);
 						hero.updateScore(monster);
 						monster.setDestroyed(true);
 					}
 				}
-			} else if (hero instanceof Boomeranger) {
+			} else if (getHero() instanceof Boomeranger) {
 				for (Monster monster : monsters) {
-					if (((Boomeranger) hero).getBoomerang().collide(monster)){
+					if (((Boomeranger) getHero()).getBoomerang().collide(monster)){
 						hero.updateScore(monster);
 						monster.setDestroyed(true);
 					}
-					if (((Boomeranger) hero).getBoomerang().collide(hero)){
+					if (((Boomeranger) getHero()).getBoomerang().collide(getHero())){
 					}
 				}
-			} else if (hero instanceof Swordman) {
+			} else if (getHero() instanceof Swordman) {
 				for (Monster monster : monsters) {
-					if (((Swordman) hero).getAttackBox().collide(monster)) {
-						((Swordman) hero).updateScore(monster);
+					if (((Swordman) getHero()).getAttackBox().collide(monster)) {
+						((Swordman) getHero()).updateScore(monster);
 						monster.setDestroyed(true);
 					}
 				}
 				
-			} else if (hero instanceof Assassin) {
+			} else if (getHero() instanceof Assassin) {
 				for (Monster monster : monsters) {
-					if (((Assassin) hero).getAttackBox().collide(monster)) {
-						((Assassin) hero).updateScore(monster);
+					if (((Assassin) getHero()).getAttackBox().collide(monster)) {
+						((Assassin) getHero()).updateScore(monster);
 						monster.setDestroyed(true);
 					}
 				}
-			}
-			
-			for (ObstacleBox e : obstacleBoxes) {
-				if (e.collide(hero)) {
-					hero.setDestroyed(true);
-					setGameOver(true);
-				}
-			}
+			}*/
 	
 		for (Hitbox e : everything) {
 			e.update();
@@ -562,6 +596,13 @@ public class GameLogic {
 		
 		for (Hitbox e : trashes) {
 			everything.remove(e);
+			if (e instanceof Monster) {
+				monsters.remove(e);
+			}if (e instanceof BossAttack) {
+				boss_Attack.remove(e);
+			}if(e instanceof ObstacleBox) {
+				obstacleBoxes.remove(e);
+			}
 		}
 		
 		trashes.clear();
@@ -572,7 +613,6 @@ public class GameLogic {
 			Irenderable i = (Irenderable) e;
 			RenderableHolder.getInstance().getEntities().add(i);
 		}
-	
 	}
 
 	public static boolean isJump() {
@@ -589,5 +629,13 @@ public class GameLogic {
 
 	public static void setAttack(boolean attack) {
 		GameLogic.attack = attack;
+	}
+
+	public static Hero getHero() {
+		return hero;
+	}
+
+	public static void setHero(Hero hero) {
+		GameLogic.hero = hero;
 	}
 }

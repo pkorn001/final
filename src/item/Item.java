@@ -19,7 +19,7 @@ public class Item extends Hitbox implements Irenderable {
 	 */
 
 	public Item(Position a, int fps, int stage) {
-		super(a,150,150,fps);
+		super(a,100,100,fps);
 		this.itemType = stage;
 	}
 

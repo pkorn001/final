@@ -19,7 +19,7 @@ public class ObstacleBox extends Hitbox implements Irenderable {
 	 */
 	private int z;
 	private boolean destroyed;
-	private final static int[] OBSTACLE_HEIGHT = { 200, 270 };
+	private final static int[] OBSTACLE_HEIGHT = { 100, 200 };
 	private Move movePattern;
 
 	public ObstacleBox(Position a, int width, int obstacleBox_Type, double speed) {

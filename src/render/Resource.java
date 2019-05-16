@@ -12,6 +12,7 @@ public class Resource {
 			im = new Image(image_path);
 		} catch (Exception e) {
 			im = null;
+			System.out.println("Fuck");
 			
 		}
 		return im;
@@ -34,7 +35,7 @@ public class Resource {
 	public static Image Stage40,Stage41,Stage42,Stage43,Stage44,Stage4_prisoner1,Stage4_prisoner2,ObstacleTall_4,Obstacle_4,Hero4,Hero4_Attack1,Hero4_Attack2,Ground4;
 	
 	//monster
-	public static Image Dead,Monster1,Monster2,Monster3,Monster4,Monster5,Monster6,Monster6_Jump1,Boss,HardBoss;
+	public static Image Dead,Monster1,Monster2,Monster3,Monster4,Monster5,Monster6,Boss,HardBoss;
 	
 	//coin
 	public static Image Coin1,Coin2,Coin3,Coin4;
@@ -53,8 +54,8 @@ public class Resource {
 		Logo = getImage("image/Logo.png");
 		
 		//HeroAttack
-		FireBall = getImage("image/FireBall.png");
-		Boomerang  = getImage("image/Boomerange.png");
+		FireBall = getImage("image/FireBall.gif");
+		Boomerang  = getImage("image/Boomerange.gif");
 		Scythe = getImage("image/Scythe.gif");
 		Hero1_Attack = getImage("image/Hero1_Attack.gif");
 		Hero2_Attack = getImage("image/Hero2_Attack.gif");
@@ -77,7 +78,6 @@ public class Resource {
 		Monster4 = getImage("image/Monster4.gif");
 		Monster5 = getImage("image/Monster5.gif");
 		Monster6 = getImage("image/Monster6.gif");
-		Monster6_Jump1 = getImage("image/Monster6_Jump1.png");
 		Boss = getImage("image/Boss.gif");
 		HardBoss = getImage("image/HardBoss.gif");
 		
