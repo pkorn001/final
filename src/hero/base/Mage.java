@@ -15,12 +15,11 @@ public class Mage extends Hero implements Attackable, Irenderable {
 	
 	public Mage(Position position) {
 		super(position);
-		this.position = position;
 		setStage(1);
 	}
 
 	public FireBall getAttack() {
-		fireball = new FireBall(new Position(this.position.getX(), this.position.getY()+20));
+		fireball = new FireBall(new Position(this.position.getX(), this.position.getY() + 50));
 		System.out.println(fireball.getA().getX());
 		return fireball;
 	}
@@ -36,9 +35,9 @@ public class Mage extends Hero implements Attackable, Irenderable {
 	public void draw(GraphicsContext g2d) {
 		// TODO Auto-generated method stub
 		if(GameLogic.isAttack()) {
-			g2d.drawImage(Resource.Hero1_Attack, this.position.getX(), this.position.getY(), 167, 300);
+			g2d.drawImage(Resource.Hero1_Attack, this.position.getX(), this.position.getY(), this.getWidth(), this.getHeight());
 		}else {
-			g2d.drawImage(Resource.Hero1, this.position.getX(), this.position.getY(),167,300);
+			g2d.drawImage(Resource.Hero1, this.position.getX(), this.position.getY(), this.getWidth(), this.getHeight());
 		}
 	}
 	

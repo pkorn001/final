@@ -11,19 +11,19 @@ import render.Resource;
 
 public class Hero extends Hitbox implements Irenderable {
 
-	public static final int HEIGHT = 167;
+	public static final int HEIGHT = 250;
 	private static int score;
 	private static int stage = 0;
 	protected int z;
 	protected Position position;
 	protected boolean isDestroyed = false;
 	protected boolean isJumped = false;
-	private double ground = getB().getY();
+	private double ground = 560;
 	private double i;
 	private AudioClip sound;
 
 	public Hero(Position a) {
-		super(a, 167, 300);
+		super(a, 130, 250);
 		Hero.score = 0;
 		this.z = Integer.MAX_VALUE;
 		this.position = a;
@@ -37,7 +37,7 @@ public class Hero extends Hitbox implements Irenderable {
 	@Override
 	public void draw(GraphicsContext g2d) {
 		// TODO Auto-generated method stub
-		g2d.drawImage(Resource.Hero0, this.position.getX(), this.position.getY(), 167, 300);
+		g2d.drawImage(Resource.Hero0, this.getB().getX(), this.getB().getY(), this.getWidth(), this.getHeight());
 	}
 
 	@Override
@@ -53,12 +53,12 @@ public class Hero extends Hitbox implements Irenderable {
 	}
 	
 	public void jump() {
+		setSound(Resource.Jump_Sound);
 		if(!isJumped) {
-			setSound(Resource.Jump_Sound);
 			getSound().play();
 			setJumped(true);
 		}
-		position.setY(ground - 200 * Math.sin(Math.toRadians(i)));
+		getB().setY(ground - 200 * Math.sin(Math.toRadians(i)));
 		i += GameLogic.getSpeedFactor()*8;
 		if (i > 180) {
 			i = 0;

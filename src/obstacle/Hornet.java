@@ -21,6 +21,10 @@ public class Hornet extends Monster{
 		}
 		else {
 			g2d.drawImage(Resource.Monster1,this.getB().getX(),this.getB().getY(),this.getWidth(),this.getHeight());
+			g2d.drawImage(Resource.BossAttack,A.getX(),A.getY(),5,5);
+			g2d.drawImage(Resource.BossAttack,B.getX(),B.getY(),5,5);
+			g2d.drawImage(Resource.BossAttack,C.getX(),C.getY(),5,5);
+			g2d.drawImage(Resource.BossAttack,D.getX(),D.getY(),5,5);
 		}
 	}
 }

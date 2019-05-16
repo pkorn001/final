@@ -16,7 +16,7 @@ public abstract class Monster extends Hitbox implements Irenderable{
 	 4 = purple */
 	protected int monsterType;
 	protected int monsterPoint;
-	protected final static int[] MONSTER_POINT = {0,0,70,200,50,60,50};
+	protected final static int[] MONSTER_POINT = {0,0,70,200,50,60,0};
 	protected boolean destroyed;
 	protected Move movePattern;
 	protected int z;

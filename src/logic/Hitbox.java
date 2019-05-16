@@ -1,7 +1,5 @@
 package logic;
 
-import hero.base.Hero;
-
 public abstract class Hitbox {
 	//down-left
 	protected Position A;
@@ -66,7 +64,7 @@ public abstract class Hitbox {
 	}
 
 	public void setxSpeed(double xSpeed) {
-		this.xSpeed = xSpeed *GameLogic.getSpeedFactor();
+		this.xSpeed = Math.min(xSpeed *GameLogic.getSpeedFactor(),50);
 	}
 
 	//Obstacle has only X-velocity
@@ -93,12 +91,10 @@ public abstract class Hitbox {
 		this.D = new Position(a.getX()+width, a.getY()+height);
 		this.width = width;
 		this.height = height;
-		xSpeed = 0;
-		ySpeed = 0;
 	}
 	
 	//Monster has XY-velocity
-	public Hitbox(Position a,int width,int height,double xSpeed, double ySpeed) { 
+	public Hitbox(Position a,int width,int height,double xSpeed, double ySpeed) {
 		super();
 		this.width = width;
 		this.height = height;
@@ -106,21 +102,20 @@ public abstract class Hitbox {
 		this.B = new Position(a.getX(), a.getY());
 		this.C = new Position(a.getX()+width, a.getY());
 		this.D = new Position(a.getX()+width, a.getY()+height);
-		this.xSpeed = xSpeed;
-		this.ySpeed = ySpeed;
+		setxSpeed(xSpeed);
+		setySpeed(ySpeed);
 	}
 
 	public boolean collide(Hitbox hitbox) {
-		if ((D.getX() > hitbox.A.getX()) && ((D.getX() < hitbox.D.getX()) && (D.getY() > B.getY()) && (C.getY() < B.getY()))
-				|| (A.getX() > hitbox.A.getX()) && ((A.getX() < hitbox.D.getX()) && (D.getY() > B.getY()) && (C.getY() < B.getY()))
-				|| ( (D.getX() > hitbox.A.getX()) && ((D.getX() < hitbox.D.getX()) && (C.getY() > B.getY()) && (C.getY() < A.getY()))
-				|| (A.getX() > hitbox.A.getX()) && ((A.getX() < hitbox.D.getX()) && (C.getY() > B.getY())) && (C.getY() < A.getY()))
-				) {
-			System.out.println("hit");
-			return true;
+		if((D.getX() >= hitbox.A.getX()) && ((D.getX() <= hitbox.D.getX()))){
+			return (((D.getY() >= B.getY()) && (C.getY() <= B.getY())) || ((C.getY() >= B.getY()) && (C.getY() <= A.getY())));
+		}else if ((A.getX() >= hitbox.A.getX()) && ((A.getX() <= hitbox.D.getX()))) {
+			return (((D.getY() >= B.getY()) && (C.getY() <= B.getY()) || ((C.getY() >= B.getY())) && (C.getY() <= A.getY())));
 		}
-		return false;
+		else {
+			return false;
 		}
+	}
 	
 	public void update() {
 		for(Position i  : new Position[] {this.A, this.B, this.C, this.D}){

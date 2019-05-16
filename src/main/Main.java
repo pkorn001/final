@@ -2,6 +2,8 @@ package main;
 
 import javafx.animation.AnimationTimer;
 import javafx.application.Application;
+import javafx.scene.Scene;
+import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import logic.GameLogic;
@@ -25,12 +27,12 @@ public class Main extends Application {
 		primaryStage.setTitle("LITTLE HERO");
 		primaryStage.show();
 		
-		new AnimationTimer() {
-			@Override
-			public void handle(long now) {
-				// TODO Add another canvas update
-				RenderableHolder.getInstance().update();
+		 new AnimationTimer() {
+			 @Override
+			 public void handle(long now) {
+			    // TODO Add another canvas update
 				GameLogic.logicUpdate();
+				RenderableHolder.getInstance().update();
 				if(StartScreen.isStart) {
 					primaryStage.setScene(gameScreen);
 					gameScreen.paintComponent();

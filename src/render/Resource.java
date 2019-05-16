@@ -13,7 +13,6 @@ public class Resource {
 			im = new Image(image_path);
 		} catch (Exception e) {
 			im = null;
-
 		}
 		return im;
 	}
@@ -26,7 +25,7 @@ public class Resource {
 			Stage1_lava2, ObstacleTall_1, Obstacle_1, Hero1, Hero1_Attack, Ground1;
 
 	// stage 2 green
-	public static Image Stage2, ObstacleTall_2, Obstacle_2, Hero2, Hero2_Attack, Ground2;
+	public static Image Stage21, ObstacleTall_2, Obstacle_2, Hero2, Hero2_Attack, Ground2;
 
 	// stage 3 black
 	public static Image Stage30, Stage31, Stage32, Stage33, Stage34, ObstacleTall_3, Obstacle_3, Hero3, Hero3_Attack,
@@ -48,8 +47,8 @@ public class Resource {
 
 	// BossAttack
 	public static Image BossAttack, ParriedBall1, ParriedBall2;
-
-	// GameLogo
+	
+	//GameLogo
 	public static Image Logo;
 
 	// Sound
@@ -100,7 +99,6 @@ public class Resource {
 		Monster4 = getImage("image/Monster4.gif");
 		Monster5 = getImage("image/Monster5.gif");
 		Monster6 = getImage("image/Monster6.gif");
-		Monster6_Jump1 = getImage("image/Monster6_Jump1.png");
 		Boss = getImage("image/Boss.gif");
 		HardBoss = getImage("image/HardBoss.gif");
 
@@ -136,9 +134,9 @@ public class Resource {
 		Obstacle_1 = getImage("image/Ostacl_1.png");
 		Hero1 = getImage("image/Hero1.gif");
 
-		// stage2
-		Stage2 = getImage("image/Stage2.png");
-		Ground2 = getImage("image/Ground0.png"); // use the same as start
+		//stage2
+		Stage21 = getImage("image/Stage2.png");
+		Ground2 = getImage("image/Ground0.png");  //use the same as start
 		ObstacleTall_2 = getImage("image/ObstacleTall_2.png");
 		Obstacle_2 = getImage("image/Ostacl_2.png");
 		Hero2 = getImage("image/Hero2.gif");

@@ -4,7 +4,7 @@ package hero.action;
 import javafx.scene.canvas.GraphicsContext;
 import logic.Hitbox;
 import logic.Position;
-import obstacle.EvilFairy;
+import obstacle.Evil;
 import obstacle.Monster;
 import obstacle.Slime;
 import render.Irenderable;
@@ -51,7 +51,20 @@ public class Boomerang extends Hitbox implements Irenderable {
 			setReturn(true);
 		}
 	}
-
+	@Override
+	public boolean collide(Hitbox hitbox) {
+		if(hitbox instanceof Slime || hitbox instanceof Evil ) {
+			if(((this.getA().getX() < hitbox.getD().getX()) && (this.getA().getX() > hitbox.getA().getX()) && (this.getB().getY() > hitbox.getD().getY()))
+					|| ((this.getA().getX() < hitbox.getC().getX()) && (this.getD().getX() > hitbox.getC().getX()) && (this.getA().getY() < hitbox.getC().getY()) && (this.getB().getY() > hitbox.getC().getY()))
+					|| ((this.getD().getX() > hitbox.getA().getX() && (this.getA().getX() < hitbox.getA().getX()) && (this.getC().getY() > hitbox.getA().getY())))
+					|| ((this.getD().getX() > hitbox.getB().getX() && (this.getA().getX() < hitbox.getB().getX()) && (this.getC().getY() > hitbox.getB().getY()) && (this.getD().getY() < hitbox.getB().getY())))
+					) {
+				((Monster) hitbox).setDestroyed(true);
+			}
+		}
+		return isDestroyed();
+	}
+	
 	@Override
 	public boolean IsVisible() {
 		// TODO Auto-generated method stub

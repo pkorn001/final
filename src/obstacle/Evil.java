@@ -5,23 +5,43 @@ import hero.action.FireBall;
 import javafx.scene.canvas.GraphicsContext;
 import logic.Hitbox;
 import logic.Position;
+import move.ForwardMove;
 import move.SineMove;
 import render.Resource;
 
-public class EvilFairy extends Monster{
+public class Evil extends Monster{
 
-	public EvilFairy(Position a, int width, int height, int monsterType, double xSpeed, double ySpeed) {
+	public Evil(Position a, int width, int height, int monsterType, double xSpeed, double ySpeed) {
 		super(a, width, height, monsterType, xSpeed, ySpeed);
 		movePattern = new SineMove(this);
 	}
 
 	@Override
 	public void draw(GraphicsContext g2d) {
+		g2d.drawImage(Resource.BossAttack,A.getX(),A.getY(),5,5);
+		g2d.drawImage(Resource.BossAttack,B.getX(),B.getY(),5,5);
+		g2d.drawImage(Resource.BossAttack,C.getX(),C.getY(),5,5);
+		g2d.drawImage(Resource.BossAttack,D.getX(),D.getY(),5,5);
 		if (isDestroyed()) {
 			g2d.drawImage(Resource.Dead,this.getB().getX(),this.getB().getY(),this.getWidth(),this.getHeight());
 		}
 		else {
 			g2d.drawImage(Resource.Monster3,this.getB().getX(),this.getB().getY(),this.getWidth(),this.getHeight());
+		}
+	}
+	
+	@Override
+	public void update() {
+		// TODO Auto-generated method stub
+		if(this.getB().getY() <= 100) {
+			this.setySpeed(((SineMove)movePattern).getySpeed());
+			
+		}else if(this.getB().getY() >= 600) {
+			this.setySpeed(((SineMove)movePattern).getySpeed() * -1);
+		}
+		for(Position i  : new Position[] {this.A, this.B, this.C, this.D}){
+			i.setX(i.getX() + this.xSpeed);
+			i.setY(i.getY() + this.ySpeed);
 		}
 	}
 	

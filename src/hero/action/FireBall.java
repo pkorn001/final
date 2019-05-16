@@ -13,14 +13,12 @@ import render.Resource;
 public class FireBall extends Hitbox implements Irenderable {
 	//xSpeed > map's speed, graphic, collide?, 
 	public static final double FIREBALL_SPEED = 10.0;
-	private int z;
 	private Position position;
 	private boolean isDestroyed = false;
 	
 	
 	public FireBall(Position position) {
 		super(position, 10, 10, FIREBALL_SPEED, 0);
-		this.z = Integer.MAX_VALUE;
 		this.position = position;
 	}
 	

@@ -33,6 +33,14 @@ public class Background implements Irenderable {
 			}
 			g2d.drawImage(Resource.Stage0, xlist[0] , 0, 1600, 770);
 			g2d.drawImage(Resource.Stage0, (xlist[1]), 0, 1600  , 770);
+			g2d.drawImage(Resource.Stage0, xlist[2] , 0, 1600, 770);
+			g2d.drawImage(Resource.Stage0, (xlist[3]), 0, 1600  , 770);
+			g2d.drawImage(Resource.Stage0, xlist[4] , 0, 1600, 770);
+			g2d.drawImage(Resource.Stage0, (xlist[5]), 0, 1600  , 770);
+			g2d.drawImage(Resource.Stage0, xlist[6] , 0, 1600, 770);
+			g2d.drawImage(Resource.Stage0, (xlist[7]), 0, 1600  , 770);
+			g2d.drawImage(Resource.Stage0, xlist[8] , 0, 1600, 770);
+			g2d.drawImage(Resource.Stage0, (xlist[9]), 0, 1600  , 770);
 			g2d.drawImage(Resource.Ground0, xG, 330, 1600, 570);
 			g2d.drawImage(Resource.Ground0, (xG + 1600), 330, 1600, 570);
 			break;
@@ -59,8 +67,18 @@ public class Background implements Irenderable {
 			if(!sound.isPlaying()) {
 				sound.play();
 			}
-			g2d.drawImage(Resource.Stage2, xlist[0], 0, 1600, 820);
-			g2d.drawImage(Resource.Stage2, xlist[1], 0, 1600, 820);
+			g2d.drawImage(Resource.Stage21, xlist[0], 0, 1600, 820);
+			g2d.drawImage(Resource.Stage21, xlist[1], 0, 1600, 820);
+			g2d.drawImage(Resource.Stage21, xlist[0], 0, 1600, 820);
+			g2d.drawImage(Resource.Stage21, xlist[1], 0, 1600, 820);
+			g2d.drawImage(Resource.Stage21, xlist[2], 0, 1600, 820);
+			g2d.drawImage(Resource.Stage21, xlist[3], 0, 1600, 820);
+			g2d.drawImage(Resource.Stage21, xlist[4], 0, 1600, 820);
+			g2d.drawImage(Resource.Stage21, xlist[5], 0, 1600, 820);
+			g2d.drawImage(Resource.Stage21, xlist[6], 0, 1600, 820);
+			g2d.drawImage(Resource.Stage21, xlist[7], 0, 1600, 820);
+			g2d.drawImage(Resource.Stage21, xlist[8], 0, 1600, 820);
+			g2d.drawImage(Resource.Stage21, xlist[9], 0, 1600, 820);
 			g2d.drawImage(Resource.Ground2, xG, 330, 1600, 570);
 			g2d.drawImage(Resource.Ground2, xG+1600, 330, 1600, 570);
 			break;
@@ -120,7 +138,7 @@ public class Background implements Irenderable {
 	}
 	
 	public void update() {
-		xSpeed = -25 * GameLogic.getSpeedFactor();
+		xSpeed = -20 * GameLogic.getSpeedFactor();
 		for (int i = 0; i < 10 ; i++) {
 			xlist[i] += xSpeed/3;
 		}
@@ -129,9 +147,9 @@ public class Background implements Irenderable {
 		
 		switch (Hero.getStage()) {
 		case (0):	
-			for (int i = 0; i < 2 ; i++) {
+			for (int i = 0; i < 10 ; i++) {
 				if (xlist[i] < -1600) {
-					xlist[i] = 1600;
+					xlist[i] = 1600*9;
 				}
 			}
 			break;
@@ -143,9 +161,9 @@ public class Background implements Irenderable {
 			}
 			break;
 		case (2):
-			for (int i = 0; i < 2 ; i++) {
+			for (int i = 0; i < 10 ; i++) {
 				if (xlist[i] < -1600) {
-					xlist[i] = 1600;
+					xlist[i] = 1600*9;
 				}
 			}
 			break;

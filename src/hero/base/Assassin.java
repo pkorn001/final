@@ -24,11 +24,11 @@ public class Assassin extends Hero implements Attackable,Irenderable{
 	public Hitbox getAttack() {
 		// TODO Auto-generated method stub
 		if (!didShort) {
-			attackBox = new Hitbox(new Position(this.getC().getX() + 1, this.getC().getY()/2), 1, 1) {
+			attackBox = new Hitbox(new Position(this.getC().getX() + 1, this.getC().getY()/2), 40, 40) {
 			};
 			didShort = true;
 		} else {
-			attackBox = new Hitbox(new Position(this.getC().getX()+5, this.getC().getY()/2), 1, 1){
+			attackBox = new Hitbox(new Position(this.getC().getX()+5, this.getC().getY()/2), 40, 40){
 			};
 			didShort = false;
 		}
@@ -46,12 +46,12 @@ public class Assassin extends Hero implements Attackable,Irenderable{
 		// TODO Auto-generated method stub
 		if(GameLogic.isAttack()) {
 			if(!didShort) {
-				g2d.drawImage(Resource.Hero4_Attack1, this.position.getX(), this.position.getY(), 167, 300);
+				g2d.drawImage(Resource.Hero4_Attack1, this.position.getX(), this.position.getY(), this.getWidth(), this.getHeight());
 			}else {
-				g2d.drawImage(Resource.Hero4_Attack2, this.position.getX(), this.position.getY(), 167, 300);
+				g2d.drawImage(Resource.Hero4_Attack2, this.position.getX(), this.position.getY(), this.getWidth(), this.getHeight());
 			}
 		}else {
-			g2d.drawImage(Resource.Hero4, this.position.getX(), this.position.getY(), 167, 300);
+			g2d.drawImage(Resource.Hero4, this.position.getX(), this.position.getY(), this.getWidth(), this.getHeight());
 		}
 	}
 

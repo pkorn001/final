@@ -11,7 +11,6 @@ import render.Resource;
 
 public class Boomeranger extends Hero implements Attackable,Irenderable {
 
-	private boolean isJumped =  false;
 	private boolean isAttacked = false;
 	private Boomerang boomerang;
 	
@@ -36,9 +35,9 @@ public class Boomeranger extends Hero implements Attackable,Irenderable {
 	@Override
 	public void draw(GraphicsContext g2d) {
 		if(GameLogic.isAttack()) {
-			g2d.drawImage(Resource.Hero2_Attack, this.position.getX(), this.position.getY(), 167, 300);
+			g2d.drawImage(Resource.Hero2_Attack, this.position.getX(), this.position.getY(), this.getWidth(), this.getHeight());
 		}else {
-			g2d.drawImage(Resource.Hero2, this.position.getX(), this.position.getY(), 167, 300);
+			g2d.drawImage(Resource.Hero2, this.position.getX(), this.position.getY(), this.getWidth(), this.getHeight());
 		}
 	}
 
